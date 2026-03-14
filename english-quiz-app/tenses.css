@@ -1,0 +1,445 @@
+/* ===== Tenses Module Styles ===== */
+
+/* Container */
+.tenses-container {
+    max-width: 560px;
+    width: 100%;
+    padding: 1.5rem;
+    margin: 0 auto;
+}
+
+.top-bar-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* ===== Tenses Hub Grid ===== */
+.tenses-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.tense-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-sm);
+    text-align: left;
+}
+
+.tense-card:hover:not(.locked) {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.tense-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.tense-card.available {
+    border-color: var(--accent);
+    border-style: dashed;
+}
+
+.tense-card.mastered {
+    border-color: var(--correct-border);
+}
+
+.tense-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.tense-order {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: var(--bg);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tense-status-icon {
+    font-size: 1rem;
+}
+
+.tense-card-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.15rem;
+}
+
+.tense-card-name-en {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.tense-card-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tense-card-phases {
+    display: flex;
+    gap: 4px;
+}
+
+.phase-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+}
+
+.phase-dot.done {
+    background: var(--correct);
+}
+
+.phase-dot.active {
+    background: var(--accent);
+}
+
+.tense-accuracy {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ===== Theory / Learn Screen ===== */
+.theory-viewport {
+    margin-bottom: 1.5rem;
+}
+
+.theory-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    animation: fadeIn 0.3s ease;
+}
+
+.theory-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.theory-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Formula boxes */
+.formula-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.formula-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+}
+
+.formula-structure {
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    background: var(--accent-bg);
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.formula-example {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.formula-example-en {
+    font-style: italic;
+    color: var(--text-primary);
+}
+
+.formula-example-vi {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Signal word chips */
+.signal-words-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.signal-chip {
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-full);
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Usage items */
+.usage-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.usage-item:last-child {
+    border-bottom: none;
+}
+
+.usage-rule {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+}
+
+.usage-example {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Notes */
+.note-item {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding: 0.4rem 0;
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+}
+
+.note-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* Theory Navigation */
+.theory-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.theory-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.theory-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all var(--transition);
+}
+
+.theory-dot.active {
+    background: var(--accent);
+    width: 24px;
+    border-radius: 4px;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+    font-family: inherit;
+}
+
+.btn-outline:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-outline:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 0.25rem 0.6rem;
+}
+
+/* ===== Exercise / Practice Screen ===== */
+.exercise-type-badge {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border-radius: var(--radius-full);
+    padding: 0.35rem 1rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.exercise-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise-card.correct-anim {
+    border-color: var(--correct-border);
+    box-shadow: 0 0 0 3px var(--correct-bg);
+}
+
+.exercise-card.wrong-anim {
+    animation: shake 0.4s ease;
+}
+
+.exercise-prompt {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.exercise-sentence {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.exercise-blank {
+    color: var(--accent);
+    border-bottom: 2px dashed var(--accent);
+    padding: 0 4px;
+    font-weight: 700;
+}
+
+.exercise-verb-hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+/* Explanation Box */
+.explanation-box {
+    background: var(--accent-bg);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.explanation-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+}
+
+.explanation-text {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+/* ===== Result Screen ===== */
+.result-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.result-message {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* ===== Tenses Responsive ===== */
+@media (max-width: 600px) {
+    .tenses-container {
+        padding: 1rem;
+    }
+
+    .tenses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .theory-card {
+        padding: 1rem;
+    }
+
+    .exercise-sentence {
+        font-size: 1.1rem;
+    }
+
+    .exercise-card {
+        padding: 1.5rem 1rem;
+    }
+}

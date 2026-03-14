@@ -1,0 +1,4641 @@
+{
+  "tenses": [
+    {
+      "id": "present_simple",
+      "order": 1,
+      "name": {
+        "en": "Simple Present",
+        "vi": "Thì Hiện Tại Đơn"
+      },
+      "theory": {
+        "description": "Diễn tả thói quen, sự thật và chân lý chung",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + V(s/es)",
+            "structureVi": "Chủ ngữ + Động từ (thêm s/es với ngôi 3 số ít)",
+            "subjectNote": "I/You/We/They + V | He/She/It + V(s/es)",
+            "example": {
+              "en": "She works at a hospital.",
+              "vi": "Cô ấy làm việc ở bệnh viện."
+            },
+            "note": "Thêm -es sau các động từ kết thúc bằng: -o, -s, -x, -z, -ch, -sh (goes, watches, washes)"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + do/does + not + V",
+            "structureVi": "Chủ ngữ + do/does + not + Động từ nguyên mẫu",
+            "subjectNote": "I/You/We/They + do not | He/She/It + does not",
+            "example": {
+              "en": "She does not (doesn't) work on Sundays.",
+              "vi": "Cô ấy không làm việc vào Chủ nhật."
+            },
+            "note": "Viết tắt: do not = don't, does not = doesn't"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Do/Does + S + V?",
+            "structureVi": "Do/Does + Chủ ngữ + Động từ nguyên mẫu?",
+            "subjectNote": "Do + I/you/we/they | Does + he/she/it",
+            "example": {
+              "en": "Does she work at a hospital?",
+              "vi": "Cô ấy có làm việc ở bệnh viện không?"
+            },
+            "note": "Trả lời: Yes, she does. / No, she doesn't."
+          }
+        ],
+        "signalWords": [
+          "always",
+          "usually",
+          "often",
+          "sometimes",
+          "rarely",
+          "never",
+          "every day",
+          "every week/month/year",
+          "on Mondays",
+          "once/twice a week"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "always",
+            "wordVi": "luôn luôn",
+            "example": "She always arrives on time.",
+            "exampleVi": "Cô ấy luôn đến đúng giờ.",
+            "note": "Đứng trước động từ thường, sau động từ to be"
+          },
+          {
+            "word": "usually",
+            "wordVi": "thường xuyên",
+            "example": "I usually have breakfast at 7.",
+            "exampleVi": "Tôi thường ăn sáng lúc 7 giờ.",
+            "note": null
+          },
+          {
+            "word": "often",
+            "wordVi": "thường",
+            "example": "They often go to the cinema.",
+            "exampleVi": "Họ thường đi xem phim.",
+            "note": null
+          },
+          {
+            "word": "sometimes",
+            "wordVi": "đôi khi",
+            "example": "Sometimes I work from home.",
+            "exampleVi": "Đôi khi tôi làm việc ở nhà.",
+            "note": "Có thể đứng đầu câu hoặc giữa câu"
+          },
+          {
+            "word": "rarely",
+            "wordVi": "hiếm khi",
+            "example": "He rarely eats fast food.",
+            "exampleVi": "Anh ấy hiếm khi ăn đồ ăn nhanh.",
+            "note": null
+          },
+          {
+            "word": "never",
+            "wordVi": "không bao giờ",
+            "example": "I never drink alcohol.",
+            "exampleVi": "Tôi không bao giờ uống rượu.",
+            "note": "Không dùng với \"not\""
+          },
+          {
+            "word": "every day",
+            "wordVi": "mỗi ngày",
+            "example": "She exercises every day.",
+            "exampleVi": "Cô ấy tập thể dục mỗi ngày.",
+            "note": null
+          },
+          {
+            "word": "every week/month/year",
+            "wordVi": "mỗi tuần/tháng/năm",
+            "example": "We meet every month.",
+            "exampleVi": "Chúng tôi gặp nhau mỗi tháng.",
+            "note": null
+          },
+          {
+            "word": "on Mondays",
+            "wordVi": "vào các ngày thứ Hai",
+            "example": "The class is on Mondays.",
+            "exampleVi": "Lớp học vào các ngày thứ Hai.",
+            "note": "Số nhiều (Mondays) = mỗi thứ Hai"
+          },
+          {
+            "word": "once/twice a week",
+            "wordVi": "một/hai lần một tuần",
+            "example": "I go swimming twice a week.",
+            "exampleVi": "Tôi đi bơi hai lần một tuần.",
+            "note": null
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Thói quen và hoạt động thường ngày",
+            "description": "Dùng để diễn tả các hành động xảy ra thường xuyên hoặc lặp đi lặp lại.",
+            "example": {
+              "en": "I wake up at 6 AM every day.",
+              "vi": "Tôi thức dậy lúc 6 giờ sáng mỗi ngày."
+            }
+          },
+          {
+            "rule": "Sự thật chung và chân lý",
+            "description": "Dùng để nói về sự thật, chân lý khoa học và những điều được chấp nhận là đúng.",
+            "example": {
+              "en": "Water boils at 100 degrees Celsius.",
+              "vi": "Nước sôi ở 100 độ C."
+            }
+          },
+          {
+            "rule": "Tình huống cố định, lâu dài",
+            "description": "Dùng để diễn tả tình huống cố định hoặc kéo dài lâu.",
+            "example": {
+              "en": "",
+              "vi": ""
+            }
+          },
+          {
+            "rule": "Sự kiện theo lịch trình",
+            "description": "Dùng cho các sự kiện theo lịch trình, đặc biệt với phương tiện giao thông.",
+            "example": {
+              "en": "",
+              "vi": ""
+            }
+          },
+          {
+            "rule": "Hướng dẫn và chỉ đường",
+            "description": "Dùng trong hướng dẫn, công thức nấu ăn và chỉ đường.",
+            "example": {
+              "en": "",
+              "vi": ""
+            }
+          }
+        ],
+        "notes": [
+          "Nhớ: He/She/It luôn cần thêm -s hoặc -es vào cuối động từ. Lỗi thường gặp: \"She work\" → \"She works\"",
+          "Trạng từ tần suất đứng TRƯỚC động từ thường nhưng SAU động từ \"be\": \"I always eat\" nhưng \"I am always happy\"",
+          "Hiện tại đơn = thói quen/sự thật (Tôi uống cà phê mỗi sáng) vs Hiện tại tiếp diễn = đang xảy ra (Tôi đang uống cà phê)",
+          "Thêm -es (không chỉ -s) sau động từ kết thúc bằng: -o (goes), -s (misses), -x (fixes), -z (buzzes), -ch (watches), -sh (washes)"
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "pres_mult_01",
+            "prompt": "Chọn dạng đúng của động từ.",
+            "sentence": "Cô ấy ___ đến trường mỗi ngày.",
+            "verb": "",
+            "correctAnswer": "goes",
+            "distractors": [
+              "go",
+              "going",
+              "went"
+            ],
+            "explanation": "Với \"she\" (ngôi 3 số ít), ta thêm -es vào \"go\" → \"goes\". \"Every day\" chỉ thói quen nên dùng Hiện tại đơn."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "pres_fill_02",
+            "sentence": "Water ___ (boil) at 100 degrees Celsius.",
+            "sentenceEn": "Water ___ (boil) at 100 degrees Celsius.",
+            "verb": "boil",
+            "correctAnswer": "boils",
+            "distractors": [
+              "boiling",
+              "boiled",
+              "boil"
+            ],
+            "explanation": "Đây là sự thật khoa học (chân lý chung) nên dùng Hiện tại đơn. \"Water\" là ngôi 3 số ít nên thêm -s."
+          },
+          {
+            "id": "pres_sigf_40",
+            "sentence": "Cô ấy luôn đến đúng giờ.",
+            "sentenceEn": "She always arrives on time.",
+            "verb": "",
+            "correctAnswer": "always",
+            "distractors": [
+              "next year",
+              "sometimes",
+              "for"
+            ],
+            "explanation": "Đứng trước động từ thường, sau động từ to be"
+          },
+          {
+            "id": "pres_sigf_41",
+            "sentence": "Tôi thường ăn sáng lúc 7 giờ.",
+            "sentenceEn": "I usually have breakfast at 7.",
+            "verb": "",
+            "correctAnswer": "usually",
+            "distractors": [
+              "never",
+              "often",
+              "next year"
+            ],
+            "explanation": "Dấu hiệu \"usually\" (thường xuyên) thường dùng trong Thì Hiện Tại Đơn."
+          },
+          {
+            "id": "pres_sigf_42",
+            "sentence": "Họ thường đi xem phim.",
+            "sentenceEn": "They often go to the cinema.",
+            "verb": "",
+            "correctAnswer": "often",
+            "distractors": [
+              "always",
+              "ago",
+              "just"
+            ],
+            "explanation": "Dấu hiệu \"often\" (thường) thường dùng trong Thì Hiện Tại Đơn."
+          },
+          {
+            "id": "pres_sigf_43",
+            "sentence": "Đôi khi tôi làm việc ở nhà.",
+            "sentenceEn": "Sometimes I work from home.",
+            "verb": "",
+            "correctAnswer": "sometimes",
+            "distractors": [
+              "always",
+              "every day",
+              "just"
+            ],
+            "explanation": "Có thể đứng đầu câu hoặc giữa câu"
+          },
+          {
+            "id": "pres_sigf_44",
+            "sentence": "Anh ấy hiếm khi ăn đồ ăn nhanh.",
+            "sentenceEn": "He rarely eats fast food.",
+            "verb": "",
+            "correctAnswer": "rarely",
+            "distractors": [
+              "on Mondays",
+              "since",
+              "yesterday"
+            ],
+            "explanation": "Dấu hiệu \"rarely\" (hiếm khi) thường dùng trong Thì Hiện Tại Đơn."
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "pres_true_07",
+            "sentence": "The Sun rises in the east.",
+            "sentenceVi": "Mặt trời mọc ở phía đông.",
+            "correctAnswer": "present_simple",
+            "distractors": [
+              "future_perfect",
+              "past_perfect_continuous",
+              "future_simple"
+            ],
+            "explanation": "Câu này đúng. Nó diễn tả sự thật chung, dùng Hiện tại đơn. \"The Sun\" là ngôi 3 số ít nên \"rises\" (có -s) là đúng."
+          },
+          {
+            "id": "pres_iden_30",
+            "sentence": "I wake up at 6 AM every day.",
+            "sentenceVi": "Tôi thức dậy lúc 6 giờ sáng mỗi ngày.",
+            "correctAnswer": "present_simple",
+            "distractors": [
+              "present_continuous",
+              "future_perfect_continuous",
+              "future_continuous"
+            ],
+            "explanation": "\"Every day\" cho thấy đây là thói quen thường xuyên."
+          },
+          {
+            "id": "pres_iden_31",
+            "sentence": "She always drinks coffee in the morning.",
+            "sentenceVi": "Cô ấy luôn uống cà phê vào buổi sáng.",
+            "correctAnswer": "present_simple",
+            "distractors": [
+              "past_perfect",
+              "future_perfect_continuous",
+              "future_perfect"
+            ],
+            "explanation": "\"Always\" nhấn mạnh tính chất thói quen của hành động."
+          },
+          {
+            "id": "pres_iden_32",
+            "sentence": "They go to the gym three times a week.",
+            "sentenceVi": "Họ đến phòng gym ba lần một tuần.",
+            "correctAnswer": "present_simple",
+            "distractors": [
+              "present_perfect_continuous",
+              "past_simple",
+              "past_perfect_continuous"
+            ],
+            "explanation": "Cụm từ tần suất \"ba lần một tuần\" cho thấy tính thường xuyên."
+          },
+          {
+            "id": "pres_iden_33",
+            "sentence": "Water boils at 100 degrees Celsius.",
+            "sentenceVi": "Nước sôi ở 100 độ C.",
+            "correctAnswer": "present_simple",
+            "distractors": [
+              "past_perfect",
+              "past_simple",
+              "future_simple"
+            ],
+            "explanation": "Sự thật khoa học - luôn đúng bất kể thời gian."
+          },
+          {
+            "id": "pres_iden_34",
+            "sentence": "The Earth revolves around the Sun.",
+            "sentenceVi": "Trái Đất quay quanh Mặt Trời.",
+            "correctAnswer": "present_simple",
+            "distractors": [
+              "future_simple",
+              "past_simple",
+              "past_continuous"
+            ],
+            "explanation": "Chân lý về hệ mặt trời của chúng ta."
+          }
+        ]
+      }
+    },
+    {
+      "id": "present_continuous",
+      "order": 2,
+      "name": {
+        "en": "Present Continuous",
+        "vi": "Thì Hiện Tại Tiếp Diễn"
+      },
+      "theory": {
+        "description": "Hành động đang xảy ra hoặc tình huống tạm thời",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + am/is/are + V-ing",
+            "structureVi": "Chủ ngữ + am/is/are + Động từ thêm -ing",
+            "subjectNote": "I + am | He/She/It + is | You/We/They + are",
+            "example": {
+              "en": "I am studying English now.",
+              "vi": "Tôi đang học tiếng Anh bây giờ."
+            },
+            "note": "Quy tắc thêm -ing: bỏ -e cuối (make → making), gấp đôi phụ âm cuối (run → running)"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + am/is/are + not + V-ing",
+            "structureVi": "Chủ ngữ + am/is/are + not + Động từ thêm -ing",
+            "subjectNote": null,
+            "example": {
+              "en": "She is not (isn't) working today.",
+              "vi": "Cô ấy không làm việc hôm nay."
+            },
+            "note": "Viết tắt: is not = isn't, are not = aren't"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Am/Is/Are + S + V-ing?",
+            "structureVi": "Am/Is/Are + Chủ ngữ + Động từ thêm -ing?",
+            "subjectNote": null,
+            "example": {
+              "en": "Are you listening to me?",
+              "vi": "Bạn có đang nghe tôi nói không?"
+            },
+            "note": "Trả lời: Yes, I am. / No, I'm not."
+          }
+        ],
+        "signalWords": [
+          "now",
+          "right now",
+          "at the moment",
+          "currently",
+          "today",
+          "Look! / Listen!"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "now",
+            "wordVi": "bây giờ",
+            "example": "I am eating now.",
+            "exampleVi": "Tôi đang ăn bây giờ.",
+            "note": null
+          },
+          {
+            "word": "right now",
+            "wordVi": "ngay bây giờ",
+            "example": "She is sleeping right now.",
+            "exampleVi": "Cô ấy đang ngủ ngay bây giờ.",
+            "note": null
+          },
+          {
+            "word": "at the moment",
+            "wordVi": "vào lúc này",
+            "example": "He is studying at the moment.",
+            "exampleVi": "Anh ấy đang học vào lúc này.",
+            "note": null
+          },
+          {
+            "word": "currently",
+            "wordVi": "hiện tại",
+            "example": "We are currently working on the project.",
+            "exampleVi": "Chúng tôi hiện tại đang làm dự án.",
+            "note": null
+          },
+          {
+            "word": "today",
+            "wordVi": "hôm nay",
+            "example": "I am working from home today.",
+            "exampleVi": "Hôm nay tôi đang làm việc ở nhà.",
+            "note": null
+          },
+          {
+            "word": "Look! / Listen!",
+            "wordVi": "Nhìn kìa! / Nghe kìa!",
+            "example": "Look! The bird is flying!",
+            "exampleVi": "Nhìn kìa! Con chim đang bay!",
+            "note": "Dùng để thu hút sự chú ý đến hành động đang xảy ra"
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Hành động đang xảy ra",
+            "description": "Diễn tả hành động đang diễn ra tại thời điểm nói.",
+            "example": {
+              "en": "She is reading a book right now.",
+              "vi": "Cô ấy đang đọc sách ngay bây giờ."
+            }
+          },
+          {
+            "rule": "Tình huống tạm thời",
+            "description": "Diễn tả hành động hoặc tình huống tạm thời, không cố định.",
+            "example": {
+              "en": "I am staying with my friend this week.",
+              "vi": "Tuần này tôi đang ở với bạn."
+            }
+          },
+          {
+            "rule": "Thói quen gây khó chịu (với always)",
+            "description": "Dùng với \"always\" để diễn tả sự khó chịu về hành động lặp lại.",
+            "example": {
+              "en": "He is always losing his keys!",
+              "vi": "Anh ấy luôn làm mất chìa khóa!"
+            }
+          }
+        ],
+        "notes": [
+          "Một số động từ KHÔNG dùng ở dạng tiếp diễn: know, believe, want, like, love, hate, need, prefer, understand, belong, own. Nói \"I know\" KHÔNG PHẢI \"I am knowing\".",
+          "Bỏ -e câm: make → making. Gấp đôi phụ âm sau nguyên âm ngắn: run → running, sit → sitting. -ie → -ying: die → dying, lie → lying.",
+          "Hiện tại tiếp diễn có thể diễn tả kế hoạch tương lai đã sắp xếp: \"I am meeting Tom tomorrow.\" Ngụ ý sắp xếp chắc chắn."
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "pres_mult_08",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Nhìn kìa! Bọn trẻ ___ trong vườn.",
+            "verb": "",
+            "correctAnswer": "are playing",
+            "distractors": [
+              "play",
+              "played",
+              "plays"
+            ],
+            "explanation": "\"Look!\" báo hiệu hành động đang xảy ra nên dùng Hiện tại tiếp diễn."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "pres_fill_09",
+            "sentence": "She ___ (study) for her exam right now.",
+            "sentenceEn": "She ___ (study) for her exam right now.",
+            "verb": "study",
+            "correctAnswer": "is studying",
+            "distractors": [
+              "is studyed",
+              "is study"
+            ],
+            "explanation": "\"Right now\" cho biết hành động đang xảy ra → Hiện tại tiếp diễn. She + is + studying."
+          },
+          {
+            "id": "pres_sigf_40",
+            "sentence": "Tôi đang ăn bây giờ.",
+            "sentenceEn": "I am eating now.",
+            "verb": "",
+            "correctAnswer": "now",
+            "distractors": [
+              "just",
+              "next year",
+              "yesterday"
+            ],
+            "explanation": "Dấu hiệu \"now\" (bây giờ) thường dùng trong Thì Hiện Tại Tiếp Diễn."
+          },
+          {
+            "id": "pres_sigf_41",
+            "sentence": "Cô ấy đang ngủ ngay bây giờ.",
+            "sentenceEn": "She is sleeping right now.",
+            "verb": "",
+            "correctAnswer": "right now",
+            "distractors": [
+              "next year",
+              "already",
+              "last week"
+            ],
+            "explanation": "Dấu hiệu \"right now\" (ngay bây giờ) thường dùng trong Thì Hiện Tại Tiếp Diễn."
+          },
+          {
+            "id": "pres_sigf_42",
+            "sentence": "Anh ấy đang học vào lúc này.",
+            "sentenceEn": "He is studying at the moment.",
+            "verb": "",
+            "correctAnswer": "at the moment",
+            "distractors": [
+              "Look! / Listen!",
+              "yesterday",
+              "currently"
+            ],
+            "explanation": "Dấu hiệu \"at the moment\" (vào lúc này) thường dùng trong Thì Hiện Tại Tiếp Diễn."
+          },
+          {
+            "id": "pres_sigf_43",
+            "sentence": "Chúng tôi hiện tại đang làm dự án.",
+            "sentenceEn": "We are currently working on the project.",
+            "verb": "",
+            "correctAnswer": "currently",
+            "distractors": [
+              "by the time",
+              "already",
+              "today"
+            ],
+            "explanation": "Dấu hiệu \"currently\" (hiện tại) thường dùng trong Thì Hiện Tại Tiếp Diễn."
+          },
+          {
+            "id": "pres_sigf_44",
+            "sentence": "Hôm nay tôi đang làm việc ở nhà.",
+            "sentenceEn": "I am working from home today.",
+            "verb": "",
+            "correctAnswer": "today",
+            "distractors": [
+              "Look! / Listen!",
+              "by the time",
+              "yet"
+            ],
+            "explanation": "Dấu hiệu \"today\" (hôm nay) thường dùng trong Thì Hiện Tại Tiếp Diễn."
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "pres_true_14",
+            "sentence": "She is wanting a new phone.",
+            "sentenceVi": "Cô ấy is wanting một chiếc điện thoại mới.",
+            "correctAnswer": "present_continuous",
+            "distractors": [
+              "future_perfect_continuous",
+              "past_continuous",
+              "past_simple"
+            ],
+            "explanation": "\"Want\" là động từ trạng thái — không dùng dạng tiếp diễn. Đúng: \"She wants a new phone.\""
+          },
+          {
+            "id": "pres_iden_30",
+            "sentence": "She is reading a book right now.",
+            "sentenceVi": "Cô ấy đang đọc sách ngay bây giờ.",
+            "correctAnswer": "present_continuous",
+            "distractors": [
+              "future_perfect_continuous",
+              "past_perfect_continuous",
+              "present_perfect"
+            ],
+            "explanation": "\"Right now\" báo hiệu hành động đang diễn ra tại thời điểm này."
+          },
+          {
+            "id": "pres_iden_31",
+            "sentence": "They are playing football in the park.",
+            "sentenceVi": "Họ đang chơi bóng đá trong công viên.",
+            "correctAnswer": "present_continuous",
+            "distractors": [
+              "future_perfect_continuous",
+              "future_perfect",
+              "present_perfect"
+            ],
+            "explanation": "Hành động đang xảy ra tại thời điểm nói."
+          },
+          {
+            "id": "pres_iden_32",
+            "sentence": "I am staying with my friend this week.",
+            "sentenceVi": "Tuần này tôi đang ở với bạn.",
+            "correctAnswer": "present_continuous",
+            "distractors": [
+              "future_perfect",
+              "past_simple",
+              "past_perfect_continuous"
+            ],
+            "explanation": "\"Tuần này\" cho thấy sắp xếp tạm thời, không cố định."
+          },
+          {
+            "id": "pres_iden_33",
+            "sentence": "He is working at a cafe while his office is renovated.",
+            "sentenceVi": "Anh ấy đang làm việc ở quán cafe trong khi văn phòng sửa chữa.",
+            "correctAnswer": "present_continuous",
+            "distractors": [
+              "past_continuous",
+              "present_simple",
+              "future_continuous"
+            ],
+            "explanation": "Tình huống tạm thời — sẽ kết thúc khi văn phòng xong."
+          },
+          {
+            "id": "pres_iden_34",
+            "sentence": "He is always losing his keys!",
+            "sentenceVi": "Anh ấy luôn làm mất chìa khóa!",
+            "correctAnswer": "present_continuous",
+            "distractors": [
+              "future_simple",
+              "past_perfect_continuous",
+              "present_simple"
+            ],
+            "explanation": "\"Always\" + Hiện tại tiếp diễn diễn tả sự khó chịu về hành động lặp lại."
+          }
+        ]
+      }
+    },
+    {
+      "id": "past_simple",
+      "order": 3,
+      "name": {
+        "en": "Simple Past",
+        "vi": "Thì Quá Khứ Đơn"
+      },
+      "theory": {
+        "description": "Hành động đã hoàn thành tại thời điểm cụ thể trong quá khứ",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + V2 (past form)",
+            "structureVi": "Chủ ngữ + Động từ quá khứ",
+            "subjectNote": "All subjects + V2 (past form)",
+            "example": {
+              "en": "She worked late yesterday.",
+              "vi": "Cô ấy làm việc muộn hôm qua."
+            },
+            "note": "Regular: V + ed (worked). Irregular: riêng (went, saw, ate)"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + did not (didn't) + V",
+            "structureVi": "Chủ ngữ + did not + Động từ nguyên mẫu",
+            "subjectNote": "All subjects + did not",
+            "example": {
+              "en": "She didn't work yesterday.",
+              "vi": "Cô ấy không làm việc hôm qua."
+            },
+            "note": "Sau did not, động từ trở về dạng nguyên mẫu"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Did + S + V?",
+            "structureVi": "Did + Chủ ngữ + Động từ nguyên mẫu?",
+            "subjectNote": "Did + all subjects",
+            "example": {
+              "en": "Did she work yesterday?",
+              "vi": "Cô ấy có làm việc hôm qua không?"
+            },
+            "note": "Trả lời: Yes, she did. / No, she didn't."
+          }
+        ],
+        "signalWords": [
+          "yesterday",
+          "last week/month/year",
+          "ago",
+          "in 2020",
+          "when",
+          "then/after that"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "yesterday",
+            "wordVi": "hôm qua",
+            "example": "I saw her yesterday.",
+            "exampleVi": "Tôi gặp cô ấy hôm qua.",
+            "note": null
+          },
+          {
+            "word": "last week/month/year",
+            "wordVi": "tuần/tháng/năm trước",
+            "example": "We traveled to Japan last year.",
+            "exampleVi": "Năm ngoái chúng tôi đi Nhật.",
+            "note": null
+          },
+          {
+            "word": "ago",
+            "wordVi": "trước (đây)",
+            "example": "She left two hours ago.",
+            "exampleVi": "Cô ấy rời đi hai tiếng trước.",
+            "note": "Luôn đứng sau khoảng thời gian: 2 days ago"
+          },
+          {
+            "word": "in 2020",
+            "wordVi": "vào năm 2020",
+            "example": "He graduated in 2020.",
+            "exampleVi": "Anh ấy tốt nghiệp năm 2020.",
+            "note": null
+          },
+          {
+            "word": "when",
+            "wordVi": "khi",
+            "example": "When I arrived, she had already left.",
+            "exampleVi": "Khi tôi đến, cô ấy đã đi rồi.",
+            "note": "Thường mở đầu mệnh đề thời gian"
+          },
+          {
+            "word": "then/after that",
+            "wordVi": "sau đó",
+            "example": "I ate dinner, then I watched TV.",
+            "exampleVi": "Tôi ăn tối, sau đó xem TV.",
+            "note": null
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Hành động hoàn thành tại thời điểm cụ thể",
+            "description": "Diễn tả hành động đã bắt đầu và kết thúc tại thời điểm xác định trong quá khứ.",
+            "example": {
+              "en": "I visited my grandmother last weekend.",
+              "vi": "Tôi đã thăm bà ngoại cuối tuần trước."
+            }
+          },
+          {
+            "rule": "Chuỗi sự kiện quá khứ",
+            "description": "Diễn tả một chuỗi hành động hoàn thành theo thứ tự.",
+            "example": {
+              "en": "I woke up, had breakfast, and went to work.",
+              "vi": "Tôi thức dậy, ăn sáng rồi đi làm."
+            }
+          },
+          {
+            "rule": "Thói quen và trạng thái quá khứ",
+            "description": "Diễn tả thói quen hoặc trạng thái đúng trong quá khứ nhưng không còn nữa.",
+            "example": {
+              "en": "When I was young, I played football every day.",
+              "vi": "Khi tôi còn nhỏ, tôi chơi bóng đá mỗi ngày."
+            }
+          }
+        ],
+        "notes": [
+          "Có quy tắc: thêm -ed (worked, played, visited). Bất quy tắc: phải học thuộc (go→went, see→saw, eat→ate, buy→bought, take→took).",
+          "Ba cách phát âm: /t/ sau âm vô thanh (worked, stopped), /d/ sau âm hữu thanh (played, called), /ɪd/ sau t/d (wanted, needed).",
+          "Trong câu phủ định và câu hỏi, dùng \"did\" + nguyên mẫu. SAI: \"Did you went?\" ĐÚNG: \"Did you go?\" Dạng quá khứ do \"did\" mang."
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "past_mult_29",
+            "prompt": "Chọn dạng quá khứ đúng.",
+            "sentence": "Cô ấy ___ đến cửa hàng hôm qua.",
+            "verb": "",
+            "correctAnswer": "went",
+            "distractors": [
+              "goes",
+              "has gone",
+              "was going"
+            ],
+            "explanation": "\"Yesterday\" báo hiệu thời gian quá khứ cụ thể → Quá khứ đơn. Go → went (bất quy tắc)."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "past_fill_30",
+            "sentence": "They ___ (eat) dinner at 7 PM last night.",
+            "sentenceEn": "They ___ (eat) dinner at 7 PM last night.",
+            "verb": "eat",
+            "correctAnswer": "ate",
+            "distractors": [
+              "ateing",
+              "ateed"
+            ],
+            "explanation": "\"Tối qua\" = thời gian cụ thể → Quá khứ đơn. Eat → ate (bất quy tắc)."
+          },
+          {
+            "id": "past_sigf_40",
+            "sentence": "Tôi gặp cô ấy hôm qua.",
+            "sentenceEn": "I saw her yesterday.",
+            "verb": "",
+            "correctAnswer": "yesterday",
+            "distractors": [
+              "now",
+              "every day",
+              "just"
+            ],
+            "explanation": "Dấu hiệu \"yesterday\" (hôm qua) thường dùng trong Thì Quá Khứ Đơn."
+          },
+          {
+            "id": "past_sigf_41",
+            "sentence": "Năm ngoái chúng tôi đi Nhật.",
+            "sentenceEn": "We traveled to Japan last year.",
+            "verb": "",
+            "correctAnswer": "last week/month/year",
+            "distractors": [
+              "by the time",
+              "last week",
+              "always"
+            ],
+            "explanation": "Dấu hiệu \"last week/month/year\" (tuần/tháng/năm trước) thường dùng trong Thì Quá Khứ Đơn."
+          },
+          {
+            "id": "past_sigf_42",
+            "sentence": "Cô ấy rời đi hai tiếng trước.",
+            "sentenceEn": "She left two hours ago.",
+            "verb": "",
+            "correctAnswer": "ago",
+            "distractors": [
+              "now",
+              "last week",
+              "just"
+            ],
+            "explanation": "Luôn đứng sau khoảng thời gian: 2 days ago"
+          },
+          {
+            "id": "past_sigf_43",
+            "sentence": "Anh ấy tốt nghiệp năm 2020.",
+            "sentenceEn": "He graduated in 2020.",
+            "verb": "",
+            "correctAnswer": "in 2020",
+            "distractors": [
+              "last week/month/year",
+              "next year",
+              "for"
+            ],
+            "explanation": "Dấu hiệu \"in 2020\" (vào năm 2020) thường dùng trong Thì Quá Khứ Đơn."
+          },
+          {
+            "id": "past_sigf_44",
+            "sentence": "Khi tôi đến, cô ấy đã đi rồi.",
+            "sentenceEn": "When I arrived, she had already left.",
+            "verb": "",
+            "correctAnswer": "when",
+            "distractors": [
+              "yet",
+              "last week/month/year",
+              "yesterday"
+            ],
+            "explanation": "Thường mở đầu mệnh đề thời gian"
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "past_true_35",
+            "sentence": "She didn't went to school yesterday.",
+            "sentenceVi": "Cô ấy didn't went đến trường hôm qua.",
+            "correctAnswer": "past_simple",
+            "distractors": [
+              "present_perfect_continuous",
+              "past_continuous",
+              "present_simple"
+            ],
+            "explanation": "Sau \"didn't\", dùng nguyên mẫu: \"She didn't go to school yesterday.\" KHÔNG PHẢI \"didn't went\"."
+          },
+          {
+            "id": "past_iden_30",
+            "sentence": "I visited my grandmother last weekend.",
+            "sentenceVi": "Tôi đã thăm bà ngoại cuối tuần trước.",
+            "correctAnswer": "past_simple",
+            "distractors": [
+              "future_perfect_continuous",
+              "future_simple",
+              "future_perfect"
+            ],
+            "explanation": "\"Cuối tuần trước\" xác định khi nào hành động xảy ra."
+          },
+          {
+            "id": "past_iden_31",
+            "sentence": "They bought a new car in January.",
+            "sentenceVi": "Họ mua xe mới vào tháng Giêng.",
+            "correctAnswer": "past_simple",
+            "distractors": [
+              "past_continuous",
+              "past_perfect_continuous",
+              "present_continuous"
+            ],
+            "explanation": "\"Vào tháng Giêng\" là thời gian cụ thể quá khứ."
+          },
+          {
+            "id": "past_iden_32",
+            "sentence": "I woke up, had breakfast, and went to work.",
+            "sentenceVi": "Tôi thức dậy, ăn sáng rồi đi làm.",
+            "correctAnswer": "past_simple",
+            "distractors": [
+              "future_continuous",
+              "future_perfect_continuous",
+              "future_perfect"
+            ],
+            "explanation": "Ba hành động hoàn thành theo thứ tự — đều dùng Quá khứ đơn."
+          },
+          {
+            "id": "past_iden_33",
+            "sentence": "She entered the room and sat down.",
+            "sentenceVi": "Cô ấy bước vào phòng và ngồi xuống.",
+            "correctAnswer": "past_simple",
+            "distractors": [
+              "past_perfect",
+              "future_perfect_continuous",
+              "present_perfect"
+            ],
+            "explanation": "Hai hành động xảy ra liên tiếp trong quá khứ."
+          },
+          {
+            "id": "past_iden_34",
+            "sentence": "When I was young, I played football every day.",
+            "sentenceVi": "Khi tôi còn nhỏ, tôi chơi bóng đá mỗi ngày.",
+            "correctAnswer": "past_simple",
+            "distractors": [
+              "future_simple",
+              "future_perfect",
+              "future_perfect_continuous"
+            ],
+            "explanation": "\"Khi tôi còn nhỏ\" thiết lập khung thời gian quá khứ cho thói quen cũ."
+          }
+        ]
+      }
+    },
+    {
+      "id": "past_continuous",
+      "order": 4,
+      "name": {
+        "en": "Past Continuous",
+        "vi": "Thì Quá Khứ Tiếp Diễn"
+      },
+      "theory": {
+        "description": "Hành động đang diễn ra tại thời điểm trong quá khứ",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + was/were + V-ing",
+            "structureVi": "Chủ ngữ + was/were + V-ing",
+            "subjectNote": "I/He/She/It + was | You/We/They + were",
+            "example": {
+              "en": "I was studying at 8 PM last night.",
+              "vi": "Tôi đang học lúc 8 giờ tối qua."
+            },
+            "note": "was cho I/he/she/it, were cho you/we/they"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + was/were + not + V-ing",
+            "structureVi": "Chủ ngữ + was/were + not + V-ing",
+            "subjectNote": null,
+            "example": {
+              "en": "She was not (wasn't) sleeping at that time.",
+              "vi": "Cô ấy không ngủ lúc đó."
+            },
+            "note": "Viết tắt: was not = wasn't, were not = weren't"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Was/Were + S + V-ing?",
+            "structureVi": "Was/Were + Chủ ngữ + V-ing?",
+            "subjectNote": null,
+            "example": {
+              "en": "Were you watching TV when I called?",
+              "vi": "Bạn có đang xem TV khi tôi gọi không?"
+            },
+            "note": "Trả lời: Yes, I was. / No, I wasn't."
+          }
+        ],
+        "signalWords": [
+          "while",
+          "when",
+          "as",
+          "at 5 PM yesterday",
+          "at that time",
+          "all morning/afternoon"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "while",
+            "wordVi": "trong khi",
+            "example": "While she was reading, he was cooking.",
+            "exampleVi": "Trong khi cô ấy đọc sách, anh ấy nấu ăn.",
+            "note": "Thường dùng với Past Continuous"
+          },
+          {
+            "word": "when",
+            "wordVi": "khi",
+            "example": "I was eating when he arrived.",
+            "exampleVi": "Tôi đang ăn khi anh ấy đến.",
+            "note": "Mệnh đề \"when\" thường ở Simple Past"
+          },
+          {
+            "word": "as",
+            "wordVi": "trong khi/khi",
+            "example": "As I was leaving, the phone rang.",
+            "exampleVi": "Khi tôi đang đi thì điện thoại reo.",
+            "note": "Tương tự \"while\" và \"when\""
+          },
+          {
+            "word": "at 5 PM yesterday",
+            "wordVi": "lúc 5 giờ chiều hôm qua",
+            "example": "At 5 PM yesterday, I was driving home.",
+            "exampleVi": "Lúc 5 giờ chiều hôm qua, tôi đang lái xe về nhà.",
+            "note": null
+          },
+          {
+            "word": "at that time",
+            "wordVi": "vào lúc đó",
+            "example": "At that time, we were having dinner.",
+            "exampleVi": "Vào lúc đó, chúng tôi đang ăn tối.",
+            "note": null
+          },
+          {
+            "word": "all morning/afternoon",
+            "wordVi": "cả buổi sáng/chiều",
+            "example": "She was studying all morning.",
+            "exampleVi": "Cô ấy đã học cả buổi sáng.",
+            "note": null
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Hành động đang diễn ra tại thời điểm quá khứ",
+            "description": "Diễn tả hành động đang diễn ra tại thời điểm cụ thể trong quá khứ.",
+            "example": {
+              "en": "At 9 PM, I was watching a movie.",
+              "vi": "Lúc 9 giờ tối, tôi đang xem phim."
+            }
+          },
+          {
+            "rule": "Hành động bị gián đoạn",
+            "description": "Hành động dài (QKTD) bị gián đoạn bởi hành động ngắn (QKĐ).",
+            "example": {
+              "en": "I was cooking when the phone rang.",
+              "vi": "Tôi đang nấu ăn thì điện thoại reo."
+            }
+          },
+          {
+            "rule": "Hành động song song",
+            "description": "Hai hoặc nhiều hành động xảy ra cùng lúc trong quá khứ.",
+            "example": {
+              "en": "While I was studying, my brother was playing games.",
+              "vi": "Trong khi tôi đang học, anh tôi đang chơi game."
+            }
+          }
+        ],
+        "notes": [
+          "\"When\" thường giới thiệu hành động ngắn (QKĐ): \"When the phone rang...\" \"While\" thường giới thiệu hành động dài (QKTD): \"While I was studying...\"",
+          "Dùng \"was\" với I/he/she/it. Dùng \"were\" với you/we/they. Lỗi thường: \"They was playing\" → \"They were playing\".",
+          "Giống Hiện tại tiếp diễn, không dùng động từ trạng thái: \"I was knowing\" sai. Dùng Quá khứ đơn: \"I knew\"."
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "past_mult_36",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Tôi ___ tối khi chuông cửa reo.",
+            "verb": "",
+            "correctAnswer": "was cooking",
+            "distractors": [
+              "cooked",
+              "am cooking",
+              "cook"
+            ],
+            "explanation": "Nấu ăn là hành động dài đang diễn ra, bị gián đoạn bởi chuông cửa (QKĐ)."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "past_fill_37",
+            "sentence": "They ___ (play) tennis at 3 PM yesterday.",
+            "sentenceEn": "They ___ (play) tennis at 3 PM yesterday.",
+            "verb": "play",
+            "correctAnswer": "were playing",
+            "distractors": [
+              "were played",
+              "were play"
+            ],
+            "explanation": "\"They\" dùng \"were\". \"Lúc 3 giờ chiều hôm qua\" = thời điểm cụ thể → Quá khứ tiếp diễn."
+          },
+          {
+            "id": "past_sigf_40",
+            "sentence": "Trong khi cô ấy đọc sách, anh ấy nấu ăn.",
+            "sentenceEn": "While she was reading, he was cooking.",
+            "verb": "",
+            "correctAnswer": "while",
+            "distractors": [
+              "now",
+              "always",
+              "when"
+            ],
+            "explanation": "Thường dùng với Past Continuous"
+          },
+          {
+            "id": "past_sigf_41",
+            "sentence": "Tôi đang ăn khi anh ấy đến.",
+            "sentenceEn": "I was eating when he arrived.",
+            "verb": "",
+            "correctAnswer": "when",
+            "distractors": [
+              "for",
+              "yet",
+              "tomorrow"
+            ],
+            "explanation": "Mệnh đề \"when\" thường ở Simple Past"
+          },
+          {
+            "id": "past_sigf_42",
+            "sentence": "Khi tôi đang đi thì điện thoại reo.",
+            "sentenceEn": "As I was leaving, the phone rang.",
+            "verb": "",
+            "correctAnswer": "as",
+            "distractors": [
+              "by the time",
+              "for",
+              "always"
+            ],
+            "explanation": "Tương tự \"while\" và \"when\""
+          },
+          {
+            "id": "past_sigf_43",
+            "sentence": "Lúc 5 giờ chiều hôm qua, tôi đang lái xe về nhà.",
+            "sentenceEn": "At 5 PM yesterday, I was driving home.",
+            "verb": "",
+            "correctAnswer": "at 5 PM yesterday",
+            "distractors": [
+              "every day",
+              "at the moment",
+              "as"
+            ],
+            "explanation": "Dấu hiệu \"at 5 PM yesterday\" (lúc 5 giờ chiều hôm qua) thường dùng trong Thì Quá Khứ Tiếp Diễn."
+          },
+          {
+            "id": "past_sigf_44",
+            "sentence": "Vào lúc đó, chúng tôi đang ăn tối.",
+            "sentenceEn": "At that time, we were having dinner.",
+            "verb": "",
+            "correctAnswer": "at that time",
+            "distractors": [
+              "ago",
+              "right now",
+              "while"
+            ],
+            "explanation": "Dấu hiệu \"at that time\" (vào lúc đó) thường dùng trong Thì Quá Khứ Tiếp Diễn."
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "past_true_42",
+            "sentence": "While I was studying, my sister was watching TV.",
+            "sentenceVi": "Trong khi tôi đang học, chị tôi đang xem TV.",
+            "correctAnswer": "past_continuous",
+            "distractors": [
+              "present_perfect_continuous",
+              "past_simple",
+              "present_continuous"
+            ],
+            "explanation": "Đúng! \"While\" nối hai hành động song song, đều dùng Quá khứ tiếp diễn."
+          },
+          {
+            "id": "past_iden_30",
+            "sentence": "At 9 PM, I was watching a movie.",
+            "sentenceVi": "Lúc 9 giờ tối, tôi đang xem phim.",
+            "correctAnswer": "past_continuous",
+            "distractors": [
+              "future_perfect",
+              "present_continuous",
+              "future_perfect_continuous"
+            ],
+            "explanation": "\"Lúc 9 giờ tối\" xác định thời điểm hành động đang diễn ra."
+          },
+          {
+            "id": "past_iden_31",
+            "sentence": "They were sleeping when the earthquake happened.",
+            "sentenceVi": "Họ đang ngủ khi động đất xảy ra.",
+            "correctAnswer": "past_continuous",
+            "distractors": [
+              "past_simple",
+              "future_perfect_continuous",
+              "past_perfect_continuous"
+            ],
+            "explanation": "Ngủ là hành động nền đang diễn ra tại thời điểm đó."
+          },
+          {
+            "id": "past_iden_32",
+            "sentence": "I was cooking when the phone rang.",
+            "sentenceVi": "Tôi đang nấu ăn thì điện thoại reo.",
+            "correctAnswer": "past_continuous",
+            "distractors": [
+              "past_perfect_continuous",
+              "past_simple",
+              "present_continuous"
+            ],
+            "explanation": "\"Was cooking\" = hành động dài (bị ngắt). \"Rang\" = hành động ngắn (gây ngắt)."
+          },
+          {
+            "id": "past_iden_33",
+            "sentence": "She was walking home when it started to rain.",
+            "sentenceVi": "Cô ấy đang đi bộ về nhà thì trời bắt đầu mưa.",
+            "correctAnswer": "past_continuous",
+            "distractors": [
+              "past_simple",
+              "present_perfect",
+              "future_continuous"
+            ],
+            "explanation": "Đi bộ (tiếp diễn) bị gián đoạn bởi mưa bắt đầu (quá khứ đơn)."
+          },
+          {
+            "id": "past_iden_34",
+            "sentence": "While I was studying, my brother was playing games.",
+            "sentenceVi": "Trong khi tôi đang học, anh tôi đang chơi game.",
+            "correctAnswer": "past_continuous",
+            "distractors": [
+              "past_perfect",
+              "present_simple",
+              "present_perfect_continuous"
+            ],
+            "explanation": "\"While\" nối hai hành động đồng thời, đều dùng Quá khứ tiếp diễn."
+          }
+        ]
+      }
+    },
+    {
+      "id": "future_simple",
+      "order": 5,
+      "name": {
+        "en": "Simple Future",
+        "vi": "Thì Tương Lai Đơn"
+      },
+      "theory": {
+        "description": "Dự đoán, lời hứa và quyết định tức thì",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + will + V (base form)",
+            "structureVi": "Chủ ngữ + will + Động từ nguyên mẫu",
+            "subjectNote": "All subjects + will",
+            "example": {
+              "en": "I will help you tomorrow.",
+              "vi": "Tôi sẽ giúp bạn ngày mai."
+            },
+            "note": "Will dùng cho tất cả các ngôi. Cũng có thể dùng: S + am/is/are + going to + V"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + will + not + V",
+            "structureVi": "Chủ ngữ + will + not + Động từ nguyên mẫu",
+            "subjectNote": null,
+            "example": {
+              "en": "She will not (won't) come to the party.",
+              "vi": "Cô ấy sẽ không đến bữa tiệc."
+            },
+            "note": "Viết tắt: will not = won't"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Will + S + V?",
+            "structureVi": "Will + Chủ ngữ + Động từ nguyên mẫu?",
+            "subjectNote": null,
+            "example": {
+              "en": "Will you be there tomorrow?",
+              "vi": "Bạn sẽ ở đó ngày mai chứ?"
+            },
+            "note": "Trả lời: Yes, I will. / No, I won't."
+          }
+        ],
+        "signalWords": [
+          "tomorrow",
+          "next week/month/year",
+          "in the future",
+          "soon",
+          "probably",
+          "I think/believe"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "tomorrow",
+            "wordVi": "ngày mai",
+            "example": "I will call you tomorrow.",
+            "exampleVi": "Tôi sẽ gọi cho bạn ngày mai.",
+            "note": null
+          },
+          {
+            "word": "next week/month/year",
+            "wordVi": "tuần/tháng/năm tới",
+            "example": "We will travel next month.",
+            "exampleVi": "Chúng tôi sẽ đi du lịch tháng tới.",
+            "note": null
+          },
+          {
+            "word": "in the future",
+            "wordVi": "trong tương lai",
+            "example": "Robots will do most jobs in the future.",
+            "exampleVi": "Robot sẽ làm hầu hết công việc trong tương lai.",
+            "note": null
+          },
+          {
+            "word": "soon",
+            "wordVi": "sớm thôi",
+            "example": "He will arrive soon.",
+            "exampleVi": "Anh ấy sẽ đến sớm thôi.",
+            "note": null
+          },
+          {
+            "word": "probably",
+            "wordVi": "có lẽ",
+            "example": "She will probably agree.",
+            "exampleVi": "Cô ấy có lẽ sẽ đồng ý.",
+            "note": "Đứng giữa will và V"
+          },
+          {
+            "word": "I think/believe",
+            "wordVi": "tôi nghĩ/tin",
+            "example": "I think he will pass the exam.",
+            "exampleVi": "Tôi nghĩ anh ấy sẽ đỗ.",
+            "note": "Báo hiệu dự đoán cá nhân"
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Dự đoán và ý kiến",
+            "description": "Dùng để đưa ra dự đoán về tương lai dựa trên ý kiến hoặc niềm tin.",
+            "example": {
+              "en": "I think it will rain tomorrow.",
+              "vi": "Tôi nghĩ ngày mai trời sẽ mưa."
+            }
+          },
+          {
+            "rule": "Quyết định tức thì",
+            "description": "Quyết định đưa ra tại thời điểm nói, không lên kế hoạch trước.",
+            "example": {
+              "en": "I'm cold. I'll close the window.",
+              "vi": "Tôi lạnh. Tôi sẽ đóng cửa sổ."
+            }
+          },
+          {
+            "rule": "Lời hứa và đề nghị",
+            "description": "Dùng để đưa ra lời hứa, đề nghị, yêu cầu và lời đe dọa.",
+            "example": {
+              "en": "I will always love you.",
+              "vi": "Anh sẽ luôn yêu em."
+            }
+          }
+        ],
+        "notes": [
+          "\"Will\" = dự đoán (Tôi nghĩ...), quyết định tức thì, lời hứa. \"Going to\" = quyết định đã lên kế hoạch, dự đoán dựa trên bằng chứng. \"It will rain\" (ý kiến) vs \"Nhìn mây kìa — it's going to rain\" (bằng chứng).",
+          "\"Shall I/we...?\" dùng cho đề nghị và gợi ý: \"Shall I open the window?\" \"Shall we go?\" Đây là cách nói trang trọng/Anh-Anh.",
+          "\"Won't\" có thể nghĩa là từ chối (\"He won't help me\" = từ chối) hoặc dự đoán phủ định (\"It won't rain tomorrow\"). Ngữ cảnh quyết định nghĩa."
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "futu_mult_57",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "\"Điện thoại đang reo!\" \"OK, tôi ___ nó.\"",
+            "verb": "",
+            "correctAnswer": "will answer",
+            "distractors": [
+              "am going to answer",
+              "answer",
+              "am answering"
+            ],
+            "explanation": "Quyết định tức thì tại thời điểm nói → will + nguyên mẫu."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "futu_fill_58",
+            "sentence": "I think she ___ (pass) the exam.",
+            "sentenceEn": "I think she ___ (pass) the exam.",
+            "verb": "pass",
+            "correctAnswer": "will pass",
+            "distractors": [
+              "will pasing",
+              "will pased",
+              "will pas"
+            ],
+            "explanation": "\"Tôi nghĩ\" báo hiệu dự đoán → will + nguyên mẫu."
+          },
+          {
+            "id": "futu_sigf_40",
+            "sentence": "Tôi sẽ gọi cho bạn ngày mai.",
+            "sentenceEn": "I will call you tomorrow.",
+            "verb": "",
+            "correctAnswer": "tomorrow",
+            "distractors": [
+              "I think/believe",
+              "just",
+              "next year"
+            ],
+            "explanation": "Dấu hiệu \"tomorrow\" (ngày mai) thường dùng trong Thì Tương Lai Đơn."
+          },
+          {
+            "id": "futu_sigf_41",
+            "sentence": "Chúng tôi sẽ đi du lịch tháng tới.",
+            "sentenceEn": "We will travel next month.",
+            "verb": "",
+            "correctAnswer": "next week/month/year",
+            "distractors": [
+              "yet",
+              "I think/believe",
+              "already"
+            ],
+            "explanation": "Dấu hiệu \"next week/month/year\" (tuần/tháng/năm tới) thường dùng trong Thì Tương Lai Đơn."
+          },
+          {
+            "id": "futu_sigf_42",
+            "sentence": "Robot sẽ làm hầu hết công việc trong tương lai.",
+            "sentenceEn": "Robots will do most jobs in the future.",
+            "verb": "",
+            "correctAnswer": "in the future",
+            "distractors": [
+              "now",
+              "right now",
+              "ago"
+            ],
+            "explanation": "Dấu hiệu \"in the future\" (trong tương lai) thường dùng trong Thì Tương Lai Đơn."
+          },
+          {
+            "id": "futu_sigf_43",
+            "sentence": "Anh ấy sẽ đến sớm thôi.",
+            "sentenceEn": "He will arrive soon.",
+            "verb": "",
+            "correctAnswer": "soon",
+            "distractors": [
+              "for",
+              "always",
+              "last week"
+            ],
+            "explanation": "Dấu hiệu \"soon\" (sớm thôi) thường dùng trong Thì Tương Lai Đơn."
+          },
+          {
+            "id": "futu_sigf_44",
+            "sentence": "Cô ấy có lẽ sẽ đồng ý.",
+            "sentenceEn": "She will probably agree.",
+            "verb": "",
+            "correctAnswer": "probably",
+            "distractors": [
+              "at the moment",
+              "yesterday",
+              "next week/month/year"
+            ],
+            "explanation": "Đứng giữa will và V"
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "futu_true_63",
+            "sentence": "She will probably be late.",
+            "sentenceVi": "Cô ấy có lẽ sẽ đến muộn.",
+            "correctAnswer": "future_simple",
+            "distractors": [
+              "past_perfect",
+              "past_continuous",
+              "present_perfect"
+            ],
+            "explanation": "Đúng! \"Probably\" đứng giữa \"will\" và động từ. Đây là dự đoán."
+          },
+          {
+            "id": "futu_iden_30",
+            "sentence": "I think it will rain tomorrow.",
+            "sentenceVi": "Tôi nghĩ ngày mai trời sẽ mưa.",
+            "correctAnswer": "future_simple",
+            "distractors": [
+              "past_simple",
+              "past_perfect",
+              "future_perfect"
+            ],
+            "explanation": "\"Tôi nghĩ\" báo hiệu dự đoán cá nhân → dùng \"will\"."
+          },
+          {
+            "id": "futu_iden_31",
+            "sentence": "Technology will change the world.",
+            "sentenceVi": "Công nghệ sẽ thay đổi thế giới.",
+            "correctAnswer": "future_simple",
+            "distractors": [
+              "present_perfect",
+              "future_continuous",
+              "past_continuous"
+            ],
+            "explanation": "Dự đoán chung về tương lai."
+          },
+          {
+            "id": "futu_iden_32",
+            "sentence": "I'm cold. I'll close the window.",
+            "sentenceVi": "Tôi lạnh. Tôi sẽ đóng cửa sổ.",
+            "correctAnswer": "future_simple",
+            "distractors": [
+              "present_simple",
+              "future_continuous",
+              "present_perfect"
+            ],
+            "explanation": "Quyết định tại thời điểm nói — không lên kế hoạch trước."
+          },
+          {
+            "id": "futu_iden_33",
+            "sentence": "Oh, we're out of milk. I'll go buy some.",
+            "sentenceVi": "Ồ, hết sữa rồi. Tôi sẽ đi mua.",
+            "correctAnswer": "future_simple",
+            "distractors": [
+              "present_perfect",
+              "present_perfect_continuous",
+              "past_perfect_continuous"
+            ],
+            "explanation": "Phản ứng tức thì với tình huống vừa phát hiện."
+          },
+          {
+            "id": "futu_iden_34",
+            "sentence": "I will always love you.",
+            "sentenceVi": "Anh sẽ luôn yêu em.",
+            "correctAnswer": "future_simple",
+            "distractors": [
+              "present_perfect_continuous",
+              "future_perfect",
+              "past_simple"
+            ],
+            "explanation": "Một lời hứa về tương lai."
+          }
+        ]
+      }
+    },
+    {
+      "id": "future_continuous",
+      "order": 6,
+      "name": {
+        "en": "Future Continuous",
+        "vi": "Thì Tương Lai Tiếp Diễn"
+      },
+      "theory": {
+        "description": "Hành động đang diễn ra tại thời điểm trong tương lai",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + will + be + V-ing",
+            "structureVi": "Chủ ngữ + will + be + V-ing",
+            "subjectNote": "All subjects + will be",
+            "example": {
+              "en": "I will be working at 3 PM tomorrow.",
+              "vi": "Tôi sẽ đang làm việc lúc 3 giờ chiều mai."
+            },
+            "note": "Hành động sẽ đang diễn ra tại thời điểm tương lai"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + will + not + be + V-ing",
+            "structureVi": "Chủ ngữ + will + not + be + V-ing",
+            "subjectNote": null,
+            "example": {
+              "en": "She won't be attending the meeting.",
+              "vi": "Cô ấy sẽ không tham dự cuộc họp."
+            },
+            "note": "Viết tắt: will not be = won't be"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Will + S + be + V-ing?",
+            "structureVi": "Will + Chủ ngữ + be + V-ing?",
+            "subjectNote": null,
+            "example": {
+              "en": "Will you be using the car tomorrow?",
+              "vi": "Ngày mai bạn có dùng xe không?"
+            },
+            "note": "Thường dùng cho câu hỏi lịch sự"
+          }
+        ],
+        "signalWords": [
+          "at this time tomorrow",
+          "at 8 PM tonight",
+          "this time next week",
+          "still",
+          "all day tomorrow",
+          "when"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "at this time tomorrow",
+            "wordVi": "giờ này ngày mai",
+            "example": "At this time tomorrow, I will be relaxing.",
+            "exampleVi": "Giờ này ngày mai, tôi sẽ đang thư giãn.",
+            "note": null
+          },
+          {
+            "word": "at 8 PM tonight",
+            "wordVi": "lúc 8 giờ tối nay",
+            "example": "At 8 PM, she will be studying.",
+            "exampleVi": "Lúc 8 giờ tối, cô ấy sẽ đang học.",
+            "note": null
+          },
+          {
+            "word": "this time next week",
+            "wordVi": "giờ này tuần tới",
+            "example": "This time next week, we will be traveling.",
+            "exampleVi": "Giờ này tuần tới, chúng tôi sẽ đang đi du lịch.",
+            "note": null
+          },
+          {
+            "word": "still",
+            "wordVi": "vẫn",
+            "example": "I will still be working at midnight.",
+            "exampleVi": "Nửa đêm tôi vẫn sẽ đang làm việc.",
+            "note": "Đứng giữa \"will\" và \"be\""
+          },
+          {
+            "word": "all day tomorrow",
+            "wordVi": "cả ngày mai",
+            "example": "She will be studying all day tomorrow.",
+            "exampleVi": "Ngày mai cô ấy sẽ học cả ngày.",
+            "note": null
+          },
+          {
+            "word": "when",
+            "wordVi": "khi",
+            "example": "When you arrive, I will be cooking.",
+            "exampleVi": "Khi bạn đến, tôi sẽ đang nấu ăn.",
+            "note": "Mệnh đề \"when\" dùng Simple Present cho tương lai"
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Hành động đang diễn ra tại thời điểm tương lai",
+            "description": "Diễn tả hành động sẽ đang diễn ra tại thời điểm cụ thể trong tương lai.",
+            "example": {
+              "en": "This time tomorrow, I will be flying to London.",
+              "vi": "Giờ này ngày mai, tôi sẽ đang bay đến London."
+            }
+          },
+          {
+            "rule": "Hành động tương lai đã lên kế hoạch",
+            "description": "Diễn tả hành động được dự kiến hoặc lên kế hoạch theo thường lệ.",
+            "example": {
+              "en": "I will be seeing the doctor on Monday.",
+              "vi": "Thứ Hai tôi sẽ gặp bác sĩ."
+            }
+          },
+          {
+            "rule": "Câu hỏi lịch sự",
+            "description": "Dùng cho câu hỏi lịch sự về kế hoạch của ai đó.",
+            "example": {
+              "en": "Will you be using the computer this afternoon?",
+              "vi": "Chiều nay bạn có dùng máy tính không?"
+            }
+          }
+        ],
+        "notes": [
+          "Tương lai tiếp diễn luôn cần mốc thời gian: \"lúc 3 giờ mai\", \"giờ này tuần tới\", \"khi bạn đến\". Không có thì dùng Tương lai đơn.",
+          "\"Will you be...?\" lịch sự hơn \"Will you...?\" vì hỏi về kế hoạch thay vì yêu cầu. So sánh: \"Will you help me?\" (yêu cầu) vs \"Will you be helping with the project?\" (hỏi thăm).",
+          "Trong mệnh đề thời gian về tương lai, dùng Hiện tại đơn: \"When you arrive, I will be cooking.\" KHÔNG PHẢI \"When you will arrive...\""
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "futu_mult_64",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Giờ này ngày mai, tôi ___ trên bãi biển.",
+            "verb": "",
+            "correctAnswer": "will be relaxing",
+            "distractors": [
+              "will relax",
+              "relax",
+              "am relaxing"
+            ],
+            "explanation": "\"Giờ này ngày mai\" = thời điểm tương lai cụ thể cho hành động đang diễn ra → TLTD."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "futu_fill_65",
+            "sentence": "At 9 PM tonight, she ___ (watch) her favorite show.",
+            "sentenceEn": "At 9 PM tonight, she ___ (watch) her favorite show.",
+            "verb": "watch",
+            "correctAnswer": "will be watching",
+            "distractors": [
+              "will be watched",
+              "will be watch"
+            ],
+            "explanation": "\"Lúc 9 giờ tối nay\" = thời điểm cụ thể → will be + V-ing."
+          },
+          {
+            "id": "futu_sigf_40",
+            "sentence": "Giờ này ngày mai, tôi sẽ đang thư giãn.",
+            "sentenceEn": "At this time tomorrow, I will be relaxing.",
+            "verb": "",
+            "correctAnswer": "at this time tomorrow",
+            "distractors": [
+              "at 8 PM tonight",
+              "ago",
+              "by the time"
+            ],
+            "explanation": "Dấu hiệu \"at this time tomorrow\" (giờ này ngày mai) thường dùng trong Thì Tương Lai Tiếp Diễn."
+          },
+          {
+            "id": "futu_sigf_41",
+            "sentence": "Lúc 8 giờ tối, cô ấy sẽ đang học.",
+            "sentenceEn": "At 8 PM, she will be studying.",
+            "verb": "",
+            "correctAnswer": "at 8 PM tonight",
+            "distractors": [
+              "always",
+              "all day tomorrow",
+              "right now"
+            ],
+            "explanation": "Dấu hiệu \"at 8 PM tonight\" (lúc 8 giờ tối nay) thường dùng trong Thì Tương Lai Tiếp Diễn."
+          },
+          {
+            "id": "futu_sigf_42",
+            "sentence": "Giờ này tuần tới, chúng tôi sẽ đang đi du lịch.",
+            "sentenceEn": "This time next week, we will be traveling.",
+            "verb": "",
+            "correctAnswer": "this time next week",
+            "distractors": [
+              "for",
+              "now",
+              "ago"
+            ],
+            "explanation": "Dấu hiệu \"this time next week\" (giờ này tuần tới) thường dùng trong Thì Tương Lai Tiếp Diễn."
+          },
+          {
+            "id": "futu_sigf_43",
+            "sentence": "Nửa đêm tôi vẫn sẽ đang làm việc.",
+            "sentenceEn": "I will still be working at midnight.",
+            "verb": "",
+            "correctAnswer": "still",
+            "distractors": [
+              "at 8 PM tonight",
+              "yesterday",
+              "now"
+            ],
+            "explanation": "Đứng giữa \"will\" và \"be\""
+          },
+          {
+            "id": "futu_sigf_44",
+            "sentence": "Ngày mai cô ấy sẽ học cả ngày.",
+            "sentenceEn": "She will be studying all day tomorrow.",
+            "verb": "",
+            "correctAnswer": "all day tomorrow",
+            "distractors": [
+              "next year",
+              "at 8 PM tonight",
+              "every day"
+            ],
+            "explanation": "Dấu hiệu \"all day tomorrow\" (cả ngày mai) thường dùng trong Thì Tương Lai Tiếp Diễn."
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "futu_true_70",
+            "sentence": "Don't call at 8 PM. I will be watching a movie.",
+            "sentenceVi": "Đừng gọi lúc 8 giờ tối. Tôi sẽ đang xem phim.",
+            "correctAnswer": "future_continuous",
+            "distractors": [
+              "future_perfect",
+              "past_perfect_continuous",
+              "present_simple"
+            ],
+            "explanation": "Đúng! Người nói sẽ đang xem phim lúc 8 giờ → Tương lai tiếp diễn."
+          },
+          {
+            "id": "futu_iden_30",
+            "sentence": "This time tomorrow, I will be flying to London.",
+            "sentenceVi": "Giờ này ngày mai, tôi sẽ đang bay đến London.",
+            "correctAnswer": "future_continuous",
+            "distractors": [
+              "present_continuous",
+              "past_perfect_continuous",
+              "future_simple"
+            ],
+            "explanation": "\"Giờ này ngày mai\" xác định thời điểm tương lai; bay sẽ đang diễn ra."
+          },
+          {
+            "id": "futu_iden_31",
+            "sentence": "At 8 PM tonight, they will be having dinner.",
+            "sentenceVi": "Lúc 8 giờ tối nay, họ sẽ đang ăn tối.",
+            "correctAnswer": "future_continuous",
+            "distractors": [
+              "past_perfect_continuous",
+              "past_simple",
+              "past_perfect"
+            ],
+            "explanation": "\"Lúc 8 giờ tối nay\" = thời điểm tương lai cụ thể cho hành động đang diễn ra."
+          },
+          {
+            "id": "futu_iden_32",
+            "sentence": "I will be seeing the doctor on Monday.",
+            "sentenceVi": "Thứ Hai tôi sẽ gặp bác sĩ.",
+            "correctAnswer": "future_continuous",
+            "distractors": [
+              "future_simple",
+              "future_perfect_continuous",
+              "past_simple"
+            ],
+            "explanation": "Sự kiện tương lai đã lên kế hoạch — theo lịch."
+          },
+          {
+            "id": "futu_iden_33",
+            "sentence": "She will be taking the exam next Friday.",
+            "sentenceVi": "Thứ Sáu tới cô ấy sẽ thi.",
+            "correctAnswer": "future_continuous",
+            "distractors": [
+              "past_continuous",
+              "future_simple",
+              "present_simple"
+            ],
+            "explanation": "Hành động được dự kiến/lên lịch trong tương lai gần."
+          },
+          {
+            "id": "futu_iden_34",
+            "sentence": "Will you be using the computer this afternoon?",
+            "sentenceVi": "Chiều nay bạn có dùng máy tính không?",
+            "correctAnswer": "future_continuous",
+            "distractors": [
+              "present_perfect",
+              "past_perfect_continuous",
+              "past_continuous"
+            ],
+            "explanation": "Cách hỏi lịch sự về kế hoạch — ít trực tiếp hơn \"Will you use...?\""
+          }
+        ]
+      }
+    },
+    {
+      "id": "present_perfect",
+      "order": 7,
+      "name": {
+        "en": "Present Perfect",
+        "vi": "Thì Hiện Tại Hoàn Thành"
+      },
+      "theory": {
+        "description": "Hành động quá khứ có liên quan đến hiện tại",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + have/has + V3 (past participle)",
+            "structureVi": "Chủ ngữ + have/has + Động từ quá khứ phân từ",
+            "subjectNote": "I/You/We/They + have | He/She/It + has",
+            "example": {
+              "en": "She has visited Paris twice.",
+              "vi": "Cô ấy đã đến Paris hai lần."
+            },
+            "note": "V3: regular = V-ed (visited), irregular = riêng (gone, seen, eaten)"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + have/has + not + V3",
+            "structureVi": "Chủ ngữ + have/has + not + Động từ quá khứ phân từ",
+            "subjectNote": null,
+            "example": {
+              "en": "I have not (haven't) finished yet.",
+              "vi": "Tôi chưa hoàn thành."
+            },
+            "note": "Viết tắt: have not = haven't, has not = hasn't"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Have/Has + S + V3?",
+            "structureVi": "Have/Has + Chủ ngữ + Động từ quá khứ phân từ?",
+            "subjectNote": null,
+            "example": {
+              "en": "Have you ever been to Japan?",
+              "vi": "Bạn đã bao giờ đến Nhật chưa?"
+            },
+            "note": "Trả lời: Yes, I have. / No, I haven't."
+          }
+        ],
+        "signalWords": [
+          "ever",
+          "never",
+          "already",
+          "yet",
+          "just",
+          "since/for"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "ever",
+            "wordVi": "đã bao giờ",
+            "example": "Have you ever been to Paris?",
+            "exampleVi": "Bạn đã bao giờ đến Paris chưa?",
+            "note": "Chỉ dùng trong câu hỏi và phủ định"
+          },
+          {
+            "word": "never",
+            "wordVi": "chưa bao giờ",
+            "example": "I have never seen snow.",
+            "exampleVi": "Tôi chưa bao giờ thấy tuyết.",
+            "note": "Mang nghĩa phủ định, không dùng với not"
+          },
+          {
+            "word": "already",
+            "wordVi": "đã rồi",
+            "example": "She has already eaten lunch.",
+            "exampleVi": "Cô ấy đã ăn trưa rồi.",
+            "note": "Đứng giữa have/has và V3"
+          },
+          {
+            "word": "yet",
+            "wordVi": "chưa",
+            "example": "I haven't finished yet.",
+            "exampleVi": "Tôi chưa hoàn thành.",
+            "note": "Dùng trong câu phủ định và câu hỏi, đứng cuối câu"
+          },
+          {
+            "word": "just",
+            "wordVi": "vừa mới",
+            "example": "He has just arrived.",
+            "exampleVi": "Anh ấy vừa đến.",
+            "note": "Đứng giữa have/has và V3"
+          },
+          {
+            "word": "since/for",
+            "wordVi": "từ khi/trong",
+            "example": "I have lived here since 2010 / for 5 years.",
+            "exampleVi": "Tôi đã sống ở đây từ 2010 / được 5 năm.",
+            "note": "since + mốc thời gian, for + khoảng thời gian"
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Trải nghiệm cuộc sống",
+            "description": "Dùng để nói về trải nghiệm tại thời điểm không xác định, thường với ever/never.",
+            "example": {
+              "en": "I have visited London three times.",
+              "vi": "Tôi đã đến London ba lần."
+            }
+          },
+          {
+            "rule": "Hành động vừa hoàn thành",
+            "description": "Dùng cho hành động vừa xảy ra, thường với just, already, yet.",
+            "example": {
+              "en": "I have just finished my homework.",
+              "vi": "Tôi vừa hoàn thành bài tập."
+            }
+          },
+          {
+            "rule": "Khoảng thời gian chưa kết thúc",
+            "description": "Dùng cho hành động trong khoảng thời gian chưa kết thúc (hôm nay, tuần này, năm nay).",
+            "example": {
+              "en": "I have had three meetings today.",
+              "vi": "Hôm nay tôi đã có ba cuộc họp."
+            }
+          }
+        ],
+        "notes": [
+          "\"Since\" đánh dấu mốc thời gian (since 2010, since Monday). \"For\" đánh dấu khoảng thời gian (for 5 years, for two hours). Lỗi thường: \"since 5 years\" → \"for 5 years\".",
+          "\"He has gone to Paris\" = Anh ấy đang ở Paris (không ở đây). \"He has been to Paris\" = Anh ấy đã từng đến Paris (trải nghiệm, đã về).",
+          "SAI: \"I have seen him yesterday.\" ĐÚNG: \"I saw him yesterday.\" Dùng Quá khứ đơn với thời gian cụ thể (yesterday, last week, in 2020)."
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "pres_mult_15",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Cô ấy ___ Nhật ba lần.",
+            "verb": "",
+            "correctAnswer": "has been",
+            "distractors": [
+              "have been",
+              "was",
+              "is being"
+            ],
+            "explanation": "\"Ba lần\" mô tả trải nghiệm không có thời gian cụ thể → Hiện tại hoàn thành với \"has\" (she)."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "pres_fill_16",
+            "sentence": "I ___ (not/finish) my homework yet.",
+            "sentenceEn": "I ___ (not/finish) my homework yet.",
+            "verb": "",
+            "correctAnswer": "haven't finished",
+            "distractors": [
+              "haven't finishing",
+              "haven't finish"
+            ],
+            "explanation": "\"Yet\" trong câu phủ định → haven't + V3. \"I\" dùng \"have\"."
+          },
+          {
+            "id": "pres_sigf_40",
+            "sentence": "Bạn đã bao giờ đến Paris chưa?",
+            "sentenceEn": "Have you ever been to Paris?",
+            "verb": "",
+            "correctAnswer": "ever",
+            "distractors": [
+              "always",
+              "yet",
+              "for"
+            ],
+            "explanation": "Chỉ dùng trong câu hỏi và phủ định"
+          },
+          {
+            "id": "pres_sigf_41",
+            "sentence": "Tôi chưa bao giờ thấy tuyết.",
+            "sentenceEn": "I have never seen snow.",
+            "verb": "",
+            "correctAnswer": "never",
+            "distractors": [
+              "always",
+              "by the time",
+              "every day"
+            ],
+            "explanation": "Mang nghĩa phủ định, không dùng với not"
+          },
+          {
+            "id": "pres_sigf_42",
+            "sentence": "Cô ấy đã ăn trưa rồi.",
+            "sentenceEn": "She has already eaten lunch.",
+            "verb": "",
+            "correctAnswer": "already",
+            "distractors": [
+              "at the moment",
+              "ago",
+              "never"
+            ],
+            "explanation": "Đứng giữa have/has và V3"
+          },
+          {
+            "id": "pres_sigf_43",
+            "sentence": "Tôi chưa hoàn thành.",
+            "sentenceEn": "I haven't finished yet.",
+            "verb": "",
+            "correctAnswer": "yet",
+            "distractors": [
+              "for",
+              "tomorrow",
+              "ago"
+            ],
+            "explanation": "Dùng trong câu phủ định và câu hỏi, đứng cuối câu"
+          },
+          {
+            "id": "pres_sigf_44",
+            "sentence": "Anh ấy vừa đến.",
+            "sentenceEn": "He has just arrived.",
+            "verb": "",
+            "correctAnswer": "just",
+            "distractors": [
+              "ever",
+              "tomorrow",
+              "already"
+            ],
+            "explanation": "Đứng giữa have/has và V3"
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "pres_true_21",
+            "sentence": "I have been to France last summer.",
+            "sentenceVi": "Tôi have been to Pháp mùa hè năm ngoái.",
+            "correctAnswer": "present_perfect",
+            "distractors": [
+              "future_continuous",
+              "past_simple",
+              "present_continuous"
+            ],
+            "explanation": "\"Mùa hè năm ngoái\" là thời gian cụ thể — dùng Quá khứ đơn: \"I went to France last summer.\" Hiện tại hoàn thành không dùng với thời gian cụ thể."
+          },
+          {
+            "id": "pres_iden_30",
+            "sentence": "I have visited London three times.",
+            "sentenceVi": "Tôi đã đến London ba lần.",
+            "correctAnswer": "present_perfect",
+            "distractors": [
+              "present_simple",
+              "future_perfect",
+              "future_perfect_continuous"
+            ],
+            "explanation": "Trải nghiệm — thời điểm chính xác không được nêu."
+          },
+          {
+            "id": "pres_iden_31",
+            "sentence": "She has never eaten sushi.",
+            "sentenceVi": "Cô ấy chưa bao giờ ăn sushi.",
+            "correctAnswer": "present_perfect",
+            "distractors": [
+              "future_continuous",
+              "future_simple",
+              "future_perfect_continuous"
+            ],
+            "explanation": "\"Never\" nhấn mạnh chưa có trải nghiệm này trong đời."
+          },
+          {
+            "id": "pres_iden_32",
+            "sentence": "I have just finished my homework.",
+            "sentenceVi": "Tôi vừa hoàn thành bài tập.",
+            "correctAnswer": "present_perfect",
+            "distractors": [
+              "past_perfect_continuous",
+              "future_continuous",
+              "past_simple"
+            ],
+            "explanation": "\"Just\" cho biết hành động vừa hoàn thành rất gần đây."
+          },
+          {
+            "id": "pres_iden_33",
+            "sentence": "He has already left the office.",
+            "sentenceVi": "Anh ấy đã rời văn phòng rồi.",
+            "correctAnswer": "present_perfect",
+            "distractors": [
+              "future_continuous",
+              "past_perfect",
+              "future_perfect"
+            ],
+            "explanation": "\"Already\" nhấn mạnh hành động đã xong, có thể sớm hơn dự kiến."
+          },
+          {
+            "id": "pres_iden_34",
+            "sentence": "I have had three meetings today.",
+            "sentenceVi": "Hôm nay tôi đã có ba cuộc họp.",
+            "correctAnswer": "present_perfect",
+            "distractors": [
+              "present_perfect_continuous",
+              "future_continuous",
+              "future_perfect"
+            ],
+            "explanation": "\"Hôm nay\" chưa kết thúc nên dùng Hiện tại hoàn thành."
+          }
+        ]
+      }
+    },
+    {
+      "id": "present_perfect_continuous",
+      "order": 8,
+      "name": {
+        "en": "Present Perfect Continuous",
+        "vi": "Thì Hiện Tại Hoàn Thành Tiếp Diễn"
+      },
+      "theory": {
+        "description": "Hành động bắt đầu trong quá khứ và tiếp tục đến hiện tại",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + have/has + been + V-ing",
+            "structureVi": "Chủ ngữ + have/has + been + V-ing",
+            "subjectNote": "I/You/We/They + have been | He/She/It + has been",
+            "example": {
+              "en": "I have been studying for two hours.",
+              "vi": "Tôi đã học được hai tiếng rồi."
+            },
+            "note": "Nhấn mạnh quá trình và thời gian kéo dài"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + have/has + not + been + V-ing",
+            "structureVi": "Chủ ngữ + have/has + not + been + V-ing",
+            "subjectNote": null,
+            "example": {
+              "en": "She has not (hasn't) been sleeping well.",
+              "vi": "Cô ấy ngủ không ngon."
+            },
+            "note": "Viết tắt: have not been = haven't been"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Have/Has + S + been + V-ing?",
+            "structureVi": "Have/Has + Chủ ngữ + been + V-ing?",
+            "subjectNote": null,
+            "example": {
+              "en": "How long have you been waiting?",
+              "vi": "Bạn đã đợi bao lâu rồi?"
+            },
+            "note": "Thường dùng với How long...?"
+          }
+        ],
+        "signalWords": [
+          "for",
+          "since",
+          "all day/morning/week",
+          "how long",
+          "recently",
+          "lately"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "for",
+            "wordVi": "trong (khoảng)",
+            "example": "I have been waiting for 30 minutes.",
+            "exampleVi": "Tôi đã đợi 30 phút.",
+            "note": "for + khoảng thời gian"
+          },
+          {
+            "word": "since",
+            "wordVi": "từ khi",
+            "example": "She has been sleeping since 10 PM.",
+            "exampleVi": "Cô ấy đã ngủ từ 10 giờ tối.",
+            "note": "since + mốc thời gian"
+          },
+          {
+            "word": "all day/morning/week",
+            "wordVi": "cả ngày/sáng/tuần",
+            "example": "He has been studying all day.",
+            "exampleVi": "Anh ấy đã học cả ngày.",
+            "note": null
+          },
+          {
+            "word": "how long",
+            "wordVi": "bao lâu",
+            "example": "How long have you been living here?",
+            "exampleVi": "Bạn đã sống ở đây bao lâu?",
+            "note": "Dùng trong câu hỏi"
+          },
+          {
+            "word": "recently",
+            "wordVi": "gần đây",
+            "example": "I have been feeling tired recently.",
+            "exampleVi": "Gần đây tôi thấy mệt mỏi.",
+            "note": null
+          },
+          {
+            "word": "lately",
+            "wordVi": "dạo gần đây",
+            "example": "Have you been exercising lately?",
+            "exampleVi": "Dạo gần đây bạn có tập thể dục không?",
+            "note": null
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Thời lượng hành động đang tiếp diễn",
+            "description": "Nhấn mạnh hành động đã kéo dài bao lâu, thường dùng với for/since.",
+            "example": {
+              "en": "I have been learning English for five years.",
+              "vi": "Tôi đã học tiếng Anh được năm năm."
+            }
+          },
+          {
+            "rule": "Hành động vừa dừng có kết quả nhìn thấy",
+            "description": "Hành động vừa dừng nhưng kết quả vẫn nhìn thấy được.",
+            "example": {
+              "en": "He is tired because he has been running.",
+              "vi": "Anh ấy mệt vì đã chạy bộ."
+            }
+          },
+          {
+            "rule": "Nhấn mạnh quá trình và thời lượng",
+            "description": "Nhấn mạnh quá trình đang diễn ra hơn là kết quả hoàn thành.",
+            "example": {
+              "en": "I have been reading this book all week.",
+              "vi": "Tôi đã đọc cuốn sách này cả tuần."
+            }
+          }
+        ],
+        "notes": [
+          "HTHTTD = nhấn mạnh THỜI LƯỢNG (Tôi đã đọc 2 tiếng). HTHT = nhấn mạnh KẾT QUẢ (Tôi đã đọc 3 chương).",
+          "Động từ trạng thái (know, want, believe) không dùng PPC. Dùng HTHT: \"I have known him for years\" KHÔNG PHẢI \"I have been knowing him.\"",
+          "Với \"live\", \"work\", \"study\" + for/since, cả HTHT và HTHTTD đều đúng: \"I have lived here for 5 years\" = \"I have been living here for 5 years.\""
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "pres_mult_22",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Cô ấy ___ cả buổi sáng. Trông cô ấy kiệt sức.",
+            "verb": "",
+            "correctAnswer": "has been working",
+            "distractors": [
+              "has worked",
+              "is working",
+              "works"
+            ],
+            "explanation": "\"Cả buổi sáng\" + kết quả nhìn thấy (kiệt sức) → HTHTTD nhấn mạnh thời lượng."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "pres_fill_23",
+            "sentence": "How long ___ you ___ (wait) here?",
+            "sentenceEn": "How long ___ you ___ (wait) here?",
+            "verb": "wait",
+            "correctAnswer": "have you been waiting",
+            "distractors": [
+              "have you been waited",
+              "have you been wait"
+            ],
+            "explanation": "\"How long\" hỏi về thời lượng → HTHTTD. Dạng câu hỏi: Have + S + been + V-ing."
+          },
+          {
+            "id": "pres_sigf_40",
+            "sentence": "Tôi đã đợi 30 phút.",
+            "sentenceEn": "I have been waiting for 30 minutes.",
+            "verb": "",
+            "correctAnswer": "for",
+            "distractors": [
+              "already",
+              "last week",
+              "tomorrow"
+            ],
+            "explanation": "for + khoảng thời gian"
+          },
+          {
+            "id": "pres_sigf_41",
+            "sentence": "Cô ấy đã ngủ từ 10 giờ tối.",
+            "sentenceEn": "She has been sleeping since 10 PM.",
+            "verb": "",
+            "correctAnswer": "since",
+            "distractors": [
+              "all day/morning/week",
+              "at the moment",
+              "yesterday"
+            ],
+            "explanation": "since + mốc thời gian"
+          },
+          {
+            "id": "pres_sigf_42",
+            "sentence": "Anh ấy đã học cả ngày.",
+            "sentenceEn": "He has been studying all day.",
+            "verb": "",
+            "correctAnswer": "all day/morning/week",
+            "distractors": [
+              "how long",
+              "last week",
+              "always"
+            ],
+            "explanation": "Dấu hiệu \"all day/morning/week\" (cả ngày/sáng/tuần) thường dùng trong Thì Hiện Tại Hoàn Thành Tiếp Diễn."
+          },
+          {
+            "id": "pres_sigf_43",
+            "sentence": "Bạn đã sống ở đây bao lâu?",
+            "sentenceEn": "How long have you been living here?",
+            "verb": "",
+            "correctAnswer": "how long",
+            "distractors": [
+              "ago",
+              "recently",
+              "every day"
+            ],
+            "explanation": "Dùng trong câu hỏi"
+          },
+          {
+            "id": "pres_sigf_44",
+            "sentence": "Gần đây tôi thấy mệt mỏi.",
+            "sentenceEn": "I have been feeling tired recently.",
+            "verb": "",
+            "correctAnswer": "recently",
+            "distractors": [
+              "how long",
+              "all day/morning/week",
+              "at the moment"
+            ],
+            "explanation": "Dấu hiệu \"recently\" (gần đây) thường dùng trong Thì Hiện Tại Hoàn Thành Tiếp Diễn."
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "pres_true_28",
+            "sentence": "He has been working here for five years.",
+            "sentenceVi": "Anh ấy đã làm việc ở đây được năm năm.",
+            "correctAnswer": "present_perfect_continuous",
+            "distractors": [
+              "present_simple",
+              "present_continuous",
+              "future_perfect"
+            ],
+            "explanation": "Câu này đúng. \"Năm năm\" chỉ thời lượng, và \"work\" là động từ hành động có thể dùng dạng tiếp diễn."
+          },
+          {
+            "id": "pres_iden_30",
+            "sentence": "I have been learning English for five years.",
+            "sentenceVi": "Tôi đã học tiếng Anh được năm năm.",
+            "correctAnswer": "present_perfect_continuous",
+            "distractors": [
+              "future_perfect",
+              "past_simple",
+              "present_continuous"
+            ],
+            "explanation": "\"Năm năm\" nhấn mạnh thời lượng của hoạt động đang tiếp diễn."
+          },
+          {
+            "id": "pres_iden_31",
+            "sentence": "She has been working here since 2019.",
+            "sentenceVi": "Cô ấy đã làm việc ở đây từ 2019.",
+            "correctAnswer": "present_perfect_continuous",
+            "distractors": [
+              "future_perfect",
+              "future_simple",
+              "future_perfect_continuous"
+            ],
+            "explanation": "\"Từ 2019\" đánh dấu mốc bắt đầu; hành động vẫn tiếp tục."
+          },
+          {
+            "id": "pres_iden_32",
+            "sentence": "He is tired because he has been running.",
+            "sentenceVi": "Anh ấy mệt vì đã chạy bộ.",
+            "correctAnswer": "present_perfect_continuous",
+            "distractors": [
+              "past_simple",
+              "past_perfect",
+              "future_continuous"
+            ],
+            "explanation": "Việc chạy vừa dừng, nhưng sự mệt mỏi (kết quả) vẫn thấy rõ."
+          },
+          {
+            "id": "pres_iden_33",
+            "sentence": "The ground is wet. It has been raining.",
+            "sentenceVi": "Mặt đất ướt. Trời đã mưa.",
+            "correctAnswer": "present_perfect_continuous",
+            "distractors": [
+              "future_perfect_continuous",
+              "past_continuous",
+              "present_perfect"
+            ],
+            "explanation": "Mưa vừa tạnh; đất ướt là bằng chứng nhìn thấy."
+          },
+          {
+            "id": "pres_iden_34",
+            "sentence": "I have been reading this book all week.",
+            "sentenceVi": "Tôi đã đọc cuốn sách này cả tuần.",
+            "correctAnswer": "present_perfect_continuous",
+            "distractors": [
+              "future_simple",
+              "present_simple",
+              "future_perfect_continuous"
+            ],
+            "explanation": "Nhấn mạnh quá trình đang diễn ra — chưa xong."
+          }
+        ]
+      }
+    },
+    {
+      "id": "past_perfect",
+      "order": 9,
+      "name": {
+        "en": "Past Perfect",
+        "vi": "Thì Quá Khứ Hoàn Thành"
+      },
+      "theory": {
+        "description": "Hành động hoàn thành trước một hành động khác trong quá khứ",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + had + V3 (past participle)",
+            "structureVi": "Chủ ngữ + had + Động từ quá khứ phân từ",
+            "subjectNote": "All subjects + had",
+            "example": {
+              "en": "She had already left when I arrived.",
+              "vi": "Cô ấy đã đi rồi khi tôi đến."
+            },
+            "note": "Had dùng cho tất cả các ngôi"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + had + not + V3",
+            "structureVi": "Chủ ngữ + had + not + ��ộng từ quá khứ phân từ",
+            "subjectNote": null,
+            "example": {
+              "en": "I had not (hadn't) eaten before the meeting.",
+              "vi": "Tôi chưa ăn trước cuộc họp."
+            },
+            "note": "Viết tắt: had not = hadn't"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Had + S + V3?",
+            "structureVi": "Had + Chủ ngữ + Động từ quá khứ phân từ?",
+            "subjectNote": null,
+            "example": {
+              "en": "Had you finished before 5 PM?",
+              "vi": "Bạn đã hoàn thành trước 5 giờ chưa?"
+            },
+            "note": "Trả lời: Yes, I had. / No, I hadn't."
+          }
+        ],
+        "signalWords": [
+          "before",
+          "after",
+          "by the time",
+          "already",
+          "just",
+          "never ... before"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "before",
+            "wordVi": "trước khi",
+            "example": "I had eaten before she arrived.",
+            "exampleVi": "Tôi đã ăn trước khi cô ấy đến.",
+            "note": null
+          },
+          {
+            "word": "after",
+            "wordVi": "sau khi",
+            "example": "After he had left, I found his wallet.",
+            "exampleVi": "Sau khi anh ấy đi, tôi tìm thấy ví.",
+            "note": null
+          },
+          {
+            "word": "by the time",
+            "wordVi": "vào lúc/khi",
+            "example": "By the time I woke up, she had gone.",
+            "exampleVi": "Khi tôi thức dậy, cô ấy đã đi rồi.",
+            "note": null
+          },
+          {
+            "word": "already",
+            "wordVi": "đã rồi",
+            "example": "They had already finished when we arrived.",
+            "exampleVi": "Họ đã xong rồi khi chúng tôi đến.",
+            "note": "Đứng giữa had và V3"
+          },
+          {
+            "word": "just",
+            "wordVi": "vừa mới",
+            "example": "He had just left when you called.",
+            "exampleVi": "Anh ấy vừa đi khi bạn gọi.",
+            "note": null
+          },
+          {
+            "word": "never ... before",
+            "wordVi": "chưa bao giờ ... trước đó",
+            "example": "I had never seen snow before that day.",
+            "exampleVi": "Trước ngày đó tôi chưa bao giờ thấy tuyết.",
+            "note": null
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Hành động trước hành động quá khứ khác",
+            "description": "Diễn tả hành động đã hoàn thành trước hành động khác trong quá khứ.",
+            "example": {
+              "en": "When I arrived at the station, the train had already left.",
+              "vi": "Khi tôi đến ga, tàu đã rời rồi."
+            }
+          },
+          {
+            "rule": "Trước khi / Trước + thời gian quá khứ",
+            "description": "Dùng với \"by the time\" để chỉ điều đã xảy ra trước mốc thời gian.",
+            "example": {
+              "en": "By the time we arrived, the movie had started.",
+              "vi": "Khi chúng tôi đến, phim đã bắt đầu."
+            }
+          },
+          {
+            "rule": "Câu tường thuật và câu điều kiện",
+            "description": "Dùng trong câu tường thuật và câu điều kiện loại 3.",
+            "example": {
+              "en": "She said she had finished the report.",
+              "vi": "Cô ấy nói cô ấy đã hoàn thành báo cáo."
+            }
+          }
+        ],
+        "notes": [
+          "Quá khứ hoàn thành cho thấy hành động nào xảy ra TRƯỚC. \"Khi tôi đến (2), cô ấy đã đi (1).\" Hành động sớm hơn dùng QKHT.",
+          "Với \"before\" và \"after\", thứ tự đã rõ nên QKĐ cũng được: \"I ate before she arrived\" = \"I had eaten before she arrived.\"",
+          "Lỗi thường: \"I had went\" → \"I had gone.\" Sau \"had\" luôn dùng quá khứ phân từ (V3), không phải quá khứ đơn (V2)."
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "past_mult_43",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Khi chúng tôi đến, buổi diễn ___.",
+            "verb": "",
+            "correctAnswer": "had started",
+            "distractors": [
+              "started",
+              "has started",
+              "was starting"
+            ],
+            "explanation": "\"By the time\" + QKĐ cho thấy hành động chính xảy ra sớm hơn → Quá khứ hoàn thành."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "past_fill_44",
+            "sentence": "She ___ (never/fly) before her trip to London.",
+            "sentenceEn": "She ___ (never/fly) before her trip to London.",
+            "verb": "",
+            "correctAnswer": "had never flown",
+            "distractors": [
+              "had never flowning",
+              "had never flowned"
+            ],
+            "explanation": "\"Before\" báo hiệu QKHT. Fly → flown (bất quy tắc). Never đứng giữa had và V3."
+          },
+          {
+            "id": "past_sigf_40",
+            "sentence": "Tôi đã ăn trước khi cô ấy đến.",
+            "sentenceEn": "I had eaten before she arrived.",
+            "verb": "",
+            "correctAnswer": "before",
+            "distractors": [
+              "yesterday",
+              "never ... before",
+              "always"
+            ],
+            "explanation": "Dấu hiệu \"before\" (trước khi) thường dùng trong Thì Quá Khứ Hoàn Thành."
+          },
+          {
+            "id": "past_sigf_41",
+            "sentence": "Sau khi anh ấy đi, tôi tìm thấy ví.",
+            "sentenceEn": "After he had left, I found his wallet.",
+            "verb": "",
+            "correctAnswer": "after",
+            "distractors": [
+              "next year",
+              "since",
+              "for"
+            ],
+            "explanation": "Dấu hiệu \"after\" (sau khi) thường dùng trong Thì Quá Khứ Hoàn Thành."
+          },
+          {
+            "id": "past_sigf_42",
+            "sentence": "Khi tôi thức dậy, cô ấy đã đi rồi.",
+            "sentenceEn": "By the time I woke up, she had gone.",
+            "verb": "",
+            "correctAnswer": "by the time",
+            "distractors": [
+              "at the moment",
+              "next year",
+              "after"
+            ],
+            "explanation": "Dấu hiệu \"by the time\" (vào lúc/khi) thường dùng trong Thì Quá Khứ Hoàn Thành."
+          },
+          {
+            "id": "past_sigf_43",
+            "sentence": "Họ đã xong rồi khi chúng tôi đến.",
+            "sentenceEn": "They had already finished when we arrived.",
+            "verb": "",
+            "correctAnswer": "already",
+            "distractors": [
+              "since",
+              "for",
+              "always"
+            ],
+            "explanation": "Đứng giữa had và V3"
+          },
+          {
+            "id": "past_sigf_44",
+            "sentence": "Anh ấy vừa đi khi bạn gọi.",
+            "sentenceEn": "He had just left when you called.",
+            "verb": "",
+            "correctAnswer": "just",
+            "distractors": [
+              "now",
+              "before",
+              "yet"
+            ],
+            "explanation": "Dấu hiệu \"just\" (vừa mới) thường dùng trong Thì Quá Khứ Hoàn Thành."
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "past_true_49",
+            "sentence": "After she had finished dinner, she watched TV.",
+            "sentenceVi": "Sau khi cô ấy ăn tối xong, cô ấy xem TV.",
+            "correctAnswer": "past_perfect",
+            "distractors": [
+              "future_perfect_continuous",
+              "past_continuous",
+              "present_simple"
+            ],
+            "explanation": "Đúng! \"After\" + QKHT cho hành động thứ nhất, QKĐ cho hành động thứ hai."
+          },
+          {
+            "id": "past_iden_30",
+            "sentence": "When I arrived at the station, the train had already left.",
+            "sentenceVi": "Khi tôi đến ga, tàu đã rời rồi.",
+            "correctAnswer": "past_perfect",
+            "distractors": [
+              "present_simple",
+              "future_perfect_continuous",
+              "future_continuous"
+            ],
+            "explanation": "Tàu rời đi xảy ra TRƯỚC khi đến → Quá khứ hoàn thành cho hành động sớm hơn."
+          },
+          {
+            "id": "past_iden_31",
+            "sentence": "She had studied English before she moved to London.",
+            "sentenceVi": "Cô ấy đã học tiếng Anh trước khi chuyển đến London.",
+            "correctAnswer": "past_perfect",
+            "distractors": [
+              "past_continuous",
+              "future_simple",
+              "present_perfect"
+            ],
+            "explanation": "\"Before\" làm rõ thứ tự: học xảy ra trước."
+          },
+          {
+            "id": "past_iden_32",
+            "sentence": "By the time we arrived, the movie had started.",
+            "sentenceVi": "Khi chúng tôi đến, phim đã bắt đầu.",
+            "correctAnswer": "past_perfect",
+            "distractors": [
+              "present_perfect_continuous",
+              "present_continuous",
+              "past_perfect_continuous"
+            ],
+            "explanation": "\"By the time\" + QKĐ, mệnh đề chính dùng Quá khứ hoàn thành."
+          },
+          {
+            "id": "past_iden_33",
+            "sentence": "By 2020, he had written three novels.",
+            "sentenceVi": "Đến năm 2020, anh ấy đã viết ba cuốn tiểu thuyết.",
+            "correctAnswer": "past_perfect",
+            "distractors": [
+              "present_simple",
+              "future_perfect_continuous",
+              "present_perfect"
+            ],
+            "explanation": "\"Đến năm 2020\" đặt mốc quá khứ; việc viết đã hoàn thành trước đó."
+          },
+          {
+            "id": "past_iden_34",
+            "sentence": "She said she had finished the report.",
+            "sentenceVi": "Cô ấy nói cô ấy đã hoàn thành báo cáo.",
+            "correctAnswer": "past_perfect",
+            "distractors": [
+              "future_perfect",
+              "future_perfect_continuous",
+              "present_perfect_continuous"
+            ],
+            "explanation": "Câu tường thuật: \"I have finished\" thành \"she had finished\"."
+          }
+        ]
+      }
+    },
+    {
+      "id": "past_perfect_continuous",
+      "order": 10,
+      "name": {
+        "en": "Past Perfect Continuous",
+        "vi": "Thì Quá Khứ Hoàn Thành Tiếp Diễn"
+      },
+      "theory": {
+        "description": "Thời lượng của hành động trước một hành động khác trong quá khứ",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + had + been + V-ing",
+            "structureVi": "Chủ ngữ + had + been + V-ing",
+            "subjectNote": "All subjects + had been",
+            "example": {
+              "en": "I had been waiting for an hour when she arrived.",
+              "vi": "Tôi đã đợi một tiếng khi cô ấy đến."
+            },
+            "note": "Nhấn mạnh thời lượng trước một hành động quá khứ"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + had + not + been + V-ing",
+            "structureVi": "Chủ ngữ + had + not + been + V-ing",
+            "subjectNote": null,
+            "example": {
+              "en": "He hadn't been sleeping well before the exam.",
+              "vi": "Anh ấy đã ngủ không ngon trước kỳ thi."
+            },
+            "note": "Viết tắt: had not been = hadn't been"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Had + S + been + V-ing?",
+            "structureVi": "Had + Chủ ngữ + been + V-ing?",
+            "subjectNote": null,
+            "example": {
+              "en": "How long had you been waiting?",
+              "vi": "Bạn đã đợi bao lâu?"
+            },
+            "note": "Thường dùng với How long...?"
+          }
+        ],
+        "signalWords": [
+          "for",
+          "since",
+          "all day/week",
+          "before",
+          "by the time",
+          "how long"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "for",
+            "wordVi": "trong (khoảng)",
+            "example": "She had been cooking for two hours.",
+            "exampleVi": "Cô ấy đã nấu ăn hai tiếng.",
+            "note": "for + khoảng thời gian"
+          },
+          {
+            "word": "since",
+            "wordVi": "từ khi",
+            "example": "He had been working since morning.",
+            "exampleVi": "Anh ấy đã làm việc từ sáng.",
+            "note": "since + mốc thời gian"
+          },
+          {
+            "word": "all day/week",
+            "wordVi": "cả ngày/tuần",
+            "example": "It had been snowing all day.",
+            "exampleVi": "Tuyết đã rơi cả ngày.",
+            "note": null
+          },
+          {
+            "word": "before",
+            "wordVi": "trước khi",
+            "example": "I had been reading before I fell asleep.",
+            "exampleVi": "Tôi đã đọc sách trước khi ngủ thiếp đi.",
+            "note": null
+          },
+          {
+            "word": "by the time",
+            "wordVi": "vào lúc",
+            "example": "By the time she arrived, I had been waiting for an hour.",
+            "exampleVi": "Khi cô ấy đến, tôi đã đợi một tiếng.",
+            "note": null
+          },
+          {
+            "word": "how long",
+            "wordVi": "bao lâu",
+            "example": "How long had they been traveling?",
+            "exampleVi": "Họ đã đi du lịch bao lâu?",
+            "note": "Dùng trong câu hỏi"
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Thời lượng trước sự kiện quá khứ",
+            "description": "Nhấn mạnh điều gì đó đã diễn ra bao lâu trước hành động quá khứ khác.",
+            "example": {
+              "en": "I had been studying for three hours when she called.",
+              "vi": "Tôi đã học ba tiếng khi cô ấy gọi."
+            }
+          },
+          {
+            "rule": "Nguyên nhân của kết quả quá khứ",
+            "description": "Hành động quá khứ liên tục gây ra kết quả nhìn thấy.",
+            "example": {
+              "en": "She was tired because she had been running.",
+              "vi": "Cô ấy mệt vì đã chạy."
+            }
+          },
+          {
+            "rule": "Tường thuật hành động tiếp diễn",
+            "description": "Dùng trong câu tường thuật cho hành động đang diễn ra.",
+            "example": {
+              "en": "She said she had been waiting for over an hour.",
+              "vi": "Cô ấy nói đã đợi hơn một tiếng."
+            }
+          }
+        ],
+        "notes": [
+          "QKHTTD = thời lượng/quá trình TRƯỚC sự kiện quá khứ. QKHT = hoàn thành TRƯỚC sự kiện quá khứ. \"I had been reading for 2 hours\" (quá trình) vs \"I had read 3 chapters\" (kết quả).",
+          "Giống tất cả thì tiếp diễn, không dùng động từ trạng thái: \"I had been knowing\" sai. Dùng QKHT: \"I had known.\"",
+          "QKHTTD là thì quá khứ ít dùng nhất. Chỉ cần khi nhấn mạnh THỜI LƯỢNG trước sự kiện quá khứ. Thường QKHT là đủ."
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "past_mult_50",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Cô ấy mệt vì ___ cả ngày.",
+            "verb": "",
+            "correctAnswer": "had been working",
+            "distractors": [
+              "had worked",
+              "was working",
+              "worked"
+            ],
+            "explanation": "\"Cả ngày\" nhấn mạnh thời lượng, hành động gây ra mệt mỏi (kết quả quá khứ) → QKHTTD."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "past_fill_51",
+            "sentence": "They ___ (wait) for two hours when the bus finally came.",
+            "sentenceEn": "They ___ (wait) for two hours when the bus finally came.",
+            "verb": "wait",
+            "correctAnswer": "had been waiting",
+            "distractors": [
+              "had been waited",
+              "had been wait"
+            ],
+            "explanation": "\"Hai tiếng\" = thời lượng trước khi xe đến → QKHTTD."
+          },
+          {
+            "id": "past_sigf_40",
+            "sentence": "Cô ấy đã nấu ăn hai tiếng.",
+            "sentenceEn": "She had been cooking for two hours.",
+            "verb": "",
+            "correctAnswer": "for",
+            "distractors": [
+              "already",
+              "by the time",
+              "all day/week"
+            ],
+            "explanation": "for + khoảng thời gian"
+          },
+          {
+            "id": "past_sigf_41",
+            "sentence": "Anh ấy đã làm việc từ sáng.",
+            "sentenceEn": "He had been working since morning.",
+            "verb": "",
+            "correctAnswer": "since",
+            "distractors": [
+              "every day",
+              "before",
+              "for"
+            ],
+            "explanation": "since + mốc thời gian"
+          },
+          {
+            "id": "past_sigf_42",
+            "sentence": "Tuyết đã rơi cả ngày.",
+            "sentenceEn": "It had been snowing all day.",
+            "verb": "",
+            "correctAnswer": "all day/week",
+            "distractors": [
+              "at the moment",
+              "since",
+              "next year"
+            ],
+            "explanation": "Dấu hiệu \"all day/week\" (cả ngày/tuần) thường dùng trong Thì Quá Khứ Hoàn Thành Tiếp Diễn."
+          },
+          {
+            "id": "past_sigf_43",
+            "sentence": "Tôi đã đọc sách trước khi ngủ thiếp đi.",
+            "sentenceEn": "I had been reading before I fell asleep.",
+            "verb": "",
+            "correctAnswer": "before",
+            "distractors": [
+              "by the time",
+              "all day/week",
+              "just"
+            ],
+            "explanation": "Dấu hiệu \"before\" (trước khi) thường dùng trong Thì Quá Khứ Hoàn Thành Tiếp Diễn."
+          },
+          {
+            "id": "past_sigf_44",
+            "sentence": "Khi cô ấy đến, tôi đã đợi một tiếng.",
+            "sentenceEn": "By the time she arrived, I had been waiting for an hour.",
+            "verb": "",
+            "correctAnswer": "by the time",
+            "distractors": [
+              "just",
+              "yet",
+              "now"
+            ],
+            "explanation": "Dấu hiệu \"by the time\" (vào lúc) thường dùng trong Thì Quá Khứ Hoàn Thành Tiếp Diễn."
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "past_true_56",
+            "sentence": "He had been working at the company for ten years before he retired.",
+            "sentenceVi": "Anh ấy đã làm việc ở công ty mười năm trước khi nghỉ hưu.",
+            "correctAnswer": "past_perfect_continuous",
+            "distractors": [
+              "present_perfect",
+              "future_perfect_continuous",
+              "past_simple"
+            ],
+            "explanation": "Đúng! Thời lượng (mười năm) trước sự kiện quá khứ (nghỉ hưu) = QKHTTD."
+          },
+          {
+            "id": "past_iden_30",
+            "sentence": "I had been studying for three hours when she called.",
+            "sentenceVi": "Tôi đã học ba tiếng khi cô ấy gọi.",
+            "correctAnswer": "past_perfect_continuous",
+            "distractors": [
+              "future_simple",
+              "past_continuous",
+              "present_perfect"
+            ],
+            "explanation": "\"Ba tiếng\" nhấn mạnh thời lượng trước khi bị gián đoạn."
+          },
+          {
+            "id": "past_iden_31",
+            "sentence": "They had been living in Paris for ten years before they moved.",
+            "sentenceVi": "Họ đã sống ở Paris mười năm trước khi chuyển đi.",
+            "correctAnswer": "past_perfect_continuous",
+            "distractors": [
+              "future_simple",
+              "present_simple",
+              "present_continuous"
+            ],
+            "explanation": "Thời lượng hành động trước sự kiện quá khứ khác."
+          },
+          {
+            "id": "past_iden_32",
+            "sentence": "She was tired because she had been running.",
+            "sentenceVi": "Cô ấy mệt vì đã chạy.",
+            "correctAnswer": "past_perfect_continuous",
+            "distractors": [
+              "present_continuous",
+              "future_perfect",
+              "future_continuous"
+            ],
+            "explanation": "Chạy (hành động quá khứ liên tục) gây ra mệt mỏi (kết quả quá khứ)."
+          },
+          {
+            "id": "past_iden_33",
+            "sentence": "The streets were wet because it had been raining.",
+            "sentenceVi": "Đường ướt vì trời đã mưa.",
+            "correctAnswer": "past_perfect_continuous",
+            "distractors": [
+              "present_simple",
+              "future_perfect_continuous",
+              "present_perfect_continuous"
+            ],
+            "explanation": "Mưa đã diễn ra liên tục; đường ướt là kết quả nhìn thấy."
+          },
+          {
+            "id": "past_iden_34",
+            "sentence": "She said she had been waiting for over an hour.",
+            "sentenceVi": "Cô ấy nói đã đợi hơn một tiếng.",
+            "correctAnswer": "past_perfect_continuous",
+            "distractors": [
+              "present_perfect",
+              "future_simple",
+              "future_continuous"
+            ],
+            "explanation": "Câu tường thuật: \"I have been waiting\" → \"she had been waiting\"."
+          }
+        ]
+      }
+    },
+    {
+      "id": "future_perfect",
+      "order": 11,
+      "name": {
+        "en": "Future Perfect",
+        "vi": "Thì Tương Lai Hoàn Thành"
+      },
+      "theory": {
+        "description": "Hành động sẽ hoàn thành trước một thời điểm trong tương lai",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + will + have + V3",
+            "structureVi": "Chủ ngữ + will + have + V3",
+            "subjectNote": "All subjects + will have",
+            "example": {
+              "en": "By next year, I will have graduated.",
+              "vi": "Đến năm tới, tôi sẽ tốt nghiệp rồi."
+            },
+            "note": "Hành động sẽ hoàn thành trước mốc thời gian tương lai"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + will + not + have + V3",
+            "structureVi": "Chủ ngữ + will + not + have + V3",
+            "subjectNote": null,
+            "example": {
+              "en": "She won't have finished by 5 PM.",
+              "vi": "Cô ấy sẽ chưa xong trước 5 giờ."
+            },
+            "note": "Viết tắt: will not have = won't have"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Will + S + have + V3?",
+            "structureVi": "Will + Chủ ngữ + have + V3?",
+            "subjectNote": null,
+            "example": {
+              "en": "Will you have completed the project by Friday?",
+              "vi": "Bạn sẽ hoàn thành dự án trước thứ Sáu chứ?"
+            },
+            "note": "Trả lời: Yes, I will. / No, I won't."
+          }
+        ],
+        "signalWords": [
+          "by",
+          "by the time",
+          "before",
+          "by next year",
+          "by then",
+          "in two years"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "by",
+            "wordVi": "trước/đến",
+            "example": "I will have left by 5 PM.",
+            "exampleVi": "Tôi sẽ đi trước 5 giờ chiều.",
+            "note": "Từ tín hiệu quan trọng nhất của TLHT"
+          },
+          {
+            "word": "by the time",
+            "wordVi": "vào lúc/khi",
+            "example": "By the time you wake up, I will have left.",
+            "exampleVi": "Khi bạn thức dậy, tôi sẽ đi rồi.",
+            "note": null
+          },
+          {
+            "word": "before",
+            "wordVi": "trước khi",
+            "example": "She will have finished before noon.",
+            "exampleVi": "Cô ấy sẽ xong trước trưa.",
+            "note": null
+          },
+          {
+            "word": "by next year",
+            "wordVi": "đến năm tới",
+            "example": "By next year, he will have graduated.",
+            "exampleVi": "Đến năm tới, anh ấy sẽ tốt nghiệp.",
+            "note": null
+          },
+          {
+            "word": "by then",
+            "wordVi": "đến lúc đó",
+            "example": "Don't worry, I will have finished by then.",
+            "exampleVi": "Đừng lo, tôi sẽ xong trước lúc đó.",
+            "note": null
+          },
+          {
+            "word": "in two years",
+            "wordVi": "trong hai năm nữa",
+            "example": "In two years, she will have completed her PhD.",
+            "exampleVi": "Trong hai năm nữa, cô ấy sẽ hoàn thành tiến sĩ.",
+            "note": null
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Hoàn thành trước thời điểm tương lai",
+            "description": "Diễn tả hành động sẽ hoàn thành trước hạn chót hoặc mốc thời gian tương lai.",
+            "example": {
+              "en": "By 6 PM, I will have finished my work.",
+              "vi": "Đến 6 giờ chiều, tôi sẽ hoàn thành xong công việc."
+            }
+          },
+          {
+            "rule": "Thành tựu trước hạn chót",
+            "description": "Dùng để nói về thành tựu dự kiến trước thời điểm nhất định.",
+            "example": {
+              "en": "By next year, she will have written her first novel.",
+              "vi": "Đến năm tới, cô ấy sẽ viết xong cuốn tiểu thuyết đầu tiên."
+            }
+          },
+          {
+            "rule": "Thời lượng tính đến mốc tương lai",
+            "description": "Dùng với for/since để mô tả điều gì đó sẽ kéo dài bao lâu.",
+            "example": {
+              "en": "By next month, I will have lived here for ten years.",
+              "vi": "Đến tháng tới, tôi sẽ sống ở đây được mười năm."
+            }
+          }
+        ],
+        "notes": [
+          "Hầu hết câu TLHT đều chứa \"by\" (by 5 PM, by next year, by the time...). Nếu thấy \"by\" + thời gian tương lai, nghĩ đến TLHT.",
+          "\"I will finish at 5 PM\" (thời điểm hoàn thành) vs \"I will have finished by 5 PM\" (xong trước thời điểm đó). TLHT nhấn mạnh TRƯỚC hạn chót.",
+          "\"By the time\" + Hiện tại đơn (không dùng \"will\"): \"By the time you arrive\" KHÔNG PHẢI \"By the time you will arrive.\" Cùng quy tắc với mệnh đề thời gian khác."
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "futu_mult_71",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Đến tháng 6 tới, cô ấy ___ đại học.",
+            "verb": "",
+            "correctAnswer": "will have graduated",
+            "distractors": [
+              "will graduate",
+              "will be graduating",
+              "graduates"
+            ],
+            "explanation": "\"Đến tháng 6 tới\" = hạn tương lai. Tốt nghiệp sẽ hoàn thành trước đó → TLHT."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "futu_fill_72",
+            "sentence": "By the time you arrive, I ___ (cook) dinner.",
+            "sentenceEn": "By the time you arrive, I ___ (cook) dinner.",
+            "verb": "cook",
+            "correctAnswer": "will have cooked",
+            "distractors": [
+              "will have cooking",
+              "will have cook"
+            ],
+            "explanation": "\"Khi bạn đến\" = trước khi đến → TLHT. Cook → cooked (V3 có quy tắc)."
+          },
+          {
+            "id": "futu_sigf_40",
+            "sentence": "Tôi sẽ đi trước 5 giờ chiều.",
+            "sentenceEn": "I will have left by 5 PM.",
+            "verb": "",
+            "correctAnswer": "by",
+            "distractors": [
+              "tomorrow",
+              "now",
+              "by the time"
+            ],
+            "explanation": "Từ tín hiệu quan trọng nhất của TLHT"
+          },
+          {
+            "id": "futu_sigf_41",
+            "sentence": "Khi bạn thức dậy, tôi sẽ đi rồi.",
+            "sentenceEn": "By the time you wake up, I will have left.",
+            "verb": "",
+            "correctAnswer": "by the time",
+            "distractors": [
+              "by next year",
+              "right now",
+              "yet"
+            ],
+            "explanation": "Dấu hiệu \"by the time\" (vào lúc/khi) thường dùng trong Thì Tương Lai Hoàn Thành."
+          },
+          {
+            "id": "futu_sigf_42",
+            "sentence": "Cô ấy sẽ xong trước trưa.",
+            "sentenceEn": "She will have finished before noon.",
+            "verb": "",
+            "correctAnswer": "before",
+            "distractors": [
+              "yesterday",
+              "by then",
+              "yet"
+            ],
+            "explanation": "Dấu hiệu \"before\" (trước khi) thường dùng trong Thì Tương Lai Hoàn Thành."
+          },
+          {
+            "id": "futu_sigf_43",
+            "sentence": "Đến năm tới, anh ấy sẽ tốt nghiệp.",
+            "sentenceEn": "By next year, he will have graduated.",
+            "verb": "",
+            "correctAnswer": "by next year",
+            "distractors": [
+              "tomorrow",
+              "yet",
+              "in two years"
+            ],
+            "explanation": "Dấu hiệu \"by next year\" (đến năm tới) thường dùng trong Thì Tương Lai Hoàn Thành."
+          },
+          {
+            "id": "futu_sigf_44",
+            "sentence": "Đừng lo, tôi sẽ xong trước lúc đó.",
+            "sentenceEn": "Don't worry, I will have finished by then.",
+            "verb": "",
+            "correctAnswer": "by then",
+            "distractors": [
+              "by",
+              "tomorrow",
+              "for"
+            ],
+            "explanation": "Dấu hiệu \"by then\" (đến lúc đó) thường dùng trong Thì Tương Lai Hoàn Thành."
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "futu_true_77",
+            "sentence": "By next year, I will have been living here for ten years.",
+            "sentenceVi": "Đến năm tới, tôi sẽ sống ở đây được mười năm.",
+            "correctAnswer": "future_perfect",
+            "distractors": [
+              "future_perfect_continuous",
+              "past_perfect_continuous",
+              "future_continuous"
+            ],
+            "explanation": "Đây thực ra là TLHTTD (will have been living), nhưng ngữ pháp đúng. Với \"live\" + \"for\", cả TLHT và TLHTTD đều được."
+          },
+          {
+            "id": "futu_iden_30",
+            "sentence": "By 6 PM, I will have finished my work.",
+            "sentenceVi": "Đến 6 giờ chiều, tôi sẽ hoàn thành xong công việc.",
+            "correctAnswer": "future_perfect",
+            "distractors": [
+              "present_perfect",
+              "present_perfect_continuous",
+              "present_continuous"
+            ],
+            "explanation": "\"Đến 6 giờ chiều\" = hạn chót. Công việc sẽ xong trước đó."
+          },
+          {
+            "id": "futu_iden_31",
+            "sentence": "By the time you arrive, we will have eaten dinner.",
+            "sentenceVi": "Khi bạn đến, chúng tôi sẽ ăn tối xong rồi.",
+            "correctAnswer": "future_perfect",
+            "distractors": [
+              "past_simple",
+              "past_perfect",
+              "present_perfect_continuous"
+            ],
+            "explanation": "\"By the time\" + hiện tại đơn cho tương lai → mệnh đề chính dùng TLHT."
+          },
+          {
+            "id": "futu_iden_32",
+            "sentence": "By next year, she will have written her first novel.",
+            "sentenceVi": "Đến năm tới, cô ấy sẽ viết xong cuốn tiểu thuyết đầu tiên.",
+            "correctAnswer": "future_perfect",
+            "distractors": [
+              "present_simple",
+              "past_perfect_continuous",
+              "future_simple"
+            ],
+            "explanation": "Thành tựu dự kiến trước mốc tương lai."
+          },
+          {
+            "id": "futu_iden_33",
+            "sentence": "By 2030, they will have built 100 schools.",
+            "sentenceVi": "Đến năm 2030, họ sẽ xây xong 100 trường học.",
+            "correctAnswer": "future_perfect",
+            "distractors": [
+              "present_simple",
+              "future_continuous",
+              "past_continuous"
+            ],
+            "explanation": "Thành tựu tương lai với mốc thời gian cụ thể."
+          },
+          {
+            "id": "futu_iden_34",
+            "sentence": "By next month, I will have lived here for ten years.",
+            "sentenceVi": "Đến tháng tới, tôi sẽ sống ở đây được mười năm.",
+            "correctAnswer": "future_perfect",
+            "distractors": [
+              "past_continuous",
+              "present_perfect_continuous",
+              "past_perfect"
+            ],
+            "explanation": "\"Mười năm\" = thời lượng tính đến mốc tương lai."
+          }
+        ]
+      }
+    },
+    {
+      "id": "future_perfect_continuous",
+      "order": 12,
+      "name": {
+        "en": "Future Perfect Continuous",
+        "vi": "Thì Tương Lai Hoàn Thành Tiếp Diễn"
+      },
+      "theory": {
+        "description": "Thời lượng của hành động cho đến một thời điểm trong tương lai",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + will + have + been + V-ing",
+            "structureVi": "Chủ ngữ + will + have + been + V-ing",
+            "subjectNote": "All subjects + will have been",
+            "example": {
+              "en": "By June, I will have been working here for five years.",
+              "vi": "Đến tháng 6, tôi sẽ làm việc ở đây được năm năm."
+            },
+            "note": "Nhấn mạnh thời lượng liên tục đến mốc tương lai"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + will + not + have + been + V-ing",
+            "structureVi": "Chủ ngữ + will + not + have + been + V-ing",
+            "subjectNote": null,
+            "example": {
+              "en": "She won't have been waiting long.",
+              "vi": "Cô ấy sẽ không đợi lâu."
+            },
+            "note": "Viết tắt: will not have been = won't have been"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Will + S + have + been + V-ing?",
+            "structureVi": "Will + Chủ ngữ + have + been + V-ing?",
+            "subjectNote": null,
+            "example": {
+              "en": "How long will you have been studying by graduation?",
+              "vi": "Bạn sẽ học được bao lâu tính đến lúc tốt nghiệp?"
+            },
+            "note": "Thường dùng với How long...?"
+          }
+        ],
+        "signalWords": [
+          "by",
+          "by the time",
+          "for + duration",
+          "by next year",
+          "how long",
+          "all day/week/month"
+        ],
+        "signalWordsDetail": [
+          {
+            "word": "by",
+            "wordVi": "trước/đến",
+            "example": "By Friday, I will have been working for 5 days.",
+            "exampleVi": "Đến thứ Sáu, tôi sẽ làm việc được 5 ngày.",
+            "note": "Từ tín hiệu chính"
+          },
+          {
+            "word": "by the time",
+            "wordVi": "vào lúc",
+            "example": "By the time she arrives, we will have been waiting for hours.",
+            "exampleVi": "Khi cô ấy đến, chúng tôi sẽ đợi được nhiều tiếng.",
+            "note": null
+          },
+          {
+            "word": "for + duration",
+            "wordVi": "trong + thời lượng",
+            "example": "She will have been teaching for 30 years.",
+            "exampleVi": "Cô ấy sẽ dạy học được 30 năm.",
+            "note": "for + khoảng thời gian"
+          },
+          {
+            "word": "by next year",
+            "wordVi": "đến năm tới",
+            "example": "By next year, he will have been living abroad for a decade.",
+            "exampleVi": "Đến năm tới, anh ấy sẽ sống nước ngoài được một thập kỷ.",
+            "note": null
+          },
+          {
+            "word": "how long",
+            "wordVi": "bao lâu",
+            "example": "How long will you have been studying by graduation?",
+            "exampleVi": "Bạn sẽ học được bao lâu tính đến lúc tốt nghiệp?",
+            "note": "Dùng trong câu hỏi"
+          },
+          {
+            "word": "all day/week/month",
+            "wordVi": "cả ngày/tuần/tháng",
+            "example": "By evening, it will have been raining all day.",
+            "exampleVi": "Đến chiều, trời sẽ mưa cả ngày.",
+            "note": null
+          }
+        ],
+        "usages": [
+          {
+            "rule": "Thời lượng đến mốc tương lai",
+            "description": "Nhấn mạnh hành động sẽ diễn ra bao lâu tính đến thời điểm tương lai.",
+            "example": {
+              "en": "By next month, I will have been living here for ten years.",
+              "vi": "Đến tháng tới, tôi sẽ sống ở đây được mười năm."
+            }
+          },
+          {
+            "rule": "Nguyên nhân của kết quả tương lai",
+            "description": "Hành động liên tục đến mốc tương lai sẽ gây ra kết quả.",
+            "example": {
+              "en": "He will be tired because he will have been traveling all day.",
+              "vi": "Anh ấy sẽ mệt vì sẽ đi du lịch cả ngày."
+            }
+          },
+          {
+            "rule": "Nhấn mạnh quá trình liên tục",
+            "description": "Nhấn mạnh hoạt động đã và sẽ tiếp tục diễn ra đến mốc tương lai.",
+            "example": {
+              "en": "By 2030, scientists will have been researching this topic for 20 years.",
+              "vi": "Đến 2030, các nhà khoa học sẽ nghiên cứu đề tài này được 20 năm."
+            }
+          }
+        ],
+        "notes": [
+          "TLHTTD nhấn mạnh THỜI LƯỢNG (bao lâu), TLHT nhấn mạnh KẾT QUẢ (bao nhiêu). \"Đến tháng 6, tôi sẽ đọc được 6 tháng\" (thời lượng) vs \"Đến tháng 6, tôi sẽ đọc xong 20 cuốn\" (kết quả).",
+          "TLHTTD là thì hiếm nhất trong tiếng Anh hàng ngày. Người bản ngữ thường đơn giản hóa: \"By June, I will have worked here for 5 years\" (TLHT thay TLHTTD). Cả hai đều đúng với động từ thời lượng.",
+          "Giống tất cả thì tiếp diễn, không dùng động từ trạng thái: \"I will have been knowing\" sai. Dùng TLHT: \"I will have known.\""
+        ]
+      },
+      "exercises": {
+        "conjugation": [
+          {
+            "id": "futu_mult_78",
+            "prompt": "Chọn dạng đúng.",
+            "sentence": "Đến năm tới, cô ấy ___ tiếng Anh được mười năm.",
+            "verb": "",
+            "correctAnswer": "will have been studying",
+            "distractors": [
+              "will have studied",
+              "will be studying",
+              "will study"
+            ],
+            "explanation": "\"Mười năm\" nhấn mạnh thời lượng đến mốc tương lai → TLHTTD."
+          }
+        ],
+        "fillInBlank": [
+          {
+            "id": "futu_fill_79",
+            "sentence": "By 5 PM, they ___ (wait) for three hours.",
+            "sentenceEn": "By 5 PM, they ___ (wait) for three hours.",
+            "verb": "wait",
+            "correctAnswer": "will have been waiting",
+            "distractors": [
+              "will have been waited",
+              "will have been wait"
+            ],
+            "explanation": "\"Ba tiếng\" + \"đến 5 giờ\" = thời lượng đến mốc tương lai → will have been waiting."
+          },
+          {
+            "id": "futu_sigf_40",
+            "sentence": "Đến thứ Sáu, tôi sẽ làm việc được 5 ngày.",
+            "sentenceEn": "By Friday, I will have been working for 5 days.",
+            "verb": "",
+            "correctAnswer": "by",
+            "distractors": [
+              "now",
+              "right now",
+              "for"
+            ],
+            "explanation": "Từ tín hiệu chính"
+          },
+          {
+            "id": "futu_sigf_41",
+            "sentence": "Khi cô ấy đến, chúng tôi sẽ đợi được nhiều tiếng.",
+            "sentenceEn": "By the time she arrives, we will have been waiting for hours.",
+            "verb": "",
+            "correctAnswer": "by the time",
+            "distractors": [
+              "right now",
+              "for + duration",
+              "just"
+            ],
+            "explanation": "Dấu hiệu \"by the time\" (vào lúc) thường dùng trong Thì Tương Lai Hoàn Thành Tiếp Diễn."
+          },
+          {
+            "id": "futu_sigf_42",
+            "sentence": "Cô ấy sẽ dạy học được 30 năm.",
+            "sentenceEn": "She will have been teaching for 30 years.",
+            "verb": "",
+            "correctAnswer": "for + duration",
+            "distractors": [
+              "ago",
+              "tomorrow",
+              "just"
+            ],
+            "explanation": "for + khoảng thời gian"
+          },
+          {
+            "id": "futu_sigf_43",
+            "sentence": "Đến năm tới, anh ấy sẽ sống nước ngoài được một thập kỷ.",
+            "sentenceEn": "By next year, he will have been living abroad for a decade.",
+            "verb": "",
+            "correctAnswer": "by next year",
+            "distractors": [
+              "always",
+              "at the moment",
+              "last week"
+            ],
+            "explanation": "Dấu hiệu \"by next year\" (đến năm tới) thường dùng trong Thì Tương Lai Hoàn Thành Tiếp Diễn."
+          },
+          {
+            "id": "futu_sigf_44",
+            "sentence": "Bạn sẽ học được bao lâu tính đến lúc tốt nghiệp?",
+            "sentenceEn": "How long will you have been studying by graduation?",
+            "verb": "",
+            "correctAnswer": "how long",
+            "distractors": [
+              "yesterday",
+              "next year",
+              "now"
+            ],
+            "explanation": "Dùng trong câu hỏi"
+          }
+        ],
+        "identifyTense": [
+          {
+            "id": "futu_true_84",
+            "sentence": "By the end of this year, he will have been working at this company for twenty years.",
+            "sentenceVi": "Đến cuối năm nay, anh ấy sẽ làm việc ở công ty này được hai mươi năm.",
+            "correctAnswer": "future_perfect_continuous",
+            "distractors": [
+              "present_perfect_continuous",
+              "future_continuous",
+              "future_perfect"
+            ],
+            "explanation": "Đúng! \"Đến cuối năm nay\" (mốc tương lai) + \"hai mươi năm\" (thời lượng) = TLHTTD."
+          },
+          {
+            "id": "futu_iden_30",
+            "sentence": "By next month, I will have been living here for ten years.",
+            "sentenceVi": "Đến tháng tới, tôi sẽ sống ở đây được mười năm.",
+            "correctAnswer": "future_perfect_continuous",
+            "distractors": [
+              "present_simple",
+              "past_continuous",
+              "past_simple"
+            ],
+            "explanation": "\"Mười năm\" nhấn mạnh thời lượng đến mốc tương lai."
+          },
+          {
+            "id": "futu_iden_31",
+            "sentence": "By 5 PM, she will have been working for eight hours.",
+            "sentenceVi": "Đến 5 giờ chiều, cô ấy sẽ làm việc được tám tiếng.",
+            "correctAnswer": "future_perfect_continuous",
+            "distractors": [
+              "present_perfect",
+              "past_simple",
+              "present_continuous"
+            ],
+            "explanation": "Thời lượng làm việc tính đến 5 giờ chiều."
+          },
+          {
+            "id": "futu_iden_32",
+            "sentence": "He will be tired because he will have been traveling all day.",
+            "sentenceVi": "Anh ấy sẽ mệt vì sẽ đi du lịch cả ngày.",
+            "correctAnswer": "future_perfect_continuous",
+            "distractors": [
+              "present_perfect_continuous",
+              "future_continuous",
+              "past_continuous"
+            ],
+            "explanation": "Việc đi du lịch liên tục sẽ gây mệt mỏi."
+          },
+          {
+            "id": "futu_iden_33",
+            "sentence": "By the time the marathon ends, they will have been running for hours.",
+            "sentenceVi": "Khi marathon kết thúc, họ sẽ chạy được nhiều tiếng.",
+            "correctAnswer": "future_perfect_continuous",
+            "distractors": [
+              "future_perfect",
+              "future_simple",
+              "past_continuous"
+            ],
+            "explanation": "Việc chạy liên tục sẽ dẫn đến kiệt sức."
+          },
+          {
+            "id": "futu_iden_34",
+            "sentence": "By 2030, scientists will have been researching this topic for 20 years.",
+            "sentenceVi": "Đến 2030, các nhà khoa học sẽ nghiên cứu đề tài này được 20 năm.",
+            "correctAnswer": "future_perfect_continuous",
+            "distractors": [
+              "present_continuous",
+              "past_perfect",
+              "present_perfect_continuous"
+            ],
+            "explanation": "Nhấn mạnh tính liên tục, đang diễn ra của nghiên cứu."
+          }
+        ]
+      }
+    }
+  ],
+  "reviewExercises": [
+    {
+      "id": "review_01",
+      "type": "identifyTense",
+      "sentence": "I wake up at 6 AM every day.",
+      "sentenceVi": "Tôi thức dậy lúc 6 giờ sáng mỗi ngày.",
+      "correctAnswer": "present_simple",
+      "distractors": [
+        "future_perfect_continuous",
+        "past_continuous",
+        "present_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "present_simple"
+      ],
+      "explanation": "Đây là Thì Hiện Tại Đơn. Thói quen và hoạt động thường ngày"
+    },
+    {
+      "id": "review_02",
+      "type": "identifyTense",
+      "sentence": "Water boils at 100 degrees Celsius.",
+      "sentenceVi": "Nước sôi ở 100 độ C.",
+      "correctAnswer": "present_simple",
+      "distractors": [
+        "future_continuous",
+        "present_continuous",
+        "past_simple"
+      ],
+      "tensesRequired": [
+        "present_simple"
+      ],
+      "explanation": "Đây là Thì Hiện Tại Đơn. Sự thật chung và chân lý"
+    },
+    {
+      "id": "review_03",
+      "type": "identifyTense",
+      "sentence": "She is reading a book right now.",
+      "sentenceVi": "Cô ấy đang đọc sách ngay bây giờ.",
+      "correctAnswer": "present_continuous",
+      "distractors": [
+        "past_perfect",
+        "past_continuous",
+        "present_perfect"
+      ],
+      "tensesRequired": [
+        "present_continuous"
+      ],
+      "explanation": "Đây là Thì Hiện Tại Tiếp Diễn. Hành động đang xảy ra"
+    },
+    {
+      "id": "review_04",
+      "type": "identifyTense",
+      "sentence": "I am staying with my friend this week.",
+      "sentenceVi": "Tuần này tôi đang ở với bạn.",
+      "correctAnswer": "present_continuous",
+      "distractors": [
+        "past_continuous",
+        "present_perfect_continuous",
+        "future_perfect"
+      ],
+      "tensesRequired": [
+        "present_continuous"
+      ],
+      "explanation": "Đây là Thì Hiện Tại Tiếp Diễn. Tình huống tạm thời"
+    },
+    {
+      "id": "review_05",
+      "type": "identifyTense",
+      "sentence": "I visited my grandmother last weekend.",
+      "sentenceVi": "Tôi đã thăm bà ngoại cuối tuần trước.",
+      "correctAnswer": "past_simple",
+      "distractors": [
+        "past_perfect_continuous",
+        "present_perfect",
+        "future_simple"
+      ],
+      "tensesRequired": [
+        "past_simple"
+      ],
+      "explanation": "Đây là Thì Quá Khứ Đơn. Hành động hoàn thành tại thời điểm cụ thể"
+    },
+    {
+      "id": "review_06",
+      "type": "identifyTense",
+      "sentence": "I woke up, had breakfast, and went to work.",
+      "sentenceVi": "Tôi thức dậy, ăn sáng rồi đi làm.",
+      "correctAnswer": "past_simple",
+      "distractors": [
+        "past_perfect",
+        "future_continuous",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "past_simple"
+      ],
+      "explanation": "Đây là Thì Quá Khứ Đơn. Chuỗi sự kiện quá khứ"
+    },
+    {
+      "id": "review_07",
+      "type": "identifyTense",
+      "sentence": "At 9 PM, I was watching a movie.",
+      "sentenceVi": "Lúc 9 giờ tối, tôi đang xem phim.",
+      "correctAnswer": "past_continuous",
+      "distractors": [
+        "present_simple",
+        "present_perfect",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "past_continuous"
+      ],
+      "explanation": "Đây là Thì Quá Khứ Tiếp Diễn. Hành động đang diễn ra tại thời điểm quá khứ"
+    },
+    {
+      "id": "review_08",
+      "type": "identifyTense",
+      "sentence": "I was cooking when the phone rang.",
+      "sentenceVi": "Tôi đang nấu ăn thì điện thoại reo.",
+      "correctAnswer": "past_continuous",
+      "distractors": [
+        "past_perfect",
+        "future_continuous",
+        "future_perfect"
+      ],
+      "tensesRequired": [
+        "past_continuous"
+      ],
+      "explanation": "Đây là Thì Quá Khứ Tiếp Diễn. Hành động bị gián đoạn"
+    },
+    {
+      "id": "review_09",
+      "type": "identifyTense",
+      "sentence": "I think it will rain tomorrow.",
+      "sentenceVi": "Tôi nghĩ ngày mai trời sẽ mưa.",
+      "correctAnswer": "future_simple",
+      "distractors": [
+        "future_continuous",
+        "past_perfect_continuous",
+        "present_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_simple"
+      ],
+      "explanation": "Đây là Thì Tương Lai Đơn. Dự đoán và ý kiến"
+    },
+    {
+      "id": "review_10",
+      "type": "identifyTense",
+      "sentence": "I'm cold. I'll close the window.",
+      "sentenceVi": "Tôi lạnh. Tôi sẽ đóng cửa sổ.",
+      "correctAnswer": "future_simple",
+      "distractors": [
+        "past_simple",
+        "past_perfect_continuous",
+        "future_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_simple"
+      ],
+      "explanation": "Đây là Thì Tương Lai Đơn. Quyết định tức thì"
+    },
+    {
+      "id": "review_11",
+      "type": "identifyTense",
+      "sentence": "This time tomorrow, I will be flying to London.",
+      "sentenceVi": "Giờ này ngày mai, tôi sẽ đang bay đến London.",
+      "correctAnswer": "future_continuous",
+      "distractors": [
+        "future_simple",
+        "present_continuous",
+        "past_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_continuous"
+      ],
+      "explanation": "Đây là Thì Tương Lai Tiếp Diễn. Hành động đang diễn ra tại thời điểm tương lai"
+    },
+    {
+      "id": "review_12",
+      "type": "identifyTense",
+      "sentence": "I will be seeing the doctor on Monday.",
+      "sentenceVi": "Thứ Hai tôi sẽ gặp bác sĩ.",
+      "correctAnswer": "future_continuous",
+      "distractors": [
+        "present_simple",
+        "past_continuous",
+        "past_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_continuous"
+      ],
+      "explanation": "Đây là Thì Tương Lai Tiếp Diễn. Hành động tương lai đã lên kế hoạch"
+    },
+    {
+      "id": "review_13",
+      "type": "identifyTense",
+      "sentence": "I have visited London three times.",
+      "sentenceVi": "Tôi đã đến London ba lần.",
+      "correctAnswer": "present_perfect",
+      "distractors": [
+        "future_continuous",
+        "future_simple",
+        "future_perfect"
+      ],
+      "tensesRequired": [
+        "present_perfect"
+      ],
+      "explanation": "Đây là Thì Hiện Tại Hoàn Thành. Trải nghiệm cuộc sống"
+    },
+    {
+      "id": "review_14",
+      "type": "identifyTense",
+      "sentence": "I have just finished my homework.",
+      "sentenceVi": "Tôi vừa hoàn thành bài tập.",
+      "correctAnswer": "present_perfect",
+      "distractors": [
+        "past_perfect_continuous",
+        "past_perfect",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "present_perfect"
+      ],
+      "explanation": "Đây là Thì Hiện Tại Hoàn Thành. Hành động vừa hoàn thành"
+    },
+    {
+      "id": "review_15",
+      "type": "identifyTense",
+      "sentence": "I have been learning English for five years.",
+      "sentenceVi": "Tôi đã học tiếng Anh được năm năm.",
+      "correctAnswer": "present_perfect_continuous",
+      "distractors": [
+        "past_perfect",
+        "present_continuous",
+        "past_simple"
+      ],
+      "tensesRequired": [
+        "present_perfect_continuous"
+      ],
+      "explanation": "Đây là Thì Hiện Tại Hoàn Thành Tiếp Diễn. Thời lượng hành động đang tiếp diễn"
+    },
+    {
+      "id": "review_16",
+      "type": "identifyTense",
+      "sentence": "He is tired because he has been running.",
+      "sentenceVi": "Anh ấy mệt vì đã chạy bộ.",
+      "correctAnswer": "present_perfect_continuous",
+      "distractors": [
+        "past_continuous",
+        "future_simple",
+        "present_perfect"
+      ],
+      "tensesRequired": [
+        "present_perfect_continuous"
+      ],
+      "explanation": "Đây là Thì Hiện Tại Hoàn Thành Tiếp Diễn. Hành động vừa dừng có kết quả nhìn thấy"
+    },
+    {
+      "id": "review_17",
+      "type": "identifyTense",
+      "sentence": "When I arrived at the station, the train had already left.",
+      "sentenceVi": "Khi tôi đến ga, tàu đã rời rồi.",
+      "correctAnswer": "past_perfect",
+      "distractors": [
+        "present_continuous",
+        "past_simple",
+        "present_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "past_perfect"
+      ],
+      "explanation": "Đây là Thì Quá Khứ Hoàn Thành. Hành động trước hành động quá khứ khác"
+    },
+    {
+      "id": "review_18",
+      "type": "identifyTense",
+      "sentence": "By the time we arrived, the movie had started.",
+      "sentenceVi": "Khi chúng tôi đến, phim đã bắt đầu.",
+      "correctAnswer": "past_perfect",
+      "distractors": [
+        "past_continuous",
+        "past_perfect_continuous",
+        "future_perfect"
+      ],
+      "tensesRequired": [
+        "past_perfect"
+      ],
+      "explanation": "Đây là Thì Quá Khứ Hoàn Thành. Trước khi / Trước + thời gian quá khứ"
+    },
+    {
+      "id": "review_19",
+      "type": "identifyTense",
+      "sentence": "I had been studying for three hours when she called.",
+      "sentenceVi": "Tôi đã học ba tiếng khi cô ấy gọi.",
+      "correctAnswer": "past_perfect_continuous",
+      "distractors": [
+        "present_simple",
+        "present_perfect",
+        "past_continuous"
+      ],
+      "tensesRequired": [
+        "past_perfect_continuous"
+      ],
+      "explanation": "Đây là Thì Quá Khứ Hoàn Thành Tiếp Diễn. Thời lượng trước sự kiện quá khứ"
+    },
+    {
+      "id": "review_20",
+      "type": "identifyTense",
+      "sentence": "She was tired because she had been running.",
+      "sentenceVi": "Cô ấy mệt vì đã chạy.",
+      "correctAnswer": "past_perfect_continuous",
+      "distractors": [
+        "past_perfect",
+        "present_simple",
+        "past_simple"
+      ],
+      "tensesRequired": [
+        "past_perfect_continuous"
+      ],
+      "explanation": "Đây là Thì Quá Khứ Hoàn Thành Tiếp Diễn. Nguyên nhân của kết quả quá khứ"
+    },
+    {
+      "id": "review_21",
+      "type": "identifyTense",
+      "sentence": "By 6 PM, I will have finished my work.",
+      "sentenceVi": "Đến 6 giờ chiều, tôi sẽ hoàn thành xong công việc.",
+      "correctAnswer": "future_perfect",
+      "distractors": [
+        "present_simple",
+        "present_perfect_continuous",
+        "future_continuous"
+      ],
+      "tensesRequired": [
+        "future_perfect"
+      ],
+      "explanation": "Đây là Thì Tương Lai Hoàn Thành. Hoàn thành trước thời điểm tương lai"
+    },
+    {
+      "id": "review_22",
+      "type": "identifyTense",
+      "sentence": "By next year, she will have written her first novel.",
+      "sentenceVi": "Đến năm tới, cô ấy sẽ viết xong cuốn tiểu thuyết đầu tiên.",
+      "correctAnswer": "future_perfect",
+      "distractors": [
+        "present_perfect",
+        "future_continuous",
+        "past_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_perfect"
+      ],
+      "explanation": "Đây là Thì Tương Lai Hoàn Thành. Thành tựu trước hạn chót"
+    },
+    {
+      "id": "review_23",
+      "type": "identifyTense",
+      "sentence": "By next month, I will have been living here for ten years.",
+      "sentenceVi": "Đến tháng tới, tôi sẽ sống ở đây được mười năm.",
+      "correctAnswer": "future_perfect_continuous",
+      "distractors": [
+        "future_continuous",
+        "past_simple",
+        "past_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_perfect_continuous"
+      ],
+      "explanation": "Đây là Thì Tương Lai Hoàn Thành Tiếp Diễn. Thời lượng đến mốc tương lai"
+    },
+    {
+      "id": "review_24",
+      "type": "identifyTense",
+      "sentence": "He will be tired because he will have been traveling all day.",
+      "sentenceVi": "Anh ấy sẽ mệt vì sẽ đi du lịch cả ngày.",
+      "correctAnswer": "future_perfect_continuous",
+      "distractors": [
+        "present_perfect_continuous",
+        "past_simple",
+        "present_simple"
+      ],
+      "tensesRequired": [
+        "future_perfect_continuous"
+      ],
+      "explanation": "Đây là Thì Tương Lai Hoàn Thành Tiếp Diễn. Nguyên nhân của kết quả tương lai"
+    },
+    {
+      "id": "review_25",
+      "type": "identifyTense",
+      "sentence": "She works at a hospital.",
+      "sentenceVi": "Cô ấy làm việc ở bệnh viện.",
+      "correctAnswer": "present_simple",
+      "distractors": [
+        "future_perfect_continuous",
+        "future_continuous",
+        "future_perfect"
+      ],
+      "tensesRequired": [
+        "present_simple"
+      ],
+      "explanation": "Cấu trúc S + V(s/es) → Thì Hiện Tại Đơn"
+    },
+    {
+      "id": "review_26",
+      "type": "identifyTense",
+      "sentence": "She does not (doesn't) work on Sundays.",
+      "sentenceVi": "Cô ấy không làm việc vào Chủ nhật.",
+      "correctAnswer": "present_simple",
+      "distractors": [
+        "future_perfect",
+        "past_simple",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "present_simple"
+      ],
+      "explanation": "Cấu trúc S + do/does + not + V → Thì Hiện Tại Đơn"
+    },
+    {
+      "id": "review_27",
+      "type": "identifyTense",
+      "sentence": "Does she work at a hospital?",
+      "sentenceVi": "Cô ấy có làm việc ở bệnh viện không?",
+      "correctAnswer": "present_simple",
+      "distractors": [
+        "past_simple",
+        "future_continuous",
+        "present_perfect"
+      ],
+      "tensesRequired": [
+        "present_simple"
+      ],
+      "explanation": "Cấu trúc Do/Does + S + V? → Thì Hiện Tại Đơn"
+    },
+    {
+      "id": "review_28",
+      "type": "identifyTense",
+      "sentence": "I am studying English now.",
+      "sentenceVi": "Tôi đang học tiếng Anh bây giờ.",
+      "correctAnswer": "present_continuous",
+      "distractors": [
+        "future_perfect_continuous",
+        "future_continuous",
+        "future_perfect"
+      ],
+      "tensesRequired": [
+        "present_continuous"
+      ],
+      "explanation": "Cấu trúc S + am/is/are + V-ing → Thì Hiện Tại Tiếp Diễn"
+    },
+    {
+      "id": "review_29",
+      "type": "identifyTense",
+      "sentence": "She is not (isn't) working today.",
+      "sentenceVi": "Cô ấy không làm việc hôm nay.",
+      "correctAnswer": "present_continuous",
+      "distractors": [
+        "past_simple",
+        "future_simple",
+        "past_perfect"
+      ],
+      "tensesRequired": [
+        "present_continuous"
+      ],
+      "explanation": "Cấu trúc S + am/is/are + not + V-ing → Thì Hiện Tại Tiếp Diễn"
+    },
+    {
+      "id": "review_30",
+      "type": "identifyTense",
+      "sentence": "Are you listening to me?",
+      "sentenceVi": "Bạn có đang nghe tôi nói không?",
+      "correctAnswer": "present_continuous",
+      "distractors": [
+        "present_perfect",
+        "past_continuous",
+        "future_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "present_continuous"
+      ],
+      "explanation": "Cấu trúc Am/Is/Are + S + V-ing? → Thì Hiện Tại Tiếp Diễn"
+    },
+    {
+      "id": "review_31",
+      "type": "identifyTense",
+      "sentence": "She worked late yesterday.",
+      "sentenceVi": "Cô ấy làm việc muộn hôm qua.",
+      "correctAnswer": "past_simple",
+      "distractors": [
+        "future_continuous",
+        "past_perfect_continuous",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "past_simple"
+      ],
+      "explanation": "Cấu trúc S + V2 (past form) → Thì Quá Khứ Đơn"
+    },
+    {
+      "id": "review_32",
+      "type": "identifyTense",
+      "sentence": "She didn't work yesterday.",
+      "sentenceVi": "Cô ấy không làm việc hôm qua.",
+      "correctAnswer": "past_simple",
+      "distractors": [
+        "present_perfect_continuous",
+        "present_perfect",
+        "past_perfect"
+      ],
+      "tensesRequired": [
+        "past_simple"
+      ],
+      "explanation": "Cấu trúc S + did not (didn't) + V → Thì Quá Khứ Đơn"
+    },
+    {
+      "id": "review_33",
+      "type": "identifyTense",
+      "sentence": "Did she work yesterday?",
+      "sentenceVi": "Cô ấy có làm việc hôm qua không?",
+      "correctAnswer": "past_simple",
+      "distractors": [
+        "past_perfect_continuous",
+        "past_perfect",
+        "future_simple"
+      ],
+      "tensesRequired": [
+        "past_simple"
+      ],
+      "explanation": "Cấu trúc Did + S + V? → Thì Quá Khứ Đơn"
+    },
+    {
+      "id": "review_34",
+      "type": "identifyTense",
+      "sentence": "I was studying at 8 PM last night.",
+      "sentenceVi": "Tôi đang học lúc 8 giờ tối qua.",
+      "correctAnswer": "past_continuous",
+      "distractors": [
+        "future_simple",
+        "future_continuous",
+        "past_simple"
+      ],
+      "tensesRequired": [
+        "past_continuous"
+      ],
+      "explanation": "Cấu trúc S + was/were + V-ing → Thì Quá Khứ Tiếp Diễn"
+    },
+    {
+      "id": "review_35",
+      "type": "identifyTense",
+      "sentence": "She was not (wasn't) sleeping at that time.",
+      "sentenceVi": "Cô ấy không ngủ lúc đó.",
+      "correctAnswer": "past_continuous",
+      "distractors": [
+        "future_simple",
+        "future_perfect_continuous",
+        "present_perfect"
+      ],
+      "tensesRequired": [
+        "past_continuous"
+      ],
+      "explanation": "Cấu trúc S + was/were + not + V-ing → Thì Quá Khứ Tiếp Diễn"
+    },
+    {
+      "id": "review_36",
+      "type": "identifyTense",
+      "sentence": "Were you watching TV when I called?",
+      "sentenceVi": "Bạn có đang xem TV khi tôi gọi không?",
+      "correctAnswer": "past_continuous",
+      "distractors": [
+        "future_simple",
+        "future_continuous",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "past_continuous"
+      ],
+      "explanation": "Cấu trúc Was/Were + S + V-ing? → Thì Quá Khứ Tiếp Diễn"
+    },
+    {
+      "id": "review_37",
+      "type": "identifyTense",
+      "sentence": "I will help you tomorrow.",
+      "sentenceVi": "Tôi sẽ giúp bạn ngày mai.",
+      "correctAnswer": "future_simple",
+      "distractors": [
+        "past_perfect",
+        "past_simple",
+        "future_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_simple"
+      ],
+      "explanation": "Cấu trúc S + will + V (base form) → Thì Tương Lai Đơn"
+    },
+    {
+      "id": "review_38",
+      "type": "identifyTense",
+      "sentence": "She will not (won't) come to the party.",
+      "sentenceVi": "Cô ấy sẽ không đến bữa tiệc.",
+      "correctAnswer": "future_simple",
+      "distractors": [
+        "present_simple",
+        "past_perfect_continuous",
+        "future_continuous"
+      ],
+      "tensesRequired": [
+        "future_simple"
+      ],
+      "explanation": "Cấu trúc S + will + not + V → Thì Tương Lai Đơn"
+    },
+    {
+      "id": "review_39",
+      "type": "identifyTense",
+      "sentence": "Will you be there tomorrow?",
+      "sentenceVi": "Bạn sẽ ở đó ngày mai chứ?",
+      "correctAnswer": "future_simple",
+      "distractors": [
+        "present_simple",
+        "past_perfect",
+        "past_continuous"
+      ],
+      "tensesRequired": [
+        "future_simple"
+      ],
+      "explanation": "Cấu trúc Will + S + V? → Thì Tương Lai Đơn"
+    },
+    {
+      "id": "review_40",
+      "type": "identifyTense",
+      "sentence": "I will be working at 3 PM tomorrow.",
+      "sentenceVi": "Tôi sẽ đang làm việc lúc 3 giờ chiều mai.",
+      "correctAnswer": "future_continuous",
+      "distractors": [
+        "present_perfect",
+        "present_perfect_continuous",
+        "future_simple"
+      ],
+      "tensesRequired": [
+        "future_continuous"
+      ],
+      "explanation": "Cấu trúc S + will + be + V-ing → Thì Tương Lai Tiếp Diễn"
+    },
+    {
+      "id": "review_41",
+      "type": "identifyTense",
+      "sentence": "She won't be attending the meeting.",
+      "sentenceVi": "Cô ấy sẽ không tham dự cuộc họp.",
+      "correctAnswer": "future_continuous",
+      "distractors": [
+        "past_perfect_continuous",
+        "past_perfect",
+        "past_continuous"
+      ],
+      "tensesRequired": [
+        "future_continuous"
+      ],
+      "explanation": "Cấu trúc S + will + not + be + V-ing → Thì Tương Lai Tiếp Diễn"
+    },
+    {
+      "id": "review_42",
+      "type": "identifyTense",
+      "sentence": "Will you be using the car tomorrow?",
+      "sentenceVi": "Ngày mai bạn có dùng xe không?",
+      "correctAnswer": "future_continuous",
+      "distractors": [
+        "past_perfect",
+        "present_perfect",
+        "future_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_continuous"
+      ],
+      "explanation": "Cấu trúc Will + S + be + V-ing? → Thì Tương Lai Tiếp Diễn"
+    },
+    {
+      "id": "review_43",
+      "type": "identifyTense",
+      "sentence": "She has visited Paris twice.",
+      "sentenceVi": "Cô ấy đã đến Paris hai lần.",
+      "correctAnswer": "present_perfect",
+      "distractors": [
+        "past_perfect",
+        "future_perfect_continuous",
+        "past_continuous"
+      ],
+      "tensesRequired": [
+        "present_perfect"
+      ],
+      "explanation": "Cấu trúc S + have/has + V3 (past participle) → Thì Hiện Tại Hoàn Thành"
+    },
+    {
+      "id": "review_44",
+      "type": "identifyTense",
+      "sentence": "I have not (haven't) finished yet.",
+      "sentenceVi": "Tôi chưa hoàn thành.",
+      "correctAnswer": "present_perfect",
+      "distractors": [
+        "future_perfect_continuous",
+        "past_simple",
+        "past_perfect"
+      ],
+      "tensesRequired": [
+        "present_perfect"
+      ],
+      "explanation": "Cấu trúc S + have/has + not + V3 → Thì Hiện Tại Hoàn Thành"
+    },
+    {
+      "id": "review_45",
+      "type": "identifyTense",
+      "sentence": "Have you ever been to Japan?",
+      "sentenceVi": "Bạn đã bao giờ đến Nhật chưa?",
+      "correctAnswer": "present_perfect",
+      "distractors": [
+        "past_perfect_continuous",
+        "present_perfect_continuous",
+        "past_perfect"
+      ],
+      "tensesRequired": [
+        "present_perfect"
+      ],
+      "explanation": "Cấu trúc Have/Has + S + V3? → Thì Hiện Tại Hoàn Thành"
+    },
+    {
+      "id": "review_46",
+      "type": "identifyTense",
+      "sentence": "I have been studying for two hours.",
+      "sentenceVi": "Tôi đã học được hai tiếng rồi.",
+      "correctAnswer": "present_perfect_continuous",
+      "distractors": [
+        "past_perfect",
+        "past_continuous",
+        "future_perfect"
+      ],
+      "tensesRequired": [
+        "present_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc S + have/has + been + V-ing → Thì Hiện Tại Hoàn Thành Tiếp Diễn"
+    },
+    {
+      "id": "review_47",
+      "type": "identifyTense",
+      "sentence": "She has not (hasn't) been sleeping well.",
+      "sentenceVi": "Cô ấy ngủ không ngon.",
+      "correctAnswer": "present_perfect_continuous",
+      "distractors": [
+        "future_continuous",
+        "present_perfect",
+        "present_simple"
+      ],
+      "tensesRequired": [
+        "present_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc S + have/has + not + been + V-ing → Thì Hiện Tại Hoàn Thành Tiếp Diễn"
+    },
+    {
+      "id": "review_48",
+      "type": "identifyTense",
+      "sentence": "How long have you been waiting?",
+      "sentenceVi": "Bạn đã đợi bao lâu rồi?",
+      "correctAnswer": "present_perfect_continuous",
+      "distractors": [
+        "future_continuous",
+        "past_simple",
+        "past_continuous"
+      ],
+      "tensesRequired": [
+        "present_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc Have/Has + S + been + V-ing? → Thì Hiện Tại Hoàn Thành Tiếp Diễn"
+    },
+    {
+      "id": "review_49",
+      "type": "identifyTense",
+      "sentence": "She had already left when I arrived.",
+      "sentenceVi": "Cô ấy đã đi rồi khi tôi đến.",
+      "correctAnswer": "past_perfect",
+      "distractors": [
+        "future_simple",
+        "past_continuous",
+        "present_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "past_perfect"
+      ],
+      "explanation": "Cấu trúc S + had + V3 (past participle) → Thì Quá Khứ Hoàn Thành"
+    },
+    {
+      "id": "review_50",
+      "type": "identifyTense",
+      "sentence": "I had not (hadn't) eaten before the meeting.",
+      "sentenceVi": "Tôi chưa ăn trước cuộc họp.",
+      "correctAnswer": "past_perfect",
+      "distractors": [
+        "present_perfect",
+        "past_continuous",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "past_perfect"
+      ],
+      "explanation": "Cấu trúc S + had + not + V3 → Thì Quá Khứ Hoàn Thành"
+    },
+    {
+      "id": "review_51",
+      "type": "identifyTense",
+      "sentence": "Had you finished before 5 PM?",
+      "sentenceVi": "Bạn đã hoàn thành trước 5 giờ chưa?",
+      "correctAnswer": "past_perfect",
+      "distractors": [
+        "past_simple",
+        "past_perfect_continuous",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "past_perfect"
+      ],
+      "explanation": "Cấu trúc Had + S + V3? → Thì Quá Khứ Hoàn Thành"
+    },
+    {
+      "id": "review_52",
+      "type": "identifyTense",
+      "sentence": "I had been waiting for an hour when she arrived.",
+      "sentenceVi": "Tôi đã đợi một tiếng khi cô ấy đến.",
+      "correctAnswer": "past_perfect_continuous",
+      "distractors": [
+        "past_continuous",
+        "present_continuous",
+        "past_simple"
+      ],
+      "tensesRequired": [
+        "past_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc S + had + been + V-ing → Thì Quá Khứ Hoàn Thành Tiếp Diễn"
+    },
+    {
+      "id": "review_53",
+      "type": "identifyTense",
+      "sentence": "He hadn't been sleeping well before the exam.",
+      "sentenceVi": "Anh ấy đã ngủ không ngon trước kỳ thi.",
+      "correctAnswer": "past_perfect_continuous",
+      "distractors": [
+        "present_continuous",
+        "future_continuous",
+        "present_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "past_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc S + had + not + been + V-ing → Thì Quá Khứ Hoàn Thành Tiếp Diễn"
+    },
+    {
+      "id": "review_54",
+      "type": "identifyTense",
+      "sentence": "How long had you been waiting?",
+      "sentenceVi": "Bạn đã đợi bao lâu?",
+      "correctAnswer": "past_perfect_continuous",
+      "distractors": [
+        "past_simple",
+        "present_perfect",
+        "present_continuous"
+      ],
+      "tensesRequired": [
+        "past_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc Had + S + been + V-ing? → Thì Quá Khứ Hoàn Thành Tiếp Diễn"
+    },
+    {
+      "id": "review_55",
+      "type": "identifyTense",
+      "sentence": "By next year, I will have graduated.",
+      "sentenceVi": "Đến năm tới, tôi sẽ tốt nghiệp rồi.",
+      "correctAnswer": "future_perfect",
+      "distractors": [
+        "past_perfect",
+        "present_perfect_continuous",
+        "past_simple"
+      ],
+      "tensesRequired": [
+        "future_perfect"
+      ],
+      "explanation": "Cấu trúc S + will + have + V3 → Thì Tương Lai Hoàn Thành"
+    },
+    {
+      "id": "review_56",
+      "type": "identifyTense",
+      "sentence": "She won't have finished by 5 PM.",
+      "sentenceVi": "Cô ấy sẽ chưa xong trước 5 giờ.",
+      "correctAnswer": "future_perfect",
+      "distractors": [
+        "future_continuous",
+        "present_perfect",
+        "future_perfect_continuous"
+      ],
+      "tensesRequired": [
+        "future_perfect"
+      ],
+      "explanation": "Cấu trúc S + will + not + have + V3 → Thì Tương Lai Hoàn Thành"
+    },
+    {
+      "id": "review_57",
+      "type": "identifyTense",
+      "sentence": "Will you have completed the project by Friday?",
+      "sentenceVi": "Bạn sẽ hoàn thành dự án trước thứ Sáu chứ?",
+      "correctAnswer": "future_perfect",
+      "distractors": [
+        "past_continuous",
+        "present_perfect_continuous",
+        "present_perfect"
+      ],
+      "tensesRequired": [
+        "future_perfect"
+      ],
+      "explanation": "Cấu trúc Will + S + have + V3? → Thì Tương Lai Hoàn Thành"
+    },
+    {
+      "id": "review_58",
+      "type": "identifyTense",
+      "sentence": "By June, I will have been working here for five years.",
+      "sentenceVi": "Đến tháng 6, tôi sẽ làm việc ở đây được năm năm.",
+      "correctAnswer": "future_perfect_continuous",
+      "distractors": [
+        "past_simple",
+        "present_perfect_continuous",
+        "future_perfect"
+      ],
+      "tensesRequired": [
+        "future_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc S + will + have + been + V-ing → Thì Tương Lai Hoàn Thành Tiếp Diễn"
+    },
+    {
+      "id": "review_59",
+      "type": "identifyTense",
+      "sentence": "She won't have been waiting long.",
+      "sentenceVi": "Cô ấy sẽ không đợi lâu.",
+      "correctAnswer": "future_perfect_continuous",
+      "distractors": [
+        "future_continuous",
+        "future_perfect",
+        "present_simple"
+      ],
+      "tensesRequired": [
+        "future_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc S + will + not + have + been + V-ing → Thì Tương Lai Hoàn Thành Tiếp Diễn"
+    },
+    {
+      "id": "review_60",
+      "type": "identifyTense",
+      "sentence": "How long will you have been studying by graduation?",
+      "sentenceVi": "Bạn sẽ học được bao lâu tính đến lúc tốt nghiệp?",
+      "correctAnswer": "future_perfect_continuous",
+      "distractors": [
+        "present_perfect",
+        "future_perfect",
+        "past_continuous"
+      ],
+      "tensesRequired": [
+        "future_perfect_continuous"
+      ],
+      "explanation": "Cấu trúc Will + S + have + been + V-ing? → Thì Tương Lai Hoàn Thành Tiếp Diễn"
+    }
+  ]
+}
