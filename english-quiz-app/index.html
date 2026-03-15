@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Learning - Từ vựng & Ngữ pháp</title>
+    <title>English Learning - Từ vựng, Ngữ pháp & Câu</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tenses.css">
+    <link rel="stylesheet" href="phrases.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,7 +24,7 @@
                 <button class="module-card" id="module-vocab-btn">
                     <div class="module-icon">A</div>
                     <div class="module-info">
-                        <div class="module-title">Từ vựng Oxford 3000</div>
+                        <div class="module-title">Từ vựng 3668 từ thông dụng</div>
                         <div class="module-desc">3668 từ có IPA, phân loại theo level</div>
                         <div class="module-progress-bar-wrap">
                             <div class="module-progress-bar" id="vocab-progress-bar"></div>
@@ -43,6 +44,18 @@
                         <div class="module-stat" id="tenses-stat">0 / 12 thì</div>
                     </div>
                 </button>
+
+                <button class="module-card" id="module-phrases-btn">
+                    <div class="module-icon">💬</div>
+                    <div class="module-info">
+                        <div class="module-title">Câu & Cụm từ</div>
+                        <div class="module-desc">9600+ câu Anh-Việt, A1-B2</div>
+                        <div class="module-progress-bar-wrap">
+                            <div class="module-progress-bar" id="phrases-progress-bar"></div>
+                        </div>
+                        <div class="module-stat" id="phrases-stat">0 / 9633 câu</div>
+                    </div>
+                </button>
             </div>
 
             <!-- Settings -->
@@ -59,7 +72,7 @@
     <!-- Vocab Setup Screen -->
     <div id="vocab-setup-screen" class="screen">
         <div class="start-container">
-            <h2 class="screen-title">Từ vựng Oxford 3000</h2>
+            <h2 class="screen-title">Từ vựng 3668 từ thông dụng</h2>
             <div class="start-stats" id="start-stats">
                 <div class="stat-item">
                     <span class="stat-number" id="stat-learned">0</span>
@@ -82,6 +95,7 @@
                 </label>
             </div>
             <button id="start-btn" class="btn-primary btn-large">Bắt đầu học</button>
+            <button id="review-btn" class="btn-secondary btn-large" disabled>Ôn tập từ vựng</button>
             <button id="reset-btn" class="btn-secondary">Đặt lại tiến trình</button>
             <button id="vocab-back-btn" class="btn-secondary">Quay lại</button>
         </div>
@@ -126,6 +140,72 @@
                 Tiếp theo
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
+        </div>
+    </div>
+
+    <!-- Vocab Review Screen -->
+    <div id="vocab-review-screen" class="screen">
+        <div class="quiz-container" id="review-quiz-section">
+            <div class="top-bar">
+                <button id="review-back-btn" class="icon-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="progress-info">
+                    <span id="review-counter">1 / 20</span>
+                </div>
+                <div class="score-badge">
+                    <span class="correct-count" id="review-correct">0</span>
+                    <span class="score-sep">·</span>
+                    <span class="wrong-count" id="review-wrong">0</span>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="review-progress-bar"></div>
+            </div>
+            <div class="word-card" id="review-word-card">
+                <div class="word-label">Từ tiếng Anh</div>
+                <div class="word-text" id="review-word-text">Loading...</div>
+                <div class="word-phonetic" id="review-word-phonetic"></div>
+                <div class="word-info" id="review-word-info"></div>
+                <button class="speak-btn" id="review-speak-btn" title="Phát âm">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                </button>
+            </div>
+            <div class="phrases-typing-area" id="review-typing-area">
+                <input type="text" id="review-typing-input" class="typing-input" placeholder="Nhập nghĩa tiếng Việt..." autocomplete="off" autocapitalize="off" spellcheck="false">
+                <button id="review-submit-btn" class="btn-primary">Kiểm tra</button>
+                <div class="phrases-hint-area">
+                    <button class="hint-btn" id="review-hint-btn">Gợi ý</button>
+                    <div class="hint-text" id="review-hint-text"></div>
+                </div>
+            </div>
+            <div class="feedback" id="review-feedback"></div>
+            <div class="phrases-correct-answer" id="review-correct-answer" style="display:none"></div>
+            <button id="review-next-btn" class="btn-primary btn-large" disabled>
+                Tiếp theo
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+        <div class="start-container" id="review-result-section" style="display:none">
+            <div class="result-icon" id="review-result-icon"></div>
+            <h2 id="review-result-title">Hoàn thành!</h2>
+            <p class="subtitle">Ôn tập từ vựng</p>
+            <div class="start-stats">
+                <div class="stat-item">
+                    <span class="stat-number correct-count" id="review-result-correct">0</span>
+                    <span class="stat-label">Đúng</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number wrong-count" id="review-result-wrong">0</span>
+                    <span class="stat-label">Sai</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="review-result-accuracy">0%</span>
+                    <span class="stat-label">Chính xác</span>
+                </div>
+            </div>
+            <button class="btn-primary btn-large" id="review-retry-btn">Ôn tập lại</button>
+            <button class="btn-secondary" id="review-back-setup-btn">Quay lại</button>
         </div>
     </div>
 
@@ -239,7 +319,138 @@
         </div>
     </div>
 
+    <!-- Phrases Hub Screen -->
+    <div id="phrases-hub-screen" class="screen">
+        <div class="phrases-container">
+            <div class="top-bar">
+                <button id="phrases-hub-back-btn" class="icon-btn" title="Về trang chính">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Câu & Cụm từ</h2>
+                <button id="phrases-fav-btn" class="icon-btn" title="Yêu thích">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </button>
+            </div>
+            <div class="phrases-stats-bar" id="phrases-stats-bar"></div>
+            <div class="phrases-level-filter" id="phrases-level-filter">
+                <button class="level-pill active" data-level="all">All</button>
+                <button class="level-pill" data-level="A1">A1</button>
+                <button class="level-pill" data-level="A2">A2</button>
+                <button class="level-pill" data-level="B1">B1</button>
+                <button class="level-pill" data-level="B2">B2</button>
+            </div>
+            <div class="phrases-categories" id="phrases-categories"></div>
+        </div>
+    </div>
+
+    <!-- Phrases Practice Screen -->
+    <div id="phrases-practice-screen" class="screen">
+        <div class="phrases-container">
+            <div class="top-bar">
+                <button id="phrases-practice-back-btn" class="icon-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="progress-info">
+                    <span id="phrases-counter">1 / 15</span>
+                </div>
+                <div class="score-badge">
+                    <span class="correct-count" id="phrases-correct">0</span>
+                    <span class="score-sep">·</span>
+                    <span class="wrong-count" id="phrases-wrong">0</span>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="phrases-progress-bar-practice"></div>
+            </div>
+            <div class="phrases-direction-badge" id="phrases-direction-badge"></div>
+            <div class="phrases-question-card" id="phrases-question-card">
+                <div class="phrases-question-text" id="phrases-question-text"></div>
+                <div class="phrases-speak-row">
+                    <button class="speak-btn" id="phrases-speak-btn" title="Phát âm">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    </button>
+                    <button class="speed-btn" id="phrases-speed-normal" title="Tốc độ thường">Normal</button>
+                    <button class="speed-btn" id="phrases-speed-slow" title="Tốc độ chậm">Slow</button>
+                </div>
+                <button class="bookmark-btn" id="phrases-bookmark-btn" title="Đánh dấu yêu thích">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </button>
+            </div>
+
+            <!-- Multiple Choice Mode -->
+            <div class="phrases-mc-area" id="phrases-mc-area" style="display:none">
+                <div class="options-grid" id="phrases-options">
+                    <button class="option-btn" data-index="0"></button>
+                    <button class="option-btn" data-index="1"></button>
+                    <button class="option-btn" data-index="2"></button>
+                    <button class="option-btn" data-index="3"></button>
+                </div>
+            </div>
+
+            <!-- Typing Mode -->
+            <div class="phrases-typing-area" id="phrases-typing-area" style="display:none">
+                <input type="text" id="phrases-typing-input" class="typing-input" placeholder="Nhập câu trả lời..." autocomplete="off" autocapitalize="off" spellcheck="false">
+                <button id="phrases-submit-btn" class="btn-primary">Kiểm tra</button>
+                <div class="phrases-hint-area" id="phrases-hint-area">
+                    <button class="hint-btn" id="phrases-hint-btn">Gợi ý</button>
+                    <div class="hint-text" id="phrases-hint-text"></div>
+                </div>
+            </div>
+
+            <div class="feedback" id="phrases-feedback"></div>
+            <div class="phrases-correct-answer" id="phrases-correct-answer" style="display:none"></div>
+            <button id="phrases-next-btn" class="btn-primary btn-large" disabled>
+                Tiếp theo
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Phrases Result Screen -->
+    <div id="phrases-result-screen" class="screen">
+        <div class="start-container">
+            <div class="result-icon" id="phrases-result-icon"></div>
+            <h2 id="phrases-result-title">Hoàn thành!</h2>
+            <p class="subtitle" id="phrases-result-subtitle"></p>
+            <div class="start-stats">
+                <div class="stat-item">
+                    <span class="stat-number correct-count" id="phrases-result-correct">0</span>
+                    <span class="stat-label">Đúng</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number wrong-count" id="phrases-result-wrong">0</span>
+                    <span class="stat-label">Sai</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="phrases-result-accuracy">0%</span>
+                    <span class="stat-label">Chính xác</span>
+                </div>
+            </div>
+            <div class="result-message" id="phrases-result-message"></div>
+            <button class="btn-primary btn-large" id="phrases-result-next-btn"></button>
+            <button class="btn-secondary" id="phrases-result-hub-btn">Về danh sách chủ đề</button>
+        </div>
+    </div>
+
+    <!-- Phrases Favorites Screen -->
+    <div id="phrases-favorites-screen" class="screen">
+        <div class="phrases-container">
+            <div class="top-bar">
+                <button id="phrases-fav-back-btn" class="icon-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Câu yêu thích</h2>
+                <span class="fav-count" id="phrases-fav-count">0</span>
+            </div>
+            <div class="phrases-fav-list" id="phrases-fav-list"></div>
+            <button id="phrases-fav-practice-btn" class="btn-primary btn-large" style="display:none">
+                Luyện tập với câu yêu thích
+            </button>
+        </div>
+    </div>
+
     <script src="app.js"></script>
     <script src="tenses.js"></script>
+    <script src="phrases.js"></script>
 </body>
 </html>

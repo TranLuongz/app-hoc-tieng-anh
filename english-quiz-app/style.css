@@ -566,13 +566,17 @@ body {
     transition: all var(--transition);
 }
 
-.feedback.correct-msg {
+.feedback.correct-msg, .feedback.correct {
     color: var(--correct);
 }
 
-.feedback.wrong-msg {
+.feedback.wrong-msg, .feedback.wrong {
     color: var(--wrong);
     animation: fadeIn 0.3s ease;
+}
+
+.feedback.close {
+    color: #f59e0b;
 }
 
 /* Options Grid */

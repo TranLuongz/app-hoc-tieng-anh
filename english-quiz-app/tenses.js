@@ -349,11 +349,7 @@ function buildPracticeQueue(tenseId) {
     const tense = tensesData.tenses.find(t => t.id === tenseId);
     if (!tense) return [];
 
-    const all = [
-        ...tense.exercises.conjugation.map(e => ({ ...e, type: 'conjugation' })),
-        ...tense.exercises.fillInBlank.map(e => ({ ...e, type: 'fillInBlank' })),
-        ...tense.exercises.identifyTense.map(e => ({ ...e, type: 'identifyTense' }))
-    ];
+    const all = tense.exercises.map(e => ({ ...e }));
 
     // Prioritize wrong exercises
     const prog = getTenseProgress(tenseId);
@@ -388,8 +384,7 @@ function showExercise() {
     const badge = document.getElementById('exercise-type-badge');
     const typeLabels = {
         conjugation: 'Chia động từ',
-        fillInBlank: 'Điền vào chỗ trống',
-        identifyTense: 'Nhận diện thì'
+        fillInBlank: 'Điền vào chỗ trống'
     };
     badge.textContent = typeLabels[ex.type] || ex.type;
 
@@ -409,11 +404,6 @@ function showExercise() {
         card.innerHTML = `
             <div class="exercise-sentence">${sentenceHtml}</div>
             ${ex.verb ? `<div class="exercise-verb-hint">Động từ: <strong>${ex.verb}</strong></div>` : ''}
-        `;
-    } else if (ex.type === 'identifyTense') {
-        card.innerHTML = `
-            <div class="exercise-prompt">Câu này thuộc thì nào?</div>
-            <div class="exercise-sentence">${ex.sentence}</div>
         `;
     }
 
@@ -437,17 +427,8 @@ function showExercise() {
 function buildExerciseOptions(ex) {
     let options;
 
-    if (ex.type === 'identifyTense') {
-        // Map tense IDs to Vietnamese names
-        const allOptions = [ex.correctAnswer, ...ex.distractors];
-        options = allOptions.map(id => {
-            const t = tensesData.tenses.find(t => t.id === id);
-            return { value: id, label: t ? t.name.vi : id };
-        });
-    } else {
-        const allOptions = [ex.correctAnswer, ...ex.distractors];
-        options = allOptions.map(v => ({ value: v, label: v }));
-    }
+    const allOptions = [ex.correctAnswer, ...ex.distractors];
+    options = allOptions.map(v => ({ value: v, label: v }));
 
     // Shuffle
     for (let i = options.length - 1; i > 0; i--) {
@@ -541,7 +522,7 @@ function buildReviewQueue() {
     if (!tensesData.reviewExercises) return [];
 
     const eligible = tensesData.reviewExercises.filter(ex =>
-        ex.tensesRequired.every(id => completedIds.includes(id))
+        completedIds.includes(ex.tenseId)
     );
 
     shuffleArray(eligible);

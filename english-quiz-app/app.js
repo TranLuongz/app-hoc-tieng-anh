@@ -7,6 +7,14 @@ let wrongCount = 0;
 let shuffledOrder = [];
 let isShuffled = true;
 
+// Review state
+let reviewQueue = [];
+let reviewIdx = 0;
+let reviewCorrect = 0;
+let reviewWrong = 0;
+let reviewHintLevel = 0;
+let phrasesCache = null;
+
 // ===== DOM Elements =====
 const startScreen = document.getElementById('start-screen');
 const vocabSetupScreen = document.getElementById('vocab-setup-screen');
@@ -58,6 +66,9 @@ async function init() {
     document.getElementById('module-tenses-btn').addEventListener('click', () => {
         if (typeof initTenses === 'function') initTenses();
     });
+    document.getElementById('module-phrases-btn').addEventListener('click', () => {
+        if (typeof initPhrases === 'function') initPhrases();
+    });
 
     // Vocab setup screen
     startBtn.addEventListener('click', startQuiz);
@@ -73,6 +84,23 @@ async function init() {
     });
     speakBtn.addEventListener('click', () => speakWord());
 
+    // Review
+    document.getElementById('review-btn').addEventListener('click', startVocabReview);
+    document.getElementById('review-back-btn').addEventListener('click', () => showVocabSetup());
+    document.getElementById('review-submit-btn').addEventListener('click', submitReviewAnswer);
+    document.getElementById('review-typing-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.stopPropagation(); submitReviewAnswer(); }
+    });
+    document.getElementById('review-hint-btn').addEventListener('click', showReviewHint);
+    document.getElementById('review-next-btn').addEventListener('click', nextReviewWord);
+    document.getElementById('review-speak-btn').addEventListener('click', () => {
+        if (reviewQueue.length > 0 && reviewIdx < reviewQueue.length) {
+            speakWord(words[reviewQueue[reviewIdx]].word);
+        }
+    });
+    document.getElementById('review-retry-btn').addEventListener('click', startVocabReview);
+    document.getElementById('review-back-setup-btn').addEventListener('click', () => showVocabSetup());
+
     // Settings
     darkmodeToggle.addEventListener('change', onDarkmodeChange);
 
@@ -82,11 +110,13 @@ async function init() {
 
 // ===== Home Stats =====
 function updateHomeStats() {
-    if (words.length === 0) return;
-    const vocabStat = document.getElementById('vocab-stat');
-    const vocabBar = document.getElementById('vocab-progress-bar');
-    if (vocabStat) vocabStat.textContent = `${currentIndex} / ${words.length} từ`;
-    if (vocabBar) vocabBar.style.width = `${(currentIndex / words.length) * 100}%`;
+    if (words.length > 0) {
+        const vocabStat = document.getElementById('vocab-stat');
+        const vocabBar = document.getElementById('vocab-progress-bar');
+        if (vocabStat) vocabStat.textContent = `${currentIndex} / ${words.length} từ`;
+        if (vocabBar) vocabBar.style.width = `${(currentIndex / words.length) * 100}%`;
+    }
+    if (typeof updatePhrasesHomeStat === 'function') updatePhrasesHomeStat();
 }
 
 // ===== Vocab Setup Screen =====
@@ -101,6 +131,8 @@ function updateStartStats() {
     statRemaining.textContent = words.length - currentIndex;
     const total = correctCount + wrongCount;
     statAccuracy.textContent = total > 0 ? Math.round((correctCount / total) * 100) + '%' : '0%';
+    const reviewBtn = document.getElementById('review-btn');
+    if (reviewBtn) reviewBtn.disabled = getReviewPoolSize() === 0;
 }
 
 // ===== Keyboard Support =====
@@ -116,6 +148,17 @@ function handleKeyboard(e) {
             if (!nextBtn.disabled) {
                 e.preventDefault();
                 nextWord();
+            }
+        }
+    }
+    // Review screen
+    const reviewScreen = document.getElementById('vocab-review-screen');
+    if (reviewScreen && reviewScreen.classList.contains('active')) {
+        const reviewInput = document.getElementById('review-typing-input');
+        if (e.key === 'Enter' || e.key === ' ') {
+            if (reviewInput && reviewInput.disabled) {
+                const rnextBtn = document.getElementById('review-next-btn');
+                if (rnextBtn && !rnextBtn.disabled) { e.preventDefault(); nextReviewWord(); }
             }
         }
     }
@@ -360,6 +403,247 @@ function speakWord(text) {
     utterance.onerror = () => speakBtn.classList.remove('speaking');
 
     window.speechSynthesis.speak(utterance);
+}
+
+// ===== Vocab Review =====
+function getReviewPoolSize() {
+    if (currentIndex > 0) return currentIndex;
+    if (correctCount + wrongCount > 0) return words.length;
+    return 0;
+}
+
+async function startVocabReview() {
+    const poolSize = getReviewPoolSize();
+    if (poolSize === 0 || words.length === 0) return;
+
+    // Load phrases.json for context hints (cache)
+    if (!phrasesCache) {
+        try {
+            const res = await fetch('phrases.json');
+            phrasesCache = await res.json();
+        } catch (e) { /* hints won't work but review still works */ }
+    }
+
+    // Build pool of learned word indices
+    const pool = [];
+    for (let i = 0; i < poolSize; i++) {
+        pool.push(getWordIndex(i));
+    }
+
+    // Fisher-Yates shuffle
+    for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+
+    reviewQueue = pool.slice(0, 20);
+    reviewIdx = 0;
+    reviewCorrect = 0;
+    reviewWrong = 0;
+
+    document.getElementById('review-quiz-section').style.display = '';
+    document.getElementById('review-result-section').style.display = 'none';
+
+    showScreen(document.getElementById('vocab-review-screen'));
+    showReviewWord();
+}
+
+function showReviewWord() {
+    if (reviewIdx >= reviewQueue.length) {
+        showReviewResults();
+        return;
+    }
+
+    const word = words[reviewQueue[reviewIdx]];
+
+    document.getElementById('review-counter').textContent = `${reviewIdx + 1} / ${reviewQueue.length}`;
+    document.getElementById('review-progress-bar').style.width = `${((reviewIdx + 1) / reviewQueue.length) * 100}%`;
+    document.getElementById('review-correct').textContent = reviewCorrect;
+    document.getElementById('review-wrong').textContent = reviewWrong;
+
+    document.getElementById('review-word-text').textContent = word.word;
+    document.getElementById('review-word-phonetic').textContent = word.phonetic || '—';
+    document.getElementById('review-word-info').textContent = [word.type, word.level].filter(Boolean).join(' · ');
+
+    speakWord(word.word);
+
+    const input = document.getElementById('review-typing-input');
+    input.value = '';
+    input.className = 'typing-input';
+    input.disabled = false;
+    document.getElementById('review-submit-btn').disabled = false;
+    setTimeout(() => input.focus(), 100);
+
+    reviewHintLevel = 0;
+    document.getElementById('review-hint-text').textContent = '';
+    document.getElementById('review-hint-btn').disabled = false;
+
+    document.getElementById('review-feedback').textContent = '';
+    document.getElementById('review-feedback').className = 'feedback';
+    document.getElementById('review-correct-answer').style.display = 'none';
+    document.getElementById('review-next-btn').disabled = true;
+}
+
+function submitReviewAnswer() {
+    const input = document.getElementById('review-typing-input');
+    if (input.disabled) return;
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    const word = words[reviewQueue[reviewIdx]];
+    const correct = word.meaning;
+    const result = checkReviewAnswer(userText, correct);
+
+    input.disabled = true;
+    document.getElementById('review-submit-btn').disabled = true;
+
+    const fb = document.getElementById('review-feedback');
+    const ca = document.getElementById('review-correct-answer');
+
+    if (result === 'correct') {
+        input.classList.add('correct');
+        reviewCorrect++;
+        fb.textContent = 'Chính xác!';
+        fb.className = 'feedback correct';
+        ca.style.display = 'none';
+    } else if (result === 'close') {
+        input.classList.add('close');
+        reviewCorrect++;
+        fb.textContent = 'Gần đúng!';
+        fb.className = 'feedback close';
+        ca.innerHTML = `Đáp án: <strong>${correct}</strong>`;
+        ca.style.display = '';
+    } else {
+        input.classList.add('wrong');
+        reviewWrong++;
+        fb.textContent = 'Sai rồi!';
+        fb.className = 'feedback wrong';
+        ca.innerHTML = `Đáp án: <strong>${correct}</strong>`;
+        ca.style.display = '';
+    }
+
+    document.getElementById('review-correct').textContent = reviewCorrect;
+    document.getElementById('review-wrong').textContent = reviewWrong;
+    document.getElementById('review-next-btn').disabled = false;
+}
+
+function checkReviewAnswer(userInput, correctAnswer) {
+    const normUser = window.normalizeText(userInput);
+    const normCorrect = window.normalizeText(correctAnswer);
+
+    if (normUser === normCorrect) return 'correct';
+
+    // Check each meaning if comma-separated
+    const meanings = correctAnswer.split(/[,;]/).map(m => m.trim()).filter(Boolean);
+    for (const m of meanings) {
+        if (window.normalizeText(m) === normUser) return 'correct';
+    }
+
+    // Levenshtein
+    const threshold = correctAnswer.length > 20 ? 3 : 2;
+    if (window.levenshteinDistance(normUser, normCorrect) <= threshold) return 'close';
+
+    for (const m of meanings) {
+        if (window.levenshteinDistance(normUser, window.normalizeText(m)) <= 2) return 'close';
+    }
+
+    // Word match
+    const userWords = normUser.split(' ').filter(Boolean);
+    const correctWords = normCorrect.split(' ').filter(Boolean);
+    const matchCount = userWords.filter(w => correctWords.includes(w)).length;
+    if (matchCount / Math.max(userWords.length, correctWords.length, 1) >= 0.75) return 'close';
+
+    return 'wrong';
+}
+
+function getContextHint(wordObj) {
+    if (!phrasesCache || !phrasesCache.phrases) return null;
+
+    const w = wordObj.word.toLowerCase();
+    const regex = new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+    const matches = phrasesCache.phrases.filter(p => regex.test(p.en));
+
+    if (matches.length === 0) return null;
+
+    // Prefer shorter sentences
+    matches.sort((a, b) => a.en.length - b.en.length);
+    const phrase = matches[0];
+
+    // Try to blank out the meaning in Vietnamese sentence
+    let hintVi = phrase.vi;
+    const meanings = wordObj.meaning.split(/[,;]/).map(m => m.trim()).filter(Boolean);
+
+    for (const meaning of meanings) {
+        if (meaning.length < 2) continue;
+        const escaped = meaning.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const mRegex = new RegExp(escaped, 'gi');
+        if (mRegex.test(hintVi)) {
+            hintVi = hintVi.replace(mRegex, '___');
+            break;
+        }
+    }
+
+    return hintVi;
+}
+
+function getLetterHint(meaning) {
+    return meaning.split(' ').map(w => {
+        if (w.length <= 1) return w;
+        return w[0] + '_'.repeat(w.length - 1);
+    }).join(' ');
+}
+
+function showReviewHint() {
+    const word = words[reviewQueue[reviewIdx]];
+
+    if (reviewHintLevel === 0) {
+        const contextHint = getContextHint(word);
+        if (contextHint) {
+            document.getElementById('review-hint-text').textContent = contextHint;
+        } else {
+            const wc = word.meaning.split(' ').length;
+            const type = word.type || '';
+            document.getElementById('review-hint-text').textContent = (type ? type + ', ' : '') + wc + ' từ';
+        }
+    } else if (reviewHintLevel === 1) {
+        document.getElementById('review-hint-text').textContent = getLetterHint(word.meaning);
+    } else {
+        document.getElementById('review-hint-text').textContent = word.meaning;
+        document.getElementById('review-hint-btn').disabled = true;
+    }
+
+    reviewHintLevel++;
+}
+
+function showReviewResults() {
+    const total = reviewCorrect + reviewWrong;
+    const accuracy = total > 0 ? Math.round((reviewCorrect / total) * 100) : 0;
+
+    document.getElementById('review-result-correct').textContent = reviewCorrect;
+    document.getElementById('review-result-wrong').textContent = reviewWrong;
+    document.getElementById('review-result-accuracy').textContent = accuracy + '%';
+
+    const icon = document.getElementById('review-result-icon');
+    const title = document.getElementById('review-result-title');
+
+    if (accuracy >= 90) {
+        icon.textContent = '🎉';
+        title.textContent = 'Xuất sắc!';
+    } else if (accuracy >= 70) {
+        icon.textContent = '💪';
+        title.textContent = 'Tốt lắm!';
+    } else {
+        icon.textContent = '📖';
+        title.textContent = 'Cần ôn thêm!';
+    }
+
+    document.getElementById('review-quiz-section').style.display = 'none';
+    document.getElementById('review-result-section').style.display = '';
+}
+
+function nextReviewWord() {
+    reviewIdx++;
+    showReviewWord();
 }
 
 // ===== Start App =====
