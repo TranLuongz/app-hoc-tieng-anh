@@ -6,6 +6,8 @@ let correctCount = 0;
 let wrongCount = 0;
 let shuffledOrder = [];
 let isShuffled = true;
+let selectedVocabLevel = 'all';
+let filteredIndices = []; // word indices matching selected level
 
 // Review state
 let reviewQueue = [];
@@ -13,7 +15,18 @@ let reviewIdx = 0;
 let reviewCorrect = 0;
 let reviewWrong = 0;
 let reviewHintLevel = 0;
+let vocabReviewMode = 'general'; // 'general' | 'wrong' | 'srs'
 let phrasesCache = null;
+
+// Per-word tracking
+let wordData = {};
+
+// Daily stats
+let dailyStats = {};
+let sessionStartTime = null;
+
+// SRS intervals in days
+const SRS_INTERVALS = [0, 3, 7, 30];
 
 // ===== DOM Elements =====
 const startScreen = document.getElementById('start-screen');
@@ -48,6 +61,19 @@ function showScreen(screen) {
     screen.classList.add('active');
 }
 
+// ===== Utility =====
+function todayStr() {
+    return new Date().toISOString().slice(0, 10);
+}
+
+function shuffleVocabArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 // ===== Initialize =====
 async function init() {
     try {
@@ -58,7 +84,10 @@ async function init() {
     }
 
     loadProgress();
+    loadWordData();
+    loadDailyStats();
     loadSettings();
+    buildFilteredIndices();
     updateHomeStats();
 
     // Home screen - module selection
@@ -68,6 +97,18 @@ async function init() {
     });
     document.getElementById('module-phrases-btn').addEventListener('click', () => {
         if (typeof initPhrases === 'function') initPhrases();
+    });
+    document.getElementById('module-stats-btn').addEventListener('click', showStatsScreen);
+
+    // Level filter
+    document.querySelectorAll('#vocab-level-filter .level-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#vocab-level-filter .level-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedVocabLevel = btn.dataset.level;
+            buildFilteredIndices();
+            updateStartStats();
+        });
     });
 
     // Vocab setup screen
@@ -84,8 +125,10 @@ async function init() {
     });
     speakBtn.addEventListener('click', () => speakWord());
 
-    // Review
-    document.getElementById('review-btn').addEventListener('click', startVocabReview);
+    // Review (shared for general, wrong, srs)
+    document.getElementById('review-btn').addEventListener('click', () => startReviewMode('general'));
+    document.getElementById('wrong-words-btn').addEventListener('click', () => startReviewMode('wrong'));
+    document.getElementById('srs-review-btn').addEventListener('click', () => startReviewMode('srs'));
     document.getElementById('review-back-btn').addEventListener('click', () => showVocabSetup());
     document.getElementById('review-submit-btn').addEventListener('click', submitReviewAnswer);
     document.getElementById('review-typing-input').addEventListener('keydown', (e) => {
@@ -98,14 +141,23 @@ async function init() {
             speakWord(words[reviewQueue[reviewIdx]].word);
         }
     });
-    document.getElementById('review-retry-btn').addEventListener('click', startVocabReview);
+    document.getElementById('review-retry-btn').addEventListener('click', () => startReviewMode(vocabReviewMode));
     document.getElementById('review-back-setup-btn').addEventListener('click', () => showVocabSetup());
+
+    // Stats
+    document.getElementById('stats-back-btn').addEventListener('click', () => {
+        updateHomeStats();
+        showScreen(startScreen);
+    });
 
     // Settings
     darkmodeToggle.addEventListener('change', onDarkmodeChange);
 
     // Keyboard shortcuts
     document.addEventListener('keydown', handleKeyboard);
+
+    // Speech Recognition
+    initSpeechRecognition();
 }
 
 // ===== Home Stats =====
@@ -117,6 +169,44 @@ function updateHomeStats() {
         if (vocabBar) vocabBar.style.width = `${(currentIndex / words.length) * 100}%`;
     }
     if (typeof updatePhrasesHomeStat === 'function') updatePhrasesHomeStat();
+
+    // Stats home summary
+    const statsEl = document.getElementById('stats-home-summary');
+    if (statsEl) {
+        const streak = calculateStreak();
+        const dueCount = getDueWords().length;
+        let text = `Chuỗi: ${streak} ngày`;
+        if (dueCount > 0) text += ` · ${dueCount} từ cần ôn`;
+        statsEl.textContent = text;
+    }
+}
+
+// ===== Level Filter =====
+function buildFilteredIndices() {
+    if (selectedVocabLevel === 'all') {
+        filteredIndices = words.map((_, i) => i);
+    } else {
+        filteredIndices = [];
+        for (let i = 0; i < words.length; i++) {
+            if (words[i].level === selectedVocabLevel) filteredIndices.push(i);
+        }
+    }
+}
+
+function getLevelProgress() {
+    // Count how many filtered words have been answered correctly at least once
+    let learned = 0;
+    let totalCorrect = 0;
+    let totalWrong = 0;
+    for (const idx of filteredIndices) {
+        const wd = wordData[idx];
+        if (wd && wd.correctCount > 0) {
+            learned++;
+            totalCorrect += wd.correctCount;
+            totalWrong += wd.wrongCount;
+        }
+    }
+    return { learned, remaining: filteredIndices.length - learned, totalCorrect, totalWrong };
 }
 
 // ===== Vocab Setup Screen =====
@@ -127,12 +217,36 @@ function showVocabSetup() {
 
 function updateStartStats() {
     if (words.length === 0) return;
-    statLearned.textContent = currentIndex;
-    statRemaining.textContent = words.length - currentIndex;
-    const total = correctCount + wrongCount;
-    statAccuracy.textContent = total > 0 ? Math.round((correctCount / total) * 100) + '%' : '0%';
+
+    const lp = getLevelProgress();
+    statLearned.textContent = lp.learned;
+    statRemaining.textContent = lp.remaining;
+    const total = lp.totalCorrect + lp.totalWrong;
+    statAccuracy.textContent = total > 0 ? Math.round((lp.totalCorrect / total) * 100) + '%' : '0%';
+
+    // Review button
     const reviewBtn = document.getElementById('review-btn');
-    if (reviewBtn) reviewBtn.disabled = getReviewPoolSize() === 0;
+    if (reviewBtn) reviewBtn.disabled = lp.learned === 0;
+
+    // Wrong words button
+    const wrongWords = getWrongWords();
+    const wrongBtn = document.getElementById('wrong-words-btn');
+    const wrongCount = document.getElementById('wrong-words-count');
+    if (wrongBtn) {
+        wrongBtn.style.display = '';
+        wrongBtn.disabled = wrongWords.length === 0;
+        if (wrongCount) wrongCount.textContent = wrongWords.length;
+    }
+
+    // SRS button
+    const dueWords = getDueWords();
+    const srsBtn = document.getElementById('srs-review-btn');
+    const srsCount = document.getElementById('srs-due-count');
+    if (srsBtn) {
+        srsBtn.style.display = '';
+        srsBtn.disabled = dueWords.length === 0;
+        if (srsCount) srsCount.textContent = dueWords.length;
+    }
 }
 
 // ===== Keyboard Support =====
@@ -210,57 +324,227 @@ function saveProgress() {
     }));
 }
 
+// ===== Word Data (per-word tracking) =====
+function loadWordData() {
+    try {
+        const saved = localStorage.getItem('eq_word_data');
+        if (saved) wordData = JSON.parse(saved);
+    } catch (e) {}
+}
+
+function saveWordData() {
+    localStorage.setItem('eq_word_data', JSON.stringify(wordData));
+}
+
+function getWordRecord(idx) {
+    if (!wordData[idx]) {
+        wordData[idx] = {
+            correctCount: 0,
+            wrongCount: 0,
+            lastAnswerCorrect: null,
+            lastAnsweredDate: null,
+            srsLevel: 0,
+            nextReviewDate: null
+        };
+    }
+    return wordData[idx];
+}
+
+function recordWordAnswer(wordIndex, isCorrect) {
+    const rec = getWordRecord(wordIndex);
+    const today = todayStr();
+
+    if (isCorrect) {
+        rec.correctCount++;
+        rec.lastAnswerCorrect = true;
+    } else {
+        rec.wrongCount++;
+        rec.lastAnswerCorrect = false;
+    }
+    rec.lastAnsweredDate = today;
+
+    // Initialize SRS on first correct answer
+    if (isCorrect && rec.srsLevel === 0 && rec.correctCount === 1) {
+        rec.srsLevel = 1;
+        rec.nextReviewDate = addDays(today, SRS_INTERVALS[1]);
+    }
+
+    saveWordData();
+    recordDailyActivity(isCorrect);
+}
+
+function updateSRS(wordIndex, isCorrect) {
+    const rec = getWordRecord(wordIndex);
+    const today = todayStr();
+
+    if (isCorrect) {
+        if (rec.srsLevel < SRS_INTERVALS.length) {
+            rec.srsLevel++;
+        }
+        if (rec.srsLevel < SRS_INTERVALS.length) {
+            rec.nextReviewDate = addDays(today, SRS_INTERVALS[rec.srsLevel]);
+        } else {
+            // Mastered
+            rec.nextReviewDate = null;
+        }
+    } else {
+        // Reset to level 1 (review in 3 days)
+        rec.srsLevel = 1;
+        rec.nextReviewDate = addDays(today, SRS_INTERVALS[1]);
+    }
+
+    saveWordData();
+}
+
+function addDays(dateStr, days) {
+    const d = new Date(dateStr);
+    d.setDate(d.getDate() + days);
+    return d.toISOString().slice(0, 10);
+}
+
+// ===== Wrong Words =====
+function getWrongWords() {
+    const result = [];
+    for (const idx of filteredIndices) {
+        const rec = wordData[idx];
+        // Word is "wrong" if it has more wrong answers than correct, or wrong >= 2
+        if (rec && rec.wrongCount > 0 && rec.wrongCount >= rec.correctCount) {
+            result.push(idx);
+        }
+    }
+    return result;
+}
+
+// ===== SRS Due Words =====
+function getDueWords() {
+    const today = todayStr();
+    const result = [];
+    for (let i = 0; i < words.length; i++) {
+        const rec = wordData[i];
+        if (rec && rec.nextReviewDate && rec.nextReviewDate <= today && rec.srsLevel < SRS_INTERVALS.length) {
+            result.push(i);
+        }
+    }
+    return result;
+}
+
+// ===== Daily Stats =====
+function loadDailyStats() {
+    try {
+        const saved = localStorage.getItem('eq_daily_stats');
+        if (saved) dailyStats = JSON.parse(saved);
+    } catch (e) {}
+}
+
+function saveDailyStats() {
+    // Prune entries older than 90 days
+    const cutoff = addDays(todayStr(), -90);
+    for (const date in dailyStats) {
+        if (date < cutoff) delete dailyStats[date];
+    }
+    localStorage.setItem('eq_daily_stats', JSON.stringify(dailyStats));
+}
+
+function getTodayStats() {
+    const today = todayStr();
+    if (!dailyStats[today]) {
+        dailyStats[today] = { wordsLearned: 0, wordsReviewed: 0, correct: 0, wrong: 0, timeSpentMs: 0 };
+    }
+    return dailyStats[today];
+}
+
+function recordDailyActivity(isCorrect) {
+    const ts = getTodayStats();
+    ts.wordsLearned++;
+    if (isCorrect) ts.correct++;
+    else ts.wrong++;
+    saveDailyStats();
+}
+
+function recordSessionTime() {
+    if (!sessionStartTime) return;
+    const elapsed = Date.now() - sessionStartTime;
+    const ts = getTodayStats();
+    ts.timeSpentMs += elapsed;
+    saveDailyStats();
+    sessionStartTime = null;
+}
+
+function calculateStreak() {
+    let streak = 0;
+    let d = new Date();
+    // Check today first
+    const today = todayStr();
+    if (!dailyStats[today]) {
+        // Check yesterday
+        d.setDate(d.getDate() - 1);
+    }
+    while (true) {
+        const dateStr = d.toISOString().slice(0, 10);
+        if (dailyStats[dateStr] && dailyStats[dateStr].wordsLearned > 0) {
+            streak++;
+            d.setDate(d.getDate() - 1);
+        } else {
+            break;
+        }
+    }
+    return streak;
+}
+
 function resetProgress() {
     if (!confirm('Bạn có chắc muốn đặt lại toàn bộ tiến trình?')) return;
     localStorage.removeItem('eq_progress');
+    localStorage.removeItem('eq_word_data');
     currentIndex = 0;
     correctCount = 0;
     wrongCount = 0;
     shuffledOrder = [];
+    wordData = {};
     updateStartStats();
     updateHomeStats();
 }
 
 // ===== Quiz Navigation =====
 function startQuiz() {
-    if (words.length === 0) return;
-    if (isShuffled && shuffledOrder.length !== words.length) {
-        shuffledOrder = generateShuffledOrder();
-        saveProgress();
-    } else if (!isShuffled) {
-        shuffledOrder = [];
+    if (filteredIndices.length === 0) return;
+    sessionStartTime = Date.now();
+
+    if (isShuffled) {
+        shuffledOrder = shuffleVocabArray([...filteredIndices]);
+    } else {
+        shuffledOrder = [...filteredIndices];
     }
 
+    currentIndex = 0;
+    // Find first unlearned word in this set
+    for (let i = 0; i < shuffledOrder.length; i++) {
+        const rec = wordData[shuffledOrder[i]];
+        if (!rec || rec.correctCount === 0) {
+            currentIndex = i;
+            break;
+        }
+    }
+
+    saveProgress();
     showScreen(quizScreen);
     showWord();
 }
 
 function goBack() {
+    recordSessionTime();
     saveProgress();
     updateHomeStats();
     showVocabSetup();
 }
 
-// ===== Shuffle =====
-function generateShuffledOrder() {
-    const indices = Array.from({ length: words.length }, (_, i) => i);
-    for (let i = indices.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [indices[i], indices[j]] = [indices[j], indices[i]];
-    }
-    return indices;
-}
-
-function getWordIndex(idx) {
-    if (isShuffled && shuffledOrder.length > 0) {
-        return shuffledOrder[idx % shuffledOrder.length];
-    }
-    return idx % words.length;
-}
-
 // ===== Quiz Logic =====
 function showWord() {
-    const realIndex = getWordIndex(currentIndex);
+    if (currentIndex >= shuffledOrder.length) {
+        currentIndex = 0;
+        if (isShuffled) shuffledOrder = shuffleVocabArray([...filteredIndices]);
+    }
+
+    const realIndex = shuffledOrder[currentIndex];
     const currentWord = words[realIndex];
 
     wordText.textContent = currentWord.word;
@@ -283,9 +567,16 @@ function showWord() {
     nextBtn.disabled = true;
     wordCard.className = 'word-card';
 
-    const displayIndex = (currentIndex % words.length) + 1;
-    wordCounter.textContent = `${displayIndex} / ${words.length}`;
-    progressBar.style.width = `${(displayIndex / words.length) * 100}%`;
+    // Reset per-word tracking
+    currentWordHadWrong = false;
+
+    // Hide speech result
+    const sr = document.getElementById('speech-result');
+    if (sr) sr.style.display = 'none';
+
+    const displayIndex = currentIndex + 1;
+    wordCounter.textContent = `${displayIndex} / ${shuffledOrder.length}`;
+    progressBar.style.width = `${(displayIndex / shuffledOrder.length) * 100}%`;
     correctCountEl.textContent = correctCount;
     wrongCountEl.textContent = wrongCount;
 }
@@ -297,23 +588,22 @@ function generateOptions(correctIndex) {
 
     while (options.length < 4) {
         const randIdx = Math.floor(Math.random() * words.length);
-        if (!usedIndices.has(randIdx)) {
+        if (!usedIndices.has(randIdx) && !options.includes(words[randIdx].meaning)) {
             usedIndices.add(randIdx);
             options.push(words[randIdx].meaning);
         }
     }
 
-    for (let i = options.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [options[i], options[j]] = [options[j], options[i]];
-    }
-    return options;
+    return shuffleVocabArray(options);
 }
+
+let currentWordHadWrong = false;
 
 function selectOption(btn) {
     if (btn.disabled) return;
 
     const selected = btn.textContent;
+    const realIndex = shuffledOrder[currentIndex];
 
     if (selected === correctAnswer) {
         btn.classList.add('correct');
@@ -324,6 +614,12 @@ function selectOption(btn) {
         correctCount++;
         optionBtns.forEach(b => b.disabled = true);
         correctCountEl.textContent = correctCount;
+        // Record once: if had wrong attempts, record as wrong; else correct
+        if (currentWordHadWrong) {
+            recordWordAnswer(realIndex, false);
+        } else {
+            recordWordAnswer(realIndex, true);
+        }
         saveProgress();
     } else {
         btn.classList.add('wrong');
@@ -334,24 +630,20 @@ function selectOption(btn) {
         wrongCountEl.textContent = wrongCount;
         btn.disabled = true;
         setTimeout(() => wordCard.classList.remove('wrong-anim'), 400);
+        currentWordHadWrong = true;
         saveProgress();
     }
 }
 
 function nextWord() {
     currentIndex++;
-    if (currentIndex >= words.length) {
-        currentIndex = 0;
-        if (isShuffled) {
-            shuffledOrder = generateShuffledOrder();
-        }
-    }
     saveProgress();
     showWord();
 }
 
 // ===== Text-to-Speech =====
 let cachedVoice = null;
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 function getBestEnglishVoice() {
     if (cachedVoice) return cachedVoice;
@@ -359,8 +651,13 @@ function getBestEnglishVoice() {
     if (voices.length === 0) return null;
 
     const priorities = [
-        v => v.lang === 'en-US' && v.localService && v.name.includes('Google'),
+        v => v.lang === 'en-US' && v.name.includes('Google US English'),
         v => v.lang === 'en-US' && v.name.includes('Google'),
+        v => v.lang === 'en-US' && /enhanced|premium/i.test(v.name),
+        v => v.lang === 'en-US' && v.name.includes('Samantha'),
+        v => v.lang === 'en-GB' && /enhanced|premium/i.test(v.name),
+        v => v.lang === 'en-GB' && v.name.includes('Daniel'),
+        v => v.lang === 'en-US' && !v.localService,
         v => v.lang === 'en-US' && v.localService,
         v => v.lang === 'en-US',
         v => v.lang === 'en-GB',
@@ -389,32 +686,201 @@ function speakWord(text) {
     if (!word || word === 'Loading...') return;
 
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(word);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.9;
-    utterance.pitch = 1;
-    utterance.volume = 1;
 
-    const voice = getBestEnglishVoice();
-    if (voice) utterance.voice = voice;
+    const doSpeak = () => {
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'en-US';
+        utterance.rate = isMobile ? 0.85 : 0.9;
+        utterance.pitch = 1;
+        utterance.volume = 1;
 
-    speakBtn.classList.add('speaking');
-    utterance.onend = () => speakBtn.classList.remove('speaking');
-    utterance.onerror = () => speakBtn.classList.remove('speaking');
+        const voice = getBestEnglishVoice();
+        if (voice) utterance.voice = voice;
 
-    window.speechSynthesis.speak(utterance);
+        const activeBtn = document.querySelector('.screen.active .speak-btn') || speakBtn;
+        activeBtn.classList.add('speaking');
+        utterance.onend = () => activeBtn.classList.remove('speaking');
+        utterance.onerror = () => activeBtn.classList.remove('speaking');
+
+        window.speechSynthesis.speak(utterance);
+    };
+
+    if (isMobile) {
+        setTimeout(doSpeak, 80);
+    } else {
+        doSpeak();
+    }
 }
 
-// ===== Vocab Review =====
-function getReviewPoolSize() {
-    if (currentIndex > 0) return currentIndex;
-    if (correctCount + wrongCount > 0) return words.length;
-    return 0;
+// ===== Speech Recognition =====
+let recognition = null;
+let isListening = false;
+let recognitionTimeout = null;
+
+function initSpeechRecognition() {
+    const micBtn = document.getElementById('mic-btn');
+    if (!micBtn) return;
+
+    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognitionAPI) {
+        micBtn.style.display = '';
+        micBtn.disabled = true;
+        micBtn.title = 'Trình duyệt không hỗ trợ nhận diện giọng nói';
+        micBtn.style.opacity = '0.4';
+        return;
+    }
+
+    // Show mic button
+    micBtn.style.display = '';
+    micBtn.addEventListener('click', toggleListening);
 }
 
-async function startVocabReview() {
-    const poolSize = getReviewPoolSize();
-    if (poolSize === 0 || words.length === 0) return;
+function createRecognition() {
+    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognitionAPI) return null;
+
+    const rec = new SpeechRecognitionAPI();
+    rec.lang = 'en-US';
+    rec.continuous = false;
+    rec.interimResults = false;
+    rec.maxAlternatives = 3;
+
+    rec.onresult = (event) => {
+        stopListening();
+
+        const currentWord = wordText.textContent.toLowerCase().trim();
+        let bestMatch = 'wrong';
+        let heardText = '';
+
+        for (let i = 0; i < event.results[0].length; i++) {
+            const transcript = event.results[0][i].transcript.toLowerCase().trim();
+            if (!heardText) heardText = transcript;
+            const match = comparePronunciation(transcript, currentWord);
+            if (match === 'correct') { bestMatch = 'correct'; heardText = transcript; break; }
+            if (match === 'close' && bestMatch !== 'correct') { bestMatch = 'close'; heardText = transcript; }
+        }
+
+        showSpeechResult(heardText, bestMatch);
+    };
+
+    rec.onerror = (event) => {
+        stopListening();
+        if (event.error !== 'no-speech' && event.error !== 'aborted') {
+            showSpeechResult('Không nghe rõ, thử lại', 'wrong');
+        }
+    };
+
+    rec.onend = () => {
+        stopListening();
+    };
+
+    return rec;
+}
+
+function stopListening() {
+    if (recognitionTimeout) {
+        clearTimeout(recognitionTimeout);
+        recognitionTimeout = null;
+    }
+    isListening = false;
+    updateMicUI(false);
+    // Destroy old instance to prevent stale state
+    if (recognition) {
+        try { recognition.abort(); } catch (e) {}
+        recognition = null;
+    }
+}
+
+function toggleListening() {
+    if (isListening) {
+        stopListening();
+        return;
+    }
+
+    // Create fresh instance each time to avoid frozen state
+    stopListening();
+    recognition = createRecognition();
+    if (!recognition) return;
+
+    try {
+        recognition.start();
+        isListening = true;
+        updateMicUI(true);
+
+        // Auto-stop after 6 seconds to prevent hanging
+        recognitionTimeout = setTimeout(() => {
+            if (isListening) {
+                stopListening();
+                showSpeechResult('Hết thời gian, thử lại', 'wrong');
+            }
+        }, 6000);
+    } catch (e) {
+        stopListening();
+        showSpeechResult('Lỗi micro, thử lại', 'wrong');
+    }
+}
+
+function updateMicUI(listening) {
+    const micBtn = document.getElementById('mic-btn');
+    if (micBtn) micBtn.classList.toggle('listening', listening);
+}
+
+function comparePronunciation(transcript, target) {
+    const t = transcript.toLowerCase().replace(/[^a-z\s]/g, '').trim();
+    const w = target.toLowerCase().replace(/[^a-z\s]/g, '').trim();
+
+    if (t === w) return 'correct';
+
+    // Allow small differences
+    if (typeof window.levenshteinDistance === 'function') {
+        const dist = window.levenshteinDistance(t, w);
+        if (dist <= 1) return 'correct';
+        if (dist <= 2) return 'close';
+    }
+
+    // Check if transcript contains the word
+    if (t.includes(w) || w.includes(t)) return 'close';
+
+    return 'wrong';
+}
+
+function showSpeechResult(text, result) {
+    const sr = document.getElementById('speech-result');
+    const st = document.getElementById('speech-text');
+    if (!sr || !st) return;
+
+    sr.style.display = '';
+    if (result === 'correct') {
+        st.textContent = `"${text}" — Phát âm chuẩn!`;
+        sr.className = 'speech-result correct';
+    } else if (result === 'close') {
+        st.textContent = `"${text}" — Gần đúng!`;
+        sr.className = 'speech-result close';
+    } else {
+        st.textContent = `"${text}" — Thử lại!`;
+        sr.className = 'speech-result wrong';
+    }
+}
+
+// ===== Vocab Review (General / Wrong / SRS) =====
+async function startReviewMode(mode) {
+    vocabReviewMode = mode;
+    let pool = [];
+
+    if (mode === 'wrong') {
+        pool = getWrongWords();
+    } else if (mode === 'srs') {
+        pool = getDueWords();
+    } else {
+        // General review: all learned words in current level filter
+        for (const idx of filteredIndices) {
+            const rec = wordData[idx];
+            if (rec && rec.correctCount > 0) pool.push(idx);
+        }
+    }
+
+    if (pool.length === 0 || words.length === 0) return;
 
     // Load phrases.json for context hints (cache)
     if (!phrasesCache) {
@@ -424,22 +890,12 @@ async function startVocabReview() {
         } catch (e) { /* hints won't work but review still works */ }
     }
 
-    // Build pool of learned word indices
-    const pool = [];
-    for (let i = 0; i < poolSize; i++) {
-        pool.push(getWordIndex(i));
-    }
-
-    // Fisher-Yates shuffle
-    for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [pool[i], pool[j]] = [pool[j], pool[i]];
-    }
-
+    shuffleVocabArray(pool);
     reviewQueue = pool.slice(0, 20);
     reviewIdx = 0;
     reviewCorrect = 0;
     reviewWrong = 0;
+    sessionStartTime = Date.now();
 
     document.getElementById('review-quiz-section').style.display = '';
     document.getElementById('review-result-section').style.display = 'none';
@@ -490,7 +946,8 @@ function submitReviewAnswer() {
     const userText = input.value.trim();
     if (!userText) return;
 
-    const word = words[reviewQueue[reviewIdx]];
+    const wordIndex = reviewQueue[reviewIdx];
+    const word = words[wordIndex];
     const correct = word.meaning;
     const result = checkReviewAnswer(userText, correct);
 
@@ -499,6 +956,7 @@ function submitReviewAnswer() {
 
     const fb = document.getElementById('review-feedback');
     const ca = document.getElementById('review-correct-answer');
+    let isCorrect = false;
 
     if (result === 'correct') {
         input.classList.add('correct');
@@ -506,6 +964,7 @@ function submitReviewAnswer() {
         fb.textContent = 'Chính xác!';
         fb.className = 'feedback correct';
         ca.style.display = 'none';
+        isCorrect = true;
     } else if (result === 'close') {
         input.classList.add('close');
         reviewCorrect++;
@@ -513,6 +972,7 @@ function submitReviewAnswer() {
         fb.className = 'feedback close';
         ca.innerHTML = `Đáp án: <strong>${correct}</strong>`;
         ca.style.display = '';
+        isCorrect = true;
     } else {
         input.classList.add('wrong');
         reviewWrong++;
@@ -520,6 +980,14 @@ function submitReviewAnswer() {
         fb.className = 'feedback wrong';
         ca.innerHTML = `Đáp án: <strong>${correct}</strong>`;
         ca.style.display = '';
+    }
+
+    // Update word tracking
+    recordWordAnswer(wordIndex, isCorrect);
+
+    // Update SRS if in SRS/wrong mode
+    if (vocabReviewMode === 'srs' || vocabReviewMode === 'wrong') {
+        updateSRS(wordIndex, isCorrect);
     }
 
     document.getElementById('review-correct').textContent = reviewCorrect;
@@ -533,13 +1001,11 @@ function checkReviewAnswer(userInput, correctAnswer) {
 
     if (normUser === normCorrect) return 'correct';
 
-    // Check each meaning if comma-separated
     const meanings = correctAnswer.split(/[,;]/).map(m => m.trim()).filter(Boolean);
     for (const m of meanings) {
         if (window.normalizeText(m) === normUser) return 'correct';
     }
 
-    // Levenshtein
     const threshold = correctAnswer.length > 20 ? 3 : 2;
     if (window.levenshteinDistance(normUser, normCorrect) <= threshold) return 'close';
 
@@ -547,7 +1013,6 @@ function checkReviewAnswer(userInput, correctAnswer) {
         if (window.levenshteinDistance(normUser, window.normalizeText(m)) <= 2) return 'close';
     }
 
-    // Word match
     const userWords = normUser.split(' ').filter(Boolean);
     const correctWords = normCorrect.split(' ').filter(Boolean);
     const matchCount = userWords.filter(w => correctWords.includes(w)).length;
@@ -565,11 +1030,9 @@ function getContextHint(wordObj) {
 
     if (matches.length === 0) return null;
 
-    // Prefer shorter sentences
     matches.sort((a, b) => a.en.length - b.en.length);
     const phrase = matches[0];
 
-    // Try to blank out the meaning in Vietnamese sentence
     let hintVi = phrase.vi;
     const meanings = wordObj.meaning.split(/[,;]/).map(m => m.trim()).filter(Boolean);
 
@@ -616,6 +1079,8 @@ function showReviewHint() {
 }
 
 function showReviewResults() {
+    recordSessionTime();
+
     const total = reviewCorrect + reviewWrong;
     const accuracy = total > 0 ? Math.round((reviewCorrect / total) * 100) : 0;
 
@@ -644,6 +1109,157 @@ function showReviewResults() {
 function nextReviewWord() {
     reviewIdx++;
     showReviewWord();
+}
+
+// ===== Stats Dashboard =====
+function showStatsScreen() {
+    renderStatsSummary();
+    renderDailyChart();
+    renderSRSProgress();
+    renderMissedWords();
+    showScreen(document.getElementById('stats-screen'));
+}
+
+function renderStatsSummary() {
+    const container = document.getElementById('stats-summary');
+    const streak = calculateStreak();
+    const dueCount = getDueWords().length;
+
+    // Total words learned
+    let totalLearned = 0;
+    let totalMastered = 0;
+    for (let i = 0; i < words.length; i++) {
+        const rec = wordData[i];
+        if (rec && rec.correctCount > 0) totalLearned++;
+        if (rec && rec.srsLevel >= SRS_INTERVALS.length) totalMastered++;
+    }
+
+    // Total time
+    let totalTimeMs = 0;
+    for (const date in dailyStats) {
+        totalTimeMs += dailyStats[date].timeSpentMs || 0;
+    }
+    const totalMinutes = Math.round(totalTimeMs / 60000);
+
+    container.innerHTML = `
+        <div class="stats-card">
+            <div class="stats-card-number">${streak}</div>
+            <div class="stats-card-label">Chuỗi ngày</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-number">${totalLearned}</div>
+            <div class="stats-card-label">Từ đã học</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-number">${dueCount}</div>
+            <div class="stats-card-label">Cần ôn</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-number">${totalMinutes > 0 ? totalMinutes + 'p' : '0p'}</div>
+            <div class="stats-card-label">Thời gian</div>
+        </div>
+    `;
+}
+
+function renderDailyChart() {
+    const container = document.getElementById('stats-chart');
+    const days = 14;
+    const data = [];
+    let maxVal = 1;
+
+    for (let i = days - 1; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const dateStr = d.toISOString().slice(0, 10);
+        const ds = dailyStats[dateStr];
+        const count = ds ? ds.wordsLearned : 0;
+        if (count > maxVal) maxVal = count;
+        data.push({
+            date: dateStr,
+            day: d.toLocaleDateString('vi-VN', { weekday: 'short' }).slice(0, 2),
+            count
+        });
+    }
+
+    container.innerHTML = data.map(d => `
+        <div class="chart-bar-wrap">
+            <div class="chart-bar" style="height: ${Math.max((d.count / maxVal) * 100, d.count > 0 ? 8 : 2)}%">
+                ${d.count > 0 ? `<span class="chart-bar-val">${d.count}</span>` : ''}
+            </div>
+            <div class="chart-bar-label">${d.day}</div>
+        </div>
+    `).join('');
+}
+
+function renderSRSProgress() {
+    const container = document.getElementById('stats-srs');
+    const counts = { new: 0, learning: 0, reviewing: 0, mastering: 0, mastered: 0 };
+
+    for (let i = 0; i < words.length; i++) {
+        const rec = wordData[i];
+        if (!rec || rec.correctCount === 0) { counts.new++; continue; }
+        if (rec.srsLevel >= SRS_INTERVALS.length) { counts.mastered++; continue; }
+        if (rec.srsLevel === 1) { counts.learning++; continue; }
+        if (rec.srsLevel === 2) { counts.reviewing++; continue; }
+        if (rec.srsLevel === 3) { counts.mastering++; continue; }
+        counts.learning++;
+    }
+
+    const total = words.length || 1;
+    const items = [
+        { label: 'Chưa học', count: counts.new, color: '#94a3b8' },
+        { label: '3 ngày', count: counts.learning, color: '#f59e0b' },
+        { label: '7 ngày', count: counts.reviewing, color: '#3b82f6' },
+        { label: '30 ngày', count: counts.mastering, color: '#8b5cf6' },
+        { label: 'Đã thuộc', count: counts.mastered, color: '#10b981' },
+    ];
+
+    container.innerHTML = `
+        <div class="srs-bar">
+            ${items.filter(it => it.count > 0).map(it =>
+                `<div class="srs-bar-segment" style="width:${(it.count / total) * 100}%;background:${it.color}" title="${it.label}: ${it.count}"></div>`
+            ).join('')}
+        </div>
+        <div class="srs-legend">
+            ${items.map(it =>
+                `<span class="srs-legend-item"><span class="srs-dot" style="background:${it.color}"></span>${it.label}: ${it.count}</span>`
+            ).join('')}
+        </div>
+    `;
+}
+
+function renderMissedWords() {
+    const container = document.getElementById('stats-missed');
+    const missed = [];
+
+    for (let i = 0; i < words.length; i++) {
+        const rec = wordData[i];
+        if (rec && rec.wrongCount > 0) {
+            missed.push({ index: i, wrongCount: rec.wrongCount, correctCount: rec.correctCount });
+        }
+    }
+
+    missed.sort((a, b) => b.wrongCount - a.wrongCount);
+    const top = missed.slice(0, 10);
+
+    if (top.length === 0) {
+        container.innerHTML = '<div class="stats-empty">Chưa có từ nào sai</div>';
+        return;
+    }
+
+    container.innerHTML = top.map((m, i) => {
+        const w = words[m.index];
+        return `
+            <div class="missed-item">
+                <span class="missed-rank">${i + 1}</span>
+                <div class="missed-info">
+                    <span class="missed-word">${w.word}</span>
+                    <span class="missed-meaning">${w.meaning}</span>
+                </div>
+                <span class="missed-count">${m.wrongCount} sai</span>
+            </div>
+        `;
+    }).join('');
 }
 
 // ===== Start App =====
