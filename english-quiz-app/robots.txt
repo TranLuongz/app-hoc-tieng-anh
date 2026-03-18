@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://app-hoc-tieng-anh-dun.vercel.app/sitemap.xml
