@@ -1,0 +1,1065 @@
+{
+  "grammar": [
+    {
+      "id": "modal_verbs",
+      "order": 13,
+      "name": {
+        "en": "Modal Verbs",
+        "vi": "Động Từ Khiếm Khuyết"
+      },
+      "theory": {
+        "description": "Động từ khiếm khuyết diễn tả khả năng, sự cho phép, nghĩa vụ, lời khuyên và dự đoán",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Khẳng định",
+            "structure": "S + modal + V (bare infinitive)",
+            "structureVi": "Chủ ngữ + modal + Động từ nguyên mẫu (không to)",
+            "subjectNote": "Modal không chia theo ngôi: He can swim (KHÔNG: He cans swim)",
+            "example": { "en": "She can speak three languages.", "vi": "Cô ấy có thể nói ba thứ tiếng." },
+            "note": "Các modal: can, could, may, might, shall, should, will, would, must"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định",
+            "structure": "S + modal + not + V",
+            "structureVi": "Chủ ngữ + modal + not + Động từ nguyên mẫu",
+            "subjectNote": "cannot (1 từ), mustn't, shouldn't, won't, couldn't",
+            "example": { "en": "You must not park here.", "vi": "Bạn không được đậu xe ở đây." },
+            "note": "can not → cannot (viết liền), viết tắt: can't"
+          },
+          {
+            "type": "interrogative",
+            "label": "Nghi vấn",
+            "structure": "Modal + S + V?",
+            "structureVi": "Modal + Chủ ngữ + Động từ nguyên mẫu?",
+            "subjectNote": "Can you...? / Should I...? / May I...?",
+            "example": { "en": "Can you help me with this?", "vi": "Bạn có thể giúp tôi việc này không?" },
+            "note": "Trả lời: Yes, I can. / No, I can't."
+          }
+        ],
+        "signalWords": [
+          "can / could (khả năng)",
+          "may / might (khả năng xảy ra)",
+          "must (bắt buộc)",
+          "should / ought to (lời khuyên)",
+          "will / would (ý chí, lời đề nghị)",
+          "shall (đề nghị, gợi ý)",
+          "have to (nghĩa vụ bên ngoài)",
+          "need to (cần thiết)"
+        ],
+        "signalWordsDetail": [
+          { "word": "can", "wordVi": "có thể (khả năng)", "example": "I can swim very fast.", "exampleVi": "Tôi có thể bơi rất nhanh.", "note": "Diễn tả khả năng ở hiện tại" },
+          { "word": "could", "wordVi": "đã có thể / có lẽ", "example": "She could read when she was four.", "exampleVi": "Cô ấy đã biết đọc khi 4 tuổi.", "note": "Khả năng quá khứ hoặc khả năng lịch sự" },
+          { "word": "may", "wordVi": "có thể / được phép", "example": "May I use your phone?", "exampleVi": "Tôi có thể dùng điện thoại của bạn không?", "note": "Xin phép (lịch sự) hoặc khả năng xảy ra" },
+          { "word": "might", "wordVi": "có lẽ (ít chắc chắn hơn may)", "example": "It might rain tomorrow.", "exampleVi": "Ngày mai có lẽ sẽ mưa.", "note": "Khả năng thấp hơn may" },
+          { "word": "must", "wordVi": "phải (bắt buộc)", "example": "You must wear a seatbelt.", "exampleVi": "Bạn phải thắt dây an toàn.", "note": "Bắt buộc (từ bên trong) hoặc suy luận chắc chắn" },
+          { "word": "should", "wordVi": "nên", "example": "You should see a doctor.", "exampleVi": "Bạn nên đi khám bác sĩ.", "note": "Lời khuyên, đề nghị" }
+        ],
+        "usages": [
+          { "rule": "Khả năng (Ability)", "description": "can/could diễn tả ai đó có khả năng làm gì", "example": { "en": "He can play the guitar.", "vi": "Anh ấy có thể chơi guitar." } },
+          { "rule": "Xin phép (Permission)", "description": "can/could/may dùng để xin phép", "example": { "en": "Could I borrow your pen?", "vi": "Tôi có thể mượn bút của bạn không?" } },
+          { "rule": "Nghĩa vụ (Obligation)", "description": "must/have to diễn tả điều bắt buộc phải làm", "example": { "en": "Students must submit homework on time.", "vi": "Học sinh phải nộp bài tập đúng hạn." } },
+          { "rule": "Lời khuyên (Advice)", "description": "should/ought to dùng để khuyên ai đó", "example": { "en": "You should drink more water.", "vi": "Bạn nên uống nhiều nước hơn." } },
+          { "rule": "Dự đoán (Prediction)", "description": "may/might/could diễn tả điều có thể xảy ra", "example": { "en": "She might come to the party.", "vi": "Cô ấy có thể đến bữa tiệc." } }
+        ],
+        "notes": [
+          "Modal + V nguyên mẫu (không to): She can swim. (KHÔNG: She can to swim.)",
+          "must vs have to: must = bắt buộc bên trong, have to = bắt buộc từ bên ngoài (quy định)",
+          "mustn't (cấm) ≠ don't have to (không cần): You mustn't smoke here. / You don't have to come.",
+          "could = khả năng quá khứ HOẶC đề nghị lịch sự: I could swim (quá khứ) / Could you help? (lịch sự)"
+        ]
+      },
+      "exercises": [
+        { "id": "modal_01", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "Bạn ___ thắt dây an toàn khi lái xe. (bắt buộc)", "verb": "", "correctAnswer": "must", "distractors": ["can", "might", "would"], "explanation": "'must' diễn tả sự bắt buộc. Thắt dây an toàn là quy định bắt buộc." },
+        { "id": "modal_02", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "Tôi ___ bơi khi tôi 5 tuổi. (khả năng quá khứ)", "verb": "", "correctAnswer": "could", "distractors": ["can", "must", "should"], "explanation": "'could' diễn tả khả năng trong quá khứ." },
+        { "id": "modal_03", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "Bạn ___ đi khám bác sĩ. Bạn trông không khỏe. (lời khuyên)", "verb": "", "correctAnswer": "should", "distractors": ["must", "can", "would"], "explanation": "'should' dùng để đưa ra lời khuyên." },
+        { "id": "modal_04", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "Tôi ___ dùng điện thoại của bạn được không? (xin phép lịch sự)", "verb": "", "correctAnswer": "May", "distractors": ["Must", "Will", "Shall"], "explanation": "'May I...?' dùng để xin phép một cách lịch sự." },
+        { "id": "modal_05", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "Ngày mai trời ___ mưa. Mang ô đi nhé. (khả năng thấp)", "verb": "", "correctAnswer": "might", "distractors": ["must", "can", "will"], "explanation": "'might' diễn tả khả năng có thể xảy ra nhưng không chắc chắn." },
+        { "id": "modal_06", "type": "conjugation", "prompt": "Chọn dạng phủ định đúng.", "sentence": "Bạn ___ hút thuốc ở đây. Đây là bệnh viện. (cấm)", "verb": "", "correctAnswer": "mustn't", "distractors": ["don't have to", "can't", "shouldn't"], "explanation": "'mustn't' = bị cấm, không được phép. 'don't have to' = không cần thiết (khác nghĩa)." },
+        { "id": "modal_07", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "Bạn ___ đến nếu bạn không muốn. Không bắt buộc. (không cần)", "verb": "", "correctAnswer": "don't have to", "distractors": ["mustn't", "can't", "shouldn't"], "explanation": "'don't have to' = không cần, không bắt buộc." },
+        { "id": "modal_08", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "___ bạn giúp tôi mang cái hộp này? (yêu cầu lịch sự)", "verb": "", "correctAnswer": "Could", "distractors": ["Must", "Might", "Shall"], "explanation": "'Could you...?' dùng để yêu cầu ai đó làm gì một cách lịch sự." },
+        { "id": "modal_09", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "Cô ấy ___ nói 4 thứ tiếng. (khả năng hiện tại)", "verb": "", "correctAnswer": "can", "distractors": ["could", "must", "might"], "explanation": "'can' diễn tả khả năng ở hiện tại." },
+        { "id": "modal_10", "type": "conjugation", "prompt": "Chọn modal verb phù hợp.", "sentence": "Bạn ___ ăn nhiều rau hơn. Nó tốt cho sức khỏe. (lời khuyên)", "verb": "", "correctAnswer": "should", "distractors": ["must", "may", "would"], "explanation": "'should' dùng để khuyên ai nên làm gì." },
+        { "id": "modal_11", "type": "fillInBlank", "prompt": "Điền modal verb phù hợp.", "sentence": "She ___ be at home. Her car is in the driveway. (suy luận chắc chắn)", "verb": "must", "correctAnswer": "must", "distractors": ["can", "should", "might"], "explanation": "'must' dùng để suy luận chắc chắn dựa trên bằng chứng." },
+        { "id": "modal_12", "type": "fillInBlank", "prompt": "Điền modal verb phù hợp.", "sentence": "You ___ touch that wire! It's dangerous.", "verb": "mustn't", "correctAnswer": "mustn't", "distractors": ["shouldn't", "don't have to", "won't"], "explanation": "'mustn't' = cấm, dây điện nguy hiểm nên là lệnh cấm." },
+        { "id": "modal_13", "type": "fillInBlank", "prompt": "Điền modal verb phù hợp.", "sentence": "I ___ play the piano when I was young, but now I can't.", "verb": "could", "correctAnswer": "could", "distractors": ["can", "might", "should"], "explanation": "'could' = khả năng trong quá khứ, giờ không còn." },
+        { "id": "modal_14", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Cô ấy có thể nói tiếng Pháp.", "verb": "", "correctAnswer": "She can speak French.", "distractors": ["She cans speak French.", "She can to speak French.", "She can speaks French."], "explanation": "Modal + V nguyên mẫu, không chia theo ngôi, không thêm 'to'." },
+        { "id": "modal_15", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Anh ấy phải hoàn thành bài tập trước 5 giờ.", "verb": "", "correctAnswer": "He must finish his homework before 5.", "distractors": ["He must to finish his homework.", "He musts finish his homework.", "He must finishes his homework."], "explanation": "'must + V nguyên mẫu', không thêm 'to' hay chia động từ." },
+        { "id": "modal_16", "type": "fillInBlank", "prompt": "Điền modal verb phù hợp.", "sentence": "___ we go to the cinema tonight? (gợi ý)", "verb": "Shall", "correctAnswer": "Shall", "distractors": ["Must", "Can", "Might"], "explanation": "'Shall we...?' dùng để đưa ra gợi ý, đề nghị." },
+        { "id": "modal_17", "type": "fillInBlank", "prompt": "Điền modal verb phù hợp.", "sentence": "The road is wet. It ___ have rained last night.", "verb": "must", "correctAnswer": "must", "distractors": ["can", "should", "would"], "explanation": "'must have + V3' = suy luận chắc chắn về quá khứ." },
+        { "id": "modal_18", "type": "conjugation", "prompt": "Chọn nghĩa đúng.", "sentence": "You don't have to wear a uniform.", "verb": "", "correctAnswer": "Bạn không cần mặc đồng phục.", "distractors": ["Bạn không được mặc đồng phục.", "Bạn phải mặc đồng phục.", "Bạn nên mặc đồng phục."], "explanation": "'don't have to' = không cần, không bắt buộc (khác 'mustn't' = cấm)." },
+        { "id": "modal_19", "type": "fillInBlank", "prompt": "Điền modal verb phù hợp.", "sentence": "I ___ like to have a cup of coffee, please. (lịch sự)", "verb": "would", "correctAnswer": "would", "distractors": ["could", "should", "must"], "explanation": "'would like' = muốn (cách nói lịch sự)." },
+        { "id": "modal_20", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Bạn lẽ ra nên học chăm hơn. (hối tiếc quá khứ)", "verb": "", "correctAnswer": "You should have studied harder.", "distractors": ["You should study harder.", "You must have studied harder.", "You could studying harder."], "explanation": "'should have + V3' = lẽ ra nên làm gì (hối tiếc)." }
+      ]
+    },
+    {
+      "id": "conditionals",
+      "order": 14,
+      "name": {
+        "en": "Conditionals",
+        "vi": "Câu Điều Kiện"
+      },
+      "theory": {
+        "description": "Câu điều kiện diễn tả kết quả xảy ra khi có điều kiện nhất định",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Type 0 — Sự thật / Quy luật",
+            "structure": "If + S + V (present), S + V (present)",
+            "structureVi": "Nếu + mệnh đề hiện tại đơn, mệnh đề hiện tại đơn",
+            "subjectNote": "Dùng khi điều kiện luôn đúng (sự thật, khoa học)",
+            "example": { "en": "If you heat water to 100°C, it boils.", "vi": "Nếu bạn đun nước đến 100°C, nó sôi." },
+            "note": "Có thể thay 'if' bằng 'when'"
+          },
+          {
+            "type": "negative",
+            "label": "Type 1 — Có thể xảy ra (hiện tại/tương lai)",
+            "structure": "If + S + V (present), S + will + V",
+            "structureVi": "Nếu + mệnh đề hiện tại đơn, chủ ngữ + will + động từ nguyên mẫu",
+            "subjectNote": "Điều kiện có thể xảy ra trong thực tế",
+            "example": { "en": "If it rains, I will stay home.", "vi": "Nếu trời mưa, tôi sẽ ở nhà." },
+            "note": "Mệnh đề if dùng hiện tại đơn (KHÔNG dùng will)"
+          },
+          {
+            "type": "interrogative",
+            "label": "Type 2 — Không có thật (hiện tại)",
+            "structure": "If + S + V (past), S + would + V",
+            "structureVi": "Nếu + mệnh đề quá khứ đơn, chủ ngữ + would + động từ nguyên mẫu",
+            "subjectNote": "Giả định trái với thực tế hiện tại. Với 'be' → dùng 'were' cho mọi ngôi",
+            "example": { "en": "If I were rich, I would travel the world.", "vi": "Nếu tôi giàu, tôi sẽ đi du lịch thế giới." },
+            "note": "If I were (KHÔNG: If I was) — trong văn phong trang trọng"
+          },
+          {
+            "type": "affirmative",
+            "label": "Type 3 — Không có thật (quá khứ)",
+            "structure": "If + S + had + V3, S + would have + V3",
+            "structureVi": "Nếu + mệnh đề quá khứ hoàn thành, chủ ngữ + would have + V3",
+            "subjectNote": "Giả định trái với thực tế đã xảy ra trong quá khứ",
+            "example": { "en": "If I had studied, I would have passed the exam.", "vi": "Nếu tôi đã học, tôi đã đậu kỳ thi." },
+            "note": "Dùng để tiếc nuối về quá khứ — 'Giá mà...'"
+          }
+        ],
+        "signalWords": [
+          "if (nếu)",
+          "unless (trừ khi = if not)",
+          "provided that (miễn là)",
+          "as long as (miễn là)",
+          "in case (trong trường hợp)",
+          "even if (cho dù)",
+          "supposing (giả sử)",
+          "on condition that (với điều kiện)"
+        ],
+        "signalWordsDetail": [
+          { "word": "if", "wordVi": "nếu", "example": "If you study hard, you will pass.", "exampleVi": "Nếu bạn học chăm, bạn sẽ đậu.", "note": "Từ nối điều kiện cơ bản nhất" },
+          { "word": "unless", "wordVi": "trừ khi (= if not)", "example": "Unless you hurry, you'll be late.", "exampleVi": "Trừ khi bạn nhanh lên, bạn sẽ trễ.", "note": "unless = if not. KHÔNG dùng 'not' sau unless" },
+          { "word": "provided that", "wordVi": "miễn là", "example": "I'll go provided that you come too.", "exampleVi": "Tôi sẽ đi miễn là bạn cũng đi.", "note": "Trang trọng hơn 'if'" },
+          { "word": "as long as", "wordVi": "miễn là", "example": "You can stay as long as you're quiet.", "exampleVi": "Bạn có thể ở lại miễn là giữ im lặng.", "note": "Ít trang trọng hơn 'provided that'" },
+          { "word": "even if", "wordVi": "cho dù", "example": "I'll go even if it rains.", "exampleVi": "Tôi sẽ đi cho dù trời mưa.", "note": "Nhấn mạnh kết quả không thay đổi dù điều kiện có xảy ra" }
+        ],
+        "usages": [
+          { "rule": "Type 0: Sự thật chung", "description": "Diễn tả quy luật tự nhiên hoặc sự thật luôn đúng", "example": { "en": "If you mix red and blue, you get purple.", "vi": "Nếu bạn trộn đỏ và xanh dương, bạn được tím." } },
+          { "rule": "Type 1: Có thể xảy ra", "description": "Điều kiện có thể xảy ra trong hiện tại hoặc tương lai", "example": { "en": "If you don't hurry, you will miss the bus.", "vi": "Nếu bạn không nhanh lên, bạn sẽ lỡ xe buýt." } },
+          { "rule": "Type 2: Không thật ở hiện tại", "description": "Giả định điều trái với thực tế hiện tại", "example": { "en": "If I had wings, I would fly.", "vi": "Nếu tôi có cánh, tôi sẽ bay." } },
+          { "rule": "Type 3: Không thật ở quá khứ", "description": "Hối tiếc về điều đã không xảy ra trong quá khứ", "example": { "en": "If she had called, I would have answered.", "vi": "Nếu cô ấy đã gọi, tôi đã nghe máy." } }
+        ],
+        "notes": [
+          "Type 1: Mệnh đề IF luôn dùng hiện tại đơn, KHÔNG dùng 'will': If it rains (✓) / If it will rain (✗)",
+          "Type 2: Dùng 'were' cho mọi ngôi (If I were, If he were) — không dùng 'was' trong văn viết trang trọng",
+          "Type 3: 'would have + V3' ở mệnh đề chính, 'had + V3' ở mệnh đề if",
+          "Mệnh đề IF có thể đứng trước hoặc sau: If it rains, I'll stay. = I'll stay if it rains."
+        ]
+      },
+      "exercises": [
+        { "id": "cond_01", "type": "conjugation", "prompt": "Chọn dạng đúng (Type 1).", "sentence": "If it ___, I will take an umbrella.", "verb": "rain", "correctAnswer": "rains", "distractors": ["will rain", "rained", "would rain"], "explanation": "Type 1: mệnh đề IF dùng hiện tại đơn, không dùng 'will'." },
+        { "id": "cond_02", "type": "conjugation", "prompt": "Chọn dạng đúng (Type 2).", "sentence": "If I ___ you, I would apologize.", "verb": "be", "correctAnswer": "were", "distractors": ["am", "was", "would be"], "explanation": "Type 2: dùng 'were' cho mọi ngôi. 'If I were you' = Nếu tôi là bạn." },
+        { "id": "cond_03", "type": "conjugation", "prompt": "Chọn dạng đúng (Type 3).", "sentence": "If she ___ harder, she would have passed.", "verb": "study", "correctAnswer": "had studied", "distractors": ["studied", "would study", "has studied"], "explanation": "Type 3: mệnh đề IF dùng quá khứ hoàn thành (had + V3)." },
+        { "id": "cond_04", "type": "conjugation", "prompt": "Chọn dạng đúng (Type 0).", "sentence": "If you ___ ice in water, it floats.", "verb": "put", "correctAnswer": "put", "distractors": ["will put", "puts", "would put"], "explanation": "Type 0: cả hai mệnh đề dùng hiện tại đơn (sự thật chung)." },
+        { "id": "cond_05", "type": "conjugation", "prompt": "Chọn dạng đúng (Type 1).", "sentence": "If you ___ your homework, you can go out.", "verb": "finish", "correctAnswer": "finish", "distractors": ["will finish", "finished", "would finish"], "explanation": "Type 1: mệnh đề IF dùng hiện tại đơn." },
+        { "id": "cond_06", "type": "conjugation", "prompt": "Chọn dạng đúng (Type 2).", "sentence": "If I ___ a million dollars, I would buy a house.", "verb": "have", "correctAnswer": "had", "distractors": ["have", "will have", "would have"], "explanation": "Type 2: mệnh đề IF dùng quá khứ đơn (giả định không thật)." },
+        { "id": "cond_07", "type": "conjugation", "prompt": "Chọn dạng đúng (Type 3).", "sentence": "If I had known, I ___ you.", "verb": "help", "correctAnswer": "would have helped", "distractors": ["will help", "would help", "helped"], "explanation": "Type 3: mệnh đề chính dùng 'would have + V3'." },
+        { "id": "cond_08", "type": "conjugation", "prompt": "Xác định loại câu điều kiện.", "sentence": "If I won the lottery, I would travel the world.", "verb": "", "correctAnswer": "Type 2", "distractors": ["Type 0", "Type 1", "Type 3"], "explanation": "Dùng quá khứ đơn ở IF + would + V → Type 2 (không thật ở hiện tại)." },
+        { "id": "cond_09", "type": "conjugation", "prompt": "Xác định loại câu điều kiện.", "sentence": "If you heat ice, it melts.", "verb": "", "correctAnswer": "Type 0", "distractors": ["Type 1", "Type 2", "Type 3"], "explanation": "Cả hai mệnh đề dùng hiện tại đơn → Type 0 (sự thật chung)." },
+        { "id": "cond_10", "type": "conjugation", "prompt": "Xác định loại câu điều kiện.", "sentence": "If I had woken up earlier, I wouldn't have been late.", "verb": "", "correctAnswer": "Type 3", "distractors": ["Type 0", "Type 1", "Type 2"], "explanation": "Had + V3 ở IF + would have + V3 ở mệnh đề chính → Type 3 (hối tiếc quá khứ)." },
+        { "id": "cond_11", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "If he ___ (come) to the party, he will have fun.", "verb": "come", "correctAnswer": "comes", "distractors": ["will come", "came", "would come"], "explanation": "Type 1: mệnh đề IF dùng hiện tại đơn, ngôi 3 thêm -s." },
+        { "id": "cond_12", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "If they ___ (not/be) so tired, they would go out.", "verb": "be", "correctAnswer": "weren't", "distractors": ["aren't", "won't be", "hadn't been"], "explanation": "Type 2: mệnh đề IF dùng quá khứ đơn, phủ định của 'were' = 'weren't'." },
+        { "id": "cond_13", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Nếu tôi biết sớm hơn, tôi đã giúp bạn.", "verb": "", "correctAnswer": "If I had known earlier, I would have helped you.", "distractors": ["If I knew earlier, I would help you.", "If I know earlier, I will help you.", "If I would know earlier, I helped you."], "explanation": "Hối tiếc quá khứ → Type 3: If + had V3, would have V3." },
+        { "id": "cond_14", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Nếu bạn không nhanh lên, bạn sẽ trễ.", "verb": "", "correctAnswer": "If you don't hurry, you will be late.", "distractors": ["If you won't hurry, you are late.", "If you didn't hurry, you would be late.", "If you don't hurry, you would be late."], "explanation": "Điều kiện có thể xảy ra → Type 1: If + hiện tại đơn, will + V." },
+        { "id": "cond_15", "type": "conjugation", "prompt": "Chọn từ phù hợp.", "sentence": "___ you study, you will fail the exam.", "verb": "", "correctAnswer": "Unless", "distractors": ["If", "When", "Because"], "explanation": "'Unless' = 'If not'. Unless you study = If you don't study." },
+        { "id": "cond_16", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "I would buy it if it ___ cheaper.", "verb": "be", "correctAnswer": "were", "distractors": ["is", "will be", "has been"], "explanation": "Type 2: mệnh đề IF dùng quá khứ, 'were' cho mọi ngôi." },
+        { "id": "cond_17", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "If she ___ the answer, she would tell you.", "verb": "know", "correctAnswer": "knew", "distractors": ["knows", "will know", "had known"], "explanation": "Type 2: mệnh đề IF dùng quá khứ đơn." },
+        { "id": "cond_18", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "If I ___ wings, I would fly to you.", "verb": "have", "correctAnswer": "had", "distractors": ["have", "will have", "had had"], "explanation": "Type 2: giả định không có thật ở hiện tại, dùng quá khứ đơn." },
+        { "id": "cond_19", "type": "conjugation", "prompt": "Chọn câu đúng nghĩa.", "sentence": "Unless you run, you'll miss the train.", "verb": "", "correctAnswer": "If you don't run, you'll miss the train.", "distractors": ["If you run, you'll miss the train.", "If you ran, you would miss the train.", "If you had run, you would have missed."], "explanation": "Unless = If not. Unless you run = If you don't run." },
+        { "id": "cond_20", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "If we ___ (not/miss) the bus, we wouldn't have been late.", "verb": "miss", "correctAnswer": "hadn't missed", "distractors": ["didn't miss", "wouldn't miss", "don't miss"], "explanation": "Type 3: mệnh đề IF dùng quá khứ hoàn thành phủ định." }
+      ]
+    },
+    {
+      "id": "passive_voice",
+      "order": 15,
+      "name": {
+        "en": "Passive Voice",
+        "vi": "Câu Bị Động"
+      },
+      "theory": {
+        "description": "Câu bị động nhấn mạnh đối tượng chịu tác động thay vì người thực hiện",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Công thức chung",
+            "structure": "S + be + V3 (past participle) + (by + agent)",
+            "structureVi": "Chủ ngữ + be (chia theo thì) + V3 + (bởi + tác nhân)",
+            "subjectNote": "Tân ngữ của câu chủ động → thành chủ ngữ câu bị động",
+            "example": { "en": "The cake was made by my mom.", "vi": "Cái bánh được làm bởi mẹ tôi." },
+            "note": "Active: My mom made the cake. → Passive: The cake was made by my mom."
+          },
+          {
+            "type": "negative",
+            "label": "Bị động ở các thì",
+            "structure": "Present: is/am/are + V3 | Past: was/were + V3 | Future: will be + V3 | Perfect: has/had been + V3",
+            "structureVi": "Chia 'be' theo thì tương ứng + V3",
+            "subjectNote": "Present Cont.: is/are being + V3 | Past Cont.: was/were being + V3",
+            "example": { "en": "The report is being written now.", "vi": "Báo cáo đang được viết bây giờ." },
+            "note": "Giữ nguyên thì, chỉ đổi cấu trúc sang bị động"
+          },
+          {
+            "type": "interrogative",
+            "label": "Bị động với Modal",
+            "structure": "S + modal + be + V3",
+            "structureVi": "Chủ ngữ + modal + be + V3",
+            "subjectNote": "can be done, must be finished, should be checked",
+            "example": { "en": "This work must be finished today.", "vi": "Công việc này phải được hoàn thành hôm nay." },
+            "note": "Modal + be + V3 (không chia 'be')"
+          }
+        ],
+        "signalWords": [
+          "by + người/vật thực hiện",
+          "is/are/was/were + V3",
+          "be + V3",
+          "been + V3",
+          "being + V3",
+          "get + V3 (informal)"
+        ],
+        "signalWordsDetail": [
+          { "word": "by", "wordVi": "bởi", "example": "The book was written by J.K. Rowling.", "exampleVi": "Cuốn sách được viết bởi J.K. Rowling.", "note": "Đứng trước tác nhân thực hiện hành động" },
+          { "word": "is/are + V3", "wordVi": "được/bị (hiện tại)", "example": "English is spoken worldwide.", "exampleVi": "Tiếng Anh được nói trên toàn thế giới.", "note": "Bị động hiện tại đơn" },
+          { "word": "was/were + V3", "wordVi": "đã được/bị (quá khứ)", "example": "The window was broken yesterday.", "exampleVi": "Cửa sổ bị vỡ hôm qua.", "note": "Bị động quá khứ đơn" },
+          { "word": "will be + V3", "wordVi": "sẽ được/bị", "example": "The project will be completed next week.", "exampleVi": "Dự án sẽ được hoàn thành tuần tới.", "note": "Bị động tương lai đơn" },
+          { "word": "has/have been + V3", "wordVi": "đã được/bị (hoàn thành)", "example": "The homework has been done.", "exampleVi": "Bài tập đã được làm xong.", "note": "Bị động hiện tại hoàn thành" }
+        ],
+        "usages": [
+          { "rule": "Không biết/quan tâm ai thực hiện", "description": "Khi không biết hoặc không cần nói ai thực hiện hành động", "example": { "en": "My bike was stolen.", "vi": "Xe đạp của tôi bị đánh cắp." } },
+          { "rule": "Nhấn mạnh đối tượng", "description": "Khi muốn nhấn mạnh vào vật/người chịu tác động", "example": { "en": "The Mona Lisa was painted by Leonardo da Vinci.", "vi": "Bức Mona Lisa được vẽ bởi Leonardo da Vinci." } },
+          { "rule": "Văn phong trang trọng", "description": "Trong văn bản khoa học, báo chí, quy định", "example": { "en": "Smoking is not permitted in this area.", "vi": "Hút thuốc không được phép ở khu vực này." } },
+          { "rule": "Với modal verbs", "description": "Kết hợp modal + be + V3", "example": { "en": "The report can be downloaded from our website.", "vi": "Báo cáo có thể được tải từ trang web của chúng tôi." } }
+        ],
+        "notes": [
+          "Chỉ động từ có tân ngữ (transitive verb) mới chuyển được sang bị động",
+          "Bỏ 'by + agent' khi không cần thiết: Rice is grown in Vietnam. (ai trồng không quan trọng)",
+          "get + V3 = be + V3 nhưng informal hơn: He got fired. = He was fired.",
+          "Cẩn thận: born dùng bị động: I was born in 1990 (KHÔNG: I born / I am born)"
+        ]
+      },
+      "exercises": [
+        { "id": "pass_01", "type": "conjugation", "prompt": "Chuyển sang bị động.", "sentence": "Active: Tom cleans the house every day.", "verb": "", "correctAnswer": "The house is cleaned by Tom every day.", "distractors": ["The house cleaned by Tom every day.", "The house was cleaned by Tom every day.", "The house is clean by Tom every day."], "explanation": "Hiện tại đơn → is/am/are + V3. clean → cleaned." },
+        { "id": "pass_02", "type": "conjugation", "prompt": "Chuyển sang bị động.", "sentence": "Active: She wrote the letter yesterday.", "verb": "", "correctAnswer": "The letter was written by her yesterday.", "distractors": ["The letter is written by her yesterday.", "The letter were written by her yesterday.", "The letter written by her yesterday."], "explanation": "Quá khứ đơn → was/were + V3. write → written." },
+        { "id": "pass_03", "type": "conjugation", "prompt": "Chọn dạng bị động đúng.", "sentence": "English ___ all over the world.", "verb": "speak", "correctAnswer": "is spoken", "distractors": ["speaks", "is speaking", "spoken"], "explanation": "Sự thật chung, hiện tại đơn bị động: is/are + V3." },
+        { "id": "pass_04", "type": "conjugation", "prompt": "Chọn dạng bị động đúng.", "sentence": "The bridge ___ in 1998.", "verb": "build", "correctAnswer": "was built", "distractors": ["is built", "built", "has been built"], "explanation": "'in 1998' → quá khứ đơn bị động: was/were + V3." },
+        { "id": "pass_05", "type": "fillInBlank", "prompt": "Điền dạng bị động đúng.", "sentence": "The homework ___ already ___ . (do — hiện tại hoàn thành)", "verb": "do", "correctAnswer": "has been done", "distractors": ["is done", "was done", "has done"], "explanation": "Hiện tại hoàn thành bị động: has/have been + V3." },
+        { "id": "pass_06", "type": "fillInBlank", "prompt": "Điền dạng bị động đúng.", "sentence": "The room ___ right now. (clean — hiện tại tiếp diễn)", "verb": "clean", "correctAnswer": "is being cleaned", "distractors": ["is cleaned", "was being cleaned", "is cleaning"], "explanation": "Hiện tại tiếp diễn bị động: is/are being + V3." },
+        { "id": "pass_07", "type": "conjugation", "prompt": "Chọn dạng bị động đúng.", "sentence": "This work ___ before Friday. (must + finish)", "verb": "", "correctAnswer": "must be finished", "distractors": ["must finished", "must be finish", "must is finished"], "explanation": "Modal + be + V3: must be finished." },
+        { "id": "pass_08", "type": "conjugation", "prompt": "Chuyển sang bị động.", "sentence": "Active: They will build a new school next year.", "verb": "", "correctAnswer": "A new school will be built next year.", "distractors": ["A new school will built next year.", "A new school is built next year.", "A new school will be build next year."], "explanation": "Tương lai đơn bị động: will be + V3. build → built." },
+        { "id": "pass_09", "type": "conjugation", "prompt": "Chọn dạng bị động đúng.", "sentence": "The car ___ when I arrived. (repair — quá khứ tiếp diễn)", "verb": "", "correctAnswer": "was being repaired", "distractors": ["was repaired", "is being repaired", "was repairing"], "explanation": "Quá khứ tiếp diễn bị động: was/were being + V3." },
+        { "id": "pass_10", "type": "conjugation", "prompt": "Xác định câu nào là bị động.", "sentence": "Chọn câu bị động đúng.", "verb": "", "correctAnswer": "The window was broken by the ball.", "distractors": ["The ball broke the window.", "The boy is breaking the window.", "Someone has broken the window."], "explanation": "was broken by = bị động quá khứ đơn. Các câu còn lại là chủ động." },
+        { "id": "pass_11", "type": "fillInBlank", "prompt": "Điền dạng bị động đúng.", "sentence": "The letter ___ by her two hours ago. (send)", "verb": "send", "correctAnswer": "was sent", "distractors": ["is sent", "has been sent", "were sent"], "explanation": "'two hours ago' → quá khứ đơn. 'letter' số ít → was sent." },
+        { "id": "pass_12", "type": "fillInBlank", "prompt": "Điền dạng bị động đúng.", "sentence": "Three books ___ to the library so far. (return)", "verb": "return", "correctAnswer": "have been returned", "distractors": ["has been returned", "were returned", "are returned"], "explanation": "'so far' → hiện tại hoàn thành. 'books' số nhiều → have been returned." },
+        { "id": "pass_13", "type": "conjugation", "prompt": "Chọn câu bị động đúng.", "sentence": "Tôi sinh ra ở Việt Nam.", "verb": "", "correctAnswer": "I was born in Vietnam.", "distractors": ["I born in Vietnam.", "I am born in Vietnam.", "I have born in Vietnam."], "explanation": "'born' luôn dùng bị động quá khứ: was/were born." },
+        { "id": "pass_14", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "The cake ___ by my grandmother. It's delicious!", "verb": "make", "correctAnswer": "was made", "distractors": ["is made", "made", "has made"], "explanation": "Bánh đã được làm (quá khứ) → was made." },
+        { "id": "pass_15", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Bài kiểm tra có thể được làm lại.", "verb": "", "correctAnswer": "The test can be retaken.", "distractors": ["The test can retaken.", "The test can be retake.", "The test can is retaken."], "explanation": "Modal + be + V3: can be retaken." },
+        { "id": "pass_16", "type": "fillInBlank", "prompt": "Điền dạng bị động đúng.", "sentence": "A new hospital ___ in this area next year. (build)", "verb": "build", "correctAnswer": "will be built", "distractors": ["is built", "was built", "is being built"], "explanation": "'next year' → tương lai: will be + V3." },
+        { "id": "pass_17", "type": "conjugation", "prompt": "Chuyển sang chủ động.", "sentence": "Passive: The car was repaired by the mechanic.", "verb": "", "correctAnswer": "The mechanic repaired the car.", "distractors": ["The mechanic repairs the car.", "The mechanic was repairing the car.", "The mechanic has repaired the car."], "explanation": "'was repaired' → quá khứ đơn chủ động: The mechanic repaired." },
+        { "id": "pass_18", "type": "fillInBlank", "prompt": "Điền dạng bị động đúng.", "sentence": "All the cookies ___ by the children. (eat — hiện tại hoàn thành)", "verb": "eat", "correctAnswer": "have been eaten", "distractors": ["has been eaten", "were eaten", "are eaten"], "explanation": "Hiện tại hoàn thành, 'cookies' số nhiều → have been eaten." },
+        { "id": "pass_19", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Rice ___ in many Asian countries.", "verb": "grow", "correctAnswer": "is grown", "distractors": ["grows", "is growing", "grown"], "explanation": "Sự thật chung, bị động hiện tại đơn: is grown." },
+        { "id": "pass_20", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "The project ___ by the time you arrive. (complete — tương lai hoàn thành)", "verb": "", "correctAnswer": "will have been completed", "distractors": ["will be completed", "has been completed", "will complete"], "explanation": "Tương lai hoàn thành bị động: will have been + V3." }
+      ]
+    },
+    {
+      "id": "reported_speech",
+      "order": 16,
+      "name": {
+        "en": "Reported Speech",
+        "vi": "Câu Tường Thuật"
+      },
+      "theory": {
+        "description": "Câu tường thuật dùng để thuật lại lời nói của người khác",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Câu trần thuật",
+            "structure": "S + said (that) + S + V (lùi thì)",
+            "structureVi": "Chủ ngữ + said (that) + chủ ngữ + động từ (lùi 1 thì)",
+            "subjectNote": "said / told + someone",
+            "example": { "en": "\"I am tired.\" → She said (that) she was tired.", "vi": "\"Tôi mệt.\" → Cô ấy nói rằng cô ấy mệt." },
+            "note": "said = nói chung, told = nói với ai: She told me that..."
+          },
+          {
+            "type": "negative",
+            "label": "Câu hỏi Yes/No",
+            "structure": "S + asked + if/whether + S + V (lùi thì)",
+            "structureVi": "Chủ ngữ + asked + if/whether + chủ ngữ + động từ (lùi thì)",
+            "subjectNote": "Đổi trật tự câu hỏi → câu trần thuật",
+            "example": { "en": "\"Are you happy?\" → He asked if I was happy.", "vi": "\"Bạn vui không?\" → Anh ấy hỏi tôi có vui không." },
+            "note": "Không dùng dấu ? ở câu tường thuật"
+          },
+          {
+            "type": "interrogative",
+            "label": "Câu hỏi Wh-",
+            "structure": "S + asked + Wh- + S + V (lùi thì)",
+            "structureVi": "Chủ ngữ + asked + từ hỏi + chủ ngữ + động từ (lùi thì)",
+            "subjectNote": "Giữ nguyên từ hỏi (what, where, when, why, how...)",
+            "example": { "en": "\"Where do you live?\" → She asked where I lived.", "vi": "\"Bạn sống ở đâu?\" → Cô ấy hỏi tôi sống ở đâu." },
+            "note": "Trật tự: Wh- + S + V (không đảo ngữ như câu hỏi)"
+          }
+        ],
+        "signalWords": [
+          "said / told",
+          "asked (if/whether/wh-)",
+          "reported / announced",
+          "explained / mentioned",
+          "advised / suggested / ordered",
+          "promised / agreed / refused"
+        ],
+        "signalWordsDetail": [
+          { "word": "said", "wordVi": "nói", "example": "He said he was busy.", "exampleVi": "Anh ấy nói anh ấy bận.", "note": "said + (that): không cần tân ngữ" },
+          { "word": "told", "wordVi": "nói với (ai)", "example": "She told me she would come.", "exampleVi": "Cô ấy nói với tôi cô ấy sẽ đến.", "note": "told + someone: bắt buộc có tân ngữ" },
+          { "word": "asked", "wordVi": "hỏi", "example": "He asked if I was ready.", "exampleVi": "Anh ấy hỏi tôi đã sẵn sàng chưa.", "note": "Dùng cho câu hỏi tường thuật" },
+          { "word": "advised", "wordVi": "khuyên", "example": "The doctor advised me to rest.", "exampleVi": "Bác sĩ khuyên tôi nghỉ ngơi.", "note": "advised + O + to V" },
+          { "word": "ordered", "wordVi": "ra lệnh", "example": "He ordered them to stop.", "exampleVi": "Anh ấy ra lệnh họ dừng lại.", "note": "ordered + O + to V (câu mệnh lệnh)" }
+        ],
+        "usages": [
+          { "rule": "Lùi thì (Backshift)", "description": "Present → Past, Past → Past Perfect, will → would, can → could", "example": { "en": "\"I like pizza.\" → He said he liked pizza.", "vi": "\"Tôi thích pizza.\" → Anh ấy nói anh ấy thích pizza." } },
+          { "rule": "Đổi đại từ", "description": "Đổi I→he/she, my→his/her, me→him/her theo ngữ cảnh", "example": { "en": "\"I love my dog.\" → She said she loved her dog.", "vi": "\"Tôi yêu con chó của tôi.\" → Cô ấy nói cô ấy yêu con chó của cô ấy." } },
+          { "rule": "Đổi trạng từ thời gian/nơi chốn", "description": "today→that day, here→there, now→then, yesterday→the day before", "example": { "en": "\"I'll come tomorrow.\" → He said he would come the next day.", "vi": "\"Tôi sẽ đến ngày mai.\" → Anh ấy nói anh ấy sẽ đến ngày hôm sau." } },
+          { "rule": "Mệnh lệnh/yêu cầu", "description": "Dùng told/asked/ordered + O + to V / not to V", "example": { "en": "\"Close the door!\" → He told me to close the door.", "vi": "\"Đóng cửa lại!\" → Anh ấy bảo tôi đóng cửa." } }
+        ],
+        "notes": [
+          "Lùi thì: am/is → was, are → were, do/does → did, have/has → had, will → would, can → could",
+          "Không lùi thì khi: sự thật chung, vừa nói xong: \"The Earth is round\" → She said the Earth is round.",
+          "said KHÔNG có tân ngữ: He said that... (✓) / He said me that... (✗). told BẮT BUỘC có: He told me that... (✓)",
+          "Đổi thời gian: today→that day, tonight→that night, yesterday→the day before, tomorrow→the next day, ago→before"
+        ]
+      },
+      "exercises": [
+        { "id": "rep_01", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"I am happy.\" → She said ___", "verb": "", "correctAnswer": "she was happy.", "distractors": ["she is happy.", "I was happy.", "she has been happy."], "explanation": "Lùi thì: am → was. Đổi I → she." },
+        { "id": "rep_02", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"I will call you tomorrow.\" → He told me ___", "verb": "", "correctAnswer": "he would call me the next day.", "distractors": ["he will call me tomorrow.", "I would call you tomorrow.", "he would call me tomorrow."], "explanation": "will → would, I → he, you → me, tomorrow → the next day." },
+        { "id": "rep_03", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"Do you like coffee?\" → She asked ___", "verb": "", "correctAnswer": "if I liked coffee.", "distractors": ["do I like coffee.", "if I like coffee?", "that I liked coffee."], "explanation": "Câu hỏi Yes/No → asked if/whether + S + V (lùi thì). Không dùng dấu ?." },
+        { "id": "rep_04", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"Where do you live?\" → He asked ___", "verb": "", "correctAnswer": "where I lived.", "distractors": ["where do I live.", "where I live?", "where did I live."], "explanation": "Wh-question → asked + wh- + S + V (lùi thì, không đảo ngữ)." },
+        { "id": "rep_05", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"Close the door!\" → He told me ___", "verb": "", "correctAnswer": "to close the door.", "distractors": ["close the door.", "closing the door.", "that I close the door."], "explanation": "Câu mệnh lệnh → told + O + to V." },
+        { "id": "rep_06", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"Don't touch that!\" → She told the children ___", "verb": "", "correctAnswer": "not to touch that.", "distractors": ["don't touch that.", "to not touch that.", "to don't touch that."], "explanation": "Mệnh lệnh phủ định → told + O + not to V." },
+        { "id": "rep_07", "type": "fillInBlank", "prompt": "Điền từ đúng.", "sentence": "\"I have finished my work.\" → He said he ___ his work.", "verb": "", "correctAnswer": "had finished", "distractors": ["has finished", "finished", "have finished"], "explanation": "Lùi thì: have finished → had finished (hiện tại hoàn thành → quá khứ hoàn thành)." },
+        { "id": "rep_08", "type": "fillInBlank", "prompt": "Điền từ đúng.", "sentence": "\"I can swim.\" → She said she ___ swim.", "verb": "", "correctAnswer": "could", "distractors": ["can", "was able", "might"], "explanation": "Lùi thì: can → could." },
+        { "id": "rep_09", "type": "fillInBlank", "prompt": "Điền said hoặc told.", "sentence": "She ___ me that she was leaving.", "verb": "", "correctAnswer": "told", "distractors": ["said", "asked", "reported"], "explanation": "'told' + tân ngữ (me). 'said' không cần tân ngữ: She said that..." },
+        { "id": "rep_10", "type": "fillInBlank", "prompt": "Điền said hoặc told.", "sentence": "He ___ that he was tired.", "verb": "", "correctAnswer": "said", "distractors": ["told", "asked", "talked"], "explanation": "'said' + that (không có tân ngữ). KHÔNG: He said me that..." },
+        { "id": "rep_11", "type": "conjugation", "prompt": "Đổi thời gian cho đúng.", "sentence": "\"I saw her yesterday.\" → He said he had seen her ___", "verb": "", "correctAnswer": "the day before.", "distractors": ["yesterday.", "the last day.", "before day."], "explanation": "yesterday → the day before / the previous day." },
+        { "id": "rep_12", "type": "conjugation", "prompt": "Đổi thời gian cho đúng.", "sentence": "\"I'm working here now.\" → She said she was working ___ ___", "verb": "", "correctAnswer": "there then.", "distractors": ["here now.", "there now.", "here then."], "explanation": "here → there, now → then." },
+        { "id": "rep_13", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"I bought a new car last week.\"", "verb": "", "correctAnswer": "He said he had bought a new car the week before.", "distractors": ["He said he bought a new car last week.", "He said he has bought a new car the week before.", "He told he had bought a new car last week."], "explanation": "bought → had bought, last week → the week before." },
+        { "id": "rep_14", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "\"I'm going to the store.\" → She said she ___ going to the store.", "verb": "", "correctAnswer": "was", "distractors": ["is", "had been", "would be"], "explanation": "Lùi thì: am → was." },
+        { "id": "rep_15", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"What time does the train leave?\" → I asked ___", "verb": "", "correctAnswer": "what time the train left.", "distractors": ["what time does the train leave.", "what time the train leaves?", "what time did the train leave."], "explanation": "Wh-question: asked + wh- + S + V (lùi thì, không đảo ngữ)." },
+        { "id": "rep_16", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"Have you ever been to Japan?\" → She asked me ___", "verb": "", "correctAnswer": "if I had ever been to Japan.", "distractors": ["have I ever been to Japan.", "if I have ever been to Japan?", "whether had I ever been to Japan."], "explanation": "Yes/No → asked if/whether + S + V lùi thì. have been → had been." },
+        { "id": "rep_17", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "\"We are leaving tonight.\" → They said they ___ leaving ___.", "verb": "", "correctAnswer": "were ... that night", "distractors": ["are ... tonight", "were ... tonight", "had been ... that night"], "explanation": "are → were, tonight → that night." },
+        { "id": "rep_18", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"Please help me.\" → She asked me ___", "verb": "", "correctAnswer": "to help her.", "distractors": ["help her.", "helping her.", "that I help her."], "explanation": "Yêu cầu lịch sự → asked + O + to V." },
+        { "id": "rep_19", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"You should study harder.\" → The teacher advised me ___", "verb": "", "correctAnswer": "to study harder.", "distractors": ["study harder.", "should study harder.", "studying harder."], "explanation": "Lời khuyên → advised + O + to V." },
+        { "id": "rep_20", "type": "conjugation", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"I didn't take your pen.\" → He said ___", "verb": "", "correctAnswer": "he hadn't taken my pen.", "distractors": ["he didn't take my pen.", "I hadn't taken your pen.", "he hasn't taken my pen."], "explanation": "didn't take → hadn't taken, I → he, your → my." }
+      ]
+    },
+    {
+      "id": "comparatives",
+      "order": 17,
+      "name": {
+        "en": "Comparatives & Superlatives",
+        "vi": "So Sánh"
+      },
+      "theory": {
+        "description": "So sánh dùng để đối chiếu tính chất giữa người, vật hoặc sự việc",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "So sánh hơn (Comparative)",
+            "structure": "S + be + adj-er / more adj + than + ...",
+            "structureVi": "Chủ ngữ + be + tính từ ngắn-er / more + tính từ dài + than + ...",
+            "subjectNote": "Tính từ ngắn (1-2 âm tiết): tall→taller | Tính từ dài (3+ âm tiết): beautiful→more beautiful",
+            "example": { "en": "She is taller than her sister.", "vi": "Cô ấy cao hơn chị gái." },
+            "note": "Tính từ 2 âm tiết kết thúc -y: happy→happier, easy→easier"
+          },
+          {
+            "type": "negative",
+            "label": "So sánh nhất (Superlative)",
+            "structure": "S + be + the adj-est / the most adj + ...",
+            "structureVi": "Chủ ngữ + be + the + tính từ ngắn-est / the most + tính từ dài",
+            "subjectNote": "Tính từ ngắn: tallest | Tính từ dài: the most beautiful",
+            "example": { "en": "She is the tallest in her class.", "vi": "Cô ấy là người cao nhất lớp." },
+            "note": "Luôn dùng 'the' trước superlative"
+          },
+          {
+            "type": "interrogative",
+            "label": "So sánh bằng (Equal)",
+            "structure": "S + be + as + adj + as + ...",
+            "structureVi": "Chủ ngữ + be + as + tính từ + as + ...",
+            "subjectNote": "Phủ định: not as...as = không...bằng",
+            "example": { "en": "He is as tall as his father.", "vi": "Anh ấy cao bằng bố." },
+            "note": "Phủ định: She is not as tall as her brother."
+          }
+        ],
+        "signalWords": [
+          "than (hơn)",
+          "the ...est / the most (nhất)",
+          "as...as (bằng)",
+          "not as...as (không bằng)",
+          "much / far + comparative (hơn nhiều)",
+          "a little / slightly + comparative (hơn 1 chút)"
+        ],
+        "signalWordsDetail": [
+          { "word": "than", "wordVi": "hơn", "example": "This book is better than that one.", "exampleVi": "Cuốn sách này tốt hơn cuốn kia.", "note": "Đứng sau tính từ so sánh hơn" },
+          { "word": "the most", "wordVi": "nhất", "example": "She is the most intelligent student.", "exampleVi": "Cô ấy là học sinh thông minh nhất.", "note": "Dùng cho tính từ dài" },
+          { "word": "as...as", "wordVi": "bằng", "example": "He runs as fast as his brother.", "exampleVi": "Anh ấy chạy nhanh bằng anh trai.", "note": "So sánh bằng: như nhau" },
+          { "word": "much + comparative", "wordVi": "hơn nhiều", "example": "This is much cheaper than that.", "exampleVi": "Cái này rẻ hơn nhiều so với cái kia.", "note": "Nhấn mạnh mức độ chênh lệch" },
+          { "word": "a little + comparative", "wordVi": "hơn 1 chút", "example": "She is a little older than me.", "exampleVi": "Cô ấy lớn hơn tôi một chút.", "note": "Chênh lệch nhỏ" }
+        ],
+        "usages": [
+          { "rule": "So sánh hơn 2 đối tượng", "description": "Dùng comparative + than để so sánh 2 người/vật", "example": { "en": "A car is faster than a bicycle.", "vi": "Ô tô nhanh hơn xe đạp." } },
+          { "rule": "So sánh nhất trong nhóm", "description": "Dùng superlative để chỉ mức cao nhất trong nhóm 3+", "example": { "en": "Mount Everest is the highest mountain in the world.", "vi": "Đỉnh Everest là ngọn núi cao nhất thế giới." } },
+          { "rule": "So sánh bằng", "description": "as...as cho 2 đối tượng ngang nhau", "example": { "en": "This box is as heavy as that one.", "vi": "Hộp này nặng bằng hộp kia." } },
+          { "rule": "Tính từ bất quy tắc", "description": "good→better→best, bad→worse→worst, far→farther→farthest", "example": { "en": "This is better than the last one.", "vi": "Cái này tốt hơn cái trước." } }
+        ],
+        "notes": [
+          "Bất quy tắc: good→better→best, bad→worse→worst, far→farther→farthest, little→less→least, many/much→more→most",
+          "Tính từ ngắn gấp đôi phụ âm cuối: big→bigger→biggest, hot→hotter→hottest, thin→thinner→thinnest",
+          "KHÔNG: more bigger, most tallest (không kết hợp more/most với -er/-est)",
+          "Càng...càng: The more you study, the better you get. (Càng học nhiều, càng giỏi)"
+        ]
+      },
+      "exercises": [
+        { "id": "comp_01", "type": "conjugation", "prompt": "Chọn dạng so sánh đúng.", "sentence": "This book is ___ than that one. (interesting)", "verb": "", "correctAnswer": "more interesting", "distractors": ["interestinger", "most interesting", "as interesting"], "explanation": "'interesting' có 4 âm tiết → dùng 'more interesting than'." },
+        { "id": "comp_02", "type": "conjugation", "prompt": "Chọn dạng so sánh đúng.", "sentence": "She is ___ girl in the class. (tall)", "verb": "", "correctAnswer": "the tallest", "distractors": ["the most tall", "taller", "tallest"], "explanation": "'tall' 1 âm tiết → the tallest. Superlative luôn có 'the'." },
+        { "id": "comp_03", "type": "conjugation", "prompt": "Chọn dạng so sánh đúng.", "sentence": "My house is ___ yours. (big)", "verb": "", "correctAnswer": "bigger than", "distractors": ["more big than", "biggest than", "as big than"], "explanation": "'big' 1 âm tiết, gấp đôi phụ âm: big → bigger than." },
+        { "id": "comp_04", "type": "conjugation", "prompt": "Chọn dạng so sánh đúng.", "sentence": "Tom is ___ his brother. (good + so sánh hơn)", "verb": "", "correctAnswer": "better than", "distractors": ["gooder than", "more good than", "best than"], "explanation": "good → better (bất quy tắc), không dùng gooder/more good." },
+        { "id": "comp_05", "type": "conjugation", "prompt": "Chọn dạng so sánh đúng.", "sentence": "This is ___ movie I've ever seen. (bad)", "verb": "", "correctAnswer": "the worst", "distractors": ["the baddest", "the most bad", "worse"], "explanation": "bad → worse → the worst (bất quy tắc)." },
+        { "id": "comp_06", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "My sister is as ___ as me. (old)", "verb": "old", "correctAnswer": "old", "distractors": ["older", "oldest", "elder"], "explanation": "So sánh bằng: as + adj nguyên mẫu + as." },
+        { "id": "comp_07", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "Today is ___ than yesterday. (hot)", "verb": "hot", "correctAnswer": "hotter", "distractors": ["hoter", "more hot", "hottest"], "explanation": "'hot' 1 âm tiết, gấp đôi 't': hot → hotter." },
+        { "id": "comp_08", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "She speaks English ___ than me. (fluent)", "verb": "fluently", "correctAnswer": "more fluently", "distractors": ["fluenter", "most fluently", "fluently"], "explanation": "'fluently' là trạng từ dài → more fluently than." },
+        { "id": "comp_09", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Đây là thành phố đẹp nhất Việt Nam.", "verb": "", "correctAnswer": "This is the most beautiful city in Vietnam.", "distractors": ["This is the beautifulest city in Vietnam.", "This is most beautiful city in Vietnam.", "This is more beautiful city in Vietnam."], "explanation": "'beautiful' 3 âm tiết → the most beautiful. Phải có 'the'." },
+        { "id": "comp_10", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "She is ___ her twin sister. (not + young + bằng)", "verb": "", "correctAnswer": "not as young as", "distractors": ["not younger as", "not young than", "not as young than"], "explanation": "So sánh không bằng: not as + adj + as." },
+        { "id": "comp_11", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "This exercise is ___ than the last one. (easy)", "verb": "easy", "correctAnswer": "easier", "distractors": ["more easy", "easiest", "more easier"], "explanation": "'easy' 2 âm tiết kết thúc -y → đổi y→i + er: easier." },
+        { "id": "comp_12", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "She has ___ money than I do. (little)", "verb": "little", "correctAnswer": "less", "distractors": ["littler", "fewer", "least"], "explanation": "little → less → least (bất quy tắc, dùng cho danh từ không đếm được)." },
+        { "id": "comp_13", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Càng nhiều bạn đọc, bạn càng biết nhiều.", "verb": "", "correctAnswer": "The more you read, the more you know.", "distractors": ["More you read, more you know.", "The most you read, the most you know.", "The more you read, the most you know."], "explanation": "Cấu trúc: The + comparative, the + comparative." },
+        { "id": "comp_14", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "He is ___ student in our school. (intelligent)", "verb": "", "correctAnswer": "the most intelligent", "distractors": ["the intelligentest", "more intelligent", "most intelligent"], "explanation": "'intelligent' 4 âm tiết → the most intelligent. Phải có 'the'." },
+        { "id": "comp_15", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "This test is much ___ than the last one. (difficult)", "verb": "difficult", "correctAnswer": "more difficult", "distractors": ["difficulter", "most difficult", "as difficult"], "explanation": "'much' nhấn mạnh so sánh hơn: much + more difficult." },
+        { "id": "comp_16", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "She has ___ friends than her brother. (many)", "verb": "", "correctAnswer": "more", "distractors": ["much", "most", "many"], "explanation": "many → more → most (bất quy tắc)." },
+        { "id": "comp_17", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "Tokyo is one of ___ cities in the world. (expensive)", "verb": "expensive", "correctAnswer": "the most expensive", "distractors": ["the expensivest", "more expensive", "most expensive"], "explanation": "Superlative: the most expensive (tính từ dài)." },
+        { "id": "comp_18", "type": "conjugation", "prompt": "Chọn câu SAI.", "sentence": "Câu nào sai ngữ pháp?", "verb": "", "correctAnswer": "She is more taller than me.", "distractors": ["She is taller than me.", "She is the tallest in class.", "She is as tall as her mom."], "explanation": "KHÔNG kết hợp 'more' với '-er': more taller (✗). Đúng: taller." },
+        { "id": "comp_19", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "Of the three brothers, Tom is the ___. (old)", "verb": "old", "correctAnswer": "oldest", "distractors": ["older", "old", "most old"], "explanation": "3 đối tượng trở lên → superlative: the oldest." },
+        { "id": "comp_20", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "This road is ___ than the highway. (narrow)", "verb": "", "correctAnswer": "narrower", "distractors": ["more narrow", "narrowest", "most narrow"], "explanation": "'narrow' 2 âm tiết → narrower than (cả 'more narrow' cũng chấp nhận được nhưng narrower phổ biến hơn)." }
+      ]
+    },
+    {
+      "id": "articles",
+      "order": 18,
+      "name": {
+        "en": "Articles",
+        "vi": "Mạo Từ (A / An / The)"
+      },
+      "theory": {
+        "description": "Mạo từ đứng trước danh từ để xác định danh từ đó nói chung hay cụ thể",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "A / An — Mạo từ không xác định",
+            "structure": "a + danh từ bắt đầu bằng phụ âm | an + danh từ bắt đầu bằng nguyên âm",
+            "structureVi": "a/an dùng cho danh từ đếm được số ít, lần đầu nhắc đến",
+            "subjectNote": "a cat, a house, a university (phát âm /juː/) | an apple, an hour (phát âm /aʊ/)",
+            "example": { "en": "I saw a cat. The cat was black.", "vi": "Tôi thấy một con mèo. Con mèo đó màu đen." },
+            "note": "Dựa vào ÂM đầu tiên, không phải chữ cái: an hour (h câm), a university (/juː/)"
+          },
+          {
+            "type": "negative",
+            "label": "The — Mạo từ xác định",
+            "structure": "the + danh từ (số ít/nhiều/không đếm được)",
+            "structureVi": "the dùng khi cả người nói và người nghe đều biết đang nói về cái gì",
+            "subjectNote": "the sun, the President, the book you gave me",
+            "example": { "en": "Please close the door.", "vi": "Làm ơn đóng cửa lại. (cái cửa mà cả hai đều biết)" },
+            "note": "Dùng 'the' khi: đã nhắc trước đó, duy nhất, có mệnh đề xác định"
+          },
+          {
+            "type": "interrogative",
+            "label": "Zero article (Ø) — Không dùng mạo từ",
+            "structure": "Ø + danh từ (số nhiều chung chung / không đếm được chung)",
+            "structureVi": "Không dùng mạo từ khi nói chung, tên riêng, môn học, thể thao...",
+            "subjectNote": "Cats are cute. (mèo nói chung) | I like music. (âm nhạc nói chung)",
+            "example": { "en": "I love music. (nói chung)", "vi": "Tôi yêu âm nhạc." },
+            "note": "Tên riêng, quốc gia, thành phố: Vietnam, Hanoi (không the). Ngoại lệ: the USA, the UK"
+          }
+        ],
+        "signalWords": [
+          "a / an (một — không xác định)",
+          "the (cái/con/người — xác định)",
+          "Ø (không mạo từ — nói chung)",
+          "first mention → a/an",
+          "second mention → the",
+          "unique → the (the sun, the moon)"
+        ],
+        "signalWordsDetail": [
+          { "word": "a", "wordVi": "một (trước phụ âm)", "example": "I have a dog.", "exampleVi": "Tôi có một con chó.", "note": "Danh từ đếm được số ít, lần đầu nhắc" },
+          { "word": "an", "wordVi": "một (trước nguyên âm)", "example": "She ate an apple.", "exampleVi": "Cô ấy ăn một quả táo.", "note": "Trước âm nguyên âm: a, e, i, o, u" },
+          { "word": "the", "wordVi": "cái/con (xác định)", "example": "The book on the table is mine.", "exampleVi": "Cuốn sách trên bàn là của tôi.", "note": "Cả hai đều biết đang nói cuốn nào" },
+          { "word": "Ø (zero)", "wordVi": "không dùng mạo từ", "example": "I like coffee.", "exampleVi": "Tôi thích cà phê. (nói chung)", "note": "Danh từ không đếm được / số nhiều nói chung" }
+        ],
+        "usages": [
+          { "rule": "Lần đầu vs lần sau", "description": "Lần đầu nhắc: a/an. Nhắc lại: the", "example": { "en": "I bought a book. The book is great.", "vi": "Tôi mua một cuốn sách. Cuốn sách đó rất hay." } },
+          { "rule": "Vật duy nhất", "description": "the + vật duy nhất trên đời", "example": { "en": "The sun rises in the east.", "vi": "Mặt trời mọc ở phía đông." } },
+          { "rule": "Nói chung", "description": "Không dùng mạo từ với danh từ số nhiều / không đếm được khi nói chung", "example": { "en": "Dogs are loyal animals.", "vi": "Chó là loài động vật trung thành. (chó nói chung)" } },
+          { "rule": "Tên riêng", "description": "Thường không dùng 'the' với tên người, thành phố, quốc gia", "example": { "en": "I live in Vietnam. (KHÔNG: the Vietnam)", "vi": "Tôi sống ở Việt Nam." } }
+        ],
+        "notes": [
+          "a/an dựa vào ÂM, không phải chữ: an honest man (h câm), a European (bắt đầu bằng /j/), an MBA (/em/)",
+          "the + tên đại dương/sông/dãy núi/quần đảo: the Pacific, the Mekong, the Alps, the Philippines",
+          "KHÔNG the + tên hồ/núi đơn/lục địa: Lake Baikal, Mount Everest, Asia",
+          "Nghề nghiệp dùng a/an: She is a doctor. (KHÔNG: She is doctor.)"
+        ]
+      },
+      "exercises": [
+        { "id": "art_01", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "I saw ___ elephant at the zoo.", "verb": "", "correctAnswer": "an", "distractors": ["a", "the", "—"], "explanation": "'elephant' bắt đầu bằng nguyên âm /e/ → dùng 'an'. Lần đầu nhắc." },
+        { "id": "art_02", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "___ sun is very bright today.", "verb": "", "correctAnswer": "The", "distractors": ["A", "An", "—"], "explanation": "Mặt trời duy nhất → dùng 'the'." },
+        { "id": "art_03", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "She is ___ honest woman.", "verb": "", "correctAnswer": "an", "distractors": ["a", "the", "—"], "explanation": "'honest' bắt đầu bằng h câm, phát âm /ɒ/ → dùng 'an'." },
+        { "id": "art_04", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "He goes to ___ university in London.", "verb": "", "correctAnswer": "a", "distractors": ["an", "the", "—"], "explanation": "'university' phát âm /juː/ (phụ âm) → dùng 'a', không phải 'an'." },
+        { "id": "art_05", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "___ water is important for life.", "verb": "", "correctAnswer": "—", "distractors": ["A", "An", "The"], "explanation": "'water' không đếm được, nói chung → không dùng mạo từ." },
+        { "id": "art_06", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "Can you pass me ___ salt, please?", "verb": "", "correctAnswer": "the", "distractors": ["a", "an", "—"], "explanation": "Muối cụ thể trên bàn → 'the' (cả hai đều biết lọ muối nào)." },
+        { "id": "art_07", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "My mother is ___ teacher.", "verb": "", "correctAnswer": "a", "distractors": ["an", "the", "—"], "explanation": "Nghề nghiệp dùng a/an: She is a teacher." },
+        { "id": "art_08", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "___ children learn quickly.", "verb": "", "correctAnswer": "—", "distractors": ["A", "An", "The"], "explanation": "'Children' số nhiều nói chung → không dùng mạo từ." },
+        { "id": "art_09", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "I bought a car. ___ car is red.", "verb": "", "correctAnswer": "The", "distractors": ["A", "An", "—"], "explanation": "Lần 2 nhắc lại → dùng 'the' (cả hai biết xe nào)." },
+        { "id": "art_10", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "___ Mekong River flows through Vietnam.", "verb": "", "correctAnswer": "The", "distractors": ["A", "An", "—"], "explanation": "Tên sông dùng 'the': the Mekong, the Nile, the Amazon." },
+        { "id": "art_11", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "I live in ___ Hanoi.", "verb": "", "correctAnswer": "—", "distractors": ["a", "an", "the"], "explanation": "Tên thành phố không dùng 'the': Hanoi, Paris, Tokyo." },
+        { "id": "art_12", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "She plays ___ piano very well.", "verb": "", "correctAnswer": "the", "distractors": ["a", "an", "—"], "explanation": "Nhạc cụ dùng 'the': play the piano, the guitar, the violin." },
+        { "id": "art_13", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "He likes playing ___ football.", "verb": "", "correctAnswer": "—", "distractors": ["a", "an", "the"], "explanation": "Thể thao không dùng mạo từ: play football, basketball." },
+        { "id": "art_14", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "I need ___ umbrella. It's raining.", "verb": "", "correctAnswer": "an", "distractors": ["a", "the", "—"], "explanation": "'umbrella' bắt đầu bằng nguyên âm /ʌ/ → 'an'. Không xác định cái nào." },
+        { "id": "art_15", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "___ United States is a large country.", "verb": "", "correctAnswer": "The", "distractors": ["A", "An", "—"], "explanation": "Tên nước dạng liên bang/cộng hòa dùng 'the': the USA, the UK, the Philippines." },
+        { "id": "art_16", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Cô ấy là bác sĩ.", "verb": "", "correctAnswer": "She is a doctor.", "distractors": ["She is doctor.", "She is the doctor.", "She is an doctor."], "explanation": "Nghề nghiệp dùng a/an: 'a doctor'. Bỏ mạo từ là sai." },
+        { "id": "art_17", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "I had ___ hour to finish the test.", "verb": "", "correctAnswer": "an", "distractors": ["a", "the", "—"], "explanation": "'hour' bắt đầu bằng h câm, phát âm /aʊ/ → dùng 'an'." },
+        { "id": "art_18", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "___ Mount Everest is the highest mountain.", "verb": "", "correctAnswer": "—", "distractors": ["A", "An", "The"], "explanation": "Tên núi đơn không dùng 'the': Mount Everest, Mount Fuji." },
+        { "id": "art_19", "type": "conjugation", "prompt": "Chọn câu SAI.", "sentence": "Câu nào sai?", "verb": "", "correctAnswer": "I like the music. (nói chung)", "distractors": ["I like music.", "The music at the party was great.", "She listens to music every day."], "explanation": "Nói chung không dùng 'the': I like music (✓). 'The music at the party' đúng vì cụ thể." },
+        { "id": "art_20", "type": "conjugation", "prompt": "Chọn mạo từ đúng.", "sentence": "He is ___ European tourist.", "verb": "", "correctAnswer": "a", "distractors": ["an", "the", "—"], "explanation": "'European' phát âm /jʊər/ (phụ âm) → dùng 'a', không phải 'an'." }
+      ]
+    },
+    {
+      "id": "relative_clauses",
+      "order": 19,
+      "name": {
+        "en": "Relative Clauses",
+        "vi": "Mệnh Đề Quan Hệ"
+      },
+      "theory": {
+        "description": "Mệnh đề quan hệ bổ sung thông tin cho danh từ đứng trước nó",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Đại từ quan hệ chính",
+            "structure": "who (người) / which (vật) / that (người & vật)",
+            "structureVi": "who = người làm chủ ngữ | whom = người làm tân ngữ | which = vật | that = cả hai",
+            "subjectNote": "The man WHO called you is my brother. | The book WHICH I bought is great.",
+            "example": { "en": "The girl who sits next to me is very smart.", "vi": "Cô gái ngồi cạnh tôi rất thông minh." },
+            "note": "who/which/that thay thế cho danh từ đã nhắc, tránh lặp lại"
+          },
+          {
+            "type": "negative",
+            "label": "Trạng từ quan hệ",
+            "structure": "where (nơi chốn) / when (thời gian) / why (lý do)",
+            "structureVi": "where = nơi mà | when = khi mà | why = lý do mà",
+            "subjectNote": "The city WHERE I was born... | The day WHEN we met...",
+            "example": { "en": "This is the restaurant where we had dinner.", "vi": "Đây là nhà hàng nơi chúng tôi đã ăn tối." },
+            "note": "where = in which, when = at/on which"
+          },
+          {
+            "type": "interrogative",
+            "label": "Defining vs Non-defining",
+            "structure": "Defining: không dấu phẩy (xác định) | Non-defining: có dấu phẩy (bổ sung)",
+            "structureVi": "Defining: bắt buộc, bỏ đi câu mất nghĩa | Non-defining: thêm thông tin, bỏ đi câu vẫn đúng",
+            "subjectNote": "Defining: The man who called is here. | Non-defining: Tom, who is my friend, called.",
+            "example": { "en": "My mother, who is a doctor, works at the hospital.", "vi": "Mẹ tôi, người là bác sĩ, làm việc ở bệnh viện." },
+            "note": "Non-defining: KHÔNG dùng 'that', phải có dấu phẩy"
+          }
+        ],
+        "signalWords": ["who (người — chủ ngữ)", "whom (người — tân ngữ)", "which (vật)", "that (người & vật — defining)", "whose (sở hữu)", "where (nơi chốn)", "when (thời gian)", "why (lý do)"],
+        "signalWordsDetail": [
+          { "word": "who", "wordVi": "người mà (chủ ngữ)", "example": "The teacher who teaches us is kind.", "exampleVi": "Giáo viên dạy chúng tôi rất tốt bụng.", "note": "Thay cho người, làm chủ ngữ trong mệnh đề" },
+          { "word": "whom", "wordVi": "người mà (tân ngữ)", "example": "The man whom I met is a doctor.", "exampleVi": "Người đàn ông mà tôi gặp là bác sĩ.", "note": "Thay cho người, làm tân ngữ (formal)" },
+          { "word": "which", "wordVi": "cái mà (vật)", "example": "The car which he bought is expensive.", "exampleVi": "Chiếc xe mà anh ấy mua rất đắt.", "note": "Thay cho vật/sự việc" },
+          { "word": "whose", "wordVi": "của người/vật mà", "example": "The boy whose father is a pilot is my friend.", "exampleVi": "Cậu bé mà bố là phi công là bạn tôi.", "note": "Chỉ sở hữu, dùng cho cả người và vật" },
+          { "word": "where", "wordVi": "nơi mà", "example": "The city where I grew up is beautiful.", "exampleVi": "Thành phố nơi tôi lớn lên rất đẹp.", "note": "= in/at which" }
+        ],
+        "usages": [
+          { "rule": "Xác định danh từ", "description": "Giúp xác định cụ thể người/vật đang nói đến", "example": { "en": "The student who won the prize is from class A.", "vi": "Học sinh giành giải là từ lớp A." } },
+          { "rule": "Bổ sung thông tin", "description": "Thêm thông tin phụ (non-defining, có dấu phẩy)", "example": { "en": "Paris, which is the capital of France, is beautiful.", "vi": "Paris, thủ đô nước Pháp, rất đẹp." } },
+          { "rule": "Whose — sở hữu", "description": "Thay thế his/her/its/their trong mệnh đề quan hệ", "example": { "en": "The woman whose bag was stolen called the police.", "vi": "Người phụ nữ bị mất túi đã gọi cảnh sát." } },
+          { "rule": "Lược bỏ đại từ quan hệ", "description": "Có thể bỏ who/which/that khi nó làm tân ngữ", "example": { "en": "The book (that) I read was great.", "vi": "Cuốn sách (mà) tôi đọc rất hay." } }
+        ],
+        "notes": [
+          "KHÔNG dùng 'that' trong non-defining clause: My mom, who (✓)/that (✗) is a teacher, loves cooking.",
+          "Có thể lược bỏ who/which/that khi làm TÂN NGỮ: The book (that) I bought. KHÔNG bỏ khi làm CHỦ NGỮ.",
+          "whose dùng cho cả người và vật: The house whose roof is red... (✓)",
+          "Phân biệt: where = at/in which, when = at/on which, why = for which"
+        ]
+      },
+      "exercises": [
+        { "id": "rel_01", "type": "conjugation", "prompt": "Chọn đại từ quan hệ đúng.", "sentence": "The woman ___ lives next door is a doctor.", "verb": "", "correctAnswer": "who", "distractors": ["which", "whom", "whose"], "explanation": "'woman' = người, làm chủ ngữ → dùng 'who'." },
+        { "id": "rel_02", "type": "conjugation", "prompt": "Chọn đại từ quan hệ đúng.", "sentence": "The book ___ I borrowed is interesting.", "verb": "", "correctAnswer": "which", "distractors": ["who", "whose", "where"], "explanation": "'book' = vật, làm tân ngữ → dùng 'which' hoặc 'that'." },
+        { "id": "rel_03", "type": "conjugation", "prompt": "Chọn đại từ quan hệ đúng.", "sentence": "The boy ___ father is a pilot wants to fly.", "verb": "", "correctAnswer": "whose", "distractors": ["who", "which", "whom"], "explanation": "'whose' chỉ sở hữu: whose father = bố của cậu bé." },
+        { "id": "rel_04", "type": "conjugation", "prompt": "Chọn đại từ quan hệ đúng.", "sentence": "This is the city ___ I was born.", "verb": "", "correctAnswer": "where", "distractors": ["which", "that", "when"], "explanation": "'city' = nơi chốn → dùng 'where' (= in which)." },
+        { "id": "rel_05", "type": "conjugation", "prompt": "Chọn đại từ quan hệ đúng.", "sentence": "I remember the day ___ we first met.", "verb": "", "correctAnswer": "when", "distractors": ["where", "which", "who"], "explanation": "'day' = thời gian → dùng 'when' (= on which)." },
+        { "id": "rel_06", "type": "conjugation", "prompt": "Chọn đại từ quan hệ đúng.", "sentence": "The man ___ I spoke to was very helpful.", "verb": "", "correctAnswer": "whom", "distractors": ["who", "which", "whose"], "explanation": "'man' = người, làm tân ngữ (I spoke to him) → dùng 'whom'." },
+        { "id": "rel_07", "type": "conjugation", "prompt": "Chọn câu đúng (non-defining).", "sentence": "My sister is a nurse. She lives in London.", "verb": "", "correctAnswer": "My sister, who is a nurse, lives in London.", "distractors": ["My sister who is a nurse lives in London.", "My sister, that is a nurse, lives in London.", "My sister which is a nurse lives in London."], "explanation": "Non-defining: dấu phẩy + who (KHÔNG dùng 'that')." },
+        { "id": "rel_08", "type": "conjugation", "prompt": "Có thể bỏ đại từ quan hệ không?", "sentence": "The movie that we watched was boring.", "verb": "", "correctAnswer": "Được — 'that' làm tân ngữ", "distractors": ["Không được", "Được — vì là non-defining", "Được — vì dùng 'that'"], "explanation": "'that' làm tân ngữ (we watched it) → có thể bỏ: The movie we watched..." },
+        { "id": "rel_09", "type": "conjugation", "prompt": "Có thể bỏ đại từ quan hệ không?", "sentence": "The man who called you is here.", "verb": "", "correctAnswer": "Không — 'who' làm chủ ngữ", "distractors": ["Được", "Được — vì là defining", "Được — vì dùng 'who'"], "explanation": "'who' làm chủ ngữ (he called) → KHÔNG thể bỏ." },
+        { "id": "rel_10", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Đây là lý do (mà) tôi đến trễ.", "verb": "", "correctAnswer": "This is the reason why I was late.", "distractors": ["This is the reason where I was late.", "This is the reason when I was late.", "This is the reason who I was late."], "explanation": "'reason' → dùng 'why' (= for which)." },
+        { "id": "rel_11", "type": "fillInBlank", "prompt": "Điền đại từ quan hệ đúng.", "sentence": "The car ___ is parked outside belongs to Tom.", "verb": "", "correctAnswer": "which", "distractors": ["who", "whom", "whose"], "explanation": "'car' = vật, làm chủ ngữ → 'which' hoặc 'that'." },
+        { "id": "rel_12", "type": "fillInBlank", "prompt": "Điền đại từ quan hệ đúng.", "sentence": "She is the teacher ___ class I enjoy the most.", "verb": "", "correctAnswer": "whose", "distractors": ["who", "which", "whom"], "explanation": "'whose class' = lớp của cô ấy → sở hữu → 'whose'." },
+        { "id": "rel_13", "type": "conjugation", "prompt": "Chọn câu SAI.", "sentence": "Câu nào sai ngữ pháp?", "verb": "", "correctAnswer": "Tom, that is my friend, lives in Hanoi.", "distractors": ["Tom, who is my friend, lives in Hanoi.", "The boy who called is my friend.", "The house which I bought is old."], "explanation": "Non-defining (có dấu phẩy) KHÔNG dùng 'that'. Phải dùng 'who'." },
+        { "id": "rel_14", "type": "fillInBlank", "prompt": "Điền đại từ quan hệ đúng.", "sentence": "The hotel ___ we stayed was very comfortable.", "verb": "", "correctAnswer": "where", "distractors": ["which", "that", "when"], "explanation": "'hotel' = nơi chốn, we stayed at the hotel → 'where'." },
+        { "id": "rel_15", "type": "conjugation", "prompt": "Nối 2 câu bằng mệnh đề quan hệ.", "sentence": "I have a friend. His mother is a famous singer.", "verb": "", "correctAnswer": "I have a friend whose mother is a famous singer.", "distractors": ["I have a friend who mother is a famous singer.", "I have a friend which mother is a famous singer.", "I have a friend whom mother is a famous singer."], "explanation": "His mother → whose mother (sở hữu)." },
+        { "id": "rel_16", "type": "fillInBlank", "prompt": "Điền đại từ quan hệ đúng.", "sentence": "The people ___ work here are very friendly.", "verb": "", "correctAnswer": "who", "distractors": ["which", "whom", "whose"], "explanation": "'people' = người, làm chủ ngữ → 'who'." },
+        { "id": "rel_17", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "The phone ___  you gave me doesn't work.", "verb": "", "correctAnswer": "which / that", "distractors": ["who", "whose", "where"], "explanation": "'phone' = vật, làm tân ngữ → 'which' hoặc 'that' (cả hai đúng)." },
+        { "id": "rel_18", "type": "conjugation", "prompt": "Defining hay Non-defining?", "sentence": "The Eiffel Tower, which is in Paris, is very famous.", "verb": "", "correctAnswer": "Non-defining (có dấu phẩy, thông tin bổ sung)", "distractors": ["Defining (xác định)", "Cả hai đều được", "Không phải mệnh đề quan hệ"], "explanation": "Có dấu phẩy + thông tin thêm (Eiffel Tower đã xác định rồi) → non-defining." },
+        { "id": "rel_19", "type": "fillInBlank", "prompt": "Điền đại từ quan hệ đúng.", "sentence": "Is there a reason ___ you are so upset?", "verb": "", "correctAnswer": "why", "distractors": ["which", "when", "where"], "explanation": "'reason' → dùng 'why' (= for which)." },
+        { "id": "rel_20", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Người phụ nữ mà tôi gặp hôm qua là giáo viên.", "verb": "", "correctAnswer": "The woman whom I met yesterday is a teacher.", "distractors": ["The woman who I met yesterday is a teacher.", "The woman which I met yesterday is a teacher.", "The woman whose I met yesterday is a teacher."], "explanation": "'woman' = người, tân ngữ (I met her) → 'whom' (formal) hoặc 'who' (informal cũng chấp nhận)." }
+      ]
+    },
+    {
+      "id": "gerunds_infinitives",
+      "order": 20,
+      "name": {
+        "en": "Gerunds & Infinitives",
+        "vi": "Danh Động Từ & Động Từ Nguyên Mẫu"
+      },
+      "theory": {
+        "description": "Một số động từ theo sau bởi V-ing (gerund), một số theo sau bởi to V (infinitive), một số cả hai",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Gerund (V-ing)",
+            "structure": "V + V-ing",
+            "structureVi": "Động từ + Ving (danh động từ)",
+            "subjectNote": "enjoy, avoid, finish, mind, suggest, keep, practice, consider, deny, imagine",
+            "example": { "en": "I enjoy swimming in the sea.", "vi": "Tôi thích bơi ở biển." },
+            "note": "Gerund cũng dùng sau giới từ: interested in learning, good at cooking"
+          },
+          {
+            "type": "negative",
+            "label": "Infinitive (to V)",
+            "structure": "V + to V",
+            "structureVi": "Động từ + to + Động từ nguyên mẫu",
+            "subjectNote": "want, need, decide, hope, plan, agree, promise, refuse, offer, learn, expect",
+            "example": { "en": "She decided to study abroad.", "vi": "Cô ấy quyết định đi du học." },
+            "note": "Một số V + O + to V: ask/tell/want someone to do"
+          },
+          {
+            "type": "interrogative",
+            "label": "Cả hai nhưng nghĩa khác",
+            "structure": "remember/forget/stop/try + V-ing ≠ + to V",
+            "structureVi": "Nghĩa thay đổi tùy theo dùng V-ing hay to V",
+            "subjectNote": "stop + V-ing (dừng đang làm) ≠ stop + to V (dừng lại để làm)",
+            "example": { "en": "Stop talking! (dừng nói) vs Stop to talk. (dừng lại để nói)", "vi": "Ngừng nói! vs Dừng lại để nói chuyện." },
+            "note": "remember + V-ing (nhớ đã làm) ≠ remember + to V (nhớ phải làm)"
+          }
+        ],
+        "signalWords": ["V-ing: enjoy, avoid, finish, mind, suggest, keep, practice, consider", "to V: want, need, decide, hope, plan, agree, promise, learn", "Cả hai (nghĩa giống): like, love, hate, prefer, begin, start, continue", "Cả hai (nghĩa khác): remember, forget, stop, try, regret"],
+        "signalWordsDetail": [
+          { "word": "enjoy + V-ing", "wordVi": "thích (thú)", "example": "I enjoy reading books.", "exampleVi": "Tôi thích đọc sách.", "note": "KHÔNG: enjoy to read" },
+          { "word": "want + to V", "wordVi": "muốn", "example": "I want to learn English.", "exampleVi": "Tôi muốn học tiếng Anh.", "note": "KHÔNG: want learning" },
+          { "word": "stop + V-ing", "wordVi": "dừng (đang làm)", "example": "Stop smoking! It's bad for health.", "exampleVi": "Dừng hút thuốc! Có hại cho sức khỏe.", "note": "Dừng hành động đang làm" },
+          { "word": "stop + to V", "wordVi": "dừng lại để (làm gì)", "example": "I stopped to buy coffee.", "exampleVi": "Tôi dừng lại để mua cà phê.", "note": "Dừng lại rồi làm việc khác" },
+          { "word": "remember + V-ing", "wordVi": "nhớ đã làm", "example": "I remember locking the door.", "exampleVi": "Tôi nhớ đã khóa cửa.", "note": "Hành động đã xảy ra" },
+          { "word": "remember + to V", "wordVi": "nhớ phải làm", "example": "Remember to lock the door.", "exampleVi": "Nhớ khóa cửa nhé.", "note": "Hành động chưa xảy ra" }
+        ],
+        "usages": [
+          { "rule": "Sau giới từ → V-ing", "description": "Sau tất cả giới từ (in, on, at, of, about, for...) luôn dùng V-ing", "example": { "en": "I'm interested in learning Japanese.", "vi": "Tôi quan tâm đến việc học tiếng Nhật." } },
+          { "rule": "Làm chủ ngữ → V-ing", "description": "V-ing có thể làm chủ ngữ trong câu", "example": { "en": "Swimming is good exercise.", "vi": "Bơi lội là bài tập tốt." } },
+          { "rule": "Mục đích → to V", "description": "to V diễn tả mục đích (in order to)", "example": { "en": "I went to the store to buy milk.", "vi": "Tôi đến cửa hàng để mua sữa." } },
+          { "rule": "V + O + to V", "description": "Một số V cần tân ngữ trước to V", "example": { "en": "She asked me to help her.", "vi": "Cô ấy nhờ tôi giúp." } }
+        ],
+        "notes": [
+          "Sau giới từ LUÔN dùng V-ing: good at swimming (✓), good at to swim (✗)",
+          "like/love/hate + V-ing HOẶC to V đều được, nghĩa giống nhau",
+          "stop + V-ing (dừng làm gì) ≠ stop + to V (dừng lại ĐỂ làm gì) — nghĩa khác hoàn toàn",
+          "Sau 'let' và 'make' dùng V nguyên mẫu (không to): Let me go. / She made me cry."
+        ]
+      },
+      "exercises": [
+        { "id": "ger_01", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "I enjoy ___ to music.", "verb": "listen", "correctAnswer": "listening", "distractors": ["to listen", "listen", "listened"], "explanation": "enjoy + V-ing: enjoy listening." },
+        { "id": "ger_02", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "She decided ___ a new car.", "verb": "buy", "correctAnswer": "to buy", "distractors": ["buying", "buy", "bought"], "explanation": "decide + to V: decided to buy." },
+        { "id": "ger_03", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "He avoided ___ to her.", "verb": "talk", "correctAnswer": "talking", "distractors": ["to talk", "talk", "talked"], "explanation": "avoid + V-ing: avoided talking." },
+        { "id": "ger_04", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "I want ___ English fluently.", "verb": "speak", "correctAnswer": "to speak", "distractors": ["speaking", "speak", "spoke"], "explanation": "want + to V: want to speak." },
+        { "id": "ger_05", "type": "conjugation", "prompt": "Chọn nghĩa đúng.", "sentence": "She stopped smoking.", "verb": "", "correctAnswer": "Cô ấy bỏ hút thuốc.", "distractors": ["Cô ấy dừng lại để hút thuốc.", "Cô ấy đang hút thuốc.", "Cô ấy bắt đầu hút thuốc."], "explanation": "stop + V-ing = dừng/bỏ hành động đang làm." },
+        { "id": "ger_06", "type": "conjugation", "prompt": "Chọn nghĩa đúng.", "sentence": "She stopped to smoke.", "verb": "", "correctAnswer": "Cô ấy dừng lại để hút thuốc.", "distractors": ["Cô ấy bỏ hút thuốc.", "Cô ấy ngừng hút thuốc.", "Cô ấy hút thuốc xong."], "explanation": "stop + to V = dừng lại ĐỂ làm việc khác." },
+        { "id": "ger_07", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "I'm interested in ___ abroad. (study)", "verb": "study", "correctAnswer": "studying", "distractors": ["to study", "study", "studied"], "explanation": "Sau giới từ 'in' luôn dùng V-ing." },
+        { "id": "ger_08", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "She promised ___ on time. (come)", "verb": "come", "correctAnswer": "to come", "distractors": ["coming", "come", "came"], "explanation": "promise + to V: promised to come." },
+        { "id": "ger_09", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Would you mind ___ the window?", "verb": "open", "correctAnswer": "opening", "distractors": ["to open", "open", "opened"], "explanation": "mind + V-ing: Would you mind opening...?" },
+        { "id": "ger_10", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "I hope ___ you again soon.", "verb": "see", "correctAnswer": "to see", "distractors": ["seeing", "see", "saw"], "explanation": "hope + to V: hope to see." },
+        { "id": "ger_11", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "He finished ___ his homework.", "verb": "do", "correctAnswer": "doing", "distractors": ["to do", "do", "done"], "explanation": "finish + V-ing: finished doing." },
+        { "id": "ger_12", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "___ is good for your health.", "verb": "swim", "correctAnswer": "Swimming", "distractors": ["To swim", "Swim", "Swam"], "explanation": "V-ing làm chủ ngữ: Swimming is good..." },
+        { "id": "ger_13", "type": "conjugation", "prompt": "Chọn nghĩa đúng.", "sentence": "I remember meeting her before.", "verb": "", "correctAnswer": "Tôi nhớ đã gặp cô ấy trước đây.", "distractors": ["Tôi nhớ phải gặp cô ấy.", "Tôi quên gặp cô ấy.", "Tôi sẽ gặp cô ấy."], "explanation": "remember + V-ing = nhớ đã làm (quá khứ)." },
+        { "id": "ger_14", "type": "conjugation", "prompt": "Chọn nghĩa đúng.", "sentence": "Remember to meet her tomorrow.", "verb": "", "correctAnswer": "Nhớ gặp cô ấy ngày mai nhé.", "distractors": ["Nhớ đã gặp cô ấy ngày mai.", "Quên gặp cô ấy ngày mai.", "Đang gặp cô ấy ngày mai."], "explanation": "remember + to V = nhớ phải làm (tương lai)." },
+        { "id": "ger_15", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "She made me ___ the whole house. (clean)", "verb": "clean", "correctAnswer": "clean", "distractors": ["to clean", "cleaning", "cleaned"], "explanation": "make + O + V (nguyên mẫu, không to): made me clean." },
+        { "id": "ger_16", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "He suggested ___ to the cinema. (go)", "verb": "go", "correctAnswer": "going", "distractors": ["to go", "go", "went"], "explanation": "suggest + V-ing: suggested going." },
+        { "id": "ger_17", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "I can't afford ___ a new house.", "verb": "buy", "correctAnswer": "to buy", "distractors": ["buying", "buy", "bought"], "explanation": "afford + to V: can't afford to buy." },
+        { "id": "ger_18", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "She keeps ___ the same mistakes.", "verb": "make", "correctAnswer": "making", "distractors": ["to make", "make", "made"], "explanation": "keep + V-ing: keeps making." },
+        { "id": "ger_19", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "My teacher told me ___ harder. (study)", "verb": "study", "correctAnswer": "to study", "distractors": ["studying", "study", "studied"], "explanation": "tell + O + to V: told me to study." },
+        { "id": "ger_20", "type": "conjugation", "prompt": "Chọn câu SAI.", "sentence": "Câu nào sai ngữ pháp?", "verb": "", "correctAnswer": "I enjoy to play football.", "distractors": ["I enjoy playing football.", "I want to play football.", "Playing football is fun."], "explanation": "enjoy + V-ing (KHÔNG to V): enjoy playing (✓), enjoy to play (✗)." }
+      ]
+    },
+    {
+      "id": "prepositions",
+      "order": 21,
+      "name": {
+        "en": "Prepositions",
+        "vi": "Giới Từ"
+      },
+      "theory": {
+        "description": "Giới từ chỉ mối quan hệ về thời gian, nơi chốn, hướng, phương tiện giữa các từ trong câu",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Giới từ thời gian",
+            "structure": "at (giờ, thời điểm) / on (ngày, thứ) / in (tháng, năm, mùa)",
+            "structureVi": "at + giờ cụ thể | on + ngày/thứ | in + tháng/năm/mùa/buổi",
+            "subjectNote": "at 7 o'clock, at night, at noon | on Monday, on May 5th | in June, in 2024, in the morning",
+            "example": { "en": "I wake up at 6 o'clock in the morning.", "vi": "Tôi thức dậy lúc 6 giờ sáng." },
+            "note": "Ngoại lệ: at night (KHÔNG in night), in the morning/afternoon/evening (KHÔNG at)"
+          },
+          {
+            "type": "negative",
+            "label": "Giới từ nơi chốn",
+            "structure": "at (điểm) / in (bên trong) / on (bề mặt)",
+            "structureVi": "at + địa điểm cụ thể | in + không gian kín/lớn | on + bề mặt",
+            "subjectNote": "at the bus stop, at school | in the room, in Vietnam | on the table, on the wall",
+            "example": { "en": "The book is on the table in my room.", "vi": "Cuốn sách ở trên bàn trong phòng tôi." },
+            "note": "at = điểm nhỏ/cụ thể, in = bên trong/vùng lớn, on = trên bề mặt"
+          },
+          {
+            "type": "interrogative",
+            "label": "Giới từ di chuyển & phương tiện",
+            "structure": "to (đến) / from (từ) / by (bằng phương tiện) / with (với)",
+            "structureVi": "to = đến | from = từ | by = bằng | with = với/bằng (công cụ)",
+            "subjectNote": "go to school | come from Vietnam | by bus/car/plane | with a knife",
+            "example": { "en": "I go to school by bus.", "vi": "Tôi đi đến trường bằng xe buýt." },
+            "note": "by + phương tiện (không the): by bus (✓), by the bus (✗). on foot (đi bộ)"
+          }
+        ],
+        "signalWords": ["at (thời điểm, địa điểm nhỏ)", "in (bên trong, tháng/năm/mùa)", "on (bề mặt, ngày/thứ)", "to (hướng đến)", "from (từ đâu)", "by (bằng phương tiện, bởi)", "for (cho, trong bao lâu)", "since (từ khi)", "with (với)", "about (về)"],
+        "signalWordsDetail": [
+          { "word": "at", "wordVi": "tại, lúc", "example": "I'll meet you at the station at 5 PM.", "exampleVi": "Tôi sẽ gặp bạn tại ga lúc 5 giờ chiều.", "note": "Thời điểm cụ thể + địa điểm nhỏ" },
+          { "word": "in", "wordVi": "trong, vào", "example": "She lives in Hanoi. I was born in 1990.", "exampleVi": "Cô ấy sống ở Hà Nội. Tôi sinh năm 1990.", "note": "Không gian kín/lớn + tháng/năm/mùa" },
+          { "word": "on", "wordVi": "trên, vào (ngày)", "example": "The meeting is on Monday.", "exampleVi": "Cuộc họp vào thứ Hai.", "note": "Bề mặt + ngày/thứ cụ thể" },
+          { "word": "for", "wordVi": "trong (khoảng thời gian)", "example": "I've lived here for 5 years.", "exampleVi": "Tôi đã sống ở đây 5 năm.", "note": "for + khoảng thời gian (5 years, 2 hours)" },
+          { "word": "since", "wordVi": "từ khi (mốc thời gian)", "example": "I've known her since 2010.", "exampleVi": "Tôi biết cô ấy từ năm 2010.", "note": "since + mốc thời gian (2010, Monday, last week)" }
+        ],
+        "usages": [
+          { "rule": "Thời gian: at / in / on", "description": "at = giờ/điểm, in = tháng/năm/buổi, on = ngày/thứ", "example": { "en": "The class starts at 8 on Monday in September.", "vi": "Lớp bắt đầu lúc 8 giờ vào thứ Hai trong tháng 9." } },
+          { "rule": "Nơi chốn: at / in / on", "description": "at = điểm cụ thể, in = bên trong, on = bề mặt", "example": { "en": "She's at the office, in her room, on the 3rd floor.", "vi": "Cô ấy ở văn phòng, trong phòng, trên tầng 3." } },
+          { "rule": "for vs since", "description": "for + khoảng thời gian, since + mốc thời gian", "example": { "en": "I've studied English for 3 years / since 2021.", "vi": "Tôi đã học tiếng Anh 3 năm / từ 2021." } },
+          { "rule": "Giới từ kết hợp", "description": "Nhiều cụm cố định: interested in, good at, worried about, listen to", "example": { "en": "She is good at math and interested in science.", "vi": "Cô ấy giỏi toán và quan tâm đến khoa học." } }
+        ],
+        "notes": [
+          "KHÔNG dùng giới từ trước today/tomorrow/yesterday/last/next/this/every: on today (✗), today (✓)",
+          "by + phương tiện KHÔNG có 'the': by car (✓), by the car (✗). Nhưng: in the car, on the bus (khi ở bên trong)",
+          "at night (KHÔNG: in night) | in the morning/afternoon/evening | at noon/midnight",
+          "Cụm cố định cần nhớ: depend on, listen to, look at, wait for, belong to, think about"
+        ]
+      },
+      "exercises": [
+        { "id": "prep_01", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "I was born ___ 1990.", "verb": "", "correctAnswer": "in", "distractors": ["on", "at", "by"], "explanation": "Năm → dùng 'in': in 1990." },
+        { "id": "prep_02", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "The meeting is ___ Monday.", "verb": "", "correctAnswer": "on", "distractors": ["in", "at", "by"], "explanation": "Ngày/thứ → dùng 'on': on Monday." },
+        { "id": "prep_03", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "I'll see you ___ 3 o'clock.", "verb": "", "correctAnswer": "at", "distractors": ["in", "on", "by"], "explanation": "Giờ cụ thể → dùng 'at': at 3 o'clock." },
+        { "id": "prep_04", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "The cat is ___ the table.", "verb": "", "correctAnswer": "on", "distractors": ["in", "at", "by"], "explanation": "Trên bề mặt → 'on': on the table." },
+        { "id": "prep_05", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "She lives ___ a small apartment ___ Hanoi.", "verb": "", "correctAnswer": "in ... in", "distractors": ["at ... in", "on ... at", "in ... on"], "explanation": "Bên trong căn hộ → 'in'. Thành phố lớn → 'in'." },
+        { "id": "prep_06", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "I go to school ___ bus.", "verb": "", "correctAnswer": "by", "distractors": ["on", "in", "with"], "explanation": "Phương tiện → 'by': by bus (không the)." },
+        { "id": "prep_07", "type": "fillInBlank", "prompt": "Điền giới từ đúng.", "sentence": "I've lived here ___ 10 years.", "verb": "", "correctAnswer": "for", "distractors": ["since", "in", "at"], "explanation": "'10 years' = khoảng thời gian → 'for'." },
+        { "id": "prep_08", "type": "fillInBlank", "prompt": "Điền giới từ đúng.", "sentence": "I've known her ___ 2015.", "verb": "", "correctAnswer": "since", "distractors": ["for", "in", "from"], "explanation": "'2015' = mốc thời gian → 'since'." },
+        { "id": "prep_09", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "She is interested ___ learning English.", "verb": "", "correctAnswer": "in", "distractors": ["on", "at", "to"], "explanation": "Cụm cố định: interested in." },
+        { "id": "prep_10", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "I'm waiting ___ the bus.", "verb": "", "correctAnswer": "for", "distractors": ["to", "at", "on"], "explanation": "Cụm cố định: wait for." },
+        { "id": "prep_11", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "The picture is ___ the wall.", "verb": "", "correctAnswer": "on", "distractors": ["in", "at", "by"], "explanation": "Bề mặt tường → 'on': on the wall." },
+        { "id": "prep_12", "type": "fillInBlank", "prompt": "Điền giới từ đúng.", "sentence": "He is good ___ playing the guitar.", "verb": "", "correctAnswer": "at", "distractors": ["in", "on", "for"], "explanation": "Cụm cố định: good at + V-ing." },
+        { "id": "prep_13", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Cô ấy đến lúc ban đêm.", "verb": "", "correctAnswer": "She arrived at night.", "distractors": ["She arrived in night.", "She arrived on night.", "She arrived in the night."], "explanation": "Cụm cố định: at night (không dùng in night)." },
+        { "id": "prep_14", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "I'll finish the work ___ Friday.", "verb": "", "correctAnswer": "by", "distractors": ["until", "on", "in"], "explanation": "'by Friday' = trước/vào thứ 6 (deadline)." },
+        { "id": "prep_15", "type": "conjugation", "prompt": "Chọn câu SAI.", "sentence": "Câu nào sai giới từ?", "verb": "", "correctAnswer": "I went there on yesterday.", "distractors": ["I went there yesterday.", "I went there on Monday.", "I'll go there in May."], "explanation": "KHÔNG dùng giới từ trước yesterday/today/tomorrow: yesterday (✓), on yesterday (✗)." },
+        { "id": "prep_16", "type": "fillInBlank", "prompt": "Điền giới từ đúng.", "sentence": "She depends ___ her parents for money.", "verb": "", "correctAnswer": "on", "distractors": ["in", "at", "for"], "explanation": "Cụm cố định: depend on." },
+        { "id": "prep_17", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "The shop is ___ the corner of the street.", "verb": "", "correctAnswer": "at", "distractors": ["in", "on", "by"], "explanation": "'at the corner' = tại góc (điểm cụ thể)." },
+        { "id": "prep_18", "type": "fillInBlank", "prompt": "Điền giới từ đúng.", "sentence": "I'll meet you ___ the morning ___ 9 AM.", "verb": "", "correctAnswer": "in ... at", "distractors": ["at ... in", "on ... at", "in ... on"], "explanation": "in the morning (buổi) + at 9 AM (giờ cụ thể)." },
+        { "id": "prep_19", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "She is married ___ a doctor.", "verb": "", "correctAnswer": "to", "distractors": ["with", "by", "for"], "explanation": "Cụm cố định: married to (KHÔNG: married with)." },
+        { "id": "prep_20", "type": "conjugation", "prompt": "Chọn giới từ đúng.", "sentence": "Listen ___ the teacher carefully.", "verb": "", "correctAnswer": "to", "distractors": ["at", "for", "on"], "explanation": "Cụm cố định: listen to." }
+      ]
+    },
+    {
+      "id": "question_tags",
+      "order": 22,
+      "name": {
+        "en": "Question Tags",
+        "vi": "Câu Hỏi Đuôi"
+      },
+      "theory": {
+        "description": "Câu hỏi đuôi thêm vào cuối câu để xác nhận thông tin hoặc hỏi lại",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Quy tắc chính",
+            "structure": "Câu khẳng định, trợ động từ phủ định + S? | Câu phủ định, trợ động từ khẳng định + S?",
+            "structureVi": "Câu (+), tag (-)? | Câu (-), tag (+)?",
+            "subjectNote": "You like coffee, don't you? | You don't like coffee, do you?",
+            "example": { "en": "She is a teacher, isn't she?", "vi": "Cô ấy là giáo viên, phải không?" },
+            "note": "Câu khẳng định → tag phủ định. Câu phủ định → tag khẳng định."
+          },
+          {
+            "type": "negative",
+            "label": "Với trợ động từ",
+            "structure": "be/have/do/will/can/... → dùng lại trợ động từ đó",
+            "structureVi": "Tìm trợ động từ trong câu chính, dùng lại nó cho tag",
+            "subjectNote": "She is → isn't she? | They have → haven't they? | He can → can't he?",
+            "example": { "en": "They have finished, haven't they?", "vi": "Họ đã xong rồi, phải không?" },
+            "note": "Không có trợ ĐT → dùng do/does/did: She likes coffee, doesn't she?"
+          },
+          {
+            "type": "interrogative",
+            "label": "Trường hợp đặc biệt",
+            "structure": "I am → aren't I? | Let's → shall we? | Mệnh lệnh → will you?",
+            "structureVi": "Các trường hợp không theo quy tắc thông thường",
+            "subjectNote": "I am late, aren't I? (KHÔNG: am not I?) | Let's go, shall we? | Open the door, will you?",
+            "example": { "en": "I am right, aren't I?", "vi": "Tôi đúng, phải không?" },
+            "note": "everybody/everyone/somebody → they: Everyone is here, aren't they?"
+          }
+        ],
+        "signalWords": ["..., isn't it?", "..., don't you?", "..., can't he?", "..., won't they?", "..., haven't we?", "..., shall we? (Let's)", "..., will you? (mệnh lệnh)"],
+        "signalWordsDetail": [
+          { "word": "isn't/aren't", "wordVi": "phải không (be)", "example": "It's cold, isn't it?", "exampleVi": "Trời lạnh, phải không?", "note": "Câu chính dùng is/are → tag: isn't/aren't" },
+          { "word": "don't/doesn't", "wordVi": "phải không (do)", "example": "You like pizza, don't you?", "exampleVi": "Bạn thích pizza, phải không?", "note": "Câu chính không có trợ ĐT → dùng do/does" },
+          { "word": "didn't", "wordVi": "phải không (quá khứ)", "example": "She went home, didn't she?", "exampleVi": "Cô ấy về nhà rồi, phải không?", "note": "Quá khứ đơn: dùng didn't" },
+          { "word": "aren't I", "wordVi": "phải không (I am)", "example": "I am late, aren't I?", "exampleVi": "Tôi trễ rồi, phải không?", "note": "Đặc biệt: I am → aren't I (KHÔNG: am not I)" },
+          { "word": "shall we", "wordVi": "nhé (Let's)", "example": "Let's go, shall we?", "exampleVi": "Đi thôi, nhé?", "note": "Let's → shall we?" }
+        ],
+        "usages": [
+          { "rule": "Xác nhận thông tin", "description": "Hỏi để chắc chắn điều mình nghĩ là đúng", "example": { "en": "You're Tom's brother, aren't you?", "vi": "Bạn là anh trai Tom, phải không?" } },
+          { "rule": "Mời/gợi ý", "description": "Let's + ..., shall we? để rủ ai đó", "example": { "en": "Let's have lunch, shall we?", "vi": "Ăn trưa nhé?" } },
+          { "rule": "Yêu cầu nhẹ nhàng", "description": "Mệnh lệnh + will you? / won't you?", "example": { "en": "Close the window, will you?", "vi": "Đóng cửa sổ lại, được không?" } },
+          { "rule": "nothing/nobody = phủ định", "description": "Câu có nothing/nobody/never → câu phủ định → tag khẳng định", "example": { "en": "Nobody called, did they?", "vi": "Không ai gọi, phải không?" } }
+        ],
+        "notes": [
+          "Câu (+) → tag (-) | Câu (-) → tag (+): ngược nhau!",
+          "I am → aren't I? (đặc biệt, KHÔNG: amn't I)",
+          "everyone/everybody/someone/nobody → đại từ 'they' trong tag",
+          "nothing/nobody/never/hardly/rarely = nghĩa phủ định → tag khẳng định: She never comes, does she?"
+        ]
+      },
+      "exercises": [
+        { "id": "tag_01", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "She is beautiful, ___?", "verb": "", "correctAnswer": "isn't she", "distractors": ["is she", "doesn't she", "wasn't she"], "explanation": "She is (+) → isn't she (-)?" },
+        { "id": "tag_02", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "You don't like coffee, ___?", "verb": "", "correctAnswer": "do you", "distractors": ["don't you", "are you", "did you"], "explanation": "You don't (-) → do you (+)?" },
+        { "id": "tag_03", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "They have finished, ___?", "verb": "", "correctAnswer": "haven't they", "distractors": ["have they", "don't they", "didn't they"], "explanation": "They have (+) → haven't they (-)?" },
+        { "id": "tag_04", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "He can swim, ___?", "verb": "", "correctAnswer": "can't he", "distractors": ["can he", "doesn't he", "isn't he"], "explanation": "He can (+) → can't he (-)?" },
+        { "id": "tag_05", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "She likes chocolate, ___?", "verb": "", "correctAnswer": "doesn't she", "distractors": ["does she", "isn't she", "didn't she"], "explanation": "She likes (+, không có trợ ĐT) → doesn't she (-)?" },
+        { "id": "tag_06", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "They went home, ___?", "verb": "", "correctAnswer": "didn't they", "distractors": ["did they", "don't they", "weren't they"], "explanation": "They went (+, quá khứ) → didn't they (-)?" },
+        { "id": "tag_07", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "I am late, ___?", "verb": "", "correctAnswer": "aren't I", "distractors": ["am I", "am not I", "isn't I"], "explanation": "Đặc biệt: I am → aren't I?" },
+        { "id": "tag_08", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "Let's go to the beach, ___?", "verb": "", "correctAnswer": "shall we", "distractors": ["will we", "do we", "don't we"], "explanation": "Let's → shall we?" },
+        { "id": "tag_09", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "Nobody knows the answer, ___?", "verb": "", "correctAnswer": "do they", "distractors": ["don't they", "does he", "doesn't nobody"], "explanation": "nobody = phủ định → tag khẳng định. nobody → they." },
+        { "id": "tag_10", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "She won't come, ___?", "verb": "", "correctAnswer": "will she", "distractors": ["won't she", "doesn't she", "isn't she"], "explanation": "She won't (-) → will she (+)?" },
+        { "id": "tag_11", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "You've been to Japan, ___?", "verb": "", "correctAnswer": "haven't you", "distractors": ["have you", "don't you", "didn't you"], "explanation": "You've (have) been (+) → haven't you (-)?" },
+        { "id": "tag_12", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "He never helps anyone, ___?", "verb": "", "correctAnswer": "does he", "distractors": ["doesn't he", "never he", "is he"], "explanation": "'never' = phủ định → tag khẳng định: does he?" },
+        { "id": "tag_13", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "Open the door, ___?", "verb": "", "correctAnswer": "will you", "distractors": ["do you", "shall we", "won't you"], "explanation": "Câu mệnh lệnh → will you? / won't you?" },
+        { "id": "tag_14", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "There is a book on the table, ___?", "verb": "", "correctAnswer": "isn't there", "distractors": ["is there", "doesn't there", "aren't there"], "explanation": "There is (+) → isn't there (-)?" },
+        { "id": "tag_15", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "She could sing well, ___?", "verb": "", "correctAnswer": "couldn't she", "distractors": ["could she", "can't she", "didn't she"], "explanation": "She could (+) → couldn't she (-)?" },
+        { "id": "tag_16", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "Everyone is ready, ___?", "verb": "", "correctAnswer": "aren't they", "distractors": ["isn't everyone", "are they", "isn't it"], "explanation": "'Everyone' → đại từ 'they' trong tag. is (+) → aren't they (-)?" },
+        { "id": "tag_17", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "She had better go, ___?", "verb": "", "correctAnswer": "hadn't she", "distractors": ["had she", "didn't she", "shouldn't she"], "explanation": "had better → hadn't + S?" },
+        { "id": "tag_18", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "Nothing happened, ___?", "verb": "", "correctAnswer": "did it", "distractors": ["didn't it", "didn't they", "does it"], "explanation": "'Nothing' = phủ định → tag khẳng định. nothing → it." },
+        { "id": "tag_19", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "You must leave now, ___?", "verb": "", "correctAnswer": "mustn't you", "distractors": ["must you", "don't you", "won't you"], "explanation": "You must (+) → mustn't you (-)?" },
+        { "id": "tag_20", "type": "conjugation", "prompt": "Thêm câu hỏi đuôi.", "sentence": "She rarely eats out, ___?", "verb": "", "correctAnswer": "does she", "distractors": ["doesn't she", "is she", "did she"], "explanation": "'rarely' = gần như không (phủ định) → tag khẳng định: does she?" }
+      ]
+    },
+    {
+      "id": "quantifiers",
+      "order": 23,
+      "name": {
+        "en": "Quantifiers",
+        "vi": "Lượng Từ"
+      },
+      "theory": {
+        "description": "Lượng từ chỉ số lượng, đứng trước danh từ, phụ thuộc vào danh từ đếm được hay không đếm được",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Đếm được (Countable)",
+            "structure": "many / few / a few / several / a number of + N đếm được số nhiều",
+            "structureVi": "many = nhiều | few = ít (gần không) | a few = một vài (có 1 ít)",
+            "subjectNote": "many books, few students, a few friends",
+            "example": { "en": "I have a few friends in this city.", "vi": "Tôi có một vài người bạn ở thành phố này." },
+            "note": "few = ít (tiêu cực) ≠ a few = một vài (tích cực)"
+          },
+          {
+            "type": "negative",
+            "label": "Không đếm được (Uncountable)",
+            "structure": "much / little / a little / a great deal of + N không đếm được",
+            "structureVi": "much = nhiều | little = ít (gần không) | a little = một chút (có 1 ít)",
+            "subjectNote": "much water, little time, a little money",
+            "example": { "en": "There is a little milk left in the fridge.", "vi": "Còn một chút sữa trong tủ lạnh." },
+            "note": "little = ít (tiêu cực) ≠ a little = một chút (tích cực)"
+          },
+          {
+            "type": "interrogative",
+            "label": "Cả hai (đếm được & không đếm được)",
+            "structure": "some / any / a lot of / lots of / plenty of / no / all / enough",
+            "structureVi": "some = một vài/ít (khẳng định) | any = nào (phủ định/hỏi) | a lot of = nhiều",
+            "subjectNote": "some books/water | any questions/milk | a lot of friends/money",
+            "example": { "en": "Do you have any questions? I have some ideas.", "vi": "Bạn có câu hỏi nào không? Tôi có vài ý tưởng." },
+            "note": "some = câu (+), mời/đề nghị | any = câu (-), câu hỏi"
+          }
+        ],
+        "signalWords": ["many (nhiều — đếm được)", "much (nhiều — không đếm được)", "few / a few (ít/vài — đếm được)", "little / a little (ít/chút — không đếm được)", "some (một vài — khẳng định)", "any (nào — phủ định/hỏi)", "a lot of / lots of (nhiều — cả hai)", "no (không — cả hai)"],
+        "signalWordsDetail": [
+          { "word": "many", "wordVi": "nhiều (đếm được)", "example": "Many students passed the exam.", "exampleVi": "Nhiều học sinh đậu kỳ thi.", "note": "Dùng với danh từ đếm được số nhiều" },
+          { "word": "much", "wordVi": "nhiều (không đếm được)", "example": "I don't have much time.", "exampleVi": "Tôi không có nhiều thời gian.", "note": "Thường dùng trong câu phủ định/hỏi" },
+          { "word": "few vs a few", "wordVi": "ít vs một vài", "example": "Few people came. (ít, buồn) / A few people came. (vài, ổn)", "exampleVi": "Ít người đến. / Một vài người đến.", "note": "few = tiêu cực, a few = tích cực" },
+          { "word": "some", "wordVi": "một vài (khẳng định)", "example": "I bought some apples.", "exampleVi": "Tôi mua vài quả táo.", "note": "Câu khẳng định, đề nghị/mời: Would you like some coffee?" },
+          { "word": "any", "wordVi": "nào (phủ định/hỏi)", "example": "Do you have any money?", "exampleVi": "Bạn có tiền không?", "note": "Câu hỏi + phủ định. any = bất kỳ cái nào" }
+        ],
+        "usages": [
+          { "rule": "Đếm được vs Không đếm được", "description": "many/few → đếm được | much/little → không đếm được | a lot of → cả hai", "example": { "en": "Many people / much money / a lot of books and time", "vi": "Nhiều người / nhiều tiền / nhiều sách và thời gian" } },
+          { "rule": "some vs any", "description": "some: khẳng định, mời | any: phủ định, hỏi", "example": { "en": "I have some friends. Do you have any?", "vi": "Tôi có vài người bạn. Bạn có ai không?" } },
+          { "rule": "few/a few, little/a little", "description": "Không có 'a' = tiêu cực (gần không). Có 'a' = tích cực (một ít)", "example": { "en": "Few people helped me. (ít, buồn) vs A few people helped me. (vài, ổn)", "vi": "Ít người giúp tôi. vs Một vài người giúp tôi." } },
+          { "rule": "enough", "description": "'enough' đứng trước danh từ, sau tính từ", "example": { "en": "I have enough money. She is old enough.", "vi": "Tôi có đủ tiền. Cô ấy đủ tuổi." } }
+        ],
+        "notes": [
+          "much thường dùng trong câu (-) và câu hỏi. Câu (+) thay bằng 'a lot of': I have a lot of money (✓), I have much money (nghe lạ)",
+          "few/a few + đếm được | little/a little + không đếm được: a few books / a little water",
+          "some dùng trong câu hỏi khi MỜI: Would you like some coffee? (chờ câu trả lời 'yes')",
+          "no = not any: I have no money = I don't have any money"
+        ]
+      },
+      "exercises": [
+        { "id": "quan_01", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "I don't have ___ money.", "verb": "", "correctAnswer": "much", "distractors": ["many", "few", "a few"], "explanation": "'money' không đếm được + câu phủ định → 'much'." },
+        { "id": "quan_02", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "There are ___ students in the class.", "verb": "", "correctAnswer": "many", "distractors": ["much", "little", "a little"], "explanation": "'students' đếm được số nhiều → 'many'." },
+        { "id": "quan_03", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "I have ___ friends here. (một vài, tích cực)", "verb": "", "correctAnswer": "a few", "distractors": ["few", "a little", "little"], "explanation": "'friends' đếm được + nghĩa tích cực → 'a few'." },
+        { "id": "quan_04", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "There is ___ sugar left. (một chút, tích cực)", "verb": "", "correctAnswer": "a little", "distractors": ["little", "a few", "few"], "explanation": "'sugar' không đếm được + nghĩa tích cực → 'a little'." },
+        { "id": "quan_05", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "Do you have ___ questions?", "verb": "", "correctAnswer": "any", "distractors": ["some", "much", "a few"], "explanation": "Câu hỏi → 'any'." },
+        { "id": "quan_06", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "Would you like ___ coffee?", "verb": "", "correctAnswer": "some", "distractors": ["any", "much", "many"], "explanation": "Câu hỏi nhưng đang MỜI → dùng 'some'." },
+        { "id": "quan_07", "type": "conjugation", "prompt": "Chọn nghĩa đúng.", "sentence": "Few students passed the test.", "verb": "", "correctAnswer": "Ít học sinh đậu. (tiêu cực)", "distractors": ["Một vài học sinh đậu.", "Nhiều học sinh đậu.", "Không có học sinh đậu."], "explanation": "'few' = ít, gần như không → tiêu cực." },
+        { "id": "quan_08", "type": "conjugation", "prompt": "Chọn nghĩa đúng.", "sentence": "A few students passed the test.", "verb": "", "correctAnswer": "Một vài học sinh đậu. (tích cực)", "distractors": ["Ít học sinh đậu.", "Nhiều học sinh đậu.", "Không ai đậu."], "explanation": "'a few' = một vài → tích cực (có 1 số người đậu)." },
+        { "id": "quan_09", "type": "fillInBlank", "prompt": "Điền lượng từ đúng.", "sentence": "She has ___ patience with children. (rất ít, tiêu cực)", "verb": "", "correctAnswer": "little", "distractors": ["a little", "few", "a few"], "explanation": "'patience' không đếm được + tiêu cực → 'little'." },
+        { "id": "quan_10", "type": "fillInBlank", "prompt": "Điền lượng từ đúng.", "sentence": "I bought ___ books at the bookstore.", "verb": "", "correctAnswer": "some", "distractors": ["any", "much", "little"], "explanation": "Câu khẳng định → 'some'." },
+        { "id": "quan_11", "type": "conjugation", "prompt": "Chọn câu đúng.", "sentence": "Tôi có nhiều tiền.", "verb": "", "correctAnswer": "I have a lot of money.", "distractors": ["I have much money.", "I have many money.", "I have a few money."], "explanation": "'money' không đếm được. 'much' thường dùng câu (-). 'a lot of' đúng trong câu (+)." },
+        { "id": "quan_12", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "There isn't ___ milk in the fridge.", "verb": "", "correctAnswer": "any", "distractors": ["some", "many", "a few"], "explanation": "Câu phủ định → 'any'." },
+        { "id": "quan_13", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "I have ___ time to finish this. We need to hurry.", "verb": "", "correctAnswer": "little", "distractors": ["a little", "few", "many"], "explanation": "'time' không đếm được + nghĩa tiêu cực (phải nhanh) → 'little'." },
+        { "id": "quan_14", "type": "fillInBlank", "prompt": "Điền lượng từ đúng.", "sentence": "How ___ water do you drink every day?", "verb": "", "correctAnswer": "much", "distractors": ["many", "few", "some"], "explanation": "'water' không đếm được → How much?" },
+        { "id": "quan_15", "type": "fillInBlank", "prompt": "Điền lượng từ đúng.", "sentence": "How ___ apples do you want?", "verb": "", "correctAnswer": "many", "distractors": ["much", "little", "any"], "explanation": "'apples' đếm được → How many?" },
+        { "id": "quan_16", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "She doesn't have ___ friends here.", "verb": "", "correctAnswer": "any", "distractors": ["some", "much", "no"], "explanation": "doesn't + any = not any. Câu phủ định → 'any'." },
+        { "id": "quan_17", "type": "conjugation", "prompt": "Chọn câu cùng nghĩa.", "sentence": "I have no money.", "verb": "", "correctAnswer": "I don't have any money.", "distractors": ["I have some money.", "I don't have much money.", "I have a little money."], "explanation": "no = not any: I have no money = I don't have any money." },
+        { "id": "quan_18", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "Is there ___ cheese in the fridge?", "verb": "", "correctAnswer": "any", "distractors": ["some", "many", "few"], "explanation": "Câu hỏi thông thường → 'any'." },
+        { "id": "quan_19", "type": "fillInBlank", "prompt": "Điền lượng từ đúng.", "sentence": "She is old ___ to drive a car.", "verb": "", "correctAnswer": "enough", "distractors": ["many", "much", "some"], "explanation": "'enough' đứng SAU tính từ: old enough." },
+        { "id": "quan_20", "type": "conjugation", "prompt": "Chọn lượng từ đúng.", "sentence": "I need ___ more information.", "verb": "", "correctAnswer": "some", "distractors": ["any", "many", "few"], "explanation": "'information' không đếm được. Câu khẳng định → 'some'." }
+      ]
+    },
+    {
+      "id": "subject_verb_agreement",
+      "order": 24,
+      "name": {
+        "en": "Subject-Verb Agreement",
+        "vi": "Hòa Hợp Chủ - Vị"
+      },
+      "theory": {
+        "description": "Chủ ngữ và động từ phải hòa hợp về số: chủ ngữ số ít → động từ số ít, số nhiều → động từ số nhiều",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Quy tắc cơ bản",
+            "structure": "S số ít + V(s/es) | S số nhiều + V (nguyên mẫu)",
+            "structureVi": "Chủ ngữ số ít → thêm s/es | Chủ ngữ số nhiều → giữ nguyên",
+            "subjectNote": "He plays / They play | She goes / We go",
+            "example": { "en": "The dog runs fast. The dogs run fast.", "vi": "Con chó chạy nhanh. Những con chó chạy nhanh." },
+            "note": "Dùng cho thì hiện tại đơn. Quá khứ đơn không phân biệt (ngoại trừ was/were)."
+          },
+          {
+            "type": "negative",
+            "label": "Chủ ngữ đặc biệt — Số ít",
+            "structure": "everyone/everybody/everything/someone/nobody + V số ít",
+            "structureVi": "Đại từ bất định (every-/some-/no-/any- + body/one/thing) luôn chia số ít",
+            "subjectNote": "Everyone IS here. Nobody KNOWS. Something IS wrong.",
+            "example": { "en": "Everybody wants to be happy.", "vi": "Mọi người đều muốn hạnh phúc." },
+            "note": "each, every + N → V số ít: Each student HAS a book."
+          },
+          {
+            "type": "interrogative",
+            "label": "Chủ ngữ đặc biệt — Số nhiều & Ngoại lệ",
+            "structure": "A and B → V số nhiều | Either A or B → V theo B | There is/are → V theo N sau",
+            "structureVi": "A and B = 2 → nhiều. Either/or, Neither/nor → chia theo danh từ gần nhất",
+            "subjectNote": "Tom and Jerry ARE friends. Either Tom or his friends ARE coming.",
+            "example": { "en": "Neither the teacher nor the students were ready.", "vi": "Cả giáo viên lẫn học sinh đều chưa sẵn sàng." },
+            "note": "There is + N số ít / There are + N số nhiều"
+          }
+        ],
+        "signalWords": ["everyone/everybody → số ít", "each/every + N → số ít", "A and B → số nhiều", "either...or / neither...nor → theo N gần nhất", "there is/are → theo N sau", "the number of → số ít", "a number of → số nhiều"],
+        "signalWordsDetail": [
+          { "word": "everyone/everybody", "wordVi": "mọi người → số ít", "example": "Everyone is excited.", "exampleVi": "Mọi người đều hào hứng.", "note": "Luôn chia V số ít" },
+          { "word": "each / every", "wordVi": "mỗi → số ít", "example": "Each student has a textbook.", "exampleVi": "Mỗi học sinh có một sách giáo khoa.", "note": "each/every + N số ít → V số ít" },
+          { "word": "the number of", "wordVi": "số lượng → số ít", "example": "The number of students is increasing.", "exampleVi": "Số lượng học sinh đang tăng.", "note": "the number of = con số → V số ít" },
+          { "word": "a number of", "wordVi": "một số → số nhiều", "example": "A number of students are absent.", "exampleVi": "Một số học sinh vắng mặt.", "note": "a number of = một số → V số nhiều" },
+          { "word": "either...or", "wordVi": "hoặc...hoặc → theo N gần V", "example": "Either you or he is wrong.", "exampleVi": "Hoặc bạn hoặc anh ấy sai.", "note": "V chia theo N đứng gần V nhất (he → is)" }
+        ],
+        "usages": [
+          { "rule": "Đại từ bất định = số ít", "description": "everyone, everybody, everything, someone, nobody, nothing, each, every", "example": { "en": "Nothing is impossible.", "vi": "Không gì là không thể." } },
+          { "rule": "A and B = số nhiều", "description": "Hai chủ ngữ nối bằng 'and' → V số nhiều", "example": { "en": "Tom and Jerry are best friends.", "vi": "Tom và Jerry là bạn thân nhất." } },
+          { "rule": "Either/or, Neither/nor", "description": "V chia theo chủ ngữ gần nhất", "example": { "en": "Neither the cat nor the dogs are mine.", "vi": "Cả con mèo lẫn mấy con chó đều không phải của tôi." } },
+          { "rule": "Danh từ tập hợp", "description": "family, team, class, group → V số ít (nhóm) hoặc số nhiều (các thành viên)", "example": { "en": "The team is winning. / The team are arguing.", "vi": "Đội đang thắng. / Các thành viên đang cãi nhau." } }
+        ],
+        "notes": [
+          "Cụm giới từ KHÔNG ảnh hưởng: The box of chocolates IS heavy. (box = số ít, không phải chocolates)",
+          "the number of + N → V số ít | a number of + N → V số nhiều",
+          "Danh từ không đếm được luôn V số ít: The news IS good. / Mathematics IS difficult.",
+          "Tiền bạc, khoảng cách, thời gian = 1 đơn vị → V số ít: 10 dollars IS enough."
+        ]
+      },
+      "exercises": [
+        { "id": "sva_01", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Everyone ___ the answer.", "verb": "know", "correctAnswer": "knows", "distractors": ["know", "are knowing", "have known"], "explanation": "'Everyone' luôn chia V số ít → knows." },
+        { "id": "sva_02", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "The dogs ___ in the garden.", "verb": "play", "correctAnswer": "play", "distractors": ["plays", "is playing", "playing"], "explanation": "'dogs' số nhiều → V nguyên mẫu: play." },
+        { "id": "sva_03", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Each student ___ a pen.", "verb": "have", "correctAnswer": "has", "distractors": ["have", "having", "are having"], "explanation": "'Each' + N số ít → V số ít: has." },
+        { "id": "sva_04", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Tom and Jerry ___ best friends.", "verb": "be", "correctAnswer": "are", "distractors": ["is", "was", "has been"], "explanation": "A and B = 2 → V số nhiều: are." },
+        { "id": "sva_05", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Either you or he ___ wrong.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "am", "were"], "explanation": "Either...or → V theo N gần nhất (he) → is." },
+        { "id": "sva_06", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "The news ___ very surprising.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have been"], "explanation": "'news' tuy có 's' nhưng là danh từ không đếm được → V số ít: is." },
+        { "id": "sva_07", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "The number of visitors ___ increasing.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have been"], "explanation": "'The number of' → V số ít: is." },
+        { "id": "sva_08", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "A number of students ___ absent today.", "verb": "be", "correctAnswer": "are", "distractors": ["is", "was", "has been"], "explanation": "'A number of' → V số nhiều: are." },
+        { "id": "sva_09", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "There ___ a book and two pens on the desk.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have"], "explanation": "There + be: chia theo N đầu tiên (a book = số ít) → is." },
+        { "id": "sva_10", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Mathematics ___ my favorite subject.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have been"], "explanation": "'Mathematics' là môn học → V số ít: is." },
+        { "id": "sva_11", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "The box of chocolates ___ very heavy.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have been"], "explanation": "Chủ ngữ = 'box' (số ít), 'of chocolates' là cụm giới từ bổ sung → is." },
+        { "id": "sva_12", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Nobody ___ the truth.", "verb": "know", "correctAnswer": "knows", "distractors": ["know", "knowing", "are knowing"], "explanation": "'Nobody' = đại từ bất định → V số ít: knows." },
+        { "id": "sva_13", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Ten dollars ___ enough for lunch.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have been"], "explanation": "Số tiền coi là 1 đơn vị → V số ít: is." },
+        { "id": "sva_14", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Neither the teacher nor the students ___ ready.", "verb": "be", "correctAnswer": "were", "distractors": ["was", "is", "has been"], "explanation": "Neither...nor → theo N gần nhất (students, số nhiều) → were." },
+        { "id": "sva_15", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "The police ___ looking for the thief.", "verb": "be", "correctAnswer": "are", "distractors": ["is", "was", "has been"], "explanation": "'police' luôn là số nhiều → are." },
+        { "id": "sva_16", "type": "conjugation", "prompt": "Chọn câu SAI.", "sentence": "Câu nào sai hòa hợp chủ-vị?", "verb": "", "correctAnswer": "Everyone have their own opinion.", "distractors": ["Everyone has their own opinion.", "The children are playing.", "She likes music."], "explanation": "Everyone + V số ít: has (✓), have (✗)." },
+        { "id": "sva_17", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Bread and butter ___ my usual breakfast.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have been"], "explanation": "'Bread and butter' = 1 món ăn cố định → V số ít: is." },
+        { "id": "sva_18", "type": "fillInBlank", "prompt": "Điền dạng đúng.", "sentence": "Every boy and every girl ___ a prize.", "verb": "receive", "correctAnswer": "receives", "distractors": ["receive", "receiving", "have received"], "explanation": "'Every + N and every + N' → V số ít: receives." },
+        { "id": "sva_19", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "Two hours ___ a long time to wait.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have been"], "explanation": "Khoảng thời gian = 1 đơn vị → V số ít: is." },
+        { "id": "sva_20", "type": "conjugation", "prompt": "Chọn dạng đúng.", "sentence": "The team ___ playing well this season.", "verb": "be", "correctAnswer": "is", "distractors": ["are", "were", "have"], "explanation": "'team' = danh từ tập hợp → V số ít (coi là 1 nhóm): is." }
+      ]
+    }
+  ],
+  "grammarReviewExercises": [
+    { "id": "grev_01", "type": "conjugation", "topic": "modal_verbs", "prompt": "Chọn modal verb đúng.", "sentence": "You ___ drive without a license. It's illegal.", "verb": "", "correctAnswer": "mustn't", "distractors": ["don't have to", "shouldn't", "couldn't"], "explanation": "Lái xe không bằng là bất hợp pháp → 'mustn't' (cấm)." },
+    { "id": "grev_02", "type": "conjugation", "topic": "conditionals", "prompt": "Điền dạng đúng.", "sentence": "If I ___ you, I would take the job.", "verb": "", "correctAnswer": "were", "distractors": ["am", "was", "be"], "explanation": "Type 2: If I were you (giả định)." },
+    { "id": "grev_03", "type": "conjugation", "topic": "passive_voice", "prompt": "Chọn dạng bị động đúng.", "sentence": "The Eiffel Tower ___ in 1889.", "verb": "build", "correctAnswer": "was built", "distractors": ["is built", "built", "has been built"], "explanation": "Năm 1889 → quá khứ đơn bị động: was built." },
+    { "id": "grev_04", "type": "conjugation", "topic": "reported_speech", "prompt": "Chọn câu tường thuật đúng.", "sentence": "\"I love you.\" → He told her ___", "verb": "", "correctAnswer": "he loved her.", "distractors": ["he loves her.", "I loved her.", "he had loved her."], "explanation": "love → loved (lùi thì), I → he, you → her." },
+    { "id": "grev_05", "type": "conjugation", "topic": "comparatives", "prompt": "Chọn dạng so sánh đúng.", "sentence": "This is ___ day of my life. (happy)", "verb": "", "correctAnswer": "the happiest", "distractors": ["the most happy", "happier", "the most happiest"], "explanation": "happy → happiest (2 âm tiết, -y → -iest). Superlative có 'the'." },
+    { "id": "grev_06", "type": "conjugation", "topic": "articles", "prompt": "Chọn mạo từ đúng.", "sentence": "She plays ___ violin beautifully.", "verb": "", "correctAnswer": "the", "distractors": ["a", "an", "—"], "explanation": "Nhạc cụ dùng 'the': play the violin." },
+    { "id": "grev_07", "type": "conjugation", "topic": "modal_verbs", "prompt": "Chọn modal verb đúng.", "sentence": "You ___ be tired. You've been working all day.", "verb": "", "correctAnswer": "must", "distractors": ["can", "should", "might"], "explanation": "'must' = suy luận chắc chắn dựa trên bằng chứng." },
+    { "id": "grev_08", "type": "conjugation", "topic": "conditionals", "prompt": "Điền dạng đúng.", "sentence": "If she ___ the train, she would have been on time.", "verb": "catch", "correctAnswer": "had caught", "distractors": ["caught", "catches", "would catch"], "explanation": "Type 3: If + had V3 (hối tiếc quá khứ)." },
+    { "id": "grev_09", "type": "conjugation", "topic": "passive_voice", "prompt": "Chuyển sang bị động.", "sentence": "People speak Spanish in Mexico.", "verb": "", "correctAnswer": "Spanish is spoken in Mexico.", "distractors": ["Spanish spoken in Mexico.", "Spanish was spoken in Mexico.", "Spanish is speaking in Mexico."], "explanation": "Hiện tại đơn bị động: is/are + V3." },
+    { "id": "grev_10", "type": "conjugation", "topic": "reported_speech", "prompt": "Điền từ đúng.", "sentence": "\"Where is the bank?\" → She asked me where the bank ___.", "verb": "", "correctAnswer": "was", "distractors": ["is", "had been", "were"], "explanation": "Lùi thì: is → was." },
+    { "id": "grev_11", "type": "conjugation", "topic": "comparatives", "prompt": "Chọn dạng đúng.", "sentence": "The weather today is much ___ than yesterday.", "verb": "", "correctAnswer": "worse", "distractors": ["badder", "more bad", "worst"], "explanation": "bad → worse (bất quy tắc). 'much' nhấn mạnh." },
+    { "id": "grev_12", "type": "conjugation", "topic": "articles", "prompt": "Chọn mạo từ đúng.", "sentence": "I need ___ hour to finish this.", "verb": "", "correctAnswer": "an", "distractors": ["a", "the", "—"], "explanation": "'hour' phát âm /aʊ/ (h câm) → dùng 'an'." },
+    { "id": "grev_13", "type": "conjugation", "topic": "relative_clauses", "prompt": "Chọn đại từ quan hệ đúng.", "sentence": "The man ___ car is red is my uncle.", "verb": "", "correctAnswer": "whose", "distractors": ["who", "which", "whom"], "explanation": "'whose' chỉ sở hữu: whose car = xe của người đó." },
+    { "id": "grev_14", "type": "conjugation", "topic": "gerunds_infinitives", "prompt": "Chọn dạng đúng.", "sentence": "She avoids ___ junk food.", "verb": "eat", "correctAnswer": "eating", "distractors": ["to eat", "eat", "ate"], "explanation": "avoid + V-ing." },
+    { "id": "grev_15", "type": "conjugation", "topic": "prepositions", "prompt": "Chọn giới từ đúng.", "sentence": "I'll see you ___ Monday ___ 3 PM.", "verb": "", "correctAnswer": "on ... at", "distractors": ["in ... at", "at ... on", "on ... in"], "explanation": "on + ngày, at + giờ." },
+    { "id": "grev_16", "type": "conjugation", "topic": "question_tags", "prompt": "Thêm câu hỏi đuôi.", "sentence": "She can dance, ___?", "verb": "", "correctAnswer": "can't she", "distractors": ["can she", "doesn't she", "isn't she"], "explanation": "She can (+) → can't she (-)?" },
+    { "id": "grev_17", "type": "conjugation", "topic": "quantifiers", "prompt": "Chọn lượng từ đúng.", "sentence": "How ___ time do you need?", "verb": "", "correctAnswer": "much", "distractors": ["many", "few", "some"], "explanation": "'time' không đếm được → How much?" },
+    { "id": "grev_18", "type": "conjugation", "topic": "subject_verb_agreement", "prompt": "Chọn dạng đúng.", "sentence": "The children ___ playing outside.", "verb": "be", "correctAnswer": "are", "distractors": ["is", "was", "has been"], "explanation": "'children' số nhiều → are." }
+  ]
+}

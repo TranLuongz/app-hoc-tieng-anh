@@ -1,5 +1,6 @@
-// ===== Tenses Module =====
+// ===== Tenses & Grammar Module =====
 let tensesData = null;
+let grammarData = null;
 let tensesProgress = {};
 let currentTenseId = null;
 let currentTheoryPage = 0;
@@ -9,6 +10,7 @@ let practiceCorrect = 0;
 let practiceWrong = 0;
 let reviewMode = false;
 let tensesInitialized = false;
+let currentIsGrammar = false; // true when practicing grammar topic (not tense)
 
 // ===== Tenses DOM Elements =====
 const tensesHubScreen = document.getElementById('tenses-hub-screen');
@@ -25,6 +27,16 @@ async function initTenses() {
         } catch (e) {
             alert('Lỗi tải dữ liệu ngữ pháp!');
             return;
+        }
+    }
+
+    if (!grammarData) {
+        try {
+            const resp = await fetch('grammar.json');
+            grammarData = await resp.json();
+        } catch (e) {
+            console.warn('Không tải được grammar.json:', e);
+            grammarData = { grammar: [], grammarReviewExercises: [] };
         }
     }
 
@@ -115,10 +127,22 @@ function getTenseProgress(tenseId) {
 
 function isTenseUnlocked(tense) {
     if (tense.order === 1) return true;
+    // Grammar topics are always unlocked
+    if (tense.order > 12) return true;
     const prevTense = tensesData.tenses.find(t => t.order === tense.order - 1);
     if (!prevTense) return true;
     const prev = getTenseProgress(prevTense.id);
     return prev.practiceComplete && prev.bestAccuracy >= 60;
+}
+
+// Find topic data from either tenses or grammar
+function findTopicData(topicId) {
+    const t = tensesData.tenses.find(t => t.id === topicId);
+    if (t) return t;
+    if (grammarData && grammarData.grammar) {
+        return grammarData.grammar.find(g => g.id === topicId);
+    }
+    return null;
 }
 
 function getMasteredCount() {
@@ -128,14 +152,25 @@ function getMasteredCount() {
     }).length;
 }
 
+function getGrammarMasteredCount() {
+    if (!grammarData || !grammarData.grammar) return 0;
+    return grammarData.grammar.filter(t => {
+        const p = getTenseProgress(t.id);
+        return p.practiceComplete;
+    }).length;
+}
+
 // ===== Home Stat =====
 function updateTensesHomeStat() {
     if (!tensesData) return;
     const mastered = getMasteredCount();
+    const grammarMastered = getGrammarMasteredCount();
+    const totalMastered = mastered + grammarMastered;
+    const totalTopics = 12 + (grammarData ? grammarData.grammar.length : 0);
     const stat = document.getElementById('tenses-stat');
     const bar = document.getElementById('tenses-progress-bar');
-    if (stat) stat.textContent = `${mastered} / 12 thì`;
-    if (bar) bar.style.width = `${(mastered / 12) * 100}%`;
+    if (stat) stat.textContent = `${totalMastered} / ${totalTopics} chủ đề`;
+    if (bar) bar.style.width = `${(totalMastered / totalTopics) * 100}%`;
 }
 
 // ===== Tenses Hub =====
@@ -183,13 +218,81 @@ function renderTensesGrid() {
         if (unlocked) {
             card.addEventListener('click', () => {
                 currentTenseId = tense.id;
+                currentIsGrammar = false;
                 if (!prog.learnComplete) {
                     startLearn(tense.id);
                 } else {
-                    startPractice(tense.id);
+                    showTopicMenu(tense.id);
                 }
             });
         }
+
+        grid.appendChild(card);
+    });
+
+    // ── Grammar Topics Section ──
+    if (grammarData && grammarData.grammar && grammarData.grammar.length > 0) {
+        renderGrammarGrid(grid);
+    }
+}
+
+function renderGrammarGrid(grid) {
+    const grammarIcons = {
+        modal_verbs: '🔧',
+        conditionals: '🔀',
+        passive_voice: '🔄',
+        reported_speech: '💬',
+        comparatives: '📊',
+        articles: '📝',
+        relative_clauses: '🔗',
+        gerunds_infinitives: '🔤',
+        prepositions: '📍',
+        question_tags: '❓',
+        quantifiers: '🔢',
+        subject_verb_agreement: '⚖️'
+    };
+
+    // Section header
+    const header = document.createElement('div');
+    header.className = 'grammar-section-header';
+    header.innerHTML = '<h3>📚 Ngữ pháp khác</h3>';
+    grid.appendChild(header);
+
+    grammarData.grammar.forEach(topic => {
+        const prog = getTenseProgress(topic.id);
+        const learnDone = prog.learnComplete;
+        const practiceDone = prog.practiceComplete;
+        let status = practiceDone ? 'mastered' : learnDone ? 'learning' : 'available';
+        const statusIcon = status === 'mastered' ? '✓' : status === 'learning' ? '📝' : '→';
+        const icon = grammarIcons[topic.id] || '📖';
+
+        const card = document.createElement('div');
+        card.className = `tense-card grammar-card ${status}`;
+        card.innerHTML = `
+            <div class="tense-card-header">
+                <span class="tense-order">${icon}</span>
+                <span class="tense-status-icon">${statusIcon}</span>
+            </div>
+            <div class="tense-card-name">${topic.name.vi}</div>
+            <div class="tense-card-name-en">${topic.name.en}</div>
+            <div class="tense-card-progress">
+                <div class="tense-card-phases">
+                    <span class="phase-dot ${learnDone ? 'done' : 'active'}" title="Lý thuyết"></span>
+                    <span class="phase-dot ${practiceDone ? 'done' : (learnDone ? 'active' : '')}" title="Luyện tập"></span>
+                </div>
+                <span class="tense-accuracy">${prog.bestAccuracy > 0 ? prog.bestAccuracy + '%' : ''}</span>
+            </div>
+        `;
+
+        card.addEventListener('click', () => {
+            currentTenseId = topic.id;
+            currentIsGrammar = true;
+            if (!prog.learnComplete) {
+                startLearn(topic.id);
+            } else {
+                showTopicMenu(topic.id);
+            }
+        });
 
         grid.appendChild(card);
     });
@@ -197,28 +300,41 @@ function renderTensesGrid() {
 
 function updateHubProgress() {
     const mastered = getMasteredCount();
-    document.getElementById('tenses-mastered-count').textContent = mastered;
-    document.getElementById('tenses-overall-progress').style.width = `${(mastered / 12) * 100}%`;
+    const grammarMastered = getGrammarMasteredCount();
+    const totalMastered = mastered + grammarMastered;
+    const totalTopics = 12 + (grammarData ? grammarData.grammar.length : 0);
+    document.getElementById('tenses-mastered-count').textContent = totalMastered;
+    document.getElementById('tenses-overall-progress').style.width = `${(totalMastered / totalTopics) * 100}%`;
 
     const reviewBtn = document.getElementById('tenses-review-btn');
-    reviewBtn.disabled = mastered < 2;
+    reviewBtn.disabled = totalMastered < 2;
 }
 
 // ===== Learn Phase =====
-function startLearn(tenseId) {
+function startLearn(tenseId, reviewOnly) {
     currentTenseId = tenseId;
     currentTheoryPage = 0;
-    const tense = tensesData.tenses.find(t => t.id === tenseId);
+    const tense = findTopicData(tenseId);
+    if (!tense) return;
 
     document.getElementById('learn-tense-title').textContent = tense.name.vi;
-    document.getElementById('start-practice-btn').style.display = 'none';
+
+    // If reviewing theory (already learned), show practice button immediately
+    const prog = getTenseProgress(tenseId);
+    const practiceBtn = document.getElementById('start-practice-btn');
+    if (reviewOnly || prog.learnComplete) {
+        practiceBtn.style.display = '';
+        practiceBtn.textContent = '🏋️ Luyện tập';
+    } else {
+        practiceBtn.style.display = 'none';
+    }
 
     renderTheoryPage(tense);
     showScreen(tensesLearnScreen);
 }
 
 function renderTheoryPage(tense) {
-    if (!tense) tense = tensesData.tenses.find(t => t.id === currentTenseId);
+    if (!tense) tense = findTopicData(currentTenseId);
     const viewport = document.getElementById('theory-viewport');
     const pages = getTheoryPages(tense);
     const totalPages = pages.length;
@@ -316,7 +432,7 @@ function getTheoryPages(tense) {
 }
 
 function nextTheoryPage() {
-    const tense = tensesData.tenses.find(t => t.id === currentTenseId);
+    const tense = findTopicData(currentTenseId);
     const totalPages = getTheoryPages(tense).length;
     if (currentTheoryPage < totalPages - 1) {
         currentTheoryPage++;
@@ -327,7 +443,7 @@ function nextTheoryPage() {
 function prevTheoryPage() {
     if (currentTheoryPage > 0) {
         currentTheoryPage--;
-        const tense = tensesData.tenses.find(t => t.id === currentTenseId);
+        const tense = findTopicData(currentTenseId);
         renderTheoryPage(tense);
     }
 }
@@ -346,7 +462,7 @@ function startPractice(tenseId) {
 }
 
 function buildPracticeQueue(tenseId) {
-    const tense = tensesData.tenses.find(t => t.id === tenseId);
+    const tense = findTopicData(tenseId);
     if (!tense) return [];
 
     const all = tense.exercises.map(e => ({ ...e }));
@@ -519,14 +635,79 @@ function buildReviewQueue() {
         .filter(t => getTenseProgress(t.id).practiceComplete)
         .map(t => t.id);
 
-    if (!tensesData.reviewExercises) return [];
+    let eligible = [];
 
-    const eligible = tensesData.reviewExercises.filter(ex =>
-        completedIds.includes(ex.tenseId)
-    );
+    // Tenses review exercises
+    if (tensesData.reviewExercises) {
+        eligible = eligible.concat(
+            tensesData.reviewExercises.filter(ex => completedIds.includes(ex.tenseId))
+        );
+    }
+
+    // Grammar review exercises
+    if (grammarData && grammarData.grammarReviewExercises) {
+        const completedGrammarIds = grammarData.grammar
+            .filter(t => getTenseProgress(t.id).practiceComplete)
+            .map(t => t.id);
+        eligible = eligible.concat(
+            grammarData.grammarReviewExercises.filter(ex => completedGrammarIds.includes(ex.topic))
+        );
+    }
 
     shuffleArray(eligible);
     return eligible.slice(0, 15).map(ex => ({ ...ex }));
+}
+
+// ===== Topic Menu (Review Theory / Practice) =====
+function showTopicMenu(topicId) {
+    const topic = findTopicData(topicId);
+    if (!topic) return;
+    const prog = getTenseProgress(topicId);
+
+    // Remove existing menu if any
+    const existing = document.getElementById('topic-menu-overlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'topic-menu-overlay';
+    overlay.className = 'topic-menu-overlay';
+
+    const accuracyText = prog.bestAccuracy > 0 ? `Điểm cao nhất: ${prog.bestAccuracy}%` : '';
+
+    overlay.innerHTML = `
+        <div class="topic-menu-card">
+            <h3 class="topic-menu-title">${topic.name.vi}</h3>
+            <p class="topic-menu-sub">${topic.name.en}${accuracyText ? ' — ' + accuracyText : ''}</p>
+            <div class="topic-menu-buttons">
+                <button class="topic-menu-btn theory-btn" id="tmenu-theory">
+                    📖 Xem lý thuyết
+                </button>
+                <button class="topic-menu-btn practice-btn" id="tmenu-practice">
+                    🏋️ Luyện tập
+                </button>
+            </div>
+            <button class="topic-menu-close" id="tmenu-close">✕</button>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    // Close on overlay click
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.remove();
+    });
+
+    document.getElementById('tmenu-close').addEventListener('click', () => overlay.remove());
+
+    document.getElementById('tmenu-theory').addEventListener('click', () => {
+        overlay.remove();
+        startLearn(topicId, true);
+    });
+
+    document.getElementById('tmenu-practice').addEventListener('click', () => {
+        overlay.remove();
+        startPractice(topicId);
+    });
 }
 
 // ===== Results =====
@@ -538,7 +719,7 @@ function showResults() {
     document.getElementById('result-wrong').textContent = practiceWrong;
     document.getElementById('result-accuracy').textContent = accuracy + '%';
 
-    const tense = currentTenseId ? tensesData.tenses.find(t => t.id === currentTenseId) : null;
+    const tense = currentTenseId ? findTopicData(currentTenseId) : null;
 
     if (reviewMode) {
         document.getElementById('result-icon').textContent = accuracy >= 60 ? '🏆' : '📖';
@@ -588,19 +769,25 @@ function onResultNext() {
         return;
     }
 
-    const tense = tensesData.tenses.find(t => t.id === currentTenseId);
+    const tense = findTopicData(currentTenseId);
     const prog = getTenseProgress(currentTenseId);
 
     if (prog.practiceComplete) {
-        // Go to next tense
-        const nextTense = tensesData.tenses.find(t => t.order === tense.order + 1);
-        if (nextTense && isTenseUnlocked(nextTense)) {
-            startLearn(nextTense.id);
-        } else {
+        if (currentIsGrammar) {
+            // Grammar topics: go back to hub
             showTensesHub();
+        } else {
+            // Tenses: go to next tense
+            const nextTense = tensesData.tenses.find(t => t.order === tense.order + 1);
+            if (nextTense && isTenseUnlocked(nextTense)) {
+                currentIsGrammar = false;
+                startLearn(nextTense.id);
+            } else {
+                showTensesHub();
+            }
         }
     } else {
-        // Retry same tense
+        // Retry same topic
         startPractice(currentTenseId);
     }
 }

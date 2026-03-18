@@ -124,6 +124,136 @@
 .tense-card:nth-child(11) .tense-order { background: linear-gradient(135deg, #a855f7, #9333ea); }
 .tense-card:nth-child(12) .tense-order { background: linear-gradient(135deg, #e11d48, #be123c); }
 
+/* ===== Grammar Section ===== */
+.grammar-section-header {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+    padding: 0.6rem 0;
+    border-top: 2px dashed var(--border);
+}
+
+.grammar-section-header h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.grammar-card {
+    border-color: #c084fc;
+    background: linear-gradient(135deg, rgba(192, 132, 252, 0.04), rgba(139, 92, 246, 0.04));
+}
+
+.grammar-card:hover {
+    border-color: #a855f7;
+    background: linear-gradient(135deg, rgba(192, 132, 252, 0.08), rgba(139, 92, 246, 0.08));
+}
+
+.grammar-card.mastered {
+    border-color: var(--correct-border);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.03), rgba(52, 211, 153, 0.03));
+}
+
+/* ===== Topic Menu Overlay ===== */
+.topic-menu-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.topic-menu-card {
+    background: var(--bg-card, #fff);
+    border-radius: 20px;
+    padding: 1.8rem 1.5rem;
+    max-width: 320px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.topic-menu-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 0.3rem;
+}
+
+.topic-menu-sub {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0 0 1.2rem;
+}
+
+.topic-menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.topic-menu-btn {
+    padding: 0.85rem 1rem;
+    border: none;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.topic-menu-btn:hover {
+    transform: translateY(-2px);
+}
+
+.topic-menu-btn.theory-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+}
+
+.topic-menu-btn.practice-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+}
+
+.topic-menu-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+}
+
+.grammar-card .tense-order {
+    font-size: 1rem;
+    background: none !important;
+    width: auto;
+    height: auto;
+}
+
 .tense-status-icon {
     font-size: 1.1rem;
 }
