@@ -201,6 +201,7 @@ body.dark::before {
 .module-grid .module-card:nth-child(1)::before { background: linear-gradient(180deg, #6366f1, #818cf8); }
 .module-grid .module-card:nth-child(2)::before { background: linear-gradient(180deg, #f59e0b, #fbbf24); }
 .module-grid .module-card:nth-child(3)::before { background: linear-gradient(180deg, #ec4899, #f472b6); }
+.module-grid .module-card:nth-child(4)::before { background: linear-gradient(180deg, #8b5cf6, #a78bfa); }
 
 #module-stats-btn::before {
     content: '';
@@ -252,6 +253,11 @@ body.dark::before {
 .module-grid .module-card:nth-child(3) .module-icon {
     background: linear-gradient(135deg, #fce7f3, #fbcfe8);
     color: #db2777;
+}
+
+.module-grid .module-card:nth-child(4) .module-icon {
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+    color: #7c3aed;
 }
 
 #module-stats-btn .module-icon {

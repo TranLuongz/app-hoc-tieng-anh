@@ -59,6 +59,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tenses.css">
     <link rel="stylesheet" href="phrases.css">
+    <link rel="stylesheet" href="game.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -112,6 +113,17 @@
                             <div class="module-progress-bar" id="phrases-progress-bar"></div>
                         </div>
                         <div class="module-stat" id="phrases-stat">0 / 9633 câu</div>
+                    </div>
+                </button>
+                <button class="module-card" id="module-game-btn">
+                    <div class="module-icon">🎮</div>
+                    <div class="module-info">
+                        <div class="module-title">Trò chơi tiếng Anh</div>
+                        <div class="module-desc">Học qua câu chuyện tương tác</div>
+                        <div class="module-progress-bar-wrap">
+                            <div class="module-progress-bar" id="game-progress-bar"></div>
+                        </div>
+                        <div class="module-stat" id="game-stat">0 / 13 truyện</div>
                     </div>
                 </button>
             </div>
@@ -560,8 +572,217 @@
         </div>
     </div>
 
+    <!-- Game Hub Screen -->
+    <div id="game-hub-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="game-hub-back-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Trò chơi tiếng Anh</h2>
+                <div style="width:40px"></div>
+            </div>
+            <div class="game-hub-grid" id="game-hub-grid"></div>
+        </div>
+    </div>
+
+    <!-- Story Select Screen -->
+    <div id="story-select-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="story-select-back-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Chọn câu chuyện</h2>
+                <div style="width:40px"></div>
+            </div>
+            <div class="story-level-filter" id="story-level-filter">
+                <button class="level-pill active" data-level="all">Tất cả</button>
+                <button class="level-pill" data-level="A1">A1</button>
+                <button class="level-pill" data-level="A2">A2</button>
+                <button class="level-pill" data-level="B1">B1</button>
+            </div>
+            <div class="story-list" id="story-list"></div>
+        </div>
+    </div>
+
+    <!-- Story Play Screen -->
+    <div id="story-play-screen" class="screen">
+        <div class="game-container story-play-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="story-play-back-btn" title="Thoát">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title" id="story-play-title">Truyện</h2>
+                <div class="story-score-badge" id="story-score-badge">
+                    <span id="story-points">0</span> ⭐
+                </div>
+            </div>
+            <div class="story-progress-wrap">
+                <div class="story-progress-bar" id="story-progress-bar"></div>
+            </div>
+            <div class="story-scene" id="story-scene">
+                <div class="scene-emoji" id="scene-emoji"></div>
+                <div class="story-text" id="story-text"></div>
+                <div class="story-btn-row">
+                    <button class="story-translate-btn" id="story-speak-btn" title="Đọc tiếng Anh">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                        Đọc
+                    </button>
+                    <button class="story-translate-btn" id="story-translate-btn" title="Xem nghĩa tiếng Việt">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1"/><path d="M22 22l-5-10-5 10M14 18h6"/></svg>
+                        Dịch
+                    </button>
+                </div>
+                <div class="story-text-vi" id="story-text-vi" style="display:none"></div>
+            </div>
+            <div class="story-choices" id="story-choices"></div>
+            <div class="story-vocab-bar" id="story-vocab-bar" style="display:none">
+                <span class="vocab-bar-label">Từ vựng đã học:</span>
+                <span class="vocab-bar-count" id="story-vocab-count">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Result Screen -->
+    <div id="story-result-screen" class="screen">
+        <div class="game-container">
+            <div class="story-result-card">
+                <div class="story-result-emoji" id="story-result-emoji"></div>
+                <h2 class="story-result-title" id="story-result-title">Kết thúc</h2>
+                <p class="story-result-subtitle" id="story-result-subtitle"></p>
+                <div class="story-result-stars" id="story-result-stars"></div>
+                <div class="story-result-stats">
+                    <div class="story-stat-item">
+                        <span class="story-stat-number" id="result-score">0</span>
+                        <span class="story-stat-label">Điểm</span>
+                    </div>
+                    <div class="story-stat-item">
+                        <span class="story-stat-number" id="result-vocab">0</span>
+                        <span class="story-stat-label">Từ vựng</span>
+                    </div>
+                    <div class="story-stat-item">
+                        <span class="story-stat-number" id="result-endings">0/0</span>
+                        <span class="story-stat-label">Kết thúc</span>
+                    </div>
+                </div>
+                <div class="story-result-vocab" id="story-result-vocab"></div>
+                <div class="story-result-actions">
+                    <button class="btn-primary btn-large" id="story-replay-btn">Chơi lại</button>
+                    <button class="btn-secondary btn-large" id="story-back-list-btn">Chọn truyện khác</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auction Home Screen -->
+    <div id="auction-home-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="auction-home-back-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Sentence Auction</h2>
+                <div style="width:40px"></div>
+            </div>
+            <div class="auction-home-content">
+                <div class="auction-coins-display">
+                    <span class="auction-coins-icon">💰</span>
+                    <span class="auction-coins-amount" id="auction-coins-amount">0</span>
+                    <span class="auction-coins-label">xu</span>
+                </div>
+                <div class="auction-daily-bonus" id="auction-daily-bonus"></div>
+                <button class="btn-primary btn-large auction-play-btn" id="auction-play-btn">🎮 Chơi ngay (15 câu)</button>
+                <button class="btn-secondary btn-large auction-mission-btn" id="auction-mission-btn">📝 Nhiệm vụ kiếm xu</button>
+                <div class="auction-mission-info" id="auction-mission-info"></div>
+                <div class="auction-stats-summary" id="auction-stats-summary">
+                    <div class="auction-stat-item">
+                        <span class="auction-stat-number" id="auction-stat-games">0</span>
+                        <span class="auction-stat-label">Ván chơi</span>
+                    </div>
+                    <div class="auction-stat-item">
+                        <span class="auction-stat-number" id="auction-stat-correct">0</span>
+                        <span class="auction-stat-label">Đúng</span>
+                    </div>
+                    <div class="auction-stat-item">
+                        <span class="auction-stat-number" id="auction-stat-wrong">0</span>
+                        <span class="auction-stat-label">Sai</span>
+                    </div>
+                    <div class="auction-stat-item">
+                        <span class="auction-stat-number" id="auction-stat-best">0</span>
+                        <span class="auction-stat-label">Cao nhất</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auction Play Screen -->
+    <div id="auction-play-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="auction-play-back-btn" title="Thoát">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title" id="auction-play-progress">1/15</h2>
+                <div class="auction-play-coins">💰 <span id="auction-play-coins">0</span></div>
+            </div>
+            <div class="story-progress-wrap">
+                <div class="story-progress-bar auction-progress-bar" id="auction-progress-bar"></div>
+            </div>
+            <div class="auction-question-area" id="auction-question-area"></div>
+            <div class="auction-bet-area" id="auction-bet-area" style="display:none">
+                <div class="auction-bet-label">Đặt cược:</div>
+                <div class="auction-bet-buttons">
+                    <button class="auction-bet-btn" data-bet="10">10 xu</button>
+                    <button class="auction-bet-btn" data-bet="20">20 xu</button>
+                    <button class="auction-bet-btn" data-bet="30">30 xu</button>
+                    <button class="auction-bet-btn" data-bet="50">50 xu</button>
+                </div>
+            </div>
+            <div class="auction-answer-area" id="auction-answer-area" style="display:none"></div>
+            <div class="auction-feedback" id="auction-feedback" style="display:none"></div>
+            <button class="btn-primary btn-large auction-next-btn" id="auction-next-btn" style="display:none">Câu tiếp theo →</button>
+        </div>
+    </div>
+
+    <!-- Auction Result Screen -->
+    <div id="auction-result-screen" class="screen">
+        <div class="game-container">
+            <div class="auction-result-card">
+                <div class="auction-result-emoji" id="auction-result-emoji">🏆</div>
+                <h2 class="auction-result-title" id="auction-result-title">Kết quả</h2>
+                <div class="auction-result-coins" id="auction-result-coins"></div>
+                <div class="auction-result-stats">
+                    <div class="auction-result-stat">
+                        <span class="auction-result-stat-number" id="auction-result-correct">0</span>
+                        <span class="auction-result-stat-label">Đúng</span>
+                    </div>
+                    <div class="auction-result-stat">
+                        <span class="auction-result-stat-number" id="auction-result-wrong">0</span>
+                        <span class="auction-result-stat-label">Sai</span>
+                    </div>
+                    <div class="auction-result-stat">
+                        <span class="auction-result-stat-number" id="auction-result-earned">+0</span>
+                        <span class="auction-result-stat-label">Xu kiếm</span>
+                    </div>
+                    <div class="auction-result-stat">
+                        <span class="auction-result-stat-number" id="auction-result-lost">-0</span>
+                        <span class="auction-result-stat-label">Xu mất</span>
+                    </div>
+                </div>
+                <div class="auction-result-rank" id="auction-result-rank"></div>
+                <div class="auction-result-actions">
+                    <button class="btn-primary btn-large" id="auction-result-play-btn">Chơi lại</button>
+                    <button class="btn-secondary btn-large" id="auction-result-back-btn">Quay lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
     <script src="tenses.js"></script>
     <script src="phrases.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>

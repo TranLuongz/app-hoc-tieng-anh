@@ -1,3 +1,41 @@
+// ===== Sound Effects (shared across all modules) =====
+const SFX = (() => {
+    let ctx = null;
+    function getCtx() {
+        if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') ctx.resume();
+        return ctx;
+    }
+    function play(freq, type, dur, vol) {
+        try {
+            const c = getCtx();
+            const osc = c.createOscillator();
+            const gain = c.createGain();
+            osc.type = type;
+            osc.frequency.value = freq;
+            gain.gain.value = vol || 0.18;
+            gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + dur);
+            osc.connect(gain);
+            gain.connect(c.destination);
+            osc.start(c.currentTime);
+            osc.stop(c.currentTime + dur);
+        } catch (e) { /* silent fail */ }
+    }
+    return {
+        correct() {
+            play(880, 'sine', 0.15, 0.18);
+            setTimeout(() => play(1174, 'sine', 0.2, 0.15), 100);
+        },
+        wrong() {
+            play(300, 'square', 0.15, 0.12);
+            setTimeout(() => play(250, 'square', 0.2, 0.1), 100);
+        },
+        click() {
+            play(660, 'sine', 0.08, 0.1);
+        }
+    };
+})();
+
 // ===== State Variables =====
 let words = [];
 let currentIndex = 0;
@@ -97,6 +135,9 @@ async function init() {
     });
     document.getElementById('module-phrases-btn').addEventListener('click', () => {
         if (typeof initPhrases === 'function') initPhrases();
+    });
+    document.getElementById('module-game-btn').addEventListener('click', () => {
+        if (typeof initGame === 'function') initGame();
     });
     document.getElementById('module-stats-btn').addEventListener('click', showStatsScreen);
 
@@ -608,6 +649,7 @@ function selectOption(btn) {
     if (selected === correctAnswer) {
         btn.classList.add('correct');
         wordCard.classList.add('correct-anim');
+        SFX.correct();
         feedback.textContent = 'Chính xác!';
         feedback.className = 'feedback correct-msg';
         nextBtn.disabled = false;
@@ -624,6 +666,7 @@ function selectOption(btn) {
     } else {
         btn.classList.add('wrong');
         wordCard.classList.add('wrong-anim');
+        SFX.wrong();
         feedback.textContent = 'Sai rồi, chọn lại!';
         feedback.className = 'feedback wrong-msg';
         wrongCount++;
@@ -960,6 +1003,7 @@ function submitReviewAnswer() {
 
     if (result === 'correct') {
         input.classList.add('correct');
+        SFX.correct();
         reviewCorrect++;
         fb.textContent = 'Chính xác!';
         fb.className = 'feedback correct';
@@ -967,6 +1011,7 @@ function submitReviewAnswer() {
         isCorrect = true;
     } else if (result === 'close') {
         input.classList.add('close');
+        SFX.correct();
         reviewCorrect++;
         fb.textContent = 'Gần đúng!';
         fb.className = 'feedback close';
@@ -975,6 +1020,7 @@ function submitReviewAnswer() {
         isCorrect = true;
     } else {
         input.classList.add('wrong');
+        SFX.wrong();
         reviewWrong++;
         fb.textContent = 'Sai rồi!';
         fb.className = 'feedback wrong';

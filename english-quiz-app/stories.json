@@ -1,0 +1,1659 @@
+{
+  "stories": [
+    {
+      "id": "cafe_morning",
+      "title": { "en": "A Morning at the Café", "vi": "Buổi sáng ở quán café" },
+      "level": "A1",
+      "theme": "daily_life",
+      "icon": "☕",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You walk into a small café. It smells like fresh coffee. The barista smiles and says: 'Good morning! What would you like today?'",
+          "textVi": "Bạn bước vào một quán café nhỏ. Mùi cà phê thơm phức. Nhân viên pha chế mỉm cười nói: 'Chào buổi sáng! Hôm nay bạn muốn dùng gì?'",
+          "mood": "warm",
+          "sceneEmoji": "☕🏪😊",
+          "choices": [
+            { "text": "I'd like a coffee, please.", "textVi": "Tôi muốn một ly cà phê.", "next": "order_coffee", "points": 10, "vocab": ["coffee", "please", "would like"] },
+            { "text": "Can I have a tea?", "textVi": "Cho tôi một ly trà được không?", "next": "order_tea", "points": 10, "vocab": ["tea", "can I have"] },
+            { "text": "I want a hamburger!", "textVi": "Tôi muốn một cái hamburger!", "next": "no_food", "points": 0, "vocab": ["hamburger", "want"] }
+          ]
+        },
+        "order_coffee": {
+          "text": "'Great choice! Would you like it hot or iced?' the barista asks.",
+          "textVi": "'Lựa chọn tuyệt vời! Bạn muốn nóng hay đá?' nhân viên hỏi.",
+          "mood": "warm",
+          "sceneEmoji": "☕🤔",
+          "choices": [
+            { "text": "Hot, please. It's cold today.", "textVi": "Nóng nhé. Hôm nay trời lạnh.", "next": "hot_coffee", "points": 10, "vocab": ["hot", "cold", "today"] },
+            { "text": "Iced, please. I like cold drinks.", "textVi": "Đá nhé. Tôi thích đồ uống lạnh.", "next": "iced_coffee", "points": 10, "vocab": ["iced", "cold drinks"] }
+          ]
+        },
+        "order_tea": {
+          "text": "'Of course! We have green tea, black tea, and herbal tea. Which one do you prefer?'",
+          "textVi": "'Tất nhiên! Chúng tôi có trà xanh, trà đen, và trà thảo mộc. Bạn thích loại nào?'",
+          "mood": "calm",
+          "sceneEmoji": "🍵🌿",
+          "choices": [
+            { "text": "Green tea, please.", "textVi": "Trà xanh nhé.", "next": "green_tea", "points": 10, "vocab": ["green tea"] },
+            { "text": "I'll try the herbal tea.", "textVi": "Tôi sẽ thử trà thảo mộc.", "next": "herbal_tea", "points": 10, "vocab": ["herbal tea", "try"] }
+          ]
+        },
+        "no_food": {
+          "text": "The barista laughs: 'Sorry, we don't sell hamburgers here! This is a café. We have drinks and pastries. Would you like to try something else?'",
+          "textVi": "Nhân viên cười: 'Xin lỗi, chúng tôi không bán hamburger ở đây! Đây là quán café. Chúng tôi có đồ uống và bánh ngọt. Bạn muốn thử gì khác không?'",
+          "mood": "warm",
+          "sceneEmoji": "😅🍔❌",
+          "choices": [
+            { "text": "Oh, sorry! A coffee, please.", "textVi": "Ồ, xin lỗi! Cho tôi một ly cà phê.", "next": "order_coffee", "points": 5, "vocab": ["sorry", "coffee"] },
+            { "text": "Never mind. Goodbye!", "textVi": "Thôi không sao. Tạm biệt!", "next": "ending_leave", "points": 0, "vocab": ["never mind", "goodbye"] }
+          ]
+        },
+        "hot_coffee": {
+          "text": "The barista makes a beautiful hot coffee with a heart shape on top. 'Here you go! Would you also like a croissant? They're fresh from the oven!'",
+          "textVi": "Nhân viên pha một ly cà phê nóng đẹp mắt với hình trái tim. 'Đây ạ! Bạn có muốn thêm một chiếc croissant không? Vừa mới ra lò đấy!'",
+          "mood": "warm",
+          "sceneEmoji": "☕❤️🥐",
+          "choices": [
+            { "text": "Yes, please! How much is it?", "textVi": "Vâng, làm ơn! Bao nhiêu tiền ạ?", "next": "buy_croissant", "points": 10, "vocab": ["how much", "yes please"] },
+            { "text": "No, thank you. Just the coffee.", "textVi": "Không, cảm ơn. Chỉ cà phê thôi.", "next": "just_coffee", "points": 10, "vocab": ["no thank you", "just"] }
+          ]
+        },
+        "iced_coffee": {
+          "text": "The barista prepares a cool iced coffee. 'Here's your iced coffee! Do you want sugar or milk?'",
+          "textVi": "Nhân viên pha một ly cà phê đá mát lạnh. 'Cà phê đá của bạn đây! Bạn muốn thêm đường hay sữa?'",
+          "mood": "calm",
+          "sceneEmoji": "🧊☕",
+          "choices": [
+            { "text": "Just milk, please.", "textVi": "Chỉ sữa thôi.", "next": "just_coffee", "points": 10, "vocab": ["milk", "just"] },
+            { "text": "Sugar and milk, please.", "textVi": "Đường và sữa nhé.", "next": "buy_croissant", "points": 10, "vocab": ["sugar", "milk"] }
+          ]
+        },
+        "green_tea": {
+          "text": "The barista carefully prepares your green tea. The cup is warm in your hands. 'Enjoy! Green tea is very healthy.'",
+          "textVi": "Nhân viên cẩn thận pha trà xanh cho bạn. Ly trà ấm trong tay. 'Mời thưởng thức! Trà xanh rất tốt cho sức khỏe.'",
+          "mood": "calm",
+          "sceneEmoji": "🍵😌",
+          "choices": [
+            { "text": "Thank you! This is delicious.", "textVi": "Cảm ơn! Ngon quá.", "next": "ending_perfect", "points": 10, "vocab": ["thank you", "delicious"] },
+            { "text": "It's a bit bitter. Can I have some honey?", "textVi": "Hơi đắng. Cho tôi chút mật ong được không?", "next": "add_honey", "points": 10, "vocab": ["bitter", "honey"] }
+          ]
+        },
+        "herbal_tea": {
+          "text": "'Good choice! Our herbal tea has chamomile and mint. It's very relaxing.' The barista gives you a warm cup.",
+          "textVi": "'Lựa chọn hay! Trà thảo mộc của chúng tôi có hoa cúc và bạc hà. Rất thư giãn.' Nhân viên đưa bạn một ly ấm.",
+          "mood": "calm",
+          "sceneEmoji": "🌼🍵✨",
+          "choices": [
+            { "text": "It smells wonderful! Thank you.", "textVi": "Thơm quá! Cảm ơn.", "next": "ending_perfect", "points": 10, "vocab": ["smell", "wonderful"] },
+            { "text": "Can I sit by the window?", "textVi": "Tôi có thể ngồi cạnh cửa sổ không?", "next": "window_seat", "points": 10, "vocab": ["sit", "window"] }
+          ]
+        },
+        "buy_croissant": {
+          "text": "'The croissant is $3 and the coffee is $4. That's $7 total.' You pay and find a nice table near the window.",
+          "textVi": "'Croissant 3 đô và cà phê 4 đô. Tổng cộng 7 đô.' Bạn trả tiền và tìm được một bàn đẹp gần cửa sổ.",
+          "mood": "happy",
+          "sceneEmoji": "💰🥐☕",
+          "choices": [
+            { "text": "This is a perfect morning!", "textVi": "Đây là một buổi sáng hoàn hảo!", "next": "ending_perfect", "points": 10, "vocab": ["perfect", "morning"] }
+          ]
+        },
+        "just_coffee": {
+          "text": "You take your coffee and sit at a small table. A friendly person next to you says: 'Hi! Is this seat taken?'",
+          "textVi": "Bạn cầm ly cà phê và ngồi vào bàn nhỏ. Một người thân thiện bên cạnh nói: 'Xin chào! Chỗ này có ai ngồi chưa?'",
+          "mood": "warm",
+          "sceneEmoji": "☕👋😊",
+          "choices": [
+            { "text": "No, please sit down! I'm [your name].", "textVi": "Chưa, mời ngồi! Tôi là [tên bạn].", "next": "ending_friend", "points": 10, "vocab": ["sit down", "please"] },
+            { "text": "Sorry, I'm waiting for someone.", "textVi": "Xin lỗi, tôi đang đợi ai đó.", "next": "ending_perfect", "points": 5, "vocab": ["waiting for", "someone"] }
+          ]
+        },
+        "add_honey": {
+          "text": "'Of course!' The barista adds honey to your tea. Now it tastes sweet and smooth. 'Is that better?'",
+          "textVi": "'Tất nhiên!' Nhân viên thêm mật ong vào trà. Giờ vị ngọt và mềm mại. 'Vậy có ngon hơn không?'",
+          "mood": "happy",
+          "sceneEmoji": "🍯🍵😋",
+          "choices": [
+            { "text": "Yes, much better! Thank you so much.", "textVi": "Vâng, ngon hơn nhiều! Cảm ơn rất nhiều.", "next": "ending_perfect", "points": 10, "vocab": ["much better", "thank you so much"] }
+          ]
+        },
+        "window_seat": {
+          "text": "'Of course! The window seat is free.' You sit down and watch people walking outside. The sun is shining. It's a beautiful morning.",
+          "textVi": "'Tất nhiên! Chỗ cạnh cửa sổ trống.' Bạn ngồi xuống và ngắm người qua lại. Mặt trời đang chiếu sáng. Thật là một buổi sáng đẹp trời.",
+          "mood": "happy",
+          "sceneEmoji": "🪟☀️🍵",
+          "choices": [
+            { "text": "What a lovely morning!", "textVi": "Thật là một buổi sáng đáng yêu!", "next": "ending_perfect", "points": 10, "vocab": ["lovely", "morning"] }
+          ]
+        },
+        "ending_perfect": {
+          "text": "You finish your drink with a smile. The café is warm and cozy. You think: 'I will come back here tomorrow!' What a perfect start to the day!",
+          "textVi": "Bạn uống xong với nụ cười. Quán café ấm cúng. Bạn nghĩ: 'Ngày mai mình sẽ quay lại đây!' Thật là một khởi đầu hoàn hảo cho ngày mới!",
+          "mood": "happy",
+          "sceneEmoji": "🌟☕😊✨",
+          "ending": true,
+          "endingId": "perfect",
+          "endingTitle": { "en": "Perfect Morning", "vi": "Buổi sáng hoàn hảo" },
+          "stars": 3
+        },
+        "ending_friend": {
+          "text": "The friendly person is a student from another country. You talk about your hobbies and favorite foods. You exchange phone numbers. You made a new friend at the café today!",
+          "textVi": "Người thân thiện đó là sinh viên từ nước khác. Các bạn nói về sở thích và món ăn yêu thích. Các bạn trao đổi số điện thoại. Bạn đã có một người bạn mới ở quán café hôm nay!",
+          "mood": "happy",
+          "sceneEmoji": "🤝😊📱",
+          "ending": true,
+          "endingId": "friend",
+          "endingTitle": { "en": "A New Friend", "vi": "Người bạn mới" },
+          "stars": 3
+        },
+        "ending_leave": {
+          "text": "You leave the café without ordering anything. Your stomach is still empty. Maybe you should try again tomorrow and order a drink!",
+          "textVi": "Bạn rời quán café mà không gọi gì. Bụng vẫn đói. Có lẽ ngày mai nên thử lại và gọi đồ uống!",
+          "mood": "calm",
+          "sceneEmoji": "😔🚶‍♂️",
+          "ending": true,
+          "endingId": "leave",
+          "endingTitle": { "en": "Empty Handed", "vi": "Tay không ra về" },
+          "stars": 1
+        }
+      }
+    },
+    {
+      "id": "lost_in_city",
+      "title": { "en": "Lost in the City", "vi": "Lạc đường trong thành phố" },
+      "level": "A1",
+      "theme": "travel",
+      "icon": "🗺️",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You are in a new city. You want to go to the train station, but you are lost. You see a police officer standing nearby.",
+          "textVi": "Bạn đang ở một thành phố mới. Bạn muốn đến ga tàu, nhưng bạn bị lạc. Bạn thấy một cảnh sát đứng gần đó.",
+          "mood": "tense",
+          "sceneEmoji": "🏙️😟🗺️",
+          "choices": [
+            { "text": "Excuse me, can you help me?", "textVi": "Xin lỗi, bạn có thể giúp tôi không?", "next": "ask_police", "points": 10, "vocab": ["excuse me", "help"] },
+            { "text": "I'll try to find it by myself.", "textVi": "Tôi sẽ tự tìm.", "next": "walk_alone", "points": 5, "vocab": ["find", "by myself"] },
+            { "text": "I'll use my phone to look at the map.", "textVi": "Tôi sẽ dùng điện thoại xem bản đồ.", "next": "use_phone", "points": 10, "vocab": ["phone", "map"] }
+          ]
+        },
+        "ask_police": {
+          "text": "'Of course! Where do you want to go?' the police officer asks kindly.",
+          "textVi": "'Tất nhiên! Bạn muốn đi đâu?' cảnh sát hỏi một cách tử tế.",
+          "mood": "calm",
+          "sceneEmoji": "👮‍♂️😊",
+          "choices": [
+            { "text": "I want to go to the train station, please.", "textVi": "Tôi muốn đi đến ga tàu.", "next": "directions", "points": 10, "vocab": ["train station", "want to go"] },
+            { "text": "Where is the nearest bus stop?", "textVi": "Trạm xe buýt gần nhất ở đâu?", "next": "bus_stop", "points": 10, "vocab": ["nearest", "bus stop"] }
+          ]
+        },
+        "walk_alone": {
+          "text": "You walk for 10 minutes but everything looks the same. You see a bookshop and a bakery. A woman is standing outside the bakery.",
+          "textVi": "Bạn đi bộ 10 phút nhưng mọi thứ trông giống nhau. Bạn thấy một hiệu sách và một tiệm bánh. Một phụ nữ đang đứng ngoài tiệm bánh.",
+          "mood": "tense",
+          "sceneEmoji": "🚶‍♂️🏘️📖🥖",
+          "choices": [
+            { "text": "Excuse me, is the train station near here?", "textVi": "Xin lỗi, ga tàu có gần đây không?", "next": "ask_woman", "points": 10, "vocab": ["near here", "train station"] },
+            { "text": "I'm hungry. Let me buy some bread first.", "textVi": "Tôi đói. Để tôi mua bánh mì trước.", "next": "buy_bread", "points": 5, "vocab": ["hungry", "bread", "buy"] }
+          ]
+        },
+        "use_phone": {
+          "text": "Oh no! Your phone battery is at 5%. The map is loading very slowly. You see a café across the street with a 'Free Wi-Fi' sign.",
+          "textVi": "Ôi không! Pin điện thoại còn 5%. Bản đồ tải rất chậm. Bạn thấy một quán café bên kia đường với biển 'Wi-Fi miễn phí'.",
+          "mood": "tense",
+          "sceneEmoji": "📱🪫😰",
+          "choices": [
+            { "text": "I'll go to the café and charge my phone.", "textVi": "Tôi sẽ vào quán café sạc điện thoại.", "next": "cafe_charge", "points": 10, "vocab": ["charge", "phone"] },
+            { "text": "I'll ask someone for directions instead.", "textVi": "Tôi sẽ hỏi đường ai đó thay vì vậy.", "next": "ask_police", "points": 10, "vocab": ["ask", "directions", "instead"] }
+          ]
+        },
+        "directions": {
+          "text": "'The train station? It's not far! Go straight for two blocks, then turn left. You will see it on the right side.' The officer points down the road.",
+          "textVi": "'Ga tàu hả? Không xa đâu! Đi thẳng hai ngã tư, rồi rẽ trái. Bạn sẽ thấy nó bên phải.' Cảnh sát chỉ xuống đường.",
+          "mood": "calm",
+          "sceneEmoji": "👮‍♂️👉🛤️",
+          "choices": [
+            { "text": "Go straight and turn left. Thank you so much!", "textVi": "Đi thẳng rồi rẽ trái. Cảm ơn rất nhiều!", "next": "follow_directions", "points": 10, "vocab": ["go straight", "turn left", "thank you"] },
+            { "text": "Can you say that again, please? More slowly?", "textVi": "Bạn có thể nói lại không? Chậm hơn?", "next": "repeat_directions", "points": 10, "vocab": ["say again", "slowly"] }
+          ]
+        },
+        "bus_stop": {
+          "text": "'The bus stop is right there, across the street. Bus number 5 goes to the train station. It comes every 10 minutes.'",
+          "textVi": "'Trạm xe buýt ngay kia, bên kia đường. Xe buýt số 5 đi đến ga tàu. Cứ 10 phút có một chuyến.'",
+          "mood": "calm",
+          "sceneEmoji": "🚌🚏",
+          "choices": [
+            { "text": "Thank you! I'll take bus number 5.", "textVi": "Cảm ơn! Tôi sẽ đi xe buýt số 5.", "next": "take_bus", "points": 10, "vocab": ["take the bus", "number"] },
+            { "text": "Is it cheaper to walk?", "textVi": "Đi bộ có rẻ hơn không?", "next": "directions", "points": 5, "vocab": ["cheaper", "walk"] }
+          ]
+        },
+        "ask_woman": {
+          "text": "The woman smiles: 'The train station? Yes, it's about 15 minutes walking. Go down this street, turn right at the traffic light, and you'll see it.'",
+          "textVi": "Người phụ nữ mỉm cười: 'Ga tàu hả? Vâng, đi bộ khoảng 15 phút. Đi xuống đường này, rẽ phải ở đèn giao thông, bạn sẽ thấy.'",
+          "mood": "calm",
+          "sceneEmoji": "👩😊👉",
+          "choices": [
+            { "text": "Turn right at the traffic light. Got it! Thank you!", "textVi": "Rẽ phải ở đèn giao thông. Hiểu rồi! Cảm ơn!", "next": "follow_directions", "points": 10, "vocab": ["turn right", "traffic light", "got it"] }
+          ]
+        },
+        "buy_bread": {
+          "text": "You enter the bakery. The smell is amazing! You buy a warm croissant for $2. The baker says: 'Are you looking for something? You seem lost.'",
+          "textVi": "Bạn vào tiệm bánh. Mùi thơm tuyệt vời! Bạn mua một chiếc croissant ấm giá $2. Người bán bánh nói: 'Bạn đang tìm gì à? Trông bạn có vẻ bị lạc.'",
+          "mood": "warm",
+          "sceneEmoji": "🥐😋🧑‍🍳",
+          "choices": [
+            { "text": "Yes, I'm looking for the train station.", "textVi": "Vâng, tôi đang tìm ga tàu.", "next": "baker_helps", "points": 10, "vocab": ["looking for", "train station"] },
+            { "text": "No, I'm just walking around. Thank you!", "textVi": "Không, tôi chỉ đi dạo thôi. Cảm ơn!", "next": "ending_explorer", "points": 5, "vocab": ["walking around"] }
+          ]
+        },
+        "cafe_charge": {
+          "text": "You go into the café and order a juice while charging your phone. After 20 minutes, your phone is at 40%. Now the map works! The train station is only 5 minutes away.",
+          "textVi": "Bạn vào quán café và gọi một ly nước trái cây trong khi sạc điện thoại. Sau 20 phút, pin 40%. Giờ bản đồ hoạt động rồi! Ga tàu chỉ cách 5 phút.",
+          "mood": "happy",
+          "sceneEmoji": "📱🔋🗺️",
+          "choices": [
+            { "text": "Great! Let me go to the station now.", "textVi": "Tuyệt! Để tôi đến ga ngay.", "next": "ending_found", "points": 10, "vocab": ["great", "let me go", "now"] }
+          ]
+        },
+        "follow_directions": {
+          "text": "You follow the directions carefully. After a few minutes, you see a big sign that says 'TRAIN STATION'. You made it!",
+          "textVi": "Bạn đi theo chỉ dẫn cẩn thận. Sau vài phút, bạn thấy biển lớn ghi 'GA TÀU'. Bạn đã đến nơi!",
+          "mood": "happy",
+          "sceneEmoji": "🚉🎉😄",
+          "choices": [
+            { "text": "I found it! Thank goodness!", "textVi": "Tìm được rồi! May quá!", "next": "ending_found", "points": 10, "vocab": ["found", "thank goodness"] }
+          ]
+        },
+        "repeat_directions": {
+          "text": "The officer speaks more slowly: 'Go... straight... two blocks. Then... turn... left. The station... is on the right.' He smiles patiently.",
+          "textVi": "Cảnh sát nói chậm hơn: 'Đi... thẳng... hai ngã tư. Rồi... rẽ... trái. Ga tàu... bên phải.' Anh ấy mỉm cười kiên nhẫn.",
+          "mood": "calm",
+          "sceneEmoji": "👮‍♂️🐌😊",
+          "choices": [
+            { "text": "I understand now! Thank you very much!", "textVi": "Giờ tôi hiểu rồi! Cảm ơn rất nhiều!", "next": "follow_directions", "points": 10, "vocab": ["understand", "thank you very much"] }
+          ]
+        },
+        "take_bus": {
+          "text": "You wait at the bus stop. Bus number 5 arrives in 3 minutes. You get on the bus and show the driver your ticket. In 5 minutes, you arrive at the train station!",
+          "textVi": "Bạn đợi ở trạm xe buýt. Xe buýt số 5 đến sau 3 phút. Bạn lên xe và đưa vé cho tài xế. Sau 5 phút, bạn đến ga tàu!",
+          "mood": "happy",
+          "sceneEmoji": "🚌🎫🚉",
+          "choices": [
+            { "text": "That was easy! I love public transport.", "textVi": "Dễ quá! Tôi thích phương tiện công cộng.", "next": "ending_found", "points": 10, "vocab": ["easy", "public transport", "love"] }
+          ]
+        },
+        "baker_helps": {
+          "text": "The baker draws a map on a napkin: 'Here! Go straight, pass the park, and it's behind the big supermarket. About 10 minutes walking.' The bread is delicious too!",
+          "textVi": "Người bán bánh vẽ bản đồ trên giấy ăn: 'Đây! Đi thẳng, qua công viên, ga tàu phía sau siêu thị lớn. Đi bộ khoảng 10 phút.' Bánh mì cũng ngon lắm!",
+          "mood": "warm",
+          "sceneEmoji": "🧑‍🍳📝🥐",
+          "choices": [
+            { "text": "Thank you! You're very kind.", "textVi": "Cảm ơn! Bạn thật tốt bụng.", "next": "ending_found", "points": 10, "vocab": ["kind", "thank you"] }
+          ]
+        },
+        "ending_found": {
+          "text": "You arrive at the train station on time! You feel happy and proud. Today you learned that asking for help is always a good idea. Even when you're lost, people are kind and ready to help.",
+          "textVi": "Bạn đến ga tàu đúng giờ! Bạn cảm thấy vui và tự hào. Hôm nay bạn học được rằng hỏi đường luôn là ý tưởng tốt. Dù bị lạc, mọi người đều tốt bụng và sẵn sàng giúp đỡ.",
+          "mood": "happy",
+          "sceneEmoji": "🚉🎉🌟",
+          "ending": true,
+          "endingId": "found",
+          "endingTitle": { "en": "Found the Way!", "vi": "Tìm được đường!" },
+          "stars": 3
+        },
+        "ending_explorer": {
+          "text": "You spend the whole afternoon exploring the city. You find a beautiful park, a small museum, and a great restaurant. You never went to the train station, but you had an amazing adventure!",
+          "textVi": "Bạn dành cả buổi chiều khám phá thành phố. Bạn tìm thấy một công viên đẹp, một bảo tàng nhỏ, và một nhà hàng tuyệt vời. Bạn không bao giờ đến ga tàu, nhưng bạn đã có một chuyến phiêu lưu tuyệt vời!",
+          "mood": "happy",
+          "sceneEmoji": "🏙️🎨🌳✨",
+          "ending": true,
+          "endingId": "explorer",
+          "endingTitle": { "en": "City Explorer", "vi": "Nhà thám hiểm thành phố" },
+          "stars": 2
+        }
+      }
+    },
+    {
+      "id": "first_day_work",
+      "title": { "en": "First Day at Work", "vi": "Ngày đầu đi làm" },
+      "level": "A2",
+      "theme": "business",
+      "icon": "💼",
+      "totalEndings": 4,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "Today is your first day at a new company. You arrive at the office building at 8:50 AM. The reception desk is in the lobby. A receptionist looks up at you.",
+          "textVi": "Hôm nay là ngày đầu tiên ở công ty mới. Bạn đến tòa nhà văn phòng lúc 8:50 sáng. Quầy lễ tân ở sảnh. Nhân viên lễ tân nhìn lên.",
+          "mood": "tense",
+          "sceneEmoji": "🏢💼😬",
+          "choices": [
+            { "text": "Good morning! I'm the new employee. Today is my first day.", "textVi": "Chào buổi sáng! Tôi là nhân viên mới. Hôm nay là ngày đầu tiên.", "next": "reception_greet", "points": 10, "vocab": ["employee", "first day"] },
+            { "text": "Hi... um... I think I work here now?", "textVi": "Xin chào... ờm... tôi nghĩ tôi làm việc ở đây?", "next": "reception_nervous", "points": 5, "vocab": ["work here", "think"] }
+          ]
+        },
+        "reception_greet": {
+          "text": "'Welcome! We've been expecting you. Your manager, Ms. Chen, is on the third floor. Here's your ID badge. Take the elevator on the left.'",
+          "textVi": "'Chào mừng! Chúng tôi đã đợi bạn. Quản lý của bạn, cô Chen, ở tầng 3. Đây là thẻ nhân viên. Đi thang máy bên trái.'",
+          "mood": "calm",
+          "sceneEmoji": "🏢🪪😊",
+          "choices": [
+            { "text": "Thank you! Third floor, got it.", "textVi": "Cảm ơn! Tầng 3, hiểu rồi.", "next": "meet_manager", "points": 10, "vocab": ["third floor", "got it"] },
+            { "text": "Could you tell me where the restroom is first?", "textVi": "Bạn có thể chỉ tôi nhà vệ sinh trước không?", "next": "find_restroom", "points": 10, "vocab": ["restroom", "could you tell me"] }
+          ]
+        },
+        "reception_nervous": {
+          "text": "The receptionist smiles kindly: 'Don't worry! Everyone is nervous on their first day. What's your name? I'll call your manager.'",
+          "textVi": "Lễ tân mỉm cười: 'Đừng lo! Ai cũng hồi hộp ngày đầu tiên. Bạn tên gì? Tôi sẽ gọi quản lý.'",
+          "mood": "warm",
+          "sceneEmoji": "😊🤝",
+          "choices": [
+            { "text": "My name is... Thank you for being so kind.", "textVi": "Tôi tên là... Cảm ơn vì đã tốt bụng.", "next": "meet_manager", "points": 10, "vocab": ["my name is", "kind"] }
+          ]
+        },
+        "find_restroom": {
+          "text": "'Of course! The restroom is down the hall on the right.' You freshen up and feel more confident. Now you're ready to meet your manager!",
+          "textVi": "'Tất nhiên! Nhà vệ sinh cuối hành lang bên phải.' Bạn rửa mặt và cảm thấy tự tin hơn. Giờ bạn sẵn sàng gặp quản lý!",
+          "mood": "calm",
+          "sceneEmoji": "🚻✨😤",
+          "choices": [
+            { "text": "Okay, let's go to the third floor!", "textVi": "Được rồi, đi lên tầng 3 thôi!", "next": "meet_manager", "points": 10, "vocab": ["let's go", "third floor"] }
+          ]
+        },
+        "meet_manager": {
+          "text": "You arrive at the third floor. A woman in a blue jacket stands up and walks toward you. 'Hello! You must be the new team member. I'm Ms. Chen, your manager. Welcome aboard!'",
+          "textVi": "Bạn đến tầng 3. Một phụ nữ mặc áo khoác xanh đứng dậy và đi về phía bạn. 'Xin chào! Bạn chắc là thành viên mới. Tôi là cô Chen, quản lý của bạn. Chào mừng đến đội!'",
+          "mood": "warm",
+          "sceneEmoji": "👩‍💼🤝💼",
+          "choices": [
+            { "text": "Nice to meet you, Ms. Chen! I'm excited to be here.", "textVi": "Rất vui được gặp cô Chen! Tôi rất hào hứng được ở đây.", "next": "office_tour", "points": 10, "vocab": ["nice to meet you", "excited"] },
+            { "text": "Hello! Thank you for this opportunity.", "textVi": "Xin chào! Cảm ơn vì cơ hội này.", "next": "office_tour", "points": 10, "vocab": ["opportunity", "thank you"] }
+          ]
+        },
+        "office_tour": {
+          "text": "Ms. Chen shows you around the office. 'This is the meeting room, that's the kitchen, and here is your desk.' Your desk has a new computer and a welcome card from the team.",
+          "textVi": "Cô Chen dẫn bạn tham quan văn phòng. 'Đây là phòng họp, kia là bếp, và đây là bàn làm việc của bạn.' Bàn bạn có máy tính mới và thiệp chào mừng từ đội.",
+          "mood": "warm",
+          "sceneEmoji": "🏢🖥️💌",
+          "choices": [
+            { "text": "This is wonderful! The team is so welcoming.", "textVi": "Tuyệt vời quá! Đội rất thân thiện.", "next": "meet_team", "points": 10, "vocab": ["wonderful", "welcoming", "team"] },
+            { "text": "Where can I get some coffee?", "textVi": "Tôi có thể lấy cà phê ở đâu?", "next": "kitchen_coffee", "points": 5, "vocab": ["where can I", "coffee"] }
+          ]
+        },
+        "meet_team": {
+          "text": "Ms. Chen introduces you to the team. 'Everyone, this is our new colleague!' A man named David waves: 'Hi! Welcome! Do you want to have lunch with us later?'",
+          "textVi": "Cô Chen giới thiệu bạn với đội. 'Mọi người, đây là đồng nghiệp mới!' Một người tên David vẫy tay: 'Chào! Chào mừng! Bạn có muốn ăn trưa cùng chúng tôi không?'",
+          "mood": "happy",
+          "sceneEmoji": "👥👋😊",
+          "choices": [
+            { "text": "I'd love to! That sounds great.", "textVi": "Tôi rất muốn! Nghe tuyệt đấy.", "next": "lunch_team", "points": 10, "vocab": ["I'd love to", "sounds great"] },
+            { "text": "Maybe next time. I brought my lunch today.", "textVi": "Có lẽ lần sau. Hôm nay tôi mang cơm.", "next": "lunch_alone", "points": 5, "vocab": ["maybe next time", "brought"] }
+          ]
+        },
+        "kitchen_coffee": {
+          "text": "In the kitchen, you meet a colleague named Sarah. 'Hey! New here? The coffee machine is a bit tricky. Let me show you.' She helps you make a perfect cappuccino.",
+          "textVi": "Ở bếp, bạn gặp đồng nghiệp tên Sarah. 'Ê! Mới vào hả? Máy pha cà phê hơi khó dùng. Để tôi chỉ.' Cô ấy giúp bạn pha cappuccino hoàn hảo.",
+          "mood": "warm",
+          "sceneEmoji": "☕👩🤝",
+          "choices": [
+            { "text": "Thanks, Sarah! You're a lifesaver.", "textVi": "Cảm ơn Sarah! Bạn là vị cứu tinh.", "next": "meet_team", "points": 10, "vocab": ["lifesaver", "thanks"] },
+            { "text": "This coffee is amazing! What's your role here?", "textVi": "Cà phê ngon quá! Bạn làm gì ở đây?", "next": "sarah_chat", "points": 10, "vocab": ["amazing", "role"] }
+          ]
+        },
+        "sarah_chat": {
+          "text": "'I'm a designer. I've been here for two years. If you need anything, just ask me!' Sarah gives you her business card. You feel like you already have a friend here.",
+          "textVi": "'Tôi là nhà thiết kế. Tôi ở đây được hai năm rồi. Nếu bạn cần gì, cứ hỏi tôi!' Sarah đưa bạn danh thiếp. Bạn cảm thấy mình đã có bạn ở đây.",
+          "mood": "happy",
+          "sceneEmoji": "👩‍🎨💬📇",
+          "choices": [
+            { "text": "Thank you, Sarah! I'm glad I met you.", "textVi": "Cảm ơn Sarah! Tôi vui vì gặp bạn.", "next": "meet_team", "points": 10, "vocab": ["glad", "met"] }
+          ]
+        },
+        "lunch_team": {
+          "text": "At lunch, the team takes you to a nearby restaurant. Everyone orders different dishes and shares. David says: 'So, tell us about yourself! What do you like to do?'",
+          "textVi": "Giờ ăn trưa, đội dẫn bạn đến nhà hàng gần đó. Mọi người gọi món khác nhau và chia sẻ. David nói: 'Kể về bạn đi! Bạn thích làm gì?'",
+          "mood": "happy",
+          "sceneEmoji": "🍽️👥😄",
+          "choices": [
+            { "text": "I love reading and playing guitar in my free time.", "textVi": "Tôi thích đọc sách và chơi guitar lúc rảnh.", "next": "ending_social", "points": 10, "vocab": ["free time", "reading", "playing"] },
+            { "text": "I enjoy traveling and trying new food!", "textVi": "Tôi thích du lịch và thử món mới!", "next": "ending_social", "points": 10, "vocab": ["enjoy", "traveling", "trying"] }
+          ]
+        },
+        "lunch_alone": {
+          "text": "You eat your lunch at your desk while reading the company handbook. You learn a lot about the company rules and culture. Ms. Chen walks by: 'How's your first day going?'",
+          "textVi": "Bạn ăn trưa tại bàn trong khi đọc sổ tay công ty. Bạn học được nhiều về quy tắc và văn hóa công ty. Cô Chen đi ngang: 'Ngày đầu tiên thế nào rồi?'",
+          "mood": "calm",
+          "sceneEmoji": "🍱📖🏢",
+          "choices": [
+            { "text": "It's going well! I'm learning a lot.", "textVi": "Rất tốt! Tôi đang học được nhiều thứ.", "next": "ending_diligent", "points": 10, "vocab": ["going well", "learning a lot"] },
+            { "text": "It's great! Everyone is very nice.", "textVi": "Tuyệt lắm! Mọi người rất tốt.", "next": "ending_quiet", "points": 10, "vocab": ["great", "nice"] }
+          ]
+        },
+        "ending_social": {
+          "text": "After lunch, everyone goes back to work. David adds you to the team group chat. You already feel like part of the team! Your first day is a success. You made new friends, learned about the office, and you can't wait for day two!",
+          "textVi": "Sau bữa trưa, mọi người quay lại làm việc. David thêm bạn vào group chat. Bạn đã cảm thấy là một phần của đội! Ngày đầu tiên thành công. Bạn có bạn mới, biết về văn phòng, và nóng lòng chờ ngày thứ hai!",
+          "mood": "happy",
+          "sceneEmoji": "🎉👥🌟",
+          "ending": true,
+          "endingId": "social",
+          "endingTitle": { "en": "Part of the Team!", "vi": "Một phần của đội!" },
+          "stars": 3
+        },
+        "ending_diligent": {
+          "text": "By 5 PM, you finished reading the handbook and completed all your setup tasks. Ms. Chen is impressed: 'You're very organized! I think you'll do great here.' You leave the office feeling accomplished.",
+          "textVi": "Đến 5 giờ chiều, bạn đọc xong sổ tay và hoàn thành tất cả công việc thiết lập. Cô Chen ấn tượng: 'Bạn rất tổ chức! Tôi nghĩ bạn sẽ làm tốt ở đây.' Bạn rời văn phòng với cảm giác hoàn thành.",
+          "mood": "happy",
+          "sceneEmoji": "📋✅🌟",
+          "ending": true,
+          "endingId": "diligent",
+          "endingTitle": { "en": "The Hard Worker", "vi": "Người chăm chỉ" },
+          "stars": 3
+        },
+        "ending_quiet": {
+          "text": "The day goes by quickly. You didn't talk much, but you observed everything carefully. You know where everything is and understand how the team works. Tomorrow, you'll be more confident!",
+          "textVi": "Ngày trôi qua nhanh. Bạn không nói nhiều, nhưng quan sát mọi thứ cẩn thận. Bạn biết mọi thứ ở đâu và hiểu cách đội hoạt động. Ngày mai, bạn sẽ tự tin hơn!",
+          "mood": "calm",
+          "sceneEmoji": "👀📝🤔",
+          "ending": true,
+          "endingId": "quiet",
+          "endingTitle": { "en": "The Silent Observer", "vi": "Người quan sát thầm lặng" },
+          "stars": 2
+        }
+      }
+    },
+    {
+      "id": "secret_party",
+      "title": { "en": "The Secret Party", "vi": "Bữa tiệc bí mật" },
+      "level": "A2",
+      "theme": "mystery",
+      "icon": "🎉",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "Your friend Emma sends you a text message: 'Come to my house at 7 PM. It's a SECRET. Don't tell anyone!' What will you do?",
+          "textVi": "Bạn của bạn, Emma, gửi tin nhắn: 'Đến nhà tôi lúc 7 giờ tối. Đây là BÍ MẬT. Đừng nói ai!' Bạn sẽ làm gì?",
+          "mood": "mysterious",
+          "sceneEmoji": "📱🤫✨",
+          "choices": [
+            { "text": "I'll go! This sounds exciting!", "textVi": "Tôi sẽ đi! Nghe hấp dẫn quá!", "next": "go_emma", "points": 10, "vocab": ["exciting", "sounds"] },
+            { "text": "What's the secret? Tell me more first.", "textVi": "Bí mật gì vậy? Nói thêm cho tôi biết trước.", "next": "ask_more", "points": 5, "vocab": ["secret", "tell me more"] },
+            { "text": "I'll bring a gift just in case it's a party.", "textVi": "Tôi sẽ mang quà phòng trường hợp đó là tiệc.", "next": "bring_gift", "points": 10, "vocab": ["bring", "gift", "just in case"] }
+          ]
+        },
+        "go_emma": {
+          "text": "You arrive at Emma's house at 7 PM. The house is dark and quiet. You knock on the door. Nobody answers. You try the door handle — it's unlocked!",
+          "textVi": "Bạn đến nhà Emma lúc 7 giờ. Nhà tối và im lặng. Bạn gõ cửa. Không ai trả lời. Bạn thử nắm cửa — không khóa!",
+          "mood": "mysterious",
+          "sceneEmoji": "🏠🌙🚪",
+          "choices": [
+            { "text": "I'll go inside carefully.", "textVi": "Tôi sẽ vào cẩn thận.", "next": "enter_house", "points": 10, "vocab": ["go inside", "carefully"] },
+            { "text": "I'll call Emma first.", "textVi": "Tôi sẽ gọi Emma trước.", "next": "call_emma", "points": 10, "vocab": ["call", "first"] }
+          ]
+        },
+        "ask_more": {
+          "text": "Emma replies: 'I can't tell you! Just trust me and come. Wear something nice 😉' Now you're even more curious!",
+          "textVi": "Emma trả lời: 'Tôi không thể nói! Tin tôi đi và đến nhé. Mặc đẹp vào 😉' Giờ bạn càng tò mò hơn!",
+          "mood": "mysterious",
+          "sceneEmoji": "📱😉👗",
+          "choices": [
+            { "text": "Okay, I'll come! Let me get ready.", "textVi": "Được rồi, tôi sẽ đến! Để tôi chuẩn bị.", "next": "go_emma", "points": 10, "vocab": ["get ready", "okay"] },
+            { "text": "I'm not sure... Let me think about it.", "textVi": "Tôi không chắc... Để tôi suy nghĩ.", "next": "stay_home", "points": 0, "vocab": ["not sure", "think about it"] }
+          ]
+        },
+        "bring_gift": {
+          "text": "Smart thinking! You stop at a store and buy a box of chocolates and a card. Then you drive to Emma's house. When you arrive, the house looks dark...",
+          "textVi": "Suy nghĩ thông minh! Bạn ghé cửa hàng mua hộp sô-cô-la và thiệp. Rồi bạn lái xe đến nhà Emma. Khi đến nơi, nhà trông tối om...",
+          "mood": "mysterious",
+          "sceneEmoji": "🍫🎁🏠",
+          "choices": [
+            { "text": "Hello? Emma? Are you home?", "textVi": "A lô? Emma? Bạn có ở nhà không?", "next": "enter_house", "points": 10, "vocab": ["are you home"] }
+          ]
+        },
+        "enter_house": {
+          "text": "You step inside. It's completely dark. Suddenly — 'SURPRISE!!!' The lights turn on! All your friends are there! Balloons, cake, music! It's YOUR birthday party! You completely forgot your own birthday!",
+          "textVi": "Bạn bước vào. Tối hoàn toàn. Đột nhiên — 'BẤT NGỜ!!!' Đèn bật sáng! Tất cả bạn bè đều ở đây! Bóng bay, bánh kem, nhạc! Đây là tiệc sinh nhật BẠN! Bạn hoàn toàn quên sinh nhật mình!",
+          "mood": "happy",
+          "sceneEmoji": "🎉🎂🎈🥳",
+          "choices": [
+            { "text": "Oh my God! I can't believe it! Thank you everyone!", "textVi": "Trời ơi! Không thể tin được! Cảm ơn mọi người!", "next": "party_happy", "points": 10, "vocab": ["can't believe", "thank you", "everyone"] },
+            { "text": "Wow! You all kept this secret? I'm so touched!", "textVi": "Wow! Mọi người giữ bí mật này? Tôi xúc động quá!", "next": "party_emotional", "points": 10, "vocab": ["kept secret", "touched"] }
+          ]
+        },
+        "call_emma": {
+          "text": "You call Emma but she doesn't answer. Then you get a text: 'Just come in! The door is open 🚪' You hear quiet giggling from inside...",
+          "textVi": "Bạn gọi Emma nhưng cô ấy không nghe. Rồi bạn nhận tin nhắn: 'Cứ vào đi! Cửa đang mở 🚪' Bạn nghe tiếng cười khúc khích từ bên trong...",
+          "mood": "mysterious",
+          "sceneEmoji": "📱🤭🚪",
+          "choices": [
+            { "text": "I hear laughing... What's going on? Let me go in!", "textVi": "Tôi nghe tiếng cười... Có chuyện gì vậy? Để tôi vào!", "next": "enter_house", "points": 10, "vocab": ["laughing", "what's going on"] }
+          ]
+        },
+        "stay_home": {
+          "text": "You decide to stay home and watch TV. At 8 PM, Emma sends photos of a party with ALL your friends. The caption says: 'We missed you at YOUR surprise birthday party!' Oh no... you missed your own party!",
+          "textVi": "Bạn quyết định ở nhà xem TV. Lúc 8 giờ tối, Emma gửi ảnh tiệc với TẤT CẢ bạn bè. Chú thích: 'Chúng tôi nhớ bạn ở tiệc sinh nhật bất ngờ CỦA BẠN!' Ôi không... bạn đã bỏ lỡ tiệc của mình!",
+          "mood": "tense",
+          "sceneEmoji": "📺😱📱",
+          "choices": [
+            { "text": "Oh no! I should have gone! Can I come now?", "textVi": "Ôi không! Đáng lẽ tôi nên đi! Giờ đến được không?", "next": "ending_late", "points": 5, "vocab": ["should have", "can I come"] }
+          ]
+        },
+        "party_happy": {
+          "text": "Emma gives you a big hug: 'Happy Birthday! We've been planning this for weeks!' Everyone sings 'Happy Birthday' and you blow out the candles on a beautiful chocolate cake.",
+          "textVi": "Emma ôm bạn: 'Sinh nhật vui vẻ! Chúng tôi đã lên kế hoạch suốt mấy tuần!' Mọi người hát 'Happy Birthday' và bạn thổi nến trên chiếc bánh sô-cô-la đẹp.",
+          "mood": "happy",
+          "sceneEmoji": "🤗🎂🕯️🎵",
+          "choices": [
+            { "text": "I wish for more happy days like this!", "textVi": "Tôi ước có thêm nhiều ngày vui như thế này!", "next": "party_games", "points": 10, "vocab": ["wish for", "happy days"] }
+          ]
+        },
+        "party_emotional": {
+          "text": "Your eyes are full of tears — happy tears! Your best friend Tom says: 'We love you! Now stop crying and let's eat cake!' Everyone laughs together.",
+          "textVi": "Mắt bạn đầy nước mắt — nước mắt hạnh phúc! Bạn thân Tom nói: 'Chúng tôi yêu bạn! Giờ ngừng khóc và ăn bánh thôi!' Mọi người cùng cười.",
+          "mood": "happy",
+          "sceneEmoji": "😭❤️🎂😄",
+          "choices": [
+            { "text": "You're right! Let's celebrate!", "textVi": "Đúng rồi! Ăn mừng thôi!", "next": "party_games", "points": 10, "vocab": ["celebrate", "you're right"] }
+          ]
+        },
+        "party_games": {
+          "text": "The party is amazing! You play games, dance, take photos, and eat lots of food. At 10 PM, Emma asks: 'Do you want to open your presents now?'",
+          "textVi": "Tiệc tuyệt vời! Bạn chơi game, nhảy, chụp ảnh, và ăn nhiều. Lúc 10 giờ tối, Emma hỏi: 'Bạn muốn mở quà bây giờ không?'",
+          "mood": "happy",
+          "sceneEmoji": "🎮💃📸🎁",
+          "choices": [
+            { "text": "Yes! I love presents!", "textVi": "Có! Tôi thích quà!", "next": "ending_best_party", "points": 10, "vocab": ["presents", "love"] },
+            { "text": "The best present is having all of you here!", "textVi": "Món quà tốt nhất là có mọi người ở đây!", "next": "ending_grateful", "points": 10, "vocab": ["best present", "having"] }
+          ]
+        },
+        "ending_best_party": {
+          "text": "You open presents from all your friends. Books, clothes, a new phone case, and a photo album of your memories together. This is the best birthday you've ever had! You'll never forget this night.",
+          "textVi": "Bạn mở quà từ tất cả bạn bè. Sách, quần áo, ốp điện thoại mới, và album ảnh kỷ niệm cùng nhau. Đây là sinh nhật tuyệt nhất từ trước đến giờ! Bạn sẽ không bao giờ quên đêm nay.",
+          "mood": "happy",
+          "sceneEmoji": "🎁📚📱📸🌟",
+          "ending": true,
+          "endingId": "best_party",
+          "endingTitle": { "en": "Best Birthday Ever!", "vi": "Sinh nhật tuyệt nhất!" },
+          "stars": 3
+        },
+        "ending_grateful": {
+          "text": "Everyone hugs you. Emma says: 'That's the sweetest thing ever!' You spend the rest of the night talking, laughing, and making new memories. Friendship is the greatest gift of all.",
+          "textVi": "Mọi người ôm bạn. Emma nói: 'Đó là điều ngọt ngào nhất!' Bạn dành phần còn lại của đêm nói chuyện, cười, và tạo kỷ niệm mới. Tình bạn là món quà lớn nhất.",
+          "mood": "happy",
+          "sceneEmoji": "🤗❤️🌙✨",
+          "ending": true,
+          "endingId": "grateful",
+          "endingTitle": { "en": "Friendship is the Gift", "vi": "Tình bạn là món quà" },
+          "stars": 3
+        },
+        "ending_late": {
+          "text": "You rush to Emma's house at 9 PM. The party is still going! Everyone cheers when you arrive. 'Better late than never!' says Tom. You join the fun and still have a great time, even though you missed the surprise.",
+          "textVi": "Bạn chạy đến nhà Emma lúc 9 giờ tối. Tiệc vẫn đang diễn ra! Mọi người reo khi bạn đến. 'Muộn còn hơn không!' Tom nói. Bạn tham gia và vẫn vui, dù bỏ lỡ phần bất ngờ.",
+          "mood": "warm",
+          "sceneEmoji": "🏃‍♂️🎉😅",
+          "ending": true,
+          "endingId": "late",
+          "endingTitle": { "en": "Better Late Than Never", "vi": "Muộn còn hơn không" },
+          "stars": 2
+        }
+      }
+    },
+    {
+      "id": "forest_adventure",
+      "title": { "en": "Adventure in the Forest", "vi": "Phiêu lưu trong rừng" },
+      "level": "A2",
+      "theme": "adventure",
+      "icon": "🌲",
+      "totalEndings": 4,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You and your friend Alex are hiking in a beautiful forest. The weather is perfect — sunny and cool. Suddenly, Alex stops and points: 'Look! The trail splits into two paths!'",
+          "textVi": "Bạn và bạn Alex đang đi bộ đường rừng. Thời tiết hoàn hảo — nắng và mát. Đột nhiên, Alex dừng lại và chỉ: 'Nhìn kìa! Đường mòn chia thành hai lối!'",
+          "mood": "calm",
+          "sceneEmoji": "🌲🥾😊☀️",
+          "choices": [
+            { "text": "Let's take the left path. It goes up the mountain.", "textVi": "Đi lối trái đi. Nó lên núi.", "next": "mountain_path", "points": 10, "vocab": ["left path", "mountain"] },
+            { "text": "The right path goes to the river. Let's go there!", "textVi": "Lối phải đi ra sông. Đi đó đi!", "next": "river_path", "points": 10, "vocab": ["right path", "river"] },
+            { "text": "Let's check the map first.", "textVi": "Xem bản đồ trước đi.", "next": "check_map", "points": 10, "vocab": ["check", "map", "first"] }
+          ]
+        },
+        "mountain_path": {
+          "text": "You climb up a steep trail. After 20 minutes, you're tired but the view is amazing! You can see the whole valley below. Alex says: 'I hear a waterfall nearby!'",
+          "textVi": "Bạn leo lên đường dốc. Sau 20 phút, bạn mệt nhưng cảnh đẹp tuyệt vời! Bạn có thể nhìn thấy cả thung lũng bên dưới. Alex nói: 'Tôi nghe tiếng thác nước gần đây!'",
+          "mood": "calm",
+          "sceneEmoji": "⛰️😮🌄",
+          "choices": [
+            { "text": "Let's find the waterfall!", "textVi": "Đi tìm thác nước!", "next": "find_waterfall", "points": 10, "vocab": ["find", "waterfall"] },
+            { "text": "I need to rest first. Let's sit here and enjoy the view.", "textVi": "Tôi cần nghỉ trước. Ngồi đây ngắm cảnh đi.", "next": "rest_mountain", "points": 10, "vocab": ["rest", "enjoy", "view"] }
+          ]
+        },
+        "river_path": {
+          "text": "The path leads to a crystal-clear river. Fish are swimming in the water. Colorful butterflies fly around. It's like a fairy tale! Alex notices: 'There's a rope bridge to cross the river!'",
+          "textVi": "Con đường dẫn đến một dòng sông trong vắt. Cá đang bơi trong nước. Bướm nhiều màu bay xung quanh. Như cổ tích! Alex nhận ra: 'Có cầu treo để qua sông!'",
+          "mood": "calm",
+          "sceneEmoji": "🏞️🐟🦋",
+          "choices": [
+            { "text": "Cool! Let's cross the bridge!", "textVi": "Hay quá! Qua cầu đi!", "next": "cross_bridge", "points": 10, "vocab": ["cross", "bridge", "cool"] },
+            { "text": "I'm scared of heights. Can we walk along the river instead?", "textVi": "Tôi sợ độ cao. Đi dọc sông được không?", "next": "walk_river", "points": 10, "vocab": ["scared", "heights", "along"] }
+          ]
+        },
+        "check_map": {
+          "text": "You look at the map. The left path leads to a mountain viewpoint. The right path goes to a river and a hidden cave. Alex points at something: 'Look! There's also a secret trail marked with a dotted line!'",
+          "textVi": "Bạn xem bản đồ. Lối trái dẫn đến đỉnh ngắm cảnh. Lối phải đi ra sông và hang động ẩn. Alex chỉ vào gì đó: 'Nhìn kìa! Còn có đường mòn bí mật đánh dấu bằng nét chấm!'",
+          "mood": "mysterious",
+          "sceneEmoji": "🗺️🔍✨",
+          "choices": [
+            { "text": "A secret trail? That's so cool! Let's explore it!", "textVi": "Đường mòn bí mật? Hay quá! Đi khám phá thôi!", "next": "secret_trail", "points": 10, "vocab": ["secret trail", "explore"] },
+            { "text": "The mountain viewpoint sounds beautiful.", "textVi": "Đỉnh ngắm cảnh nghe đẹp ghê.", "next": "mountain_path", "points": 10, "vocab": ["viewpoint", "beautiful"] },
+            { "text": "A hidden cave? Let's go to the river!", "textVi": "Hang động ẩn? Đi ra sông thôi!", "next": "river_path", "points": 10, "vocab": ["hidden cave", "river"] }
+          ]
+        },
+        "find_waterfall": {
+          "text": "You follow the sound of water. Through the trees, you discover a magnificent waterfall! The water falls from 30 meters high into a natural pool. A rainbow appears in the mist!",
+          "textVi": "Bạn đi theo tiếng nước. Qua cây cối, bạn phát hiện một thác nước tuyệt đẹp! Nước rơi từ 30 mét vào hồ tự nhiên. Cầu vồng xuất hiện trong sương!",
+          "mood": "happy",
+          "sceneEmoji": "💦🌈✨😍",
+          "choices": [
+            { "text": "This is incredible! Let's take photos!", "textVi": "Đẹp không thể tin được! Chụp ảnh thôi!", "next": "ending_waterfall", "points": 10, "vocab": ["incredible", "take photos"] },
+            { "text": "Can we swim in the pool?", "textVi": "Mình có thể bơi trong hồ không?", "next": "ending_waterfall", "points": 10, "vocab": ["swim", "pool"] }
+          ]
+        },
+        "rest_mountain": {
+          "text": "You sit on a big rock and drink water. A friendly squirrel comes close. Alex takes a photo. Then you notice something strange — there are old stone steps hidden behind the bushes!",
+          "textVi": "Bạn ngồi trên tảng đá lớn và uống nước. Một con sóc thân thiện đến gần. Alex chụp ảnh. Rồi bạn nhận ra gì đó lạ — có bậc thang đá cũ ẩn sau bụi cây!",
+          "mood": "mysterious",
+          "sceneEmoji": "🪨🐿️📸",
+          "choices": [
+            { "text": "Old steps? Let's see where they go!", "textVi": "Bậc thang cũ? Xem chúng dẫn đi đâu!", "next": "old_ruins", "points": 10, "vocab": ["old steps", "where they go"] },
+            { "text": "It might be dangerous. Let's keep going on the main trail.", "textVi": "Có thể nguy hiểm. Đi tiếp đường chính thôi.", "next": "find_waterfall", "points": 5, "vocab": ["dangerous", "main trail"] }
+          ]
+        },
+        "cross_bridge": {
+          "text": "The rope bridge swings as you walk. You hold on tight! On the other side, you find a hidden cave behind some bushes. There are old drawings on the cave walls!",
+          "textVi": "Cầu treo đung đưa khi bạn đi. Bạn bám chặt! Bên kia, bạn tìm thấy hang động ẩn sau bụi cây. Có hình vẽ cổ trên tường hang!",
+          "mood": "mysterious",
+          "sceneEmoji": "🌉😰🕳️🎨",
+          "choices": [
+            { "text": "Ancient drawings! This is like a movie!", "textVi": "Hình vẽ cổ đại! Giống như trong phim!", "next": "ending_cave", "points": 10, "vocab": ["ancient", "drawings", "movie"] },
+            { "text": "I'm a little scared. But let's go inside!", "textVi": "Tôi hơi sợ. Nhưng vào thôi!", "next": "ending_cave", "points": 10, "vocab": ["scared", "go inside"] }
+          ]
+        },
+        "walk_river": {
+          "text": "You walk along the river. The sound of water is relaxing. You find a perfect spot under a big tree for a picnic. Alex opens the backpack: 'I brought sandwiches and fruit!'",
+          "textVi": "Bạn đi dọc sông. Tiếng nước thật thư giãn. Bạn tìm được chỗ hoàn hảo dưới cây lớn để picnic. Alex mở ba lô: 'Tôi mang bánh sandwich và trái cây!'",
+          "mood": "calm",
+          "sceneEmoji": "🏞️🌳🧺",
+          "choices": [
+            { "text": "Perfect! I'm so hungry. Let's eat!", "textVi": "Hoàn hảo! Tôi đói quá. Ăn thôi!", "next": "ending_picnic", "points": 10, "vocab": ["hungry", "perfect", "let's eat"] }
+          ]
+        },
+        "secret_trail": {
+          "text": "The secret trail is narrow and covered with leaves. After walking for 15 minutes, you find an old wooden cabin! There's a note on the door: 'Welcome, brave explorer! Sign the guest book inside.'",
+          "textVi": "Đường mòn bí mật hẹp và phủ đầy lá. Sau 15 phút đi bộ, bạn tìm thấy cabin gỗ cũ! Có tờ giấy trên cửa: 'Chào mừng, nhà thám hiểm dũng cảm! Ký tên vào sổ lưu niệm bên trong.'",
+          "mood": "mysterious",
+          "sceneEmoji": "🛤️🍂🏚️📝",
+          "choices": [
+            { "text": "A guest book? Let's go inside and sign it!", "textVi": "Sổ lưu niệm? Vào ký tên thôi!", "next": "cabin_inside", "points": 10, "vocab": ["guest book", "sign", "brave"] },
+            { "text": "This is creepy... Let's go back.", "textVi": "Rùng rợn quá... Quay lại đi.", "next": "river_path", "points": 0, "vocab": ["creepy", "go back"] }
+          ]
+        },
+        "old_ruins": {
+          "text": "The stone steps lead to ancient ruins on the mountaintop! There are old columns and a circular stone platform. The view from here is breathtaking — you can see forests, rivers, and even the ocean far away!",
+          "textVi": "Bậc thang dẫn đến phế tích cổ trên đỉnh núi! Có cột đá cũ và bệ đá hình tròn. Cảnh từ đây ngoạn mục — bạn có thể thấy rừng, sông, và cả đại dương xa xa!",
+          "mood": "happy",
+          "sceneEmoji": "🏛️⛰️🌊✨",
+          "choices": [
+            { "text": "This is the most beautiful place I've ever seen!", "textVi": "Đây là nơi đẹp nhất tôi từng thấy!", "next": "ending_ruins", "points": 10, "vocab": ["most beautiful", "ever seen"] }
+          ]
+        },
+        "cabin_inside": {
+          "text": "Inside the cabin, you find the guest book. Hundreds of people have signed it over the years! There's also a treasure chest. Inside are small souvenirs — magnets, postcards, and a note: 'Take one, leave one!'",
+          "textVi": "Bên trong cabin, bạn tìm thấy sổ lưu niệm. Hàng trăm người đã ký qua nhiều năm! Còn có rương kho báu. Bên trong là đồ lưu niệm nhỏ — nam châm, bưu thiếp, và ghi chú: 'Lấy một, để lại một!'",
+          "mood": "happy",
+          "sceneEmoji": "📖🗝️🎁",
+          "choices": [
+            { "text": "I'll take a postcard and leave my pen as a gift!", "textVi": "Tôi sẽ lấy bưu thiếp và để lại cây bút làm quà!", "next": "ending_explorer", "points": 10, "vocab": ["postcard", "leave", "gift"] }
+          ]
+        },
+        "ending_waterfall": {
+          "text": "You spend an hour at the waterfall. Alex takes beautiful photos and you enjoy the fresh mountain air. On the way back, you feel grateful for this perfect day in nature. 'Same time next week?' Alex asks. 'Definitely!' you reply.",
+          "textVi": "Bạn dành một giờ ở thác nước. Alex chụp ảnh đẹp và bạn tận hưởng không khí trong lành. Trên đường về, bạn biết ơn vì ngày hoàn hảo giữa thiên nhiên. 'Tuần sau đi lại nhé?' Alex hỏi. 'Chắc chắn!' bạn trả lời.",
+          "mood": "happy",
+          "sceneEmoji": "💦🌈📸🌟",
+          "ending": true,
+          "endingId": "waterfall",
+          "endingTitle": { "en": "Rainbow at the Falls", "vi": "Cầu vồng ở thác nước" },
+          "stars": 3
+        },
+        "ending_cave": {
+          "text": "The cave is full of amazing ancient drawings — animals, people, and symbols from thousands of years ago! You take photos to show your friends. This is a discovery that nobody else knows about! You and Alex promise to keep it a secret.",
+          "textVi": "Hang động đầy hình vẽ cổ đại tuyệt vời — động vật, con người, và ký hiệu từ hàng nghìn năm trước! Bạn chụp ảnh để cho bạn bè xem. Đây là khám phá mà không ai biết! Bạn và Alex hứa giữ bí mật.",
+          "mood": "mysterious",
+          "sceneEmoji": "🕳️🎨🤫✨",
+          "ending": true,
+          "endingId": "cave",
+          "endingTitle": { "en": "The Secret Cave", "vi": "Hang động bí mật" },
+          "stars": 3
+        },
+        "ending_picnic": {
+          "text": "You have a wonderful picnic by the river. The sandwiches taste amazing after all that walking. A deer comes out from the trees and watches you! You sit quietly and enjoy the peaceful moment. This is what happiness feels like.",
+          "textVi": "Bạn có buổi picnic tuyệt vời bên sông. Bánh sandwich ngon tuyệt sau quãng đường đi bộ. Một con nai đi ra từ cây cối và ngắm bạn! Bạn ngồi yên và tận hưởng khoảnh khắc yên bình. Đây là cảm giác hạnh phúc.",
+          "mood": "calm",
+          "sceneEmoji": "🧺🥪🦌🌿",
+          "ending": true,
+          "endingId": "picnic",
+          "endingTitle": { "en": "Peaceful Picnic", "vi": "Picnic yên bình" },
+          "stars": 2
+        },
+        "ending_ruins": {
+          "text": "You and Alex sit on the ancient stones and watch the sunset. The sky turns orange, pink, and purple. 'I think we discovered something really special today,' Alex whispers. You nod and smile. Some adventures are worth every step.",
+          "textVi": "Bạn và Alex ngồi trên những phiến đá cổ và ngắm hoàng hôn. Bầu trời chuyển cam, hồng, và tím. 'Tôi nghĩ hôm nay chúng ta khám phá được điều thật đặc biệt,' Alex thì thầm. Bạn gật đầu và mỉm cười. Một số cuộc phiêu lưu xứng đáng với từng bước chân.",
+          "mood": "happy",
+          "sceneEmoji": "🏛️🌅✨😊",
+          "ending": true,
+          "endingId": "ruins",
+          "endingTitle": { "en": "Ancient Discovery", "vi": "Khám phá cổ đại" },
+          "stars": 3
+        },
+        "ending_explorer": {
+          "text": "You sign the guest book and write: 'What an amazing adventure!' You take a beautiful postcard and leave your pen. Walking back, you feel like a real explorer. The forest still has many secrets waiting to be discovered!",
+          "textVi": "Bạn ký sổ lưu niệm và viết: 'Thật là cuộc phiêu lưu tuyệt vời!' Bạn lấy bưu thiếp đẹp và để lại cây bút. Đi về, bạn cảm thấy như nhà thám hiểm thực thụ. Khu rừng vẫn còn nhiều bí mật chờ được khám phá!",
+          "mood": "happy",
+          "sceneEmoji": "📝🏚️🌲🗺️",
+          "ending": true,
+          "endingId": "explorer",
+          "endingTitle": { "en": "The Explorer's Journal", "vi": "Nhật ký nhà thám hiểm" },
+          "stars": 3
+        }
+      }
+    },
+    {
+      "id": "at_hospital",
+      "title": { "en": "A Visit to the Doctor", "vi": "Đi khám bệnh" },
+      "level": "A1",
+      "theme": "health",
+      "icon": "🏥",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You wake up with a terrible headache and a sore throat. You don't feel well at all. What do you do?",
+          "textVi": "Bạn thức dậy với cơn đau đầu kinh khủng và đau họng. Bạn cảm thấy rất không khỏe. Bạn sẽ làm gì?",
+          "mood": "tense",
+          "sceneEmoji": "🤒😫🛏️",
+          "choices": [
+            { "text": "I should go to the doctor.", "textVi": "Tôi nên đi bác sĩ.", "next": "go_doctor", "points": 10, "vocab": ["doctor", "should"] },
+            { "text": "I'll just take some medicine and rest.", "textVi": "Tôi sẽ uống thuốc và nghỉ ngơi.", "next": "stay_home", "points": 5, "vocab": ["medicine", "rest"] }
+          ]
+        },
+        "go_doctor": {
+          "text": "You arrive at the clinic. The nurse at the front desk says: 'Hello! Do you have an appointment, or would you like to walk in?'",
+          "textVi": "Bạn đến phòng khám. Y tá ở quầy nói: 'Xin chào! Bạn có hẹn trước không, hay muốn khám trực tiếp?'",
+          "mood": "calm",
+          "sceneEmoji": "🏥👩‍⚕️",
+          "choices": [
+            { "text": "I don't have an appointment. Can I see a doctor today?", "textVi": "Tôi không có hẹn. Hôm nay khám được không?", "next": "wait_room", "points": 10, "vocab": ["appointment", "see a doctor"] },
+            { "text": "I called this morning to make an appointment.", "textVi": "Tôi đã gọi sáng nay để đặt hẹn.", "next": "has_appointment", "points": 10, "vocab": ["called", "make an appointment"] }
+          ]
+        },
+        "stay_home": {
+          "text": "You take some cold medicine and sleep for 3 hours. When you wake up, you feel a little better, but your throat is still very sore and now you have a fever.",
+          "textVi": "Bạn uống thuốc cảm và ngủ 3 tiếng. Khi thức dậy, bạn cảm thấy hơi khá hơn, nhưng họng vẫn rất đau và giờ bạn bị sốt.",
+          "mood": "tense",
+          "sceneEmoji": "💊😴🤧",
+          "choices": [
+            { "text": "I have a fever now. I need to see a doctor!", "textVi": "Giờ tôi bị sốt. Tôi cần đi bác sĩ!", "next": "go_doctor", "points": 10, "vocab": ["fever", "need to"] },
+            { "text": "I'll drink hot tea and wait until tomorrow.", "textVi": "Tôi sẽ uống trà nóng và đợi đến mai.", "next": "ending_wait", "points": 0, "vocab": ["hot tea", "wait", "tomorrow"] }
+          ]
+        },
+        "wait_room": {
+          "text": "'Please fill out this form and have a seat. The doctor will see you in about 20 minutes.' You sit in the waiting room and read a magazine.",
+          "textVi": "'Xin điền mẫu này và ngồi đợi. Bác sĩ sẽ khám trong khoảng 20 phút.' Bạn ngồi trong phòng đợi và đọc tạp chí.",
+          "mood": "calm",
+          "sceneEmoji": "📋🪑📖",
+          "choices": [
+            { "text": "Okay, thank you. I'll wait here.", "textVi": "Vâng, cảm ơn. Tôi sẽ đợi ở đây.", "next": "see_doctor", "points": 10, "vocab": ["wait", "thank you"] }
+          ]
+        },
+        "has_appointment": {
+          "text": "'Great! Please have a seat. Dr. Lee will be with you in just a moment.' After 5 minutes, a friendly doctor opens the door.",
+          "textVi": "'Tốt! Mời ngồi. Bác sĩ Lee sẽ gặp bạn ngay.' Sau 5 phút, một bác sĩ thân thiện mở cửa.",
+          "mood": "calm",
+          "sceneEmoji": "🪑👨‍⚕️😊",
+          "choices": [
+            { "text": "Hello, Dr. Lee!", "textVi": "Xin chào bác sĩ Lee!", "next": "see_doctor", "points": 10, "vocab": ["hello", "doctor"] }
+          ]
+        },
+        "see_doctor": {
+          "text": "The doctor asks: 'What seems to be the problem today?' You need to explain your symptoms.",
+          "textVi": "Bác sĩ hỏi: 'Hôm nay bạn bị làm sao?' Bạn cần giải thích triệu chứng.",
+          "mood": "calm",
+          "sceneEmoji": "👨‍⚕️🩺",
+          "choices": [
+            { "text": "I have a headache and a sore throat since yesterday.", "textVi": "Tôi bị đau đầu và đau họng từ hôm qua.", "next": "checkup", "points": 10, "vocab": ["headache", "sore throat", "since yesterday"] },
+            { "text": "I feel tired and I have a fever.", "textVi": "Tôi mệt và bị sốt.", "next": "checkup", "points": 10, "vocab": ["tired", "fever"] }
+          ]
+        },
+        "checkup": {
+          "text": "'Let me check your temperature... 38.5°C. You have a mild fever. Open your mouth, please... Your throat is red. I think you have a cold.' The doctor writes a prescription.",
+          "textVi": "'Để tôi đo nhiệt độ... 38.5°C. Bạn sốt nhẹ. Há miệng ra nhé... Họng bạn đỏ. Tôi nghĩ bạn bị cảm.' Bác sĩ viết đơn thuốc.",
+          "mood": "calm",
+          "sceneEmoji": "🌡️👄💊",
+          "choices": [
+            { "text": "How many times a day should I take the medicine?", "textVi": "Tôi nên uống thuốc mấy lần một ngày?", "next": "ending_good", "points": 10, "vocab": ["how many times", "a day", "take medicine"] },
+            { "text": "Is it serious? Should I be worried?", "textVi": "Có nghiêm trọng không? Tôi có nên lo không?", "next": "ending_good", "points": 10, "vocab": ["serious", "worried"] }
+          ]
+        },
+        "ending_good": {
+          "text": "'Take this medicine three times a day, drink lots of water, and rest for two days. You'll feel better soon!' You thank the doctor and go to the pharmacy. By the next day, you already feel much better!",
+          "textVi": "'Uống thuốc ba lần một ngày, uống nhiều nước, và nghỉ ngơi hai ngày. Bạn sẽ sớm khỏe thôi!' Bạn cảm ơn bác sĩ và đi nhà thuốc. Đến hôm sau, bạn đã thấy khá hơn nhiều!",
+          "mood": "happy",
+          "sceneEmoji": "💊💧😊🌟",
+          "ending": true,
+          "endingId": "good",
+          "endingTitle": { "en": "Feeling Better!", "vi": "Đã khỏe hơn!" },
+          "stars": 3
+        },
+        "ending_wait": {
+          "text": "You wait at home for three days. The fever gets worse. Finally, you go to the hospital and they say you should have come sooner. The doctor gives you stronger medicine. Next time, don't wait so long!",
+          "textVi": "Bạn đợi ở nhà ba ngày. Sốt nặng hơn. Cuối cùng bạn đi bệnh viện và họ nói đáng lẽ nên đến sớm hơn. Bác sĩ cho thuốc mạnh hơn. Lần sau, đừng đợi lâu!",
+          "mood": "tense",
+          "sceneEmoji": "🏥😰💉",
+          "ending": true,
+          "endingId": "wait",
+          "endingTitle": { "en": "Should Have Gone Sooner", "vi": "Đáng lẽ nên đi sớm hơn" },
+          "stars": 1
+        }
+      }
+    },
+    {
+      "id": "supermarket",
+      "title": { "en": "Shopping at the Supermarket", "vi": "Đi siêu thị" },
+      "level": "A1",
+      "theme": "shopping",
+      "icon": "🛒",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "It's Saturday morning. Your fridge is almost empty. You need to go to the supermarket to buy food for the week. You grab your shopping bag and head out.",
+          "textVi": "Sáng thứ Bảy. Tủ lạnh gần hết đồ. Bạn cần đi siêu thị mua thức ăn cho cả tuần. Bạn lấy túi mua sắm và đi ra ngoài.",
+          "mood": "calm",
+          "sceneEmoji": "🛒🏪🥦",
+          "choices": [
+            { "text": "I should make a shopping list first.", "textVi": "Tôi nên viết danh sách mua sắm trước.", "next": "make_list", "points": 10, "vocab": ["shopping list", "should"] },
+            { "text": "I'll just go and see what they have.", "textVi": "Tôi cứ đi và xem họ có gì.", "next": "no_list", "points": 5, "vocab": ["just go", "see"] }
+          ]
+        },
+        "make_list": {
+          "text": "Good idea! You write: eggs, milk, bread, chicken, rice, vegetables, and fruit. Now you're organized! At the supermarket, you take a cart and start shopping.",
+          "textVi": "Ý hay! Bạn viết: trứng, sữa, bánh mì, gà, gạo, rau, và trái cây. Giờ bạn đã chuẩn bị! Ở siêu thị, bạn lấy xe đẩy và bắt đầu mua sắm.",
+          "mood": "happy",
+          "sceneEmoji": "📝✅🛒",
+          "choices": [
+            { "text": "Let me start with the fresh vegetables.", "textVi": "Để tôi bắt đầu với rau tươi.", "next": "vegetables", "points": 10, "vocab": ["fresh", "vegetables", "start with"] },
+            { "text": "I'll go to the dairy section first for milk and eggs.", "textVi": "Tôi sẽ đến khu sữa trước lấy sữa và trứng.", "next": "dairy", "points": 10, "vocab": ["dairy section", "milk", "eggs"] }
+          ]
+        },
+        "no_list": {
+          "text": "You walk into the supermarket without a list. Everything looks delicious! You put chips, ice cream, and cookies into your cart. Wait... you came here for healthy food!",
+          "textVi": "Bạn vào siêu thị không có danh sách. Mọi thứ trông ngon quá! Bạn bỏ khoai tây chiên, kem, và bánh quy vào xe. Khoan... bạn đến đây để mua đồ ăn lành mạnh mà!",
+          "mood": "warm",
+          "sceneEmoji": "🍪🍦😅",
+          "choices": [
+            { "text": "I need to focus! Let me go to the vegetable section.", "textVi": "Tôi cần tập trung! Đi đến khu rau đi.", "next": "vegetables", "points": 10, "vocab": ["focus", "vegetable section"] },
+            { "text": "Well... I deserve some treats too!", "textVi": "Thôi... tôi cũng xứng đáng được thưởng!", "next": "ending_junk", "points": 0, "vocab": ["deserve", "treats"] }
+          ]
+        },
+        "vegetables": {
+          "text": "The vegetables look fresh and colorful! You pick up tomatoes, carrots, broccoli, and onions. A staff member asks: 'Can I help you find anything?'",
+          "textVi": "Rau trông tươi và nhiều màu! Bạn lấy cà chua, cà rốt, bông cải xanh, và hành. Nhân viên hỏi: 'Tôi có thể giúp bạn tìm gì không?'",
+          "mood": "happy",
+          "sceneEmoji": "🥕🥦🍅",
+          "choices": [
+            { "text": "Yes, where can I find the fresh fruit?", "textVi": "Vâng, trái cây tươi ở đâu ạ?", "next": "fruit", "points": 10, "vocab": ["where can I find", "fresh fruit"] },
+            { "text": "No, thank you. I'm fine.", "textVi": "Không, cảm ơn. Tôi ổn.", "next": "checkout", "points": 10, "vocab": ["I'm fine", "no thank you"] }
+          ]
+        },
+        "dairy": {
+          "text": "In the dairy section, you find milk, eggs, butter, and cheese. The eggs are on sale — buy one get one free! What a great deal!",
+          "textVi": "Ở khu sữa, bạn tìm thấy sữa, trứng, bơ, và phô mai. Trứng đang giảm giá — mua một tặng một! Hời quá!",
+          "mood": "happy",
+          "sceneEmoji": "🥛🧀🥚💰",
+          "choices": [
+            { "text": "Great! I'll take two boxes of eggs.", "textVi": "Tuyệt! Tôi lấy hai hộp trứng.", "next": "vegetables", "points": 10, "vocab": ["great", "take", "boxes"] },
+            { "text": "I also need some yogurt for breakfast.", "textVi": "Tôi cũng cần sữa chua cho bữa sáng.", "next": "vegetables", "points": 10, "vocab": ["yogurt", "breakfast", "also need"] }
+          ]
+        },
+        "fruit": {
+          "text": "'The fruit section is right over there!' You find apples, bananas, oranges, and strawberries. Everything smells so fresh! You pick your favorites.",
+          "textVi": "'Khu trái cây ở ngay đằng kia!' Bạn tìm thấy táo, chuối, cam, và dâu tây. Mọi thứ thơm quá! Bạn chọn loại yêu thích.",
+          "mood": "happy",
+          "sceneEmoji": "🍎🍌🍊🍓",
+          "choices": [
+            { "text": "I think I have everything. Time to check out!", "textVi": "Tôi nghĩ đã đủ rồi. Đi thanh toán thôi!", "next": "checkout", "points": 10, "vocab": ["everything", "check out", "time to"] }
+          ]
+        },
+        "checkout": {
+          "text": "You go to the checkout counter. The cashier scans all your items. 'That will be $45.50. Would you like a plastic bag or do you have your own?'",
+          "textVi": "Bạn đến quầy thanh toán. Thu ngân quét tất cả đồ. 'Tổng cộng $45.50. Bạn muốn túi ni lông hay bạn có túi riêng?'",
+          "mood": "calm",
+          "sceneEmoji": "🛒💳👩‍💼",
+          "choices": [
+            { "text": "I brought my own bag, thank you!", "textVi": "Tôi mang túi riêng rồi, cảm ơn!", "next": "ending_smart", "points": 10, "vocab": ["brought", "my own", "bag"] },
+            { "text": "I'll take a plastic bag, please.", "textVi": "Cho tôi túi ni lông nhé.", "next": "ending_good", "points": 5, "vocab": ["plastic bag", "please"] }
+          ]
+        },
+        "ending_smart": {
+          "text": "You pay and pack your groceries neatly. You bought everything on your list and saved money too! At home, you cook a delicious healthy dinner. Being organized makes shopping easy and fun!",
+          "textVi": "Bạn trả tiền và đóng gói đồ gọn gàng. Bạn mua được mọi thứ trong danh sách và còn tiết kiệm tiền! Ở nhà, bạn nấu bữa tối lành mạnh ngon lành. Có tổ chức làm mua sắm dễ và vui!",
+          "mood": "happy",
+          "sceneEmoji": "🛍️🍳😊🌟",
+          "ending": true,
+          "endingId": "smart",
+          "endingTitle": { "en": "Smart Shopper!", "vi": "Người mua sắm thông minh!" },
+          "stars": 3
+        },
+        "ending_good": {
+          "text": "You carry your groceries home and put everything in the fridge. You have food for the whole week! Shopping is done. Now you can relax and enjoy your weekend.",
+          "textVi": "Bạn mang đồ về nhà và cho vào tủ lạnh. Bạn có đồ ăn cho cả tuần! Xong mua sắm. Giờ bạn có thể thư giãn và tận hưởng cuối tuần.",
+          "mood": "happy",
+          "sceneEmoji": "🏠🍽️😌",
+          "ending": true,
+          "endingId": "good",
+          "endingTitle": { "en": "Well Stocked!", "vi": "Đầy đủ đồ ăn!" },
+          "stars": 2
+        },
+        "ending_junk": {
+          "text": "You buy lots of snacks, ice cream, and zero vegetables. At home, you eat chips for dinner. Your stomach hurts. Maybe next time you should make a shopping list and buy real food!",
+          "textVi": "Bạn mua toàn đồ ăn vặt, kem, và không rau nào. Ở nhà, bạn ăn khoai tây chiên cho bữa tối. Bụng bạn đau. Lần sau chắc nên viết danh sách và mua đồ ăn thật!",
+          "mood": "tense",
+          "sceneEmoji": "🍟🍦😖",
+          "ending": true,
+          "endingId": "junk",
+          "endingTitle": { "en": "Junk Food Disaster", "vi": "Thảm họa đồ ăn vặt" },
+          "stars": 1
+        }
+      }
+    },
+    {
+      "id": "at_airport",
+      "title": { "en": "At the Airport", "vi": "Ở sân bay" },
+      "level": "A2",
+      "theme": "travel",
+      "icon": "✈️",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You're at the airport for the first time. Your flight to London leaves in 3 hours. The airport is huge and busy. You see signs everywhere but you're not sure where to go first.",
+          "textVi": "Bạn ở sân bay lần đầu tiên. Chuyến bay đến London khởi hành trong 3 tiếng. Sân bay rất lớn và đông. Bạn thấy biển hiệu khắp nơi nhưng không chắc đi đâu trước.",
+          "mood": "tense",
+          "sceneEmoji": "✈️🏢😬",
+          "choices": [
+            { "text": "I need to find the check-in counter first.", "textVi": "Tôi cần tìm quầy check-in trước.", "next": "checkin", "points": 10, "vocab": ["check-in counter", "find"] },
+            { "text": "Let me ask someone at the information desk.", "textVi": "Để tôi hỏi ở quầy thông tin.", "next": "info_desk", "points": 10, "vocab": ["information desk", "ask"] }
+          ]
+        },
+        "checkin": {
+          "text": "You find the check-in counter. The agent asks: 'Good morning! May I see your passport and booking confirmation, please?'",
+          "textVi": "Bạn tìm thấy quầy check-in. Nhân viên hỏi: 'Chào buổi sáng! Cho tôi xem hộ chiếu và xác nhận đặt vé?'",
+          "mood": "calm",
+          "sceneEmoji": "🛂👩‍✈️",
+          "choices": [
+            { "text": "Here's my passport and my e-ticket on my phone.", "textVi": "Đây là hộ chiếu và vé điện tử trên điện thoại.", "next": "luggage", "points": 10, "vocab": ["passport", "e-ticket", "phone"] },
+            { "text": "Oh no, where did I put my passport?!", "textVi": "Ôi không, tôi để hộ chiếu đâu rồi?!", "next": "lost_passport", "points": 0, "vocab": ["where did I put", "passport"] }
+          ]
+        },
+        "info_desk": {
+          "text": "The woman at the information desk smiles: 'Welcome! What airline are you flying with?' You tell her your flight number.",
+          "textVi": "Cô gái ở quầy thông tin cười: 'Chào mừng! Bạn bay hãng nào?' Bạn cho cô biết số chuyến bay.",
+          "mood": "calm",
+          "sceneEmoji": "ℹ️👩😊",
+          "choices": [
+            { "text": "I'm flying with British Airways, flight BA205.", "textVi": "Tôi bay British Airways, chuyến BA205.", "next": "checkin", "points": 10, "vocab": ["flying with", "flight number"] }
+          ]
+        },
+        "lost_passport": {
+          "text": "You check all your pockets and bags. Found it! It was in the side pocket of your backpack the whole time. That was scary! You give it to the agent.",
+          "textVi": "Bạn kiểm tra tất cả túi. Tìm thấy rồi! Nó ở ngăn bên của ba lô suốt. Hú hồn! Bạn đưa cho nhân viên.",
+          "mood": "warm",
+          "sceneEmoji": "🎒😅🛂",
+          "choices": [
+            { "text": "Sorry about that! Here it is.", "textVi": "Xin lỗi! Đây ạ.", "next": "luggage", "points": 5, "vocab": ["sorry about that", "here it is"] }
+          ]
+        },
+        "luggage": {
+          "text": "'Would you like a window seat or an aisle seat?' the agent asks. 'Also, how many bags are you checking in?'",
+          "textVi": "'Bạn muốn ghế cửa sổ hay ghế lối đi?' nhân viên hỏi. 'Ngoài ra, bạn ký gửi mấy túi?'",
+          "mood": "calm",
+          "sceneEmoji": "💺🧳",
+          "choices": [
+            { "text": "Window seat, please. I have one suitcase to check in.", "textVi": "Ghế cửa sổ nhé. Tôi có một vali ký gửi.", "next": "security", "points": 10, "vocab": ["window seat", "suitcase", "check in"] },
+            { "text": "Aisle seat, please. I only have carry-on luggage.", "textVi": "Ghế lối đi nhé. Tôi chỉ có hành lý xách tay.", "next": "security", "points": 10, "vocab": ["aisle seat", "carry-on", "luggage"] }
+          ]
+        },
+        "security": {
+          "text": "You go through security. The officer says: 'Please put your bag, phone, and belt on the tray.' The scanner beeps! 'Sir/Ma'am, do you have anything metal in your pockets?'",
+          "textVi": "Bạn đi qua an ninh. Nhân viên nói: 'Xin đặt túi, điện thoại, và thắt lưng lên khay.' Máy quét kêu bíp! 'Anh/Chị có gì bằng kim loại trong túi không?'",
+          "mood": "tense",
+          "sceneEmoji": "🔍🚨😰",
+          "choices": [
+            { "text": "Oh, I forgot my keys! Sorry about that.", "textVi": "Ồ, tôi quên chìa khóa! Xin lỗi.", "next": "gate", "points": 10, "vocab": ["forgot", "keys", "sorry"] },
+            { "text": "I don't think so... Let me check my pockets.", "textVi": "Tôi nghĩ không... Để tôi kiểm tra túi.", "next": "gate", "points": 10, "vocab": ["don't think so", "check", "pockets"] }
+          ]
+        },
+        "gate": {
+          "text": "You pass security and find your gate — Gate 22. The flight boards in 45 minutes. You have some free time. What do you want to do?",
+          "textVi": "Bạn qua an ninh và tìm cổng — Cổng 22. Máy bay lên trong 45 phút. Bạn có chút thời gian rảnh. Bạn muốn làm gì?",
+          "mood": "calm",
+          "sceneEmoji": "🚪22️⃣⏰",
+          "choices": [
+            { "text": "I'll go to the duty-free shop.", "textVi": "Tôi sẽ đi cửa hàng miễn thuế.", "next": "duty_free", "points": 10, "vocab": ["duty-free shop"] },
+            { "text": "I'll sit at the gate and read my book.", "textVi": "Tôi sẽ ngồi ở cổng và đọc sách.", "next": "ending_relaxed", "points": 10, "vocab": ["sit", "gate", "read"] }
+          ]
+        },
+        "duty_free": {
+          "text": "The duty-free shop has perfume, chocolate, and souvenirs. You buy a box of chocolates as a gift. Then you hear: 'Last call for flight BA205 to London, Gate 22.' Oh no, you need to hurry!",
+          "textVi": "Cửa hàng miễn thuế có nước hoa, sô-cô-la, và đồ lưu niệm. Bạn mua hộp sô-cô-la làm quà. Rồi bạn nghe: 'Cuộc gọi cuối cho chuyến BA205 đi London, Cổng 22.' Ôi không, phải nhanh lên!",
+          "mood": "tense",
+          "sceneEmoji": "🛍️🏃‍♂️⏰",
+          "choices": [
+            { "text": "Run! I can't miss my flight!", "textVi": "Chạy! Không thể lỡ chuyến bay!", "next": "ending_close", "points": 10, "vocab": ["run", "miss my flight"] }
+          ]
+        },
+        "ending_relaxed": {
+          "text": "You relax at the gate, read your book, and enjoy a coffee. When boarding starts, you walk calmly onto the plane, find your window seat, and look out at the runway. London, here you come! What a smooth start to your journey.",
+          "textVi": "Bạn thư giãn ở cổng, đọc sách, và thưởng thức cà phê. Khi lên máy bay, bạn bình tĩnh bước lên, tìm ghế cửa sổ, và nhìn ra đường băng. London, tôi đến đây! Thật là khởi đầu suôn sẻ cho chuyến đi.",
+          "mood": "happy",
+          "sceneEmoji": "✈️☕📖🌟",
+          "ending": true,
+          "endingId": "relaxed",
+          "endingTitle": { "en": "Smooth Traveler", "vi": "Hành khách bình tĩnh" },
+          "stars": 3
+        },
+        "ending_close": {
+          "text": "You run to Gate 22 just in time! The flight attendant says: 'Just made it! Welcome aboard.' You're the last person on the plane. Your heart is beating fast, but you're on your way to London! Next time, stay closer to the gate.",
+          "textVi": "Bạn chạy đến Cổng 22 vừa kịp! Tiếp viên nói: 'Vừa kịp! Chào mừng lên máy bay.' Bạn là người cuối cùng lên. Tim đập nhanh, nhưng bạn đang trên đường đến London! Lần sau ở gần cổng hơn.",
+          "mood": "warm",
+          "sceneEmoji": "🏃‍♂️✈️😅",
+          "ending": true,
+          "endingId": "close",
+          "endingTitle": { "en": "Just Made It!", "vi": "Vừa kịp!" },
+          "stars": 2
+        }
+      }
+    },
+    {
+      "id": "first_day_school",
+      "title": { "en": "First Day at School", "vi": "Ngày đầu đi học" },
+      "level": "A1",
+      "theme": "education",
+      "icon": "🏫",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "Today is your first day at a new English school. You feel a little nervous. You walk into the classroom and see many students from different countries. The teacher smiles and says: 'Welcome! Please introduce yourself.'",
+          "textVi": "Hôm nay là ngày đầu ở trường tiếng Anh mới. Bạn hơi hồi hộp. Bạn bước vào lớp và thấy nhiều học viên từ các nước khác nhau. Giáo viên mỉm cười: 'Chào mừng! Hãy giới thiệu bản thân.'",
+          "mood": "tense",
+          "sceneEmoji": "🏫😬📚",
+          "choices": [
+            { "text": "Hi everyone! My name is... I'm from Vietnam. I'm happy to be here!", "textVi": "Xin chào mọi người! Tên tôi là... Tôi đến từ Việt Nam. Tôi vui được ở đây!", "next": "class_starts", "points": 10, "vocab": ["my name is", "I'm from", "happy"] },
+            { "text": "Hello... I'm... sorry, I'm very nervous.", "textVi": "Xin chào... Tôi... xin lỗi, tôi rất hồi hộp.", "next": "teacher_helps", "points": 5, "vocab": ["hello", "nervous", "sorry"] }
+          ]
+        },
+        "teacher_helps": {
+          "text": "The teacher says kindly: 'Don't worry! Everyone is nervous on the first day. Just tell us your name and where you're from.' The other students smile at you encouragingly.",
+          "textVi": "Giáo viên nói: 'Đừng lo! Ai cũng hồi hộp ngày đầu. Chỉ cần nói tên và bạn từ đâu.' Các bạn khác mỉm cười động viên.",
+          "mood": "warm",
+          "sceneEmoji": "👩‍🏫😊🤝",
+          "choices": [
+            { "text": "My name is... and I'm from Vietnam. Nice to meet you all!", "textVi": "Tên tôi là... và tôi đến từ Việt Nam. Rất vui được gặp mọi người!", "next": "class_starts", "points": 10, "vocab": ["nice to meet you", "name", "from"] }
+          ]
+        },
+        "class_starts": {
+          "text": "The teacher says: 'Great! Now let's start our first lesson. Today we'll learn about greetings and introductions. But first, let's play a game! Find a partner and ask them three questions.'",
+          "textVi": "Giáo viên nói: 'Tuyệt! Giờ bắt đầu bài học đầu tiên. Hôm nay chúng ta sẽ học chào hỏi và giới thiệu. Nhưng trước tiên, chơi trò chơi! Tìm bạn cặp và hỏi ba câu hỏi.'",
+          "mood": "warm",
+          "sceneEmoji": "📖✋🎮",
+          "choices": [
+            { "text": "I'll talk to the student sitting next to me.", "textVi": "Tôi sẽ nói chuyện với bạn ngồi bên cạnh.", "next": "meet_partner", "points": 10, "vocab": ["talk to", "sitting", "next to"] },
+            { "text": "I'll find someone who looks friendly.", "textVi": "Tôi sẽ tìm ai đó trông thân thiện.", "next": "meet_partner", "points": 10, "vocab": ["find", "friendly", "looks"] }
+          ]
+        },
+        "meet_partner": {
+          "text": "You meet Yuki from Japan. She smiles and says: 'Hi! What's your name? Where are you from? And what's your hobby?' Your turn to ask her the same questions!",
+          "textVi": "Bạn gặp Yuki từ Nhật Bản. Cô ấy cười: 'Xin chào! Bạn tên gì? Bạn từ đâu? Và sở thích của bạn là gì?' Đến lượt bạn hỏi cô ấy!",
+          "mood": "happy",
+          "sceneEmoji": "🇯🇵👋😊",
+          "choices": [
+            { "text": "Nice to meet you, Yuki! What do you like to do in your free time?", "textVi": "Rất vui gặp bạn, Yuki! Bạn thích làm gì lúc rảnh?", "next": "friendship", "points": 10, "vocab": ["nice to meet you", "free time", "like to do"] },
+            { "text": "Hi Yuki! Do you like learning English?", "textVi": "Xin chào Yuki! Bạn có thích học tiếng Anh không?", "next": "friendship", "points": 10, "vocab": ["do you like", "learning English"] }
+          ]
+        },
+        "friendship": {
+          "text": "You and Yuki have a great conversation! She likes anime and cooking. The teacher says: 'Time's up! Now, who wants to share about their partner?'",
+          "textVi": "Bạn và Yuki nói chuyện rất vui! Cô ấy thích anime và nấu ăn. Giáo viên nói: 'Hết giờ! Ai muốn chia sẻ về bạn cặp của mình?'",
+          "mood": "happy",
+          "sceneEmoji": "🗣️👩‍🍳😄",
+          "choices": [
+            { "text": "I'll volunteer! This is my partner Yuki...", "textVi": "Tôi xin! Đây là bạn cặp Yuki...", "next": "ending_brave", "points": 10, "vocab": ["volunteer", "partner", "share"] },
+            { "text": "I'll let someone else go first.", "textVi": "Để người khác đi trước.", "next": "ending_good", "points": 5, "vocab": ["let someone else", "go first"] }
+          ]
+        },
+        "ending_brave": {
+          "text": "You stand up and introduce Yuki to the class. Everyone claps! The teacher says: 'Excellent job!' After class, Yuki says: 'Thank you! Let's study together!' You made your first friend at school!",
+          "textVi": "Bạn đứng dậy giới thiệu Yuki cho cả lớp. Mọi người vỗ tay! Giáo viên nói: 'Xuất sắc!' Sau giờ học, Yuki nói: 'Cảm ơn bạn! Chúng ta cùng học nhé!' Bạn có bạn đầu tiên ở trường!",
+          "mood": "happy",
+          "sceneEmoji": "🎉👏🤝🌟",
+          "ending": true,
+          "endingId": "brave",
+          "endingTitle": { "en": "Brave and Friendly!", "vi": "Dũng cảm và thân thiện!" },
+          "stars": 3
+        },
+        "ending_good": {
+          "text": "Another student goes first. After class, Yuki suggests: 'Do you want to get lunch together?' You say yes! You eat lunch together and talk about your countries. The first day was not scary at all!",
+          "textVi": "Bạn khác đi trước. Sau giờ, Yuki đề nghị: 'Bạn có muốn đi ăn trưa cùng không?' Bạn đồng ý! Hai người ăn trưa và nói về đất nước mình. Ngày đầu không đáng sợ chút nào!",
+          "mood": "happy",
+          "sceneEmoji": "🍽️🗣️😊",
+          "ending": true,
+          "endingId": "good",
+          "endingTitle": { "en": "New Friend, New Start", "vi": "Bạn mới, khởi đầu mới" },
+          "stars": 2
+        }
+      }
+    },
+    {
+      "id": "restaurant",
+      "title": { "en": "Dinner at a Restaurant", "vi": "Ăn tối ở nhà hàng" },
+      "level": "A2",
+      "theme": "food",
+      "icon": "🍽️",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You and your friend want to have a nice dinner tonight. You find a popular Italian restaurant. The waiter says: 'Good evening! Do you have a reservation?'",
+          "textVi": "Bạn và bạn của bạn muốn ăn tối ngon tối nay. Bạn tìm được nhà hàng Ý nổi tiếng. Phục vụ nói: 'Chào buổi tối! Quý khách có đặt bàn không?'",
+          "mood": "warm",
+          "sceneEmoji": "🍝🕯️🍷",
+          "choices": [
+            { "text": "Yes, I booked a table for two under my name.", "textVi": "Vâng, tôi đặt bàn cho hai người dưới tên tôi.", "next": "seated", "points": 10, "vocab": ["booked", "table for two", "reservation"] },
+            { "text": "No, we don't. Is there a table available?", "textVi": "Không. Còn bàn trống không?", "next": "wait_table", "points": 5, "vocab": ["table available", "don't have"] }
+          ]
+        },
+        "seated": {
+          "text": "'Right this way!' The waiter leads you to a nice table by the window. He gives you the menus. 'Can I get you something to drink while you look at the menu?'",
+          "textVi": "'Mời đi lối này!' Phục vụ dẫn bạn đến bàn đẹp cạnh cửa sổ. Anh ấy đưa thực đơn. 'Quý khách muốn uống gì trong khi xem thực đơn?'",
+          "mood": "warm",
+          "sceneEmoji": "🪟🍽️📋",
+          "choices": [
+            { "text": "I'll have water, please. And a glass of orange juice.", "textVi": "Cho tôi nước lọc. Và một ly nước cam.", "next": "order_food", "points": 10, "vocab": ["water", "glass of", "orange juice"] },
+            { "text": "What do you recommend?", "textVi": "Bạn gợi ý gì?", "next": "recommend", "points": 10, "vocab": ["recommend"] }
+          ]
+        },
+        "wait_table": {
+          "text": "'Let me check... You're in luck! We just had a cancellation. Follow me!' He takes you to a cozy corner table.",
+          "textVi": "'Để tôi kiểm tra... May quá! Vừa có khách hủy. Theo tôi!' Anh ấy dẫn đến bàn góc ấm cúng.",
+          "mood": "happy",
+          "sceneEmoji": "🍽️😌",
+          "choices": [
+            { "text": "Great! We're so lucky!", "textVi": "Tuyệt! Chúng tôi may quá!", "next": "order_food", "points": 10, "vocab": ["lucky", "great"] }
+          ]
+        },
+        "recommend": {
+          "text": "'Our special tonight is the mushroom risotto — it's our chef's best dish! We also have a delicious seafood pasta.'",
+          "textVi": "'Món đặc biệt tối nay là risotto nấm — món giỏi nhất của đầu bếp! Chúng tôi cũng có mì hải sản rất ngon.'",
+          "mood": "warm",
+          "sceneEmoji": "👨‍🍳🍄🦐",
+          "choices": [
+            { "text": "The mushroom risotto sounds amazing! I'll try that.", "textVi": "Risotto nấm nghe tuyệt! Tôi thử món đó.", "next": "waiting_food", "points": 10, "vocab": ["sounds amazing", "try", "mushroom"] },
+            { "text": "I'd like the seafood pasta, please.", "textVi": "Cho tôi mì hải sản.", "next": "waiting_food", "points": 10, "vocab": ["seafood", "pasta", "I'd like"] }
+          ]
+        },
+        "order_food": {
+          "text": "You look at the menu. There are many choices: pizza, pasta, salad, steak, and risotto. 'Are you ready to order?' the waiter asks.",
+          "textVi": "Bạn xem thực đơn. Có nhiều lựa chọn: pizza, mì, salad, bít tết, và risotto. 'Quý khách sẵn sàng gọi món chưa?' phục vụ hỏi.",
+          "mood": "warm",
+          "sceneEmoji": "📋🤔",
+          "choices": [
+            { "text": "I'll have the margherita pizza and a Caesar salad.", "textVi": "Cho tôi pizza margherita và salad Caesar.", "next": "waiting_food", "points": 10, "vocab": ["I'll have", "pizza", "salad"] },
+            { "text": "Can I have the steak, medium rare, with mashed potatoes?", "textVi": "Cho tôi bít tết tái vừa, với khoai tây nghiền?", "next": "waiting_food", "points": 10, "vocab": ["steak", "medium rare", "mashed potatoes"] }
+          ]
+        },
+        "waiting_food": {
+          "text": "While waiting, you talk with your friend and enjoy the nice atmosphere. The restaurant has soft music and candles on every table. After 15 minutes, the waiter arrives with your food. 'Here you are! Enjoy your meal!'",
+          "textVi": "Trong khi đợi, bạn nói chuyện với bạn và tận hưởng không khí. Nhà hàng có nhạc nhẹ và nến trên mỗi bàn. Sau 15 phút, phục vụ mang đồ ăn đến. 'Đây ạ! Chúc ngon miệng!'",
+          "mood": "happy",
+          "sceneEmoji": "🕯️🎵🍽️",
+          "choices": [
+            { "text": "This looks delicious! Thank you!", "textVi": "Trông ngon quá! Cảm ơn!", "next": "eating", "points": 10, "vocab": ["looks delicious", "thank you"] }
+          ]
+        },
+        "eating": {
+          "text": "The food is incredible! You and your friend enjoy every bite. After dinner, the waiter asks: 'Would you like to see the dessert menu?'",
+          "textVi": "Đồ ăn tuyệt vời! Bạn và bạn ấy thưởng thức từng miếng. Sau bữa tối, phục vụ hỏi: 'Quý khách muốn xem thực đơn tráng miệng không?'",
+          "mood": "happy",
+          "sceneEmoji": "😋🍽️✨",
+          "choices": [
+            { "text": "Yes, please! What desserts do you have?", "textVi": "Vâng! Có tráng miệng gì?", "next": "ending_dessert", "points": 10, "vocab": ["desserts", "yes please"] },
+            { "text": "No, thank you. Can we have the bill, please?", "textVi": "Không, cảm ơn. Cho chúng tôi hóa đơn nhé?", "next": "ending_bill", "points": 10, "vocab": ["bill", "no thank you"] }
+          ]
+        },
+        "ending_dessert": {
+          "text": "You order tiramisu and your friend gets chocolate cake. Both are amazing! You pay the bill and leave a nice tip. 'This was the best dinner ever!' your friend says. You agree — what a wonderful evening!",
+          "textVi": "Bạn gọi tiramisu và bạn ấy lấy bánh sô-cô-la. Cả hai đều tuyệt! Bạn trả tiền và để tiền tip. 'Đây là bữa tối ngon nhất!' bạn ấy nói. Bạn đồng ý — buổi tối thật tuyệt vời!",
+          "mood": "happy",
+          "sceneEmoji": "🍰☕🌟",
+          "ending": true,
+          "endingId": "dessert",
+          "endingTitle": { "en": "Sweet Ending!", "vi": "Kết thúc ngọt ngào!" },
+          "stars": 3
+        },
+        "ending_bill": {
+          "text": "The total is $48. You split the bill with your friend. 'Thank you for coming! Have a great night!' the waiter says. You walk out into the cool evening air, feeling happy and full. A perfect dinner!",
+          "textVi": "Tổng cộng $48. Bạn chia đôi hóa đơn. 'Cảm ơn đã đến! Chúc buổi tối vui!' phục vụ nói. Bạn bước ra không khí mát buổi tối, vui vẻ và no. Bữa tối hoàn hảo!",
+          "mood": "happy",
+          "sceneEmoji": "💰🌙😊",
+          "ending": true,
+          "endingId": "bill",
+          "endingTitle": { "en": "Perfect Dinner", "vi": "Bữa tối hoàn hảo" },
+          "stars": 3
+        }
+      }
+    },
+    {
+      "id": "hotel_checkin",
+      "title": { "en": "Hotel Check-in", "vi": "Nhận phòng khách sạn" },
+      "level": "A2",
+      "theme": "travel",
+      "icon": "🏨",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You arrive at the hotel after a long journey. You're tired and can't wait to rest. The lobby is beautiful with a big chandelier. You walk to the reception desk.",
+          "textVi": "Bạn đến khách sạn sau chuyến đi dài. Bạn mệt và nóng lòng muốn nghỉ. Sảnh đẹp với đèn chùm lớn. Bạn đi đến quầy lễ tân.",
+          "mood": "calm",
+          "sceneEmoji": "🏨🧳😴",
+          "choices": [
+            { "text": "Hello! I have a reservation. My name is...", "textVi": "Xin chào! Tôi có đặt phòng. Tên tôi là...", "next": "check_reservation", "points": 10, "vocab": ["reservation", "my name is"] },
+            { "text": "Hi, do you have any rooms available tonight?", "textVi": "Xin chào, tối nay còn phòng trống không?", "next": "no_reservation", "points": 5, "vocab": ["rooms available", "tonight"] }
+          ]
+        },
+        "check_reservation": {
+          "text": "'Let me check... Yes! I found your booking. You have a deluxe room for two nights. Would you prefer a high floor or a low floor?'",
+          "textVi": "'Để tôi kiểm tra... Có! Tôi tìm thấy đặt phòng. Bạn có phòng deluxe hai đêm. Bạn thích tầng cao hay tầng thấp?'",
+          "mood": "calm",
+          "sceneEmoji": "💻🔍🏨",
+          "choices": [
+            { "text": "A high floor, please. I love the view!", "textVi": "Tầng cao nhé. Tôi thích ngắm cảnh!", "next": "room_key", "points": 10, "vocab": ["high floor", "view", "love"] },
+            { "text": "A low floor is fine. I don't like elevators.", "textVi": "Tầng thấp được. Tôi không thích thang máy.", "next": "room_key", "points": 10, "vocab": ["low floor", "fine", "elevator"] }
+          ]
+        },
+        "no_reservation": {
+          "text": "'Let me see... We have one standard room left for $120 per night, and one suite for $250. Which would you prefer?'",
+          "textVi": "'Để tôi xem... Còn một phòng tiêu chuẩn $120/đêm, và một phòng suite $250. Bạn muốn phòng nào?'",
+          "mood": "calm",
+          "sceneEmoji": "💰🤔🏨",
+          "choices": [
+            { "text": "The standard room is fine, thank you.", "textVi": "Phòng tiêu chuẩn được, cảm ơn.", "next": "room_key", "points": 10, "vocab": ["standard room", "fine"] },
+            { "text": "I'll take the suite! I want to treat myself.", "textVi": "Tôi lấy suite! Tôi muốn tự thưởng.", "next": "room_key", "points": 10, "vocab": ["suite", "treat myself"] }
+          ]
+        },
+        "room_key": {
+          "text": "'Here is your room key — Room 708. Breakfast is from 7 to 10 AM on the second floor. The gym and pool are on the fifth floor. Do you need help with your luggage?'",
+          "textVi": "'Đây là chìa khóa phòng — Phòng 708. Bữa sáng từ 7 đến 10 giờ tầng 2. Phòng gym và hồ bơi tầng 5. Bạn cần giúp mang hành lý không?'",
+          "mood": "warm",
+          "sceneEmoji": "🔑🍳🏊‍♂️",
+          "choices": [
+            { "text": "Yes, please. My suitcase is very heavy.", "textVi": "Vâng. Vali tôi rất nặng.", "next": "bellboy", "points": 10, "vocab": ["heavy", "suitcase", "help"] },
+            { "text": "No, I'm fine. Thank you! What's the Wi-Fi password?", "textVi": "Không, tôi ổn. Cảm ơn! Mật khẩu Wi-Fi là gì?", "next": "goto_room", "points": 10, "vocab": ["Wi-Fi password", "I'm fine"] }
+          ]
+        },
+        "bellboy": {
+          "text": "A friendly bellboy carries your suitcase to Room 708. The room is beautiful! Big bed, clean bathroom, and an amazing city view from the window.",
+          "textVi": "Nhân viên khuân vác thân thiện mang vali đến Phòng 708. Phòng đẹp! Giường lớn, phòng tắm sạch, và cảnh thành phố tuyệt vời từ cửa sổ.",
+          "mood": "happy",
+          "sceneEmoji": "🛏️🌃✨",
+          "choices": [
+            { "text": "This room is perfect! Thank you so much.", "textVi": "Phòng này hoàn hảo! Cảm ơn rất nhiều.", "next": "evening_choice", "points": 10, "vocab": ["perfect", "thank you so much"] }
+          ]
+        },
+        "goto_room": {
+          "text": "'The Wi-Fi password is HOTEL2026. Enjoy your stay!' You take the elevator to the 7th floor and find Room 708. The room is wonderful!",
+          "textVi": "'Mật khẩu Wi-Fi là HOTEL2026. Chúc ở vui!' Bạn đi thang máy lên tầng 7 và tìm Phòng 708. Phòng tuyệt vời!",
+          "mood": "happy",
+          "sceneEmoji": "📶🛗🛏️",
+          "choices": [
+            { "text": "Nice! Let me unpack and relax.", "textVi": "Đẹp! Để tôi dọn đồ và thư giãn.", "next": "evening_choice", "points": 10, "vocab": ["unpack", "relax"] }
+          ]
+        },
+        "evening_choice": {
+          "text": "You unpack and take a hot shower. Now it's 7 PM. You feel refreshed. What do you want to do tonight?",
+          "textVi": "Bạn dọn đồ và tắm nước nóng. Giờ là 7 giờ tối. Bạn thấy sảng khoái. Tối nay muốn làm gì?",
+          "mood": "calm",
+          "sceneEmoji": "🚿😌🌙",
+          "choices": [
+            { "text": "I'll go to the hotel restaurant for dinner.", "textVi": "Tôi sẽ đi nhà hàng khách sạn ăn tối.", "next": "ending_dinner", "points": 10, "vocab": ["hotel restaurant", "dinner"] },
+            { "text": "I'll go for a walk and explore the city.", "textVi": "Tôi sẽ đi dạo và khám phá thành phố.", "next": "ending_explore", "points": 10, "vocab": ["go for a walk", "explore", "city"] },
+            { "text": "I'm so tired. I'll just sleep early tonight.", "textVi": "Tôi mệt quá. Tôi sẽ ngủ sớm tối nay.", "next": "ending_rest", "points": 5, "vocab": ["tired", "sleep early"] }
+          ]
+        },
+        "ending_dinner": {
+          "text": "The hotel restaurant serves amazing local food. You try three different dishes and they're all delicious! After dinner, you go back to your room and watch the city lights from your window. What a great first night!",
+          "textVi": "Nhà hàng khách sạn phục vụ đồ ăn địa phương tuyệt vời. Bạn thử ba món khác nhau và đều ngon! Sau bữa tối, bạn về phòng và ngắm ánh đèn thành phố từ cửa sổ. Đêm đầu tiên thật tuyệt!",
+          "mood": "happy",
+          "sceneEmoji": "🍽️🌃🌟",
+          "ending": true,
+          "endingId": "dinner",
+          "endingTitle": { "en": "Delicious Evening!", "vi": "Buổi tối ngon lành!" },
+          "stars": 3
+        },
+        "ending_explore": {
+          "text": "You walk through the streets and discover a beautiful night market! There's street food, live music, and colorful lights everywhere. You try local street food and take amazing photos. This trip is already unforgettable!",
+          "textVi": "Bạn đi qua phố và khám phá chợ đêm đẹp! Có đồ ăn đường phố, nhạc sống, và đèn nhiều màu khắp nơi. Bạn thử đồ ăn đường phố và chụp ảnh tuyệt đẹp. Chuyến đi này đã không thể quên!",
+          "mood": "happy",
+          "sceneEmoji": "🌙🏮🎶✨",
+          "ending": true,
+          "endingId": "explore",
+          "endingTitle": { "en": "Night Explorer!", "vi": "Nhà thám hiểm đêm!" },
+          "stars": 3
+        },
+        "ending_rest": {
+          "text": "You lie on the soft bed and fall asleep immediately. You sleep for 10 hours straight! In the morning, you feel amazing and full of energy. Sometimes the best thing to do is rest. Tomorrow's adventure awaits!",
+          "textVi": "Bạn nằm trên giường êm và ngủ ngay. Bạn ngủ 10 tiếng liên tục! Sáng hôm sau, bạn thấy tuyệt vời và đầy năng lượng. Đôi khi điều tốt nhất nên làm là nghỉ ngơi. Cuộc phiêu lưu ngày mai đang chờ!",
+          "mood": "calm",
+          "sceneEmoji": "🛏️😴💤",
+          "ending": true,
+          "endingId": "rest",
+          "endingTitle": { "en": "Well Rested!", "vi": "Nghỉ ngơi đầy đủ!" },
+          "stars": 2
+        }
+      }
+    },
+    {
+      "id": "job_interview",
+      "title": { "en": "The Job Interview", "vi": "Phỏng vấn xin việc" },
+      "level": "B1",
+      "theme": "business",
+      "icon": "💻",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You have a job interview today at a tech company. You prepared well — you researched the company, practiced your answers, and wore your best outfit. You arrive 10 minutes early. The HR manager greets you.",
+          "textVi": "Hôm nay bạn có buổi phỏng vấn ở công ty công nghệ. Bạn chuẩn bị kỹ — tìm hiểu công ty, luyện câu trả lời, và mặc đồ đẹp nhất. Bạn đến sớm 10 phút. Quản lý nhân sự chào bạn.",
+          "mood": "tense",
+          "sceneEmoji": "💼👔🏢",
+          "choices": [
+            { "text": "Good morning! Thank you for this opportunity.", "textVi": "Chào buổi sáng! Cảm ơn vì cơ hội này.", "next": "first_question", "points": 10, "vocab": ["opportunity", "thank you"] },
+            { "text": "Hi! I'm a bit nervous, but I'm excited to be here.", "textVi": "Xin chào! Tôi hơi hồi hộp, nhưng rất vui được ở đây.", "next": "first_question", "points": 10, "vocab": ["nervous", "excited"] }
+          ]
+        },
+        "first_question": {
+          "text": "The interviewer smiles: 'Please, have a seat. Let's start with a simple question — can you tell me about yourself and why you're interested in this position?'",
+          "textVi": "Người phỏng vấn mỉm cười: 'Mời ngồi. Bắt đầu với câu hỏi đơn giản — bạn có thể kể về bản thân và tại sao bạn quan tâm đến vị trí này?'",
+          "mood": "calm",
+          "sceneEmoji": "👩‍💼📋🤝",
+          "choices": [
+            { "text": "I graduated in Computer Science and have two years of experience in web development. I love building things that help people.", "textVi": "Tôi tốt nghiệp Khoa học Máy tính và có hai năm kinh nghiệm phát triển web. Tôi thích xây dựng thứ giúp ích mọi người.", "next": "skill_question", "points": 10, "vocab": ["graduated", "experience", "web development"] },
+            { "text": "I've always been passionate about technology. I saw your company's products and was really impressed.", "textVi": "Tôi luôn đam mê công nghệ. Tôi thấy sản phẩm công ty và rất ấn tượng.", "next": "skill_question", "points": 10, "vocab": ["passionate", "technology", "impressed"] }
+          ]
+        },
+        "skill_question": {
+          "text": "'Interesting! Now, can you describe a challenging project you've worked on? What was your role and how did you handle difficulties?'",
+          "textVi": "'Thú vị! Giờ bạn có thể mô tả một dự án khó mà bạn đã làm? Vai trò của bạn là gì và bạn xử lý khó khăn thế nào?'",
+          "mood": "calm",
+          "sceneEmoji": "🤔💡📊",
+          "choices": [
+            { "text": "I led a team project where we built an e-commerce website. When we faced a deadline issue, I organized daily meetings to keep everyone on track.", "textVi": "Tôi dẫn dắt dự án nhóm xây website thương mại điện tử. Khi gặp vấn đề deadline, tôi tổ chức họp hàng ngày để mọi người đúng tiến độ.", "next": "weakness_q", "points": 10, "vocab": ["led a team", "deadline", "organized", "on track"] },
+            { "text": "I worked on a mobile app that had a bug affecting many users. I stayed late to find and fix the problem. The users were happy after the update.", "textVi": "Tôi làm app di động có lỗi ảnh hưởng nhiều người dùng. Tôi ở lại muộn để tìm và sửa lỗi. Người dùng hài lòng sau bản cập nhật.", "next": "weakness_q", "points": 10, "vocab": ["mobile app", "bug", "fix the problem", "update"] }
+          ]
+        },
+        "weakness_q": {
+          "text": "'Great answer! One more thing — what do you consider your biggest weakness?' This is a tricky question...",
+          "textVi": "'Câu trả lời hay! Thêm một điều — bạn cho rằng điểm yếu lớn nhất là gì?' Đây là câu hỏi khó...",
+          "mood": "tense",
+          "sceneEmoji": "😰❓🎯",
+          "choices": [
+            { "text": "Sometimes I focus too much on details, but I've been learning to balance perfection with deadlines.", "textVi": "Đôi khi tôi tập trung quá vào chi tiết, nhưng tôi đang học cân bằng hoàn hảo với deadline.", "next": "ending_great", "points": 10, "vocab": ["focus on details", "balance", "perfection", "deadlines"] },
+            { "text": "I used to be shy about public speaking, but I joined a speaking club and now I feel much more confident.", "textVi": "Trước tôi hay ngại nói trước đám đông, nhưng tôi tham gia câu lạc bộ thuyết trình và giờ tự tin hơn nhiều.", "next": "ending_great", "points": 10, "vocab": ["public speaking", "confident", "used to be"] },
+            { "text": "I don't have any weaknesses.", "textVi": "Tôi không có điểm yếu nào.", "next": "ending_overconfident", "points": 0, "vocab": ["weaknesses"] }
+          ]
+        },
+        "ending_great": {
+          "text": "The interviewer nods: 'Excellent! I really appreciate your honesty and self-awareness. We'll be in touch soon.' Two days later, you receive an email: 'Congratulations! We'd like to offer you the position!' You did it!",
+          "textVi": "Người phỏng vấn gật đầu: 'Xuất sắc! Tôi đánh giá cao sự thành thật và tự nhận thức. Chúng tôi sẽ liên hệ sớm.' Hai ngày sau, bạn nhận email: 'Chúc mừng! Chúng tôi muốn mời bạn vào vị trí này!' Bạn đã làm được!",
+          "mood": "happy",
+          "sceneEmoji": "🎉📧💼🌟",
+          "ending": true,
+          "endingId": "great",
+          "endingTitle": { "en": "You Got the Job!", "vi": "Bạn được nhận!" },
+          "stars": 3
+        },
+        "ending_overconfident": {
+          "text": "The interviewer raises an eyebrow. 'Everyone has weaknesses. Self-awareness is important in our team.' The interview ends politely but you can tell they weren't impressed. A week later, you get a rejection email. Lesson learned: honesty is always the best policy!",
+          "textVi": "Người phỏng vấn nhướng mày. 'Ai cũng có điểm yếu. Tự nhận thức quan trọng trong đội chúng tôi.' Buổi phỏng vấn kết thúc lịch sự nhưng bạn biết họ không ấn tượng. Một tuần sau, bạn nhận email từ chối. Bài học: thành thật luôn là chiến lược tốt nhất!",
+          "mood": "tense",
+          "sceneEmoji": "😔📧💭",
+          "ending": true,
+          "endingId": "overconfident",
+          "endingTitle": { "en": "Lesson Learned", "vi": "Bài học kinh nghiệm" },
+          "stars": 1
+        }
+      }
+    },
+    {
+      "id": "join_club",
+      "title": { "en": "Joining a Club", "vi": "Tham gia câu lạc bộ" },
+      "level": "B1",
+      "theme": "social",
+      "icon": "🎭",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You see a poster at the community center: 'Join our clubs! Photography, Cooking, Drama, Book Club — first session FREE!' You've been wanting to meet new people and learn something new.",
+          "textVi": "Bạn thấy poster ở trung tâm cộng đồng: 'Tham gia câu lạc bộ! Nhiếp ảnh, Nấu ăn, Kịch, Đọc sách — buổi đầu MIỄN PHÍ!' Bạn muốn gặp người mới và học điều mới.",
+          "mood": "calm",
+          "sceneEmoji": "📸🎭📖🍳",
+          "choices": [
+            { "text": "The Photography club sounds interesting! I love taking photos.", "textVi": "CLB Nhiếp ảnh nghe hay! Tôi thích chụp ảnh.", "next": "photo_club", "points": 10, "vocab": ["photography", "interesting", "taking photos"] },
+            { "text": "I've always wanted to try Drama. Let's be brave!", "textVi": "Tôi luôn muốn thử Kịch. Dũng cảm lên!", "next": "drama_club", "points": 10, "vocab": ["drama", "always wanted", "brave"] },
+            { "text": "Cooking club! I want to learn new recipes.", "textVi": "CLB Nấu ăn! Tôi muốn học công thức mới.", "next": "cooking_club", "points": 10, "vocab": ["cooking", "recipes", "learn"] }
+          ]
+        },
+        "photo_club": {
+          "text": "You enter the photography room. There are 8 people with cameras. The instructor says: 'Welcome! Today we're going on a photo walk around the neighborhood. The theme is: finding beauty in ordinary things.'",
+          "textVi": "Bạn vào phòng nhiếp ảnh. Có 8 người với máy ảnh. Giảng viên nói: 'Chào mừng! Hôm nay chúng ta đi chụp ảnh quanh khu phố. Chủ đề: tìm vẻ đẹp trong những thứ bình thường.'",
+          "mood": "calm",
+          "sceneEmoji": "📷🌳🏘️",
+          "choices": [
+            { "text": "That sounds creative! I'll photograph flowers and shadows.", "textVi": "Nghe sáng tạo! Tôi sẽ chụp hoa và bóng.", "next": "photo_walk", "points": 10, "vocab": ["creative", "photograph", "flowers", "shadows"] },
+            { "text": "Can I use my phone camera? I don't have a real camera.", "textVi": "Tôi dùng máy ảnh điện thoại được không? Tôi không có máy ảnh thật.", "next": "photo_walk", "points": 10, "vocab": ["phone camera", "real camera"] }
+          ]
+        },
+        "drama_club": {
+          "text": "The drama room is full of energy! 12 people are warming up with stretches and vocal exercises. The director says: 'Today we'll do improvisation — no scripts, just your imagination!'",
+          "textVi": "Phòng kịch tràn đầy năng lượng! 12 người đang khởi động với kéo giãn và luyện giọng. Đạo diễn nói: 'Hôm nay chúng ta sẽ ứng biến — không kịch bản, chỉ trí tưởng tượng!'",
+          "mood": "warm",
+          "sceneEmoji": "🎭🗣️🎬",
+          "choices": [
+            { "text": "Improvisation? That's scary but exciting!", "textVi": "Ứng biến? Đáng sợ nhưng hấp dẫn!", "next": "improv_game", "points": 10, "vocab": ["improvisation", "scary", "exciting"] }
+          ]
+        },
+        "cooking_club": {
+          "text": "The kitchen smells amazing! The chef instructor welcomes you: 'Today we're making Thai green curry from scratch. Has anyone cooked Thai food before?'",
+          "textVi": "Bếp thơm tuyệt vời! Đầu bếp giảng viên chào: 'Hôm nay chúng ta nấu cà ri xanh Thái từ đầu. Ai đã nấu đồ Thái chưa?'",
+          "mood": "warm",
+          "sceneEmoji": "👨‍🍳🍛🥥",
+          "choices": [
+            { "text": "I've never tried, but I love Thai food!", "textVi": "Tôi chưa thử, nhưng tôi thích đồ Thái!", "next": "cooking_session", "points": 10, "vocab": ["never tried", "love", "Thai food"] },
+            { "text": "I cook a little bit at home. I'm excited to learn!", "textVi": "Tôi nấu một chút ở nhà. Rất hào hứng học!", "next": "cooking_session", "points": 10, "vocab": ["cook", "a little bit", "excited to learn"] }
+          ]
+        },
+        "photo_walk": {
+          "text": "You walk around the neighborhood taking photos. You capture a beautiful old door, a cat sleeping in the sun, and rain drops on a leaf. The person next to you, Maria, says: 'Wow, you have a great eye!'",
+          "textVi": "Bạn đi quanh khu phố chụp ảnh. Bạn chụp cánh cửa cổ đẹp, mèo ngủ trong nắng, và giọt mưa trên lá. Người bên cạnh, Maria, nói: 'Wow, bạn có con mắt nghệ thuật!'",
+          "mood": "happy",
+          "sceneEmoji": "📸🐱🌿🚪",
+          "choices": [
+            { "text": "Thank you! Your photos are amazing too. I love the one of the street musician.", "textVi": "Cảm ơn! Ảnh bạn cũng đẹp. Tôi thích ảnh nghệ sĩ đường phố.", "next": "ending_photo", "points": 10, "vocab": ["great eye", "street musician", "amazing"] }
+          ]
+        },
+        "improv_game": {
+          "text": "The director pairs you with a girl named Lisa. 'You're a customer at a pet shop, and Lisa is the shopkeeper. You want to buy a very unusual pet. Go!' Everyone watches as you begin...",
+          "textVi": "Đạo diễn ghép bạn với cô gái tên Lisa. 'Bạn là khách ở cửa hàng thú cưng, và Lisa là người bán. Bạn muốn mua thú cưng rất lạ. Bắt đầu!' Mọi người xem khi bạn bắt đầu...",
+          "mood": "warm",
+          "sceneEmoji": "🐾🎭😆",
+          "choices": [
+            { "text": "Excuse me, do you sell dragons? I need one for my garden.", "textVi": "Xin lỗi, bạn có bán rồng không? Tôi cần một con cho vườn.", "next": "ending_drama", "points": 10, "vocab": ["do you sell", "dragon", "garden"] },
+            { "text": "Hello! I'm looking for a very quiet elephant. Do you have any?", "textVi": "Xin chào! Tôi tìm con voi rất yên lặng. Bạn có không?", "next": "ending_drama", "points": 10, "vocab": ["looking for", "quiet", "elephant"] }
+          ]
+        },
+        "cooking_session": {
+          "text": "You chop vegetables, mix the curry paste, and add coconut milk. The kitchen smells incredible! The person next to you, James, shares a tip: 'Add a little sugar to balance the spice.' You work together and the curry turns out perfectly!",
+          "textVi": "Bạn cắt rau, trộn sốt cà ri, và thêm nước cốt dừa. Bếp thơm không thể tả! Người bên cạnh, James, chia sẻ mẹo: 'Thêm chút đường để cân vị cay.' Hai người cùng làm và cà ri ngon tuyệt!",
+          "mood": "happy",
+          "sceneEmoji": "🔪🥥🍛😋",
+          "choices": [
+            { "text": "This is delicious! I can't believe I made this myself!", "textVi": "Ngon quá! Không thể tin tôi tự nấu được!", "next": "ending_cooking", "points": 10, "vocab": ["delicious", "can't believe", "made this myself"] }
+          ]
+        },
+        "ending_photo": {
+          "text": "At the end, everyone shares their best photos on a big screen. Your photo of the cat wins 'Most Creative Shot'! Maria gives you her Instagram. You sign up for the monthly membership. Photography has given you new friends and a new way to see the world!",
+          "textVi": "Cuối buổi, mọi người chia sẻ ảnh đẹp nhất trên màn hình lớn. Ảnh con mèo của bạn thắng 'Ảnh Sáng Tạo Nhất'! Maria cho bạn Instagram. Bạn đăng ký thành viên hàng tháng. Nhiếp ảnh cho bạn bạn mới và cách nhìn thế giới mới!",
+          "mood": "happy",
+          "sceneEmoji": "📸🏆🤝🌟",
+          "ending": true,
+          "endingId": "photo",
+          "endingTitle": { "en": "The Photographer!", "vi": "Nhiếp ảnh gia!" },
+          "stars": 3
+        },
+        "ending_drama": {
+          "text": "Everyone laughs so hard! You and Lisa create a hilarious scene. The director says: 'Natural talent! You should join our play next month!' After class, three people ask for your number. Drama club has brought out a side of you that you didn't know existed!",
+          "textVi": "Mọi người cười nghiêng ngả! Bạn và Lisa tạo cảnh hài hước. Đạo diễn nói: 'Tài năng tự nhiên! Bạn nên tham gia vở kịch tháng sau!' Sau giờ, ba người xin số điện thoại. CLB kịch đã khơi gợi một mặt mà bạn không biết mình có!",
+          "mood": "happy",
+          "sceneEmoji": "🎭😂👏🌟",
+          "ending": true,
+          "endingId": "drama",
+          "endingTitle": { "en": "Born Performer!", "vi": "Nghệ sĩ bẩm sinh!" },
+          "stars": 3
+        },
+        "ending_cooking": {
+          "text": "Everyone sits down and eats together. It's like a big family dinner! James shares his recipe collection and you exchange contact info. You sign up for next week's class: Italian pasta. Cooking brings people together — and now your kitchen skills are leveling up!",
+          "textVi": "Mọi người ngồi lại ăn cùng nhau. Giống như bữa tối gia đình lớn! James chia sẻ bộ sưu tập công thức và bạn trao đổi liên lạc. Bạn đăng ký lớp tuần sau: mì Ý. Nấu ăn gắn kết mọi người — và kỹ năng bếp của bạn đang lên level!",
+          "mood": "happy",
+          "sceneEmoji": "🍽️👨‍🍳🤝🌟",
+          "ending": true,
+          "endingId": "cooking",
+          "endingTitle": { "en": "Master Chef in Training!", "vi": "Đầu bếp tập sự!" },
+          "stars": 3
+        }
+      }
+    },
+    {
+      "id": "international_friends",
+      "title": { "en": "Making International Friends", "vi": "Kết bạn quốc tế" },
+      "level": "B1",
+      "theme": "social",
+      "icon": "🌍",
+      "totalEndings": 3,
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "text": "You're at an international meetup event at a rooftop bar. There are people from at least 15 different countries! Music is playing, the view is beautiful, and you have a name tag that says your name and country. Someone approaches you.",
+          "textVi": "Bạn ở sự kiện giao lưu quốc tế tại quán bar trên sân thượng. Có người từ ít nhất 15 nước! Nhạc đang chơi, cảnh đẹp, và bạn có thẻ tên ghi tên và nước. Ai đó đến gần.",
+          "mood": "warm",
+          "sceneEmoji": "🌍🥂🌃",
+          "choices": [
+            { "text": "Hi! I see you're from Brazil. I've always wanted to visit! What's it like?", "textVi": "Xin chào! Tôi thấy bạn từ Brazil. Tôi luôn muốn đến! Ở đó thế nào?", "next": "meet_carlos", "points": 10, "vocab": ["always wanted to visit", "what's it like"] },
+            { "text": "Hello! Is this your first time at this meetup?", "textVi": "Xin chào! Đây là lần đầu bạn đến sự kiện này?", "next": "meet_group", "points": 10, "vocab": ["first time", "meetup"] }
+          ]
+        },
+        "meet_carlos": {
+          "text": "'Hey! I'm Carlos! Brazil is amazing — beautiful beaches, great food, and the best music! Are you from Vietnam? I've heard the food there is incredible!' He's very energetic and friendly.",
+          "textVi": "'Ê! Tôi là Carlos! Brazil tuyệt vời — bãi biển đẹp, đồ ăn ngon, và nhạc hay nhất! Bạn từ Việt Nam hả? Nghe nói đồ ăn ở đó tuyệt lắm!' Anh ấy rất năng động và thân thiện.",
+          "mood": "happy",
+          "sceneEmoji": "🇧🇷🏖️🎶",
+          "choices": [
+            { "text": "Yes! Vietnamese food is delicious. You should try pho — it's our famous noodle soup!", "textVi": "Vâng! Đồ Việt ngon lắm. Bạn nên thử phở — món mì nổi tiếng!", "next": "food_talk", "points": 10, "vocab": ["delicious", "famous", "should try", "noodle soup"] },
+            { "text": "I love Brazilian music! Do you dance samba?", "textVi": "Tôi thích nhạc Brazil! Bạn có nhảy samba không?", "next": "music_talk", "points": 10, "vocab": ["Brazilian music", "dance", "samba"] }
+          ]
+        },
+        "meet_group": {
+          "text": "'Yes, first time! I'm Mei from China, and this is Ahmed from Egypt and Sofia from Spain. We just met too! Want to join our group?' They seem very welcoming.",
+          "textVi": "'Vâng, lần đầu! Tôi là Mei từ Trung Quốc, đây là Ahmed từ Ai Cập và Sofia từ Tây Ban Nha. Chúng tôi cũng vừa gặp! Muốn tham gia nhóm không?' Họ rất thân thiện.",
+          "mood": "happy",
+          "sceneEmoji": "🇨🇳🇪🇬🇪🇸👋",
+          "choices": [
+            { "text": "I'd love to! It's great to meet people from so many countries.", "textVi": "Tôi rất muốn! Thật tuyệt được gặp người từ nhiều nước.", "next": "group_chat", "points": 10, "vocab": ["I'd love to", "great to meet", "so many countries"] }
+          ]
+        },
+        "food_talk": {
+          "text": "Carlos is fascinated: 'Pho? I need to try that! In Brazil, our traditional dish is feijoada — black beans with rice and meat. Food is the best way to understand a culture, don't you think?' A woman from Italy joins your conversation.",
+          "textVi": "Carlos rất thích thú: 'Phở? Tôi phải thử! Ở Brazil, món truyền thống là feijoada — đậu đen với cơm và thịt. Đồ ăn là cách tốt nhất để hiểu văn hóa, bạn nghĩ sao?' Một phụ nữ từ Ý tham gia cuộc nói chuyện.",
+          "mood": "warm",
+          "sceneEmoji": "🍲🇧🇷🇮🇹",
+          "choices": [
+            { "text": "Absolutely! Every country has unique flavors. What about Italian food?", "textVi": "Chắc chắn rồi! Mỗi nước có hương vị riêng. Còn đồ Ý thì sao?", "next": "ending_foodie", "points": 10, "vocab": ["absolutely", "unique flavors", "what about"] }
+          ]
+        },
+        "music_talk": {
+          "text": "'Of course I dance samba! Want me to teach you some basic steps?' Carlos starts showing you simple samba moves. Other people gather around and soon there's a small dance circle!",
+          "textVi": "'Tất nhiên tôi nhảy samba! Muốn tôi dạy bạn vài bước cơ bản không?' Carlos bắt đầu chỉ bước samba đơn giản. Người khác tụ lại và nhanh chóng có vòng nhảy nhỏ!",
+          "mood": "happy",
+          "sceneEmoji": "💃🎶🕺",
+          "choices": [
+            { "text": "This is so fun! I'll teach you a Vietnamese traditional dance!", "textVi": "Vui quá! Tôi sẽ dạy bạn điệu nhảy truyền thống Việt Nam!", "next": "ending_dance", "points": 10, "vocab": ["so fun", "teach you", "traditional dance"] }
+          ]
+        },
+        "group_chat": {
+          "text": "You spend the evening talking about life in different countries. Mei shows photos of the Great Wall, Ahmed describes the pyramids, and Sofia talks about Spanish festivals. Everyone is curious about Vietnam.",
+          "textVi": "Bạn dành buổi tối nói chuyện về cuộc sống ở các nước. Mei cho xem ảnh Vạn Lý Trường Thành, Ahmed mô tả kim tự tháp, và Sofia nói về lễ hội Tây Ban Nha. Mọi người tò mò về Việt Nam.",
+          "mood": "happy",
+          "sceneEmoji": "🗣️🌏📱😊",
+          "choices": [
+            { "text": "In Vietnam, we have the most beautiful lantern festival in Hoi An. Let me show you photos!", "textVi": "Ở Việt Nam, chúng tôi có lễ hội đèn lồng đẹp nhất ở Hội An. Để tôi cho xem ảnh!", "next": "ending_cultural", "points": 10, "vocab": ["lantern festival", "most beautiful", "let me show you"] },
+            { "text": "We should all plan a trip together! Each person can be a guide in their country.", "textVi": "Chúng ta nên lên kế hoạch đi du lịch cùng nhau! Mỗi người làm hướng dẫn ở nước mình.", "next": "ending_cultural", "points": 10, "vocab": ["plan a trip", "together", "guide"] }
+          ]
+        },
+        "ending_foodie": {
+          "text": "The Italian woman, Giulia, invites everyone to a 'World Food Night' at her place next Saturday — each person brings a traditional dish from their country! You sign up immediately. By the end of the evening, you have five new friends from five different countries, all connected by a love of food!",
+          "textVi": "Phụ nữ Ý, Giulia, mời mọi người dự 'Đêm Ẩm Thực Thế Giới' ở nhà cô thứ Bảy sau — mỗi người mang món truyền thống! Bạn đăng ký ngay. Cuối buổi tối, bạn có năm người bạn mới từ năm nước, kết nối bởi tình yêu ẩm thực!",
+          "mood": "happy",
+          "sceneEmoji": "🍲🌍🤝🌟",
+          "ending": true,
+          "endingId": "foodie",
+          "endingTitle": { "en": "Food Connects the World!", "vi": "Ẩm thực kết nối thế giới!" },
+          "stars": 3
+        },
+        "ending_dance": {
+          "text": "The rooftop becomes a dance floor! People from different countries share their dances — samba from Brazil, salsa from Colombia, and even a traditional Vietnamese fan dance! You exchange numbers and create a group chat called 'International Dance Crew.' This is just the beginning!",
+          "textVi": "Sân thượng thành sàn nhảy! Người từ các nước chia sẻ điệu nhảy — samba Brazil, salsa Colombia, và cả múa quạt Việt Nam! Bạn trao đổi số và tạo nhóm chat 'Đội Nhảy Quốc Tế.' Đây mới chỉ là bắt đầu!",
+          "mood": "happy",
+          "sceneEmoji": "💃🕺🌍🎵🌟",
+          "ending": true,
+          "endingId": "dance",
+          "endingTitle": { "en": "Dance Without Borders!", "vi": "Nhảy không biên giới!" },
+          "stars": 3
+        },
+        "ending_cultural": {
+          "text": "Everyone is fascinated by the Hoi An photos! They all want to visit Vietnam. You create a WhatsApp group called 'Global Friends' and everyone shares their favorite things about their country. You realize that despite different languages and cultures, people everywhere want the same things: friendship, laughter, and connection.",
+          "textVi": "Mọi người đều mê ảnh Hội An! Ai cũng muốn đến Việt Nam. Bạn tạo nhóm WhatsApp 'Bạn Toàn Cầu' và mọi người chia sẻ điều yêu thích về nước mình. Bạn nhận ra rằng dù ngôn ngữ và văn hóa khác nhau, mọi người đều muốn những điều giống nhau: tình bạn, tiếng cười, và sự kết nối.",
+          "mood": "happy",
+          "sceneEmoji": "🌏📱🤝💫",
+          "ending": true,
+          "endingId": "cultural",
+          "endingTitle": { "en": "Global Friends!", "vi": "Bạn bè toàn cầu!" },
+          "stars": 3
+        }
+      }
+    }
+  ]
+}

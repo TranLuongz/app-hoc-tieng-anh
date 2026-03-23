@@ -567,6 +567,7 @@ function selectPracticeOption(btn) {
     if (selected === ex.correctAnswer) {
         btn.classList.add('correct');
         card.classList.add('correct-anim');
+        if (typeof SFX !== 'undefined') SFX.correct();
         feedbackEl.textContent = 'Chính xác!';
         feedbackEl.className = 'feedback correct-msg';
         practiceCorrect++;
@@ -587,6 +588,7 @@ function selectPracticeOption(btn) {
     } else {
         btn.classList.add('wrong');
         card.classList.add('wrong-anim');
+        if (typeof SFX !== 'undefined') SFX.wrong();
         feedbackEl.textContent = 'Sai rồi, chọn lại!';
         feedbackEl.className = 'feedback wrong-msg';
         practiceWrong++;

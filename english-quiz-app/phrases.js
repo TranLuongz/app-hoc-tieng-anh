@@ -394,6 +394,7 @@ function selectMCOption(btn) {
 
     if (isCorrect) {
         btn.classList.add('correct');
+        if (typeof SFX !== 'undefined') SFX.correct();
         btns.forEach(b => b.disabled = true);
         pCorrect++;
         showPhrasesFeedback('correct');
@@ -401,6 +402,7 @@ function selectMCOption(btn) {
         if (currentDirection === 'vi-to-en') speakPhrase(phrase.en);
     } else {
         btn.classList.add('wrong');
+        if (typeof SFX !== 'undefined') SFX.wrong();
         btn.disabled = true;
         pWrong++;
         showPhrasesFeedback('wrong', correct);
@@ -440,15 +442,18 @@ function submitTyping() {
 
     if (result === 'correct') {
         input.classList.add('correct');
+        if (typeof SFX !== 'undefined') SFX.correct();
         pCorrect++;
         showPhrasesFeedback('correct');
         if (currentDirection === 'vi-to-en') speakPhrase(phrase.en);
     } else if (result === 'close') {
         input.classList.add('close');
+        if (typeof SFX !== 'undefined') SFX.correct();
         pCorrect++; // still counts
         showPhrasesFeedback('close', correct);
     } else {
         input.classList.add('wrong');
+        if (typeof SFX !== 'undefined') SFX.wrong();
         pWrong++;
         showPhrasesFeedback('wrong', correct);
         trackWrongPhrase(phrase.id);
