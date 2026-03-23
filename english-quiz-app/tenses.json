@@ -296,12 +296,12 @@
           "id": "gen_present_simple_02",
           "type": "fillInBlank",
           "sentence": "usually, My friends ___.",
-          "verb": "rain",
-          "correctAnswer": "rain",
+          "verb": "play",
+          "correctAnswer": "play",
           "distractors": [
-            "will rain",
-            "has rained",
-            "will have been raining"
+            "will play",
+            "has played",
+            "will have been playing"
           ],
           "explanation": "\"usually\" là dấu hiệu của thì Hiện Tại Đơn. Diễn tả thói quen, sự thật chung."
         },
@@ -313,7 +313,7 @@
           "correctAnswer": "show",
           "distractors": [
             "are showing",
-            "(E)",
+            "studys",
             "is showing"
           ],
           "explanation": "\"often\" là dấu hiệu của thì Hiện Tại Đơn. Diễn tả thói quen, sự thật chung."
@@ -716,7 +716,7 @@
             "was asking",
             "will have asked"
           ],
-          "explanation": "\"at the moment\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
+          "explanation": "\"Look!\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
         },
         {
           "id": "gen_present_continuous_02",
@@ -734,7 +734,7 @@
         {
           "id": "gen_present_continuous_03",
           "type": "fillInBlank",
-          "sentence": "I ___ Listen!.",
+          "sentence": "Listen! I ___.",
           "verb": "write",
           "correctAnswer": "am writing",
           "distractors": [
@@ -755,31 +755,31 @@
             "was closing",
             "are closing"
           ],
-          "explanation": "\"at the moment\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
+          "explanation": "\"right now\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
         },
         {
           "id": "gen_present_continuous_05",
           "type": "fillInBlank",
           "sentence": "Look! They ___.",
-          "verb": "like",
-          "correctAnswer": "are liking",
+          "verb": "dance",
+          "correctAnswer": "are dancing",
           "distractors": [
-            "had liked",
-            "will like",
-            "was liking"
+            "had danced",
+            "will dance",
+            "was dancing"
           ],
-          "explanation": "\"now\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
+          "explanation": "\"Look!\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
         },
         {
           "id": "gen_present_continuous_06",
           "type": "fillInBlank",
           "sentence": "now, The dog ___.",
-          "verb": "wish",
-          "correctAnswer": "is wishing",
+          "verb": "bark",
+          "correctAnswer": "is barking",
           "distractors": [
-            "had wished",
-            "will be wishing",
-            "had been wishing"
+            "had barked",
+            "will be barking",
+            "had been barking"
           ],
           "explanation": "\"now\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
         },
@@ -833,7 +833,7 @@
             "holds",
             "will have held"
           ],
-          "explanation": "\"Listen!\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
+          "explanation": "\"Look!\" là dấu hiệu của thì Hiện Tại Tiếp Diễn. Diễn tả hành động đang xảy ra."
         },
         {
           "id": "gen_present_continuous_11",
@@ -1055,8 +1055,8 @@
           "verb": "eat",
           "correctAnswer": "ate",
           "distractors": [
-            "ateing",
-            "ateed"
+            "eaten",
+            "eated"
           ],
           "explanation": "\"Tối qua\" = thời gian cụ thể → Quá khứ đơn. Eat → ate (bất quy tắc).",
           "type": "fillInBlank"
@@ -1257,7 +1257,7 @@
           "distractors": [
             "have been showing",
             "will be showing",
-            "has (E)"
+            "has visited"
           ],
           "explanation": "\"two days ago\" là dấu hiệu của thì Quá Khứ Đơn. Diễn tả hành động đã xảy ra và kết thúc trong quá khứ."
         },

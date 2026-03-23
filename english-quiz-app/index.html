@@ -214,6 +214,7 @@
                 <div class="word-text" id="word-text">Loading...</div>
                 <div class="word-phonetic" id="word-phonetic"></div>
                 <div class="word-info" id="word-info"></div>
+                <button class="iv-badge" id="iv-badge" style="display:none" title="Động từ bất quy tắc — Nhấn để xem">⚡ BQT</button>
                 <div class="word-btn-row">
                     <button class="speak-btn" id="speak-btn" title="Phát âm">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
@@ -777,6 +778,32 @@
                     <button class="btn-secondary btn-large" id="auction-result-back-btn">Quay lại</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Irregular Verbs Floating Button + Modal -->
+    <button class="iv-fab" id="iv-fab" title="Tra động từ bất quy tắc">
+        <span class="iv-fab-icon">📖</span>
+        <span class="iv-fab-label">BQT</span>
+    </button>
+
+    <div class="iv-overlay" id="iv-overlay">
+        <div class="iv-modal">
+            <div class="iv-header">
+                <h3 class="iv-title">Động từ bất quy tắc</h3>
+                <button class="iv-close-btn" id="iv-close-btn">&times;</button>
+            </div>
+            <div class="iv-search-wrap">
+                <input type="text" class="iv-search" id="iv-search" placeholder="Tìm: go, went, gone, đi..." autocomplete="off">
+            </div>
+            <div class="iv-table-header">
+                <span class="iv-col-v1">V1</span>
+                <span class="iv-col-v2">V2</span>
+                <span class="iv-col-v3">V3</span>
+                <span class="iv-col-vi">Nghĩa</span>
+            </div>
+            <div class="iv-list" id="iv-list"></div>
+            <div class="iv-count" id="iv-count"></div>
         </div>
     </div>
 

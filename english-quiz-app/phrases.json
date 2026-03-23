@@ -129,7 +129,7 @@
     {
       "id": "p_0005",
       "en": "I blew it.",
-      "vi": "Tôi thổi nó.",
+      "vi": "Tôi đã làm hỏng rồi.",
       "level": "A1",
       "category": "general"
     },
@@ -3554,7 +3554,7 @@
       "en": "I like history.",
       "vi": "Tôi thích lịch sử.",
       "level": "A1",
-      "category": "greetings"
+      "category": "work_study"
     },
     {
       "id": "p_0495",
@@ -5031,7 +5031,7 @@
       "en": "I like teaching.",
       "vi": "Tôi thích dạy.",
       "level": "B1",
-      "category": "greetings"
+      "category": "work_study"
     },
     {
       "id": "p_0706",
@@ -5045,7 +5045,7 @@
       "en": "I like this cup.",
       "vi": "Tôi thích chiếc cốc này.",
       "level": "A1",
-      "category": "greetings"
+      "category": "daily_life"
     },
     {
       "id": "p_0708",
@@ -5066,7 +5066,7 @@
       "en": "I love this car.",
       "vi": "Tôi thích chiếc xe hơi này.",
       "level": "A1",
-      "category": "greetings"
+      "category": "daily_life"
     },
     {
       "id": "p_0711",
@@ -10015,7 +10015,7 @@
       "en": "They went fishing.",
       "vi": "Họ đã đi câu cá.",
       "level": "A1",
-      "category": "greetings"
+      "category": "daily_life"
     },
     {
       "id": "p_1418",
@@ -10043,7 +10043,7 @@
       "en": "This dog is white.",
       "vi": "Con chó này màu trắng.",
       "level": "A1",
-      "category": "greetings"
+      "category": "daily_life"
     },
     {
       "id": "p_1422",
@@ -15048,7 +15048,7 @@
       "en": "Try on this sweater.",
       "vi": "Hãy thử mặc chiếc áo len này xem.",
       "level": "A2",
-      "category": "greetings"
+      "category": "shopping"
     },
     {
       "id": "p_2137",
@@ -20046,12 +20046,12 @@
       "en": "Did you hear fireworks?",
       "vi": "Bạn có nghe thấy tiếng pháo hoa không?",
       "level": "A1",
-      "category": "work_study"
+      "category": "daily_life"
     },
     {
       "id": "p_2851",
       "en": "Do you know each other?",
-      "vi": "Tui bây có biết nhau không?",
+      "vi": "Các bạn có biết nhau không?",
       "level": "A1",
       "category": "general"
     },
@@ -20074,7 +20074,7 @@
       "en": "Do you like this color?",
       "vi": "Bạn có thích màu này không?",
       "level": "A1",
-      "category": "greetings"
+      "category": "shopping"
     },
     {
       "id": "p_2855",
@@ -29998,7 +29998,7 @@
     {
       "id": "p_4272",
       "en": "I've got friends in Boston.",
-      "vi": "Tôi mới có bạn ở Boston.",
+      "vi": "Tôi có bạn ở Boston.",
       "level": "A2",
       "category": "general"
     },
@@ -30028,7 +30028,7 @@
       "en": "Is this mobile phone yours?",
       "vi": "Cái điện thoại di động này là của cậu à?",
       "level": "A1",
-      "category": "greetings"
+      "category": "daily_life"
     },
     {
       "id": "p_4277",
@@ -30042,7 +30042,7 @@
       "en": "Is this the bus for Boston?",
       "vi": "Xe buýt này tới Boston hả?",
       "level": "A1",
-      "category": "greetings"
+      "category": "travel"
     },
     {
       "id": "p_4279",
@@ -31078,7 +31078,7 @@
       "en": "What do you think of Japan?",
       "vi": "Bạn nghĩ gì về Nhật Bản?",
       "level": "A1",
-      "category": "greetings"
+      "category": "travel"
     },
     {
       "id": "p_4427",
@@ -40022,7 +40022,7 @@
     {
       "id": "p_5704",
       "en": "You'll forget about me someday.",
-      "vi": "Bạn sẽ quên chúng tôi 1 ngày nào đó",
+      "vi": "Bạn sẽ quên tôi một ngày nào đó.",
       "level": "A2",
       "category": "general"
     },
@@ -50067,7 +50067,7 @@
     {
       "id": "p_7139",
       "en": "I wonder how long it's going to take.",
-      "vi": "Tôi tự hỏi nó sẽ biết bao lâu.",
+      "vi": "Tôi tự hỏi sẽ mất bao lâu.",
       "level": "A2",
       "category": "general"
     },
@@ -67499,7 +67499,7 @@
       "en": "Tom eventually figured out how to install a free database application on his computer.",
       "vi": "Cuối cùng thì Tom cũng tìm ra cách cài đặt một ứng dụng cơ sở dữ liệu miễn phí vào máy tính của mình.",
       "level": "B2",
-      "category": "greetings"
+      "category": "work_study"
     },
     {
       "id": "p_9630",

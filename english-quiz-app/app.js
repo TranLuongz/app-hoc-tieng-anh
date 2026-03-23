@@ -36,6 +36,98 @@ const SFX = (() => {
     };
 })();
 
+// ===== Irregular Verbs Lookup (shared) =====
+const IrregularVerbs = (() => {
+    let data = null;
+    let v1Set = null;
+
+    async function load() {
+        if (data) return data;
+        const res = await fetch('irregular_verbs.json');
+        data = await res.json();
+        v1Set = new Set(data.map(d => d.v1.toLowerCase()));
+        return data;
+    }
+
+    function isIrregular(word) {
+        if (!v1Set) return false;
+        return v1Set.has(word.toLowerCase());
+    }
+
+    function search(query) {
+        if (!data) return [];
+        const q = query.toLowerCase().trim();
+        if (!q) return data;
+        return data.filter(d =>
+            d.v1.toLowerCase().includes(q) ||
+            d.v2.toLowerCase().includes(q) ||
+            d.v3.toLowerCase().includes(q) ||
+            d.vi.toLowerCase().includes(q)
+        );
+    }
+
+    function init() {
+        load().then(() => {
+            renderList(data);
+            document.getElementById('iv-count').textContent = data.length + ' động từ';
+        });
+
+        const fab = document.getElementById('iv-fab');
+        const overlay = document.getElementById('iv-overlay');
+        const closeBtn = document.getElementById('iv-close-btn');
+        const searchInput = document.getElementById('iv-search');
+
+        fab.addEventListener('click', () => {
+            overlay.classList.add('active');
+            searchInput.value = '';
+            searchInput.focus();
+            if (data) renderList(data);
+        });
+
+        closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) overlay.classList.remove('active');
+        });
+
+        searchInput.addEventListener('input', () => {
+            const results = search(searchInput.value);
+            renderList(results);
+            document.getElementById('iv-count').textContent = results.length + ' / ' + (data ? data.length : 0) + ' động từ';
+        });
+    }
+
+    function renderList(items) {
+        const list = document.getElementById('iv-list');
+        if (!items || items.length === 0) {
+            list.innerHTML = '<div class="iv-empty">Không tìm thấy</div>';
+            return;
+        }
+        list.innerHTML = items.map(d => `
+            <div class="iv-row">
+                <span class="iv-col-v1">${d.v1}</span>
+                <span class="iv-col-v2">${d.v2}</span>
+                <span class="iv-col-v3">${d.v3}</span>
+                <span class="iv-col-vi">${d.vi}</span>
+            </div>
+        `).join('');
+    }
+
+    // Open modal pre-filled with a specific word
+    function lookup(word) {
+        const overlay = document.getElementById('iv-overlay');
+        const searchInput = document.getElementById('iv-search');
+        overlay.classList.add('active');
+        searchInput.value = word;
+        const results = search(word);
+        renderList(results);
+        document.getElementById('iv-count').textContent = results.length + ' / ' + (data ? data.length : 0) + ' động từ';
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+
+    return { load, isIrregular, search, lookup };
+})();
+
 // ===== State Variables =====
 let words = [];
 let currentIndex = 0;
@@ -593,6 +685,17 @@ function showWord() {
 
     wordPhonetic.textContent = currentWord.phonetic || '—';
     wordInfo.textContent = [currentWord.type, currentWord.level].filter(Boolean).join(' · ');
+
+    // Irregular verb indicator
+    const ivBadge = document.getElementById('iv-badge');
+    if (ivBadge) {
+        if (currentWord.type && currentWord.type.toLowerCase().includes('verb') && IrregularVerbs.isIrregular(currentWord.word)) {
+            ivBadge.style.display = 'inline-flex';
+            ivBadge.onclick = () => IrregularVerbs.lookup(currentWord.word);
+        } else {
+            ivBadge.style.display = 'none';
+        }
+    }
 
     speakWord(currentWord.word);
 

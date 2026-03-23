@@ -81,3 +81,6 @@ Script sẽ:
 ## License
 
 MIT - Tự do sử dụng và chỉnh sửa.
+
+
+chuẩn bị thêm chức năng động từ bất quy tắc và có thể search kiểm tra lại tất cả những gì đã học ví dụ hover vào 1 động từ có bất quy tắc thì nó có thể hiển thị những từ bất quy tắc

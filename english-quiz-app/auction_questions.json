@@ -151,7 +151,7 @@
     { "id": "wo_33", "type": "word_order", "words": ["much", "is", "than", "this one", "cheaper", "that one"], "correctOrder": ["this one", "is", "much", "cheaper", "than", "that one"], "explanation": "S + is + much + adj-er + than + O (much nhấn mạnh)", "level": "A2" },
     { "id": "wo_34", "type": "word_order", "words": ["to", "have", "I", "up", "get", "early"], "correctOrder": ["I", "have", "to", "get", "up", "early"], "explanation": "S + have to + V: phải làm gì", "level": "A1" },
     { "id": "wo_35", "type": "word_order", "words": ["raining", "stopped", "it", "has"], "correctOrder": ["it", "has", "stopped", "raining"], "explanation": "S + has + V3 + V-ing (stop + V-ing)", "level": "A2" },
-    { "id": "wo_36", "type": "word_order", "words": ["born", "was", "where", "you", "were", "?"], "correctOrder": ["where", "were", "you", "born", "?"], "explanation": "Where + were + S + born?", "level": "A1" },
+    { "id": "wo_36", "type": "word_order", "words": ["born", "where", "you", "were", "?"], "correctOrder": ["where", "were", "you", "born", "?"], "explanation": "Where + were + S + born?", "level": "A1" },
     { "id": "wo_37", "type": "word_order", "words": ["looking", "am", "I", "for", "my keys"], "correctOrder": ["I", "am", "looking", "for", "my keys"], "explanation": "S + am + V-ing + giới từ + O", "level": "A1" },
     { "id": "wo_38", "type": "word_order", "words": ["she", "unless", "hurries", "will miss", "she", "the bus"], "correctOrder": ["unless", "she", "hurries", "she", "will miss", "the bus"], "explanation": "Unless + S + V, S + will + V (điều kiện loại 1 phủ định)", "level": "B1" },
     { "id": "wo_39", "type": "word_order", "words": ["not only", "but also", "smart", "he", "is", "hardworking"], "correctOrder": ["he", "is", "not only", "smart", "but also", "hardworking"], "explanation": "S + is + not only + adj + but also + adj", "level": "B1" },
@@ -159,7 +159,7 @@
     { "id": "wo_41", "type": "word_order", "words": ["neither", "nor", "likes", "he", "tea", "coffee"], "correctOrder": ["he", "likes", "neither", "tea", "nor", "coffee"], "explanation": "S + V + neither + A + nor + B", "level": "B1" },
     { "id": "wo_42", "type": "word_order", "words": ["well", "he", "speaks", "quite", "English"], "correctOrder": ["he", "speaks", "English", "quite", "well"], "explanation": "S + V + O + adv", "level": "A2" },
     { "id": "wo_43", "type": "word_order", "words": ["promised", "he", "me", "to come", "on time"], "correctOrder": ["he", "promised", "me", "to come", "on time"], "explanation": "S + promised + O + to V", "level": "A2" },
-    { "id": "wo_44", "type": "word_order", "words": ["whose", "is", "the man", "this", "car", "?"], "correctOrder": ["whose", "car", "is", "this", "?"], "explanation": "Whose + N + is + this? (hỏi sở hữu)", "level": "A1" },
+    { "id": "wo_44", "type": "word_order", "words": ["whose", "is", "this", "car", "?"], "correctOrder": ["whose", "car", "is", "this", "?"], "explanation": "Whose + N + is + this? (hỏi sở hữu)", "level": "A1" },
     { "id": "wo_45", "type": "word_order", "words": ["been", "the house", "has", "painted", "recently"], "correctOrder": ["the house", "has", "been", "painted", "recently"], "explanation": "Bị động hiện tại hoàn thành: S + has been + V3 + adv", "level": "B1" },
 
     { "id": "tc_21", "type": "translation_check", "english": "I am looking forward to meeting you.", "vietnamese": "Tôi đang mong chờ được gặp bạn.", "isCorrect": true, "explanation": "'look forward to + V-ing' = mong chờ.", "level": "A2" },

@@ -165,7 +165,7 @@
       "level": "A1",
       "theme": "travel",
       "icon": "🗺️",
-      "totalEndings": 3,
+      "totalEndings": 2,
       "startNode": "start",
       "nodes": {
         "start": {
@@ -321,7 +321,7 @@
       "level": "A2",
       "theme": "business",
       "icon": "💼",
-      "totalEndings": 4,
+      "totalEndings": 3,
       "startNode": "start",
       "nodes": {
         "start": {
@@ -606,7 +606,7 @@
       "level": "A2",
       "theme": "adventure",
       "icon": "🌲",
-      "totalEndings": 4,
+      "totalEndings": 5,
       "startNode": "start",
       "nodes": {
         "start": {
@@ -776,7 +776,7 @@
       "level": "A1",
       "theme": "health",
       "icon": "🏥",
-      "totalEndings": 3,
+      "totalEndings": 2,
       "startNode": "start",
       "nodes": {
         "start": {
@@ -985,7 +985,7 @@
       "level": "A2",
       "theme": "travel",
       "icon": "✈️",
-      "totalEndings": 3,
+      "totalEndings": 2,
       "startNode": "start",
       "nodes": {
         "start": {
@@ -1093,7 +1093,7 @@
       "level": "A1",
       "theme": "education",
       "icon": "🏫",
-      "totalEndings": 3,
+      "totalEndings": 2,
       "startNode": "start",
       "nodes": {
         "start": {
@@ -1173,7 +1173,7 @@
       "level": "A2",
       "theme": "food",
       "icon": "🍽️",
-      "totalEndings": 3,
+      "totalEndings": 2,
       "startNode": "start",
       "nodes": {
         "start": {
@@ -1382,7 +1382,7 @@
       "level": "B1",
       "theme": "business",
       "icon": "💻",
-      "totalEndings": 3,
+      "totalEndings": 2,
       "startNode": "start",
       "nodes": {
         "start": {
