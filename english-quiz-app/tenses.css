@@ -1,38 +1,32 @@
-/* ===== Tenses Module Styles — Colorful & Engaging ===== */
+/* ===== Tenses Module Styles — Neon Garden ===== */
 
 /* Container */
 .tenses-container {
-    max-width: 580px;
+    max-width: 600px;
     width: 100%;
-    padding: 1.5rem;
     margin: 0 auto;
-}
-
-.top-bar-title {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: var(--text-primary);
 }
 
 /* ===== Tenses Hub Grid ===== */
 .tenses-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
+    gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
 
 .tense-card {
     background: var(--bg-card);
-    border: 2.5px solid var(--border);
-    border-radius: 18px;
-    padding: 1.1rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-organic);
+    padding: 1.25rem;
     cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all var(--duration-normal) var(--ease-out);
+    box-shadow: var(--shadow-sm);
     text-align: left;
     position: relative;
     overflow: hidden;
+    font-family: var(--font-primary);
 }
 
 /* Colorful top accent stripe per tense card */
@@ -42,35 +36,34 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
 }
 
-/* Past tenses — warm colors */
-.tense-card:nth-child(1)::before  { background: linear-gradient(90deg, #10b981, #34d399); }
-.tense-card:nth-child(2)::before  { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-.tense-card:nth-child(3)::before  { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-.tense-card:nth-child(4)::before  { background: linear-gradient(90deg, #ec4899, #f472b6); }
-.tense-card:nth-child(5)::before  { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-.tense-card:nth-child(6)::before  { background: linear-gradient(90deg, #ef4444, #f87171); }
-.tense-card:nth-child(7)::before  { background: linear-gradient(90deg, #14b8a6, #2dd4bf); }
-.tense-card:nth-child(8)::before  { background: linear-gradient(90deg, #6366f1, #818cf8); }
-.tense-card:nth-child(9)::before  { background: linear-gradient(90deg, #f97316, #fb923c); }
-.tense-card:nth-child(10)::before { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
-.tense-card:nth-child(11)::before { background: linear-gradient(90deg, #a855f7, #c084fc); }
-.tense-card:nth-child(12)::before { background: linear-gradient(90deg, #e11d48, #fb7185); }
+.tense-card:nth-child(1)::before  { background: linear-gradient(90deg, #00B894, #55EFC4); }
+.tense-card:nth-child(2)::before  { background: linear-gradient(90deg, #74B9FF, #A0D2FF); }
+.tense-card:nth-child(3)::before  { background: linear-gradient(90deg, #A29BFE, #C8B6FF); }
+.tense-card:nth-child(4)::before  { background: linear-gradient(90deg, #FD79A8, #FF9FF3); }
+.tense-card:nth-child(5)::before  { background: linear-gradient(90deg, #FDCB6E, #FFEAA7); }
+.tense-card:nth-child(6)::before  { background: linear-gradient(90deg, #FF6B6B, #FF8E8E); }
+.tense-card:nth-child(7)::before  { background: linear-gradient(90deg, #00CEC9, #55EFC4); }
+.tense-card:nth-child(8)::before  { background: linear-gradient(90deg, #6C5CE7, #A29BFE); }
+.tense-card:nth-child(9)::before  { background: linear-gradient(90deg, #E17055, #FAB1A0); }
+.tense-card:nth-child(10)::before { background: linear-gradient(90deg, #0984E3, #74B9FF); }
+.tense-card:nth-child(11)::before { background: linear-gradient(90deg, #6C5CE7, #FD79A8); }
+.tense-card:nth-child(12)::before { background: linear-gradient(90deg, #E17055, #FF6B6B); }
 
 .tense-card:hover:not(.locked) {
-    border-color: rgba(99, 102, 241, 0.3);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-color: var(--accent);
     transform: translateY(-3px);
+    box-shadow: var(--shadow-md), 0 0 16px var(--mod-tenses-glow);
 }
 
 .tense-card:active:not(.locked) {
-    transform: translateY(-1px);
+    transform: scale(0.98);
 }
 
 .tense-card.locked {
-    opacity: 0.45;
+    opacity: 0.4;
     cursor: not-allowed;
     filter: grayscale(0.3);
 }
@@ -82,47 +75,48 @@
 }
 
 @keyframes card-pulse {
-    0%, 100% { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    50% { box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15); }
+    0%, 100% { box-shadow: var(--shadow-sm); }
+    50% { box-shadow: var(--shadow-md), 0 0 12px var(--accent-glow); }
 }
 
 .tense-card.mastered {
     border-color: var(--correct-border);
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.03), rgba(52, 211, 153, 0.03));
+    background: var(--correct-bg);
 }
 
 .tense-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .tense-order {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 800;
     color: white;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--font-english);
 }
 
 /* Colorful order badges */
-.tense-card:nth-child(1)  .tense-order { background: linear-gradient(135deg, #10b981, #059669); }
-.tense-card:nth-child(2)  .tense-order { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-.tense-card:nth-child(3)  .tense-order { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
-.tense-card:nth-child(4)  .tense-order { background: linear-gradient(135deg, #ec4899, #db2777); }
-.tense-card:nth-child(5)  .tense-order { background: linear-gradient(135deg, #f59e0b, #d97706); }
-.tense-card:nth-child(6)  .tense-order { background: linear-gradient(135deg, #ef4444, #dc2626); }
-.tense-card:nth-child(7)  .tense-order { background: linear-gradient(135deg, #14b8a6, #0d9488); }
-.tense-card:nth-child(8)  .tense-order { background: linear-gradient(135deg, #6366f1, #4f46e5); }
-.tense-card:nth-child(9)  .tense-order { background: linear-gradient(135deg, #f97316, #ea580c); }
-.tense-card:nth-child(10) .tense-order { background: linear-gradient(135deg, #06b6d4, #0891b2); }
-.tense-card:nth-child(11) .tense-order { background: linear-gradient(135deg, #a855f7, #9333ea); }
-.tense-card:nth-child(12) .tense-order { background: linear-gradient(135deg, #e11d48, #be123c); }
+.tense-card:nth-child(1)  .tense-order { background: linear-gradient(135deg, #00B894, #00A381); }
+.tense-card:nth-child(2)  .tense-order { background: linear-gradient(135deg, #74B9FF, #3B82F6); }
+.tense-card:nth-child(3)  .tense-order { background: linear-gradient(135deg, #A29BFE, #6C5CE7); }
+.tense-card:nth-child(4)  .tense-order { background: linear-gradient(135deg, #FD79A8, #E84393); }
+.tense-card:nth-child(5)  .tense-order { background: linear-gradient(135deg, #FDCB6E, #D97706); }
+.tense-card:nth-child(6)  .tense-order { background: linear-gradient(135deg, #FF6B6B, #DC2626); }
+.tense-card:nth-child(7)  .tense-order { background: linear-gradient(135deg, #00CEC9, #0D9488); }
+.tense-card:nth-child(8)  .tense-order { background: linear-gradient(135deg, #6C5CE7, #5A4BD6); }
+.tense-card:nth-child(9)  .tense-order { background: linear-gradient(135deg, #E17055, #C0392B); }
+.tense-card:nth-child(10) .tense-order { background: linear-gradient(135deg, #0984E3, #0766B4); }
+.tense-card:nth-child(11) .tense-order { background: linear-gradient(135deg, #6C5CE7, #A29BFE); }
+.tense-card:nth-child(12) .tense-order { background: linear-gradient(135deg, #E17055, #FF6B6B); }
 
 /* ===== Grammar Section ===== */
 .grammar-section-header {
@@ -134,117 +128,126 @@
 }
 
 .grammar-section-header h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 800;
     color: var(--text-primary);
     margin: 0;
 }
 
 .grammar-card {
-    border-color: #c084fc;
-    background: linear-gradient(135deg, rgba(192, 132, 252, 0.04), rgba(139, 92, 246, 0.04));
+    border-color: var(--mod-games);
+    background: var(--mod-games-bg);
 }
 
 .grammar-card:hover {
-    border-color: #a855f7;
-    background: linear-gradient(135deg, rgba(192, 132, 252, 0.08), rgba(139, 92, 246, 0.08));
+    border-color: var(--accent);
+    background: var(--accent-bg);
 }
 
 .grammar-card.mastered {
     border-color: var(--correct-border);
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.03), rgba(52, 211, 153, 0.03));
+    background: var(--correct-bg);
 }
 
 /* ===== Topic Menu Overlay ===== */
 .topic-menu-overlay {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.45);
+    inset: 0;
+    background: var(--bg-overlay);
+    backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    animation: overlayFadeIn 0.2s ease;
 }
 
 .topic-menu-card {
-    background: var(--bg-card, #fff);
-    border-radius: 20px;
-    padding: 1.8rem 1.5rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem 1.5rem;
     max-width: 320px;
     width: 90%;
     text-align: center;
     position: relative;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    animation: slideUp 0.25s ease;
-}
-
-@keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    box-shadow: var(--shadow-xl);
+    animation: modalSlideUp 0.25s var(--ease-spring);
 }
 
 .topic-menu-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 800;
     color: var(--text-primary);
-    margin: 0 0 0.3rem;
+    margin: 0 0 0.25rem;
 }
 
 .topic-menu-sub {
     font-size: 0.8rem;
     color: var(--text-secondary);
     margin: 0 0 1.2rem;
+    font-weight: 500;
 }
 
 .topic-menu-buttons {
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.6rem;
 }
 
 .topic-menu-btn {
     padding: 0.85rem 1rem;
     border: none;
-    border-radius: 14px;
+    border-radius: var(--radius);
     font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
+    font-family: var(--font-primary);
+    transition: transform var(--duration-fast) var(--ease-spring),
+                box-shadow var(--duration-fast);
 }
 
 .topic-menu-btn:hover {
     transform: translateY(-2px);
 }
 
+.topic-menu-btn:active {
+    transform: scale(0.97);
+}
+
 .topic-menu-btn.theory-btn {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: var(--gradient-primary);
     color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+    box-shadow: 0 4px 16px var(--accent-glow);
 }
 
 .topic-menu-btn.practice-btn {
-    background: linear-gradient(135deg, #10b981, #059669);
+    background: linear-gradient(135deg, #00B894, #00A381);
     color: white;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 184, 148, 0.3);
 }
 
 .topic-menu-close {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    background: none;
+    background: var(--bg-sunken);
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
     cursor: pointer;
     padding: 0.25rem;
-    line-height: 1;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-fast);
+}
+
+.topic-menu-close:hover {
+    background: var(--wrong-bg);
+    color: var(--wrong);
 }
 
 .grammar-card .tense-order {
@@ -255,21 +258,23 @@
 }
 
 .tense-status-icon {
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .tense-card-name {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.1rem;
+    line-height: 1.3;
 }
 
 .tense-card-name-en {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     font-weight: 500;
+    font-family: var(--font-english);
 }
 
 .tense-card-progress {
@@ -280,73 +285,64 @@
 
 .tense-card-phases {
     display: flex;
-    gap: 5px;
+    gap: 4px;
 }
 
 .phase-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--border);
     transition: all 0.3s;
 }
 
 .phase-dot.done {
-    background: linear-gradient(135deg, #10b981, #34d399);
-    box-shadow: 0 1px 4px rgba(16, 185, 129, 0.35);
+    background: var(--correct);
+    box-shadow: 0 0 4px var(--correct-glow);
 }
 
 .phase-dot.active {
-    background: linear-gradient(135deg, #6366f1, #818cf8);
-    box-shadow: 0 1px 4px rgba(99, 102, 241, 0.35);
+    background: var(--accent);
+    box-shadow: 0 0 4px var(--accent-glow);
     animation: dot-pulse 2s ease infinite;
 }
 
 @keyframes dot-pulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    50% { transform: scale(1.3); }
 }
 
 .tense-accuracy {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--text-muted);
+    font-family: var(--font-english);
 }
 
 /* ===== Theory / Learn Screen ===== */
-.theory-viewport {
-    margin-bottom: 1.5rem;
-}
-
 .theory-card {
     background: var(--bg-card);
     border: 2px solid var(--border);
-    border-radius: 22px;
+    border-radius: var(--radius-organic);
     padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    animation: fadeSlideIn 0.35s ease;
+    box-shadow: var(--shadow-md);
+    animation: screenEnter 0.35s var(--ease-out);
     position: relative;
     overflow: hidden;
 }
 
-/* Top decorative gradient bar */
 .theory-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea, #764ba2, #ec4899);
-}
-
-@keyframes fadeSlideIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+    height: 3px;
+    background: linear-gradient(90deg, #6C5CE7, #FD79A8, #FDCB6E);
 }
 
 .theory-card-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 1rem;
@@ -354,7 +350,7 @@
 }
 
 .theory-description {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 1rem;
@@ -362,73 +358,53 @@
 
 /* Formula boxes */
 .formula-box {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.04), rgba(139, 92, 246, 0.04));
-    border: 2px solid rgba(99, 102, 241, 0.15);
-    border-radius: 16px;
-    padding: 1.15rem;
-    margin-bottom: 0.85rem;
+    background: var(--accent-bg);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 0.75rem;
     position: relative;
     overflow: hidden;
 }
 
-/* Colored left accent */
 .formula-box::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px;
-    border-radius: 16px 0 0 16px;
-    background: linear-gradient(180deg, #6366f1, #ec4899);
+    width: 3px;
+    border-radius: var(--radius) 0 0 var(--radius);
+    background: var(--gradient-primary);
 }
 
 .formula-label {
     font-size: 0.75rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     display: inline-block;
-    padding: 0.15rem 0.7rem;
-    border-radius: 20px;
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--radius-full);
 }
 
-/* Different colors per formula type */
-.formula-box:nth-child(1) .formula-label,
-.formula-box:nth-of-type(1) .formula-label {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-}
-
-.formula-box:nth-child(2) .formula-label,
-.formula-box:nth-of-type(2) .formula-label {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    color: white;
-}
-
-.formula-box:nth-child(3) .formula-label,
-.formula-box:nth-of-type(3) .formula-label {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: white;
-}
-
-.formula-box:nth-child(n+4) .formula-label {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: white;
-}
+.formula-box:nth-of-type(1) .formula-label { background: var(--correct); color: white; }
+.formula-box:nth-of-type(2) .formula-label { background: var(--wrong); color: white; }
+.formula-box:nth-of-type(3) .formula-label { background: var(--info); color: white; }
+.formula-box:nth-child(n+4) .formula-label { background: var(--warning); color: #1B1F3B; }
 
 .formula-structure {
-    font-family: 'Courier New', monospace;
-    font-size: 0.95rem;
+    font-family: var(--font-english);
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    padding: 0.5rem 0.8rem;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
-    border-radius: 10px;
+    margin-bottom: 0.4rem;
+    padding: 0.4rem 0.7rem;
+    background: var(--bg-sunken);
+    border-radius: var(--radius-sm);
     display: inline-block;
-    border: 1px solid rgba(99, 102, 241, 0.15);
+    border: 1px solid var(--border);
 }
 
 .formula-example {
@@ -438,6 +414,7 @@
 }
 
 .formula-example-en {
+    font-family: var(--font-english);
     font-style: italic;
     color: var(--text-primary);
     font-weight: 600;
@@ -452,31 +429,32 @@
 .signal-words-wrap {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
+    gap: 0.4rem;
     margin-top: 0.5rem;
 }
 
 .signal-chip {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+    background: var(--accent-bg);
     color: var(--accent);
-    border: 2px solid rgba(99, 102, 241, 0.2);
+    border: 1.5px solid var(--border);
     border-radius: var(--radius-full);
-    padding: 0.3rem 0.85rem;
-    font-size: 0.8rem;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    transition: all 0.2s;
+    font-family: var(--font-english);
+    transition: all var(--duration-fast);
 }
 
 .signal-chip:hover {
     background: var(--accent);
     color: white;
+    border-color: var(--accent);
     transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(99, 102, 241, 0.25);
 }
 
 /* Usage items */
 .usage-item {
-    padding: 0.85rem 0;
+    padding: 0.75rem 0;
     border-bottom: 1px solid var(--border);
 }
 
@@ -485,10 +463,10 @@
 }
 
 .usage-rule {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
 }
 
 .usage-example {
@@ -498,13 +476,14 @@
     padding-left: 0.75rem;
     border-left: 3px solid var(--accent);
     margin-top: 0.25rem;
+    font-family: var(--font-english);
 }
 
 /* Notes */
 .note-item {
     font-size: 0.85rem;
     color: var(--text-secondary);
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     padding-left: 1.25rem;
     position: relative;
     line-height: 1.6;
@@ -514,104 +493,40 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 0.85rem;
-    width: 8px;
-    height: 8px;
+    top: 0.75rem;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #6366f1, #ec4899);
+    background: var(--gradient-primary);
 }
 
-/* Theory Navigation */
-.theory-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.theory-dots {
-    display: flex;
-    gap: 8px;
-}
-
-.theory-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--border);
-    transition: all 0.3s;
-}
-
-.theory-dot.active {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    width: 28px;
-    border-radius: 5px;
-    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.35);
-}
-
-.btn-outline {
-    background: var(--bg-card);
-    color: var(--text-secondary);
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s;
-    font-family: inherit;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-
-.btn-outline:hover:not(:disabled) {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-bg);
-    transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(99, 102, 241, 0.15);
-}
-
-.btn-outline:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-}
-
-.page-indicator {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: white;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: var(--radius-full);
-    padding: 0.3rem 0.75rem;
-    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
-}
-
-/* ===== Exercise / Practice Screen ===== */
+/* Exercise Screen */
 .exercise-type-badge {
     text-align: center;
     font-size: 0.75rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: white;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: var(--gradient-primary);
     border-radius: var(--radius-full);
-    padding: 0.4rem 1.1rem;
+    padding: 0.3rem 0.9rem;
     display: inline-block;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    margin: 0 1rem 0.5rem;
+    box-shadow: 0 2px 8px var(--accent-glow);
+    width: fit-content;
 }
 
 .exercise-card {
     background: var(--bg-card);
     border: 2px solid var(--border);
-    border-radius: 22px;
-    padding: 2rem 1.5rem;
+    border-radius: var(--radius-organic);
+    padding: 1.75rem 1.25rem;
     text-align: center;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    transition: all 0.3s ease;
-    min-height: 100px;
+    margin: 0 1rem 0.75rem;
+    box-shadow: var(--shadow-md);
+    transition: all var(--duration-normal);
+    min-height: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -619,40 +534,40 @@
     position: relative;
 }
 
-/* Gradient border effect */
 .exercise-card::before {
     content: '';
     position: absolute;
-    top: -2px; left: -2px; right: -2px; bottom: -2px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, #667eea, #ec4899, #f59e0b);
+    inset: -2px;
+    border-radius: 22px;
+    background: var(--gradient-accent);
     z-index: -1;
-    opacity: 0.1;
+    opacity: 0.08;
 }
 
-.exercise-card.correct-anim {
-    border-color: var(--correct-border);
-    box-shadow: 0 0 0 4px var(--correct-bg), 0 4px 20px rgba(16, 185, 129, 0.15);
+.exercise-card.correct-highlight {
+    border-color: var(--correct);
+    box-shadow: 0 0 0 3px var(--correct-glow), var(--shadow-md);
 }
 
-.exercise-card.correct-anim::before {
-    background: linear-gradient(135deg, #10b981, #34d399);
-    opacity: 0.2;
+.exercise-card.correct-highlight::before {
+    background: linear-gradient(135deg, #00B894, #55EFC4);
+    opacity: 0.15;
 }
 
-.exercise-card.wrong-anim {
-    animation: shake 0.4s ease;
+.exercise-card.wrong-highlight {
+    animation: cardShake 0.3s ease;
 }
 
 .exercise-prompt {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    margin-bottom: 0.75rem;
-    line-height: 1.6;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
 }
 
 .exercise-sentence {
-    font-size: 1.3rem;
+    font-family: var(--font-english);
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--text-primary);
     line-height: 1.6;
@@ -661,115 +576,128 @@
 .exercise-blank {
     color: var(--accent);
     border-bottom: 3px dashed var(--accent);
-    padding: 0 6px;
-    font-weight: 800;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(139, 92, 246, 0.06));
+    padding: 0 4px;
+    font-weight: 700;
+    background: var(--accent-bg);
     border-radius: 4px 4px 0 0;
 }
 
 .exercise-verb-hint {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--accent);
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
     font-style: italic;
     font-weight: 600;
     background: var(--accent-bg);
     display: inline-block;
-    padding: 0.2rem 0.8rem;
+    padding: 0.2rem 0.7rem;
     border-radius: var(--radius-full);
+    font-family: var(--font-english);
 }
 
-/* Explanation Box */
-.explanation-box {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(139, 92, 246, 0.06));
-    border: 2px solid rgba(99, 102, 241, 0.2);
-    border-radius: 16px;
-    padding: 1.1rem;
-    margin-bottom: 1rem;
-    animation: fadeSlideIn 0.3s ease;
+/* Explanation Box - override from style.css for tenses-specific styling */
+.tenses-container .explanation-box {
+    background: var(--accent-bg);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin: 0 1rem 0.75rem;
+    animation: screenEnter 0.3s var(--ease-out);
     position: relative;
     overflow: hidden;
 }
 
-.explanation-box::before {
+.tenses-container .explanation-box::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, #667eea, #764ba2);
+    width: 3px;
+    background: var(--gradient-primary);
 }
 
-.explanation-label {
+.tenses-container .explanation-label {
     font-size: 0.75rem;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: white;
-    background: linear-gradient(135deg, #6366f1, #818cf8);
+    background: var(--gradient-primary);
     display: inline-block;
-    padding: 0.15rem 0.7rem;
-    border-radius: 20px;
-    margin-bottom: 0.5rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.4rem;
 }
 
-.explanation-text {
-    font-size: 0.9rem;
+.tenses-container .explanation-text {
+    font-size: 0.85rem;
     color: var(--text-primary);
     line-height: 1.6;
-    padding-left: 0.25rem;
 }
 
-/* ===== Result Screen ===== */
-.result-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    animation: floatBounce 3s ease-in-out infinite;
+/* Page indicator override */
+.tenses-container .page-indicator {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+    padding: 0.25rem 0.65rem;
+    box-shadow: 0 2px 6px var(--accent-glow);
+    font-family: var(--font-english);
 }
 
-@keyframes floatBounce {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-8px) rotate(-2deg); }
-    75% { transform: translateY(-4px) rotate(2deg); }
+/* Theory nav override */
+.tenses-container .theory-dots {
+    display: flex;
+    gap: 6px;
 }
 
-.result-message {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-    padding: 0.75rem 1rem;
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
+.tenses-container .theory-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.3s;
 }
 
-/* ===== Tenses Responsive ===== */
-@media (max-width: 600px) {
-    .tenses-container {
-        padding: 1rem;
+.tenses-container .theory-dot.active {
+    background: var(--gradient-primary);
+    width: 24px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px var(--accent-glow);
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 640px) {
+    .tenses-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .tenses-grid {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 1rem 2rem;
     }
 
+    .tenses-container {
+        padding: 0 1.5rem 2rem;
+    }
+}
+
+@media (max-width: 380px) {
     .tenses-grid {
         grid-template-columns: 1fr;
-    }
-
-    .theory-card {
-        padding: 1.15rem;
-        border-radius: 18px;
+        padding: 0 1rem 2rem;
     }
 
     .exercise-sentence {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .exercise-card {
-        padding: 1.5rem 1rem;
-        border-radius: 18px;
-    }
-
-    .formula-box {
-        padding: 0.95rem;
+        padding: 1.25rem 1rem;
     }
 }

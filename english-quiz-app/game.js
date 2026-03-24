@@ -356,10 +356,37 @@ function speakStoryText() {
     const text = node.text;
     if (!text) return;
     window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'en-US';
-    utter.rate = 0.9;
-    window.speechSynthesis.speak(utter);
+
+    const isMob = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    const doSpeak = () => {
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'en-US';
+        utter.rate = isMob ? 0.85 : 0.9;
+        utter.pitch = 1;
+        utter.volume = 1;
+
+        // Reuse the voice picker from app.js if available
+        if (typeof getBestEnglishVoice === 'function') {
+            const voice = getBestEnglishVoice();
+            if (voice) utter.voice = voice;
+        }
+
+        const btn = document.getElementById('story-speak-btn');
+        if (btn) {
+            btn.classList.add('speaking');
+            utter.onend = () => btn.classList.remove('speaking');
+            utter.onerror = () => btn.classList.remove('speaking');
+        }
+
+        window.speechSynthesis.speak(utter);
+    };
+
+    if (isMob) {
+        setTimeout(doSpeak, 80);
+    } else {
+        doSpeak();
+    }
 }
 
 // ===== Toggle Translation =====

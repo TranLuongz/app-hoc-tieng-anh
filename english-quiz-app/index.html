@@ -62,7 +62,7 @@
     <link rel="stylesheet" href="game.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <!-- Vercel Web Analytics -->
     <script>
@@ -71,12 +71,78 @@
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 <body>
+    <div class="app-shell">
+    <!-- Desktop Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <span class="sidebar-logo">EL</span>
+            <span class="sidebar-tagline">English Learning</span>
+        </div>
+        <div class="sidebar-user-stats">
+            <div class="sidebar-streak" id="sidebar-streak">
+                <span class="streak-flame">🔥</span>
+                <span class="streak-count" id="sidebar-streak-count">0</span>
+                <span class="streak-label">ngày</span>
+            </div>
+        </div>
+        <div class="sidebar-nav">
+            <button class="sidebar-nav-item active" data-module="home" id="nav-home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Trang chủ</span>
+            </button>
+            <button class="sidebar-nav-item" data-module="vocab" id="nav-vocab">
+                <span class="nav-icon">A</span>
+                <span class="nav-label">Từ vựng</span>
+            </button>
+            <button class="sidebar-nav-item" data-module="tenses" id="nav-tenses">
+                <span class="nav-icon">T</span>
+                <span class="nav-label">Ngữ pháp</span>
+            </button>
+            <button class="sidebar-nav-item" data-module="phrases" id="nav-phrases">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Câu & Cụm từ</span>
+            </button>
+            <button class="sidebar-nav-item" data-module="games" id="nav-games">
+                <span class="nav-icon">🎮</span>
+                <span class="nav-label">Trò chơi</span>
+            </button>
+            <button class="sidebar-nav-item" data-module="stats" id="nav-stats">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Thống kê</span>
+            </button>
+        </div>
+        <div class="sidebar-footer">
+            <label class="sidebar-dark-toggle">
+                <input type="checkbox" id="sidebar-darkmode-toggle">
+                <span class="toggle-slider"></span>
+                <span class="toggle-text">🌙 Chế độ tối</span>
+            </label>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
     <!-- Home Screen (Module Hub) -->
     <div id="start-screen" class="screen active">
         <div class="start-container">
             <div class="logo-icon">📚</div>
             <h1>English Learning</h1>
             <p class="subtitle">Học từ vựng và ngữ pháp tiếng Anh</p>
+
+            <!-- Gamification Bar -->
+            <div class="gamification-bar">
+                <div class="xp-section">
+                    <div class="level-badge">Lv.<span id="user-level">1</span></div>
+                    <div class="xp-bar-wrap">
+                        <div class="xp-bar" id="xp-bar"></div>
+                    </div>
+                    <span class="xp-text" id="xp-text">0/100 XP</span>
+                </div>
+                <div class="streak-display-large">
+                    <span class="streak-flame-lg">🔥</span>
+                    <span class="streak-number-lg" id="home-streak-count">0</span>
+                </div>
+            </div>
 
             <!-- Module Selection -->
             <div class="module-grid">
@@ -150,8 +216,14 @@
 
     <!-- Vocab Setup Screen -->
     <div id="vocab-setup-screen" class="screen">
+        <div class="top-bar">
+            <button id="vocab-back-btn" class="icon-btn" title="Về trang chính">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <h2 class="top-bar-title">Từ vựng 3668 từ thông dụng</h2>
+            <div></div>
+        </div>
         <div class="start-container">
-            <h2 class="screen-title">Từ vựng 3668 từ thông dụng</h2>
             <!-- Level Filter -->
             <div class="phrases-level-filter" id="vocab-level-filter">
                 <button class="level-pill active" data-level="all">Tất cả</button>
@@ -182,11 +254,10 @@
                 </label>
             </div>
             <button id="start-btn" class="btn-primary btn-large">Bắt đầu học</button>
-            <button id="srs-review-btn" class="btn-primary btn-large" style="display:none" disabled>Ôn tập hôm nay (<span id="srs-due-count">0</span> từ)</button>
-            <button id="wrong-words-btn" class="btn-secondary btn-large" style="display:none" disabled>Ôn tập từ sai (<span id="wrong-words-count">0</span> từ)</button>
+            <button id="srs-review-btn" class="btn-primary btn-large" style="display:none" disabled>Ôn tập hôm nay ( <span id="srs-due-count">0</span> từ )</button>
+            <button id="wrong-words-btn" class="btn-secondary btn-large" style="display:none" disabled>Ôn tập từ sai ( <span id="wrong-words-count">0</span> từ )</button>
             <button id="review-btn" class="btn-secondary btn-large" disabled>Ôn tập từ vựng</button>
             <button id="reset-btn" class="btn-secondary">Đặt lại tiến trình</button>
-            <button id="vocab-back-btn" class="btn-secondary">Quay lại</button>
         </div>
     </div>
 
@@ -229,10 +300,10 @@
             </div>
             <div class="feedback" id="feedback"></div>
             <div class="options-grid" id="options-grid">
-                <button class="option-btn" data-index="0"></button>
-                <button class="option-btn" data-index="1"></button>
-                <button class="option-btn" data-index="2"></button>
-                <button class="option-btn" data-index="3"></button>
+                <button class="option-btn" data-index="0" data-label="A"></button>
+                <button class="option-btn" data-index="1" data-label="B"></button>
+                <button class="option-btn" data-index="2" data-label="C"></button>
+                <button class="option-btn" data-index="3" data-label="D"></button>
             </div>
             <button id="next-btn" class="btn-primary" disabled>
                 Tiếp theo
@@ -375,10 +446,10 @@
             <div class="exercise-card" id="exercise-card"></div>
             <div class="feedback" id="practice-feedback"></div>
             <div class="options-grid" id="practice-options">
-                <button class="option-btn practice-opt" data-index="0"></button>
-                <button class="option-btn practice-opt" data-index="1"></button>
-                <button class="option-btn practice-opt" data-index="2"></button>
-                <button class="option-btn practice-opt" data-index="3"></button>
+                <button class="option-btn practice-opt" data-index="0" data-label="A"></button>
+                <button class="option-btn practice-opt" data-index="1" data-label="B"></button>
+                <button class="option-btn practice-opt" data-index="2" data-label="C"></button>
+                <button class="option-btn practice-opt" data-index="3" data-label="D"></button>
             </div>
             <div class="explanation-box" id="explanation-box" style="display:none">
                 <div class="explanation-label">Giải thích:</div>
@@ -478,10 +549,10 @@
             <!-- Multiple Choice Mode -->
             <div class="phrases-mc-area" id="phrases-mc-area" style="display:none">
                 <div class="options-grid" id="phrases-options">
-                    <button class="option-btn" data-index="0"></button>
-                    <button class="option-btn" data-index="1"></button>
-                    <button class="option-btn" data-index="2"></button>
-                    <button class="option-btn" data-index="3"></button>
+                    <button class="option-btn" data-index="0" data-label="A"></button>
+                    <button class="option-btn" data-index="1" data-label="B"></button>
+                    <button class="option-btn" data-index="2" data-label="C"></button>
+                    <button class="option-btn" data-index="3" data-label="D"></button>
                 </div>
             </div>
 
@@ -781,6 +852,34 @@
         </div>
     </div>
 
+    </div><!-- /.main-content -->
+
+    <!-- Mobile Bottom Tab Navigation -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <button class="bottom-nav-item active" data-module="home">
+            <span class="bottom-nav-icon">🏠</span>
+            <span class="bottom-nav-label">Trang chủ</span>
+        </button>
+        <button class="bottom-nav-item" data-module="vocab">
+            <span class="bottom-nav-icon">A</span>
+            <span class="bottom-nav-label">Từ vựng</span>
+        </button>
+        <button class="bottom-nav-item" data-module="tenses">
+            <span class="bottom-nav-icon">T</span>
+            <span class="bottom-nav-label">Ngữ pháp</span>
+        </button>
+        <button class="bottom-nav-item" data-module="phrases">
+            <span class="bottom-nav-icon">💬</span>
+            <span class="bottom-nav-label">Cụm từ</span>
+        </button>
+        <button class="bottom-nav-item" data-module="games">
+            <span class="bottom-nav-icon">🎮</span>
+            <span class="bottom-nav-label">Trò chơi</span>
+        </button>
+    </nav>
+
+    </div><!-- /.app-shell -->
+
     <!-- Irregular Verbs Floating Button + Modal -->
     <button class="iv-fab" id="iv-fab" title="Tra động từ bất quy tắc">
         <span class="iv-fab-icon">📖</span>
@@ -806,6 +905,9 @@
             <div class="iv-count" id="iv-count"></div>
         </div>
     </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confetti-container"></div>
 
     <script src="app.js"></script>
     <script src="tenses.js"></script>

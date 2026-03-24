@@ -566,10 +566,10 @@ function selectPracticeOption(btn) {
 
     if (selected === ex.correctAnswer) {
         btn.classList.add('correct');
-        card.classList.add('correct-anim');
+        card.classList.add('correct-highlight');
         if (typeof SFX !== 'undefined') SFX.correct();
         feedbackEl.textContent = 'Chính xác!';
-        feedbackEl.className = 'feedback correct-msg';
+        feedbackEl.className = 'feedback correct-feedback';
         practiceCorrect++;
         document.getElementById('practice-correct').textContent = practiceCorrect;
 
@@ -587,14 +587,14 @@ function selectPracticeOption(btn) {
         }
     } else {
         btn.classList.add('wrong');
-        card.classList.add('wrong-anim');
+        card.classList.add('wrong-highlight');
         if (typeof SFX !== 'undefined') SFX.wrong();
         feedbackEl.textContent = 'Sai rồi, chọn lại!';
-        feedbackEl.className = 'feedback wrong-msg';
+        feedbackEl.className = 'feedback wrong-feedback';
         practiceWrong++;
         document.getElementById('practice-wrong').textContent = practiceWrong;
         btn.disabled = true;
-        setTimeout(() => card.classList.remove('wrong-anim'), 400);
+        setTimeout(() => card.classList.remove('wrong-highlight'), 400);
 
         // Add to wrong list
         if (!prog.wrongExerciseIds) prog.wrongExerciseIds = [];

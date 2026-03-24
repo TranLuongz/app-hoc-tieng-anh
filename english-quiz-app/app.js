@@ -186,9 +186,50 @@ const wordInfo = document.getElementById('word-info');
 const speakBtn = document.getElementById('speak-btn');
 
 // ===== Shared: Show Screen =====
-function showScreen(screen) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+// Quiz/practice screens where bottom nav should be hidden
+const quizScreenIds = ['quiz-screen', 'vocab-review-screen', 'tenses-practice-screen', 'phrases-practice-screen', 'story-play-screen', 'auction-play-screen'];
+
+function showScreen(screen, direction) {
+    document.querySelectorAll('.screen').forEach(s => {
+        s.classList.remove('active', 'enter-right', 'enter-left');
+    });
     screen.classList.add('active');
+
+    // Directional transition
+    if (direction === 'back') {
+        screen.classList.add('enter-left');
+    } else if (direction === 'forward') {
+        screen.classList.add('enter-right');
+    }
+    // else: default fade (no direction class = uses screenEnter animation)
+
+    // Sync sidebar active state
+    const screenId = screen.id || '';
+    let mod = 'home';
+    if (screenId.startsWith('tenses')) mod = 'tenses';
+    else if (screenId.startsWith('phrases')) mod = 'phrases';
+    else if (screenId.startsWith('game') || screenId.startsWith('story') || screenId.startsWith('auction')) mod = 'games';
+    else if (screenId === 'stats-screen') mod = 'stats';
+    else if (screenId.startsWith('vocab') || screenId === 'quiz-screen') mod = 'vocab';
+
+    document.querySelectorAll('.sidebar-nav-item').forEach(i => {
+        i.classList.toggle('active', i.dataset.module === mod);
+    });
+
+    // Sync bottom nav active state
+    document.querySelectorAll('.bottom-nav-item').forEach(i => {
+        i.classList.toggle('active', i.dataset.module === mod);
+    });
+
+    // Hide/show bottom nav during quiz screens
+    const bottomNav = document.getElementById('bottom-nav');
+    if (bottomNav) {
+        if (quizScreenIds.includes(screenId)) {
+            bottomNav.classList.add('bottom-nav--hidden');
+        } else {
+            bottomNav.classList.remove('bottom-nav--hidden');
+        }
+    }
 }
 
 // ===== Utility =====
@@ -247,7 +288,7 @@ async function init() {
     // Vocab setup screen
     startBtn.addEventListener('click', startQuiz);
     resetBtn.addEventListener('click', resetProgress);
-    document.getElementById('vocab-back-btn').addEventListener('click', () => showScreen(startScreen));
+    document.getElementById('vocab-back-btn').addEventListener('click', () => showScreen(startScreen, 'back'));
     shuffleToggle.addEventListener('change', onShuffleChange);
 
     // Quiz screen
@@ -280,7 +321,7 @@ async function init() {
     // Stats
     document.getElementById('stats-back-btn').addEventListener('click', () => {
         updateHomeStats();
-        showScreen(startScreen);
+        showScreen(startScreen, 'back');
     });
 
     // Settings
@@ -291,6 +332,137 @@ async function init() {
 
     // Speech Recognition
     initSpeechRecognition();
+
+    // ===== Desktop Sidebar =====
+    initSidebar();
+
+    // ===== Mobile Bottom Nav =====
+    initBottomNav();
+
+    // ===== Gamification =====
+    updateGamificationBar();
+}
+
+function initSidebar() {
+    const sidebarDarkToggle = document.getElementById('sidebar-darkmode-toggle');
+    if (sidebarDarkToggle) {
+        // Sync with main toggle
+        sidebarDarkToggle.checked = darkmodeToggle.checked;
+        sidebarDarkToggle.addEventListener('change', () => {
+            darkmodeToggle.checked = sidebarDarkToggle.checked;
+            onDarkmodeChange();
+        });
+    }
+
+    // Sidebar nav items
+    document.querySelectorAll('.sidebar-nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const mod = item.dataset.module;
+            document.querySelectorAll('.sidebar-nav-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            if (mod === 'home') showScreen(startScreen);
+            else if (mod === 'vocab') showVocabSetup();
+            else if (mod === 'tenses' && typeof initTenses === 'function') initTenses();
+            else if (mod === 'phrases' && typeof initPhrases === 'function') initPhrases();
+            else if (mod === 'games' && typeof initGame === 'function') initGame();
+            else if (mod === 'stats') showStatsScreen();
+        });
+    });
+
+    updateSidebarStreak();
+}
+
+function updateSidebarStreak() {
+    const el = document.getElementById('sidebar-streak-count');
+    if (el) {
+        const streak = calculateStreak();
+        el.textContent = streak;
+    }
+}
+
+// ===== Mobile Bottom Tab Navigation =====
+function initBottomNav() {
+    document.querySelectorAll('.bottom-nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const mod = item.dataset.module;
+            document.querySelectorAll('.bottom-nav-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            if (mod === 'home') showScreen(startScreen);
+            else if (mod === 'vocab') showVocabSetup();
+            else if (mod === 'tenses' && typeof initTenses === 'function') initTenses();
+            else if (mod === 'phrases' && typeof initPhrases === 'function') initPhrases();
+            else if (mod === 'games' && typeof initGame === 'function') initGame();
+        });
+    });
+}
+
+// ===== XP & Gamification System =====
+let totalXP = parseInt(localStorage.getItem('elXP') || '0');
+let userLevel = Math.floor(totalXP / 100) + 1;
+
+function addXP(amount) {
+    totalXP += amount;
+    userLevel = Math.floor(totalXP / 100) + 1;
+    localStorage.setItem('elXP', totalXP);
+    updateGamificationBar();
+}
+
+function updateGamificationBar() {
+    const levelEl = document.getElementById('user-level');
+    const xpBarEl = document.getElementById('xp-bar');
+    const xpTextEl = document.getElementById('xp-text');
+    const streakEl = document.getElementById('home-streak-count');
+
+    if (levelEl) levelEl.textContent = userLevel;
+    if (xpBarEl) {
+        const xpInLevel = totalXP % 100;
+        xpBarEl.style.width = xpInLevel + '%';
+    }
+    if (xpTextEl) {
+        const xpInLevel = totalXP % 100;
+        xpTextEl.textContent = xpInLevel + '/100 XP';
+    }
+    if (streakEl) {
+        streakEl.textContent = calculateStreak();
+    }
+}
+
+function showXPFloat(x, y, amount) {
+    const el = document.createElement('div');
+    el.className = 'xp-float';
+    el.textContent = '+' + amount + ' XP';
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1000);
+}
+
+// ===== Confetti =====
+function launchConfetti(x, y, count) {
+    const container = document.getElementById('confetti-container');
+    if (!container) return;
+    const colors = ['#6C5CE7', '#FD79A8', '#FDCB6E', '#00B894', '#A29BFE', '#E17055', '#55EFC4'];
+    count = count || 20;
+    for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'confetti-particle';
+        p.style.left = (x || window.innerWidth / 2) + 'px';
+        p.style.top = (y || window.innerHeight / 2) + 'px';
+        p.style.background = colors[i % colors.length];
+        p.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        p.style.width = (5 + Math.random() * 6) + 'px';
+        p.style.height = p.style.width;
+        const angle = (Math.random() * 360) * Math.PI / 180;
+        const dist = 60 + Math.random() * 120;
+        const tx = Math.cos(angle) * dist;
+        const ty = Math.sin(angle) * dist - 80 - Math.random() * 60;
+        p.style.setProperty('--tx', tx + 'px');
+        p.style.setProperty('--ty', ty + 'px');
+        p.style.animationDelay = (Math.random() * 100) + 'ms';
+        container.appendChild(p);
+        requestAnimationFrame(() => p.classList.add('animate'));
+        setTimeout(() => p.remove(), 1200);
+    }
 }
 
 // ===== Home Stats =====
@@ -312,6 +484,8 @@ function updateHomeStats() {
         if (dueCount > 0) text += ` · ${dueCount} từ cần ôn`;
         statsEl.textContent = text;
     }
+
+    updateGamificationBar();
 }
 
 // ===== Level Filter =====
@@ -417,6 +591,8 @@ function loadSettings() {
     if (dark === 'true') {
         document.body.classList.add('dark');
         darkmodeToggle.checked = true;
+        const sdt = document.getElementById('sidebar-darkmode-toggle');
+        if (sdt) sdt.checked = true;
     }
 
     const shuffle = localStorage.getItem('eq_shuffle');
@@ -434,6 +610,9 @@ function onShuffleChange() {
 function onDarkmodeChange() {
     document.body.classList.toggle('dark', darkmodeToggle.checked);
     localStorage.setItem('eq_darkmode', darkmodeToggle.checked);
+    // Sync sidebar toggle
+    const sdt = document.getElementById('sidebar-darkmode-toggle');
+    if (sdt) sdt.checked = darkmodeToggle.checked;
 }
 
 // ===== Progress (localStorage) =====
@@ -751,10 +930,15 @@ function selectOption(btn) {
 
     if (selected === correctAnswer) {
         btn.classList.add('correct');
-        wordCard.classList.add('correct-anim');
+        wordCard.classList.add('correct-highlight');
         SFX.correct();
         feedback.textContent = 'Chính xác!';
-        feedback.className = 'feedback correct-msg';
+        feedback.className = 'feedback correct-feedback';
+        // Confetti burst + XP on correct
+        const rect = wordCard.getBoundingClientRect();
+        launchConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+        addXP(10);
+        showXPFloat(rect.left + rect.width / 2, rect.top, 10);
         nextBtn.disabled = false;
         correctCount++;
         optionBtns.forEach(b => b.disabled = true);
@@ -768,14 +952,14 @@ function selectOption(btn) {
         saveProgress();
     } else {
         btn.classList.add('wrong');
-        wordCard.classList.add('wrong-anim');
+        wordCard.classList.add('wrong-highlight');
         SFX.wrong();
         feedback.textContent = 'Sai rồi, chọn lại!';
-        feedback.className = 'feedback wrong-msg';
+        feedback.className = 'feedback wrong-feedback';
         wrongCount++;
         wrongCountEl.textContent = wrongCount;
         btn.disabled = true;
-        setTimeout(() => wordCard.classList.remove('wrong-anim'), 400);
+        setTimeout(() => wordCard.classList.remove('wrong-highlight'), 400);
         currentWordHadWrong = true;
         saveProgress();
     }
