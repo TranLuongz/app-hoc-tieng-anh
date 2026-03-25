@@ -1109,6 +1109,16 @@ h2 {
     color: var(--wrong);
 }
 
+.feedback.checking {
+    color: var(--text-secondary);
+    animation: pulse-check 1s ease-in-out infinite;
+}
+
+@keyframes pulse-check {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
 /* ===== Options Grid ===== */
 .options-grid {
     display: grid;

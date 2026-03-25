@@ -349,12 +349,20 @@ function selectChoice(idx, choices) {
 }
 
 // ===== TTS =====
+let storySpeakDelayTimer = null;
+
 function speakStoryText() {
     if (!currentStory || !currentNodeId) return;
     const node = currentStory.nodes[currentNodeId];
     if (!node) return;
     const text = node.text;
     if (!text) return;
+
+    if (storySpeakDelayTimer) {
+        clearTimeout(storySpeakDelayTimer);
+        storySpeakDelayTimer = null;
+    }
+
     window.speechSynthesis.cancel();
 
     const isMob = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -383,7 +391,10 @@ function speakStoryText() {
     };
 
     if (isMob) {
-        setTimeout(doSpeak, 80);
+        storySpeakDelayTimer = setTimeout(() => {
+            storySpeakDelayTimer = null;
+            doSpeak();
+        }, 80);
     } else {
         doSpeak();
     }
@@ -854,7 +865,12 @@ function renderWordOrderAnswer(area) {
     `;
     document.getElementById('auction-submit-order').addEventListener('click', () => {
         const q = auctionQuestions[auctionCurrentIdx];
-        const isCorrect = wordOrderSelected.join(' ') === q.correctOrder.join(' ');
+        const orderResult = window.AnswerMatch.checkAnswer(
+            wordOrderSelected.join(' '),
+            q.correctOrder.join(' '),
+            { mode: 'word_order' }
+        );
+        const isCorrect = orderResult !== 'wrong';
         submitAuctionAnswer(isCorrect, q);
     });
 }

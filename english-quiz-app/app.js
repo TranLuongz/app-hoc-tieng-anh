@@ -974,6 +974,7 @@ function nextWord() {
 // ===== Text-to-Speech =====
 let cachedVoice = null;
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+let speakDelayTimer = null;
 
 function getBestEnglishVoice() {
     if (cachedVoice) return cachedVoice;
@@ -1015,6 +1016,11 @@ function speakWord(text) {
     const word = text || wordText.textContent;
     if (!word || word === 'Loading...') return;
 
+    if (speakDelayTimer) {
+        clearTimeout(speakDelayTimer);
+        speakDelayTimer = null;
+    }
+
     window.speechSynthesis.cancel();
 
     const doSpeak = () => {
@@ -1036,7 +1042,10 @@ function speakWord(text) {
     };
 
     if (isMobile) {
-        setTimeout(doSpeak, 80);
+        speakDelayTimer = setTimeout(() => {
+            speakDelayTimer = null;
+            doSpeak();
+        }, 80);
     } else {
         doSpeak();
     }
@@ -1270,7 +1279,7 @@ function showReviewWord() {
     document.getElementById('review-next-btn').disabled = true;
 }
 
-function submitReviewAnswer() {
+async function submitReviewAnswer() {
     const input = document.getElementById('review-typing-input');
     if (input.disabled) return;
     const userText = input.value.trim();
@@ -1279,7 +1288,7 @@ function submitReviewAnswer() {
     const wordIndex = reviewQueue[reviewIdx];
     const word = words[wordIndex];
     const correct = word.meaning;
-    const result = checkReviewAnswer(userText, correct);
+    const original = word.word; // English word (câu gốc)
 
     input.disabled = true;
     document.getElementById('review-submit-btn').disabled = true;
@@ -1287,6 +1296,18 @@ function submitReviewAnswer() {
     const fb = document.getElementById('review-feedback');
     const ca = document.getElementById('review-correct-answer');
     let isCorrect = false;
+
+    // Tầng 1: Local matching
+    let result = window.AnswerMatch.checkAnswer(userText, correct, { mode: 'vocab' });
+
+    // Tầng 2: API translation nếu tầng 1 sai
+    if (result === 'wrong') {
+        fb.textContent = 'Đang kiểm tra...';
+        fb.className = 'feedback checking';
+        ca.style.display = 'none';
+        const asyncResult = await window.AnswerMatch.checkAnswerAsync(userText, correct, original, { mode: 'vocab' });
+        result = asyncResult.result;
+    }
 
     if (result === 'correct') {
         input.classList.add('correct');
@@ -1326,32 +1347,6 @@ function submitReviewAnswer() {
     document.getElementById('review-correct').textContent = reviewCorrect;
     document.getElementById('review-wrong').textContent = reviewWrong;
     document.getElementById('review-next-btn').disabled = false;
-}
-
-function checkReviewAnswer(userInput, correctAnswer) {
-    const normUser = window.normalizeText(userInput);
-    const normCorrect = window.normalizeText(correctAnswer);
-
-    if (normUser === normCorrect) return 'correct';
-
-    const meanings = correctAnswer.split(/[,;]/).map(m => m.trim()).filter(Boolean);
-    for (const m of meanings) {
-        if (window.normalizeText(m) === normUser) return 'correct';
-    }
-
-    const threshold = correctAnswer.length > 20 ? 3 : 2;
-    if (window.levenshteinDistance(normUser, normCorrect) <= threshold) return 'close';
-
-    for (const m of meanings) {
-        if (window.levenshteinDistance(normUser, window.normalizeText(m)) <= 2) return 'close';
-    }
-
-    const userWords = normUser.split(' ').filter(Boolean);
-    const correctWords = normCorrect.split(' ').filter(Boolean);
-    const matchCount = userWords.filter(w => correctWords.includes(w)).length;
-    if (matchCount / Math.max(userWords.length, correctWords.length, 1) >= 0.75) return 'close';
-
-    return 'wrong';
 }
 
 function getContextHint(wordObj) {

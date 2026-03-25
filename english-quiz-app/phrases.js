@@ -428,17 +428,27 @@ function setupTyping() {
     setTimeout(() => input.focus(), 100);
 }
 
-function submitTyping() {
+async function submitTyping() {
     const input = document.getElementById('phrases-typing-input');
     const userText = input.value.trim();
     if (!userText) return;
 
     const phrase = practiceQueue[pIdx];
     const correct = currentDirection === 'en-to-vi' ? phrase.vi : phrase.en;
-    const result = checkTypingAnswer(userText, correct);
+    const original = currentDirection === 'en-to-vi' ? phrase.en : phrase.vi;
 
     input.disabled = true;
     document.getElementById('phrases-submit-btn').disabled = true;
+
+    // Tầng 1: Local matching (instant)
+    let result = window.AnswerMatch.checkAnswer(userText, correct, { mode: 'phrase' });
+
+    // Tầng 2: Back-translation nếu tầng 1 sai
+    if (result === 'wrong') {
+        showPhrasesFeedback('checking');
+        const asyncResult = await window.AnswerMatch.checkAnswerAsync(userText, correct, original, { mode: 'phrase' });
+        result = asyncResult.result;
+    }
 
     if (result === 'correct') {
         input.classList.add('correct');
@@ -460,54 +470,6 @@ function submitTyping() {
     }
 
     document.getElementById('phrases-next-btn').disabled = false;
-}
-
-function checkTypingAnswer(userInput, correctAnswer) {
-    const normUser = normalizeText(userInput);
-    const normCorrect = normalizeText(correctAnswer);
-
-    if (normUser === normCorrect) return 'correct';
-
-    // Levenshtein
-    const threshold = correctAnswer.length > 30 ? 4 : correctAnswer.length > 15 ? 3 : 2;
-    if (levenshteinDistance(normUser, normCorrect) <= threshold) return 'close';
-
-    // Word match
-    const userWords = normUser.split(' ').filter(Boolean);
-    const correctWords = normCorrect.split(' ').filter(Boolean);
-    const matchCount = userWords.filter(w => correctWords.includes(w)).length;
-    const ratio = matchCount / Math.max(userWords.length, correctWords.length);
-    if (ratio >= 0.75) return 'close';
-
-    return 'wrong';
-}
-
-function normalizeText(text) {
-    return text.toLowerCase().trim()
-        .replace(/[.!?,;:"""''…]+/g, '')
-        .replace(/\s+/g, ' ')
-        // Vietnamese diacritics: strip for comparison
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC')
-        // English contractions
-        .replace(/n't/g, ' not').replace(/'re/g, ' are')
-        .replace(/'s/g, ' is').replace(/'m/g, ' am')
-        .replace(/'ll/g, ' will').replace(/'ve/g, ' have')
-        .replace(/'d/g, ' would');
-}
-
-function levenshteinDistance(a, b) {
-    const m = a.length, n = b.length;
-    const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
-    for (let i = 0; i <= m; i++) dp[i][0] = i;
-    for (let j = 0; j <= n; j++) dp[0][j] = j;
-    for (let i = 1; i <= m; i++) {
-        for (let j = 1; j <= n; j++) {
-            dp[i][j] = a[i - 1] === b[j - 1]
-                ? dp[i - 1][j - 1]
-                : 1 + Math.min(dp[i - 1][j - 1], dp[i][j - 1], dp[i - 1][j]);
-        }
-    }
-    return dp[m][n];
 }
 
 // ===== Hint =====
@@ -538,7 +500,11 @@ function showPhrasesFeedback(result, correctAnswer) {
     const fb = document.getElementById('phrases-feedback');
     const ca = document.getElementById('phrases-correct-answer');
 
-    if (result === 'correct') {
+    if (result === 'checking') {
+        fb.textContent = 'Đang kiểm tra...';
+        fb.className = 'feedback checking';
+        ca.style.display = 'none';
+    } else if (result === 'correct') {
         fb.textContent = 'Chính xác!';
         fb.className = 'feedback correct';
         ca.style.display = 'none';
@@ -831,7 +797,6 @@ function shuffleArr(arr) {
 // Expose to global scope
 window.initPhrases = initPhrases;
 window.updatePhrasesHomeStat = updatePhrasesHomeStat;
-window.normalizeText = normalizeText;
-window.levenshteinDistance = levenshteinDistance;
+// normalizeText and levenshteinDistance now provided by answer-match.js
 
 })();
