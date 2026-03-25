@@ -1229,6 +1229,7 @@ h2 {
 /* Next button in quiz */
 #next-btn, #review-next-btn, #practice-next-btn, #phrases-next-btn {
     margin: 0 1rem 1rem;
+    width: calc(100% - 2rem);
 }
 
 /* ===== Quiz Container ===== */
