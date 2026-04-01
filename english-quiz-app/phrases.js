@@ -539,43 +539,12 @@ function nextPhrase() {
 }
 
 // ===== TTS =====
-const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
 function speakPhrase(text) {
     if (!text && practiceQueue[pIdx]) text = practiceQueue[pIdx].en;
     if (!text) return;
-
-    window.speechSynthesis.cancel();
-
-    const doSpeak = () => {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        // On mobile, adjust rate slightly for clearer output
-        const mobileAdjust = isMobileDevice ? 0.95 : 1;
-        utterance.rate = speechRate * mobileAdjust;
-        utterance.pitch = 1;
-        utterance.volume = 1;
-
-        if (typeof getBestEnglishVoice === 'function') {
-            const voice = getBestEnglishVoice();
-            if (voice) utterance.voice = voice;
-        }
-
-        const btn = document.getElementById('phrases-speak-btn');
-        if (btn) {
-            btn.classList.add('speaking');
-            utterance.onend = () => btn.classList.remove('speaking');
-            utterance.onerror = () => btn.classList.remove('speaking');
-        }
-
-        window.speechSynthesis.speak(utterance);
-    };
-
-    // Chrome Android: delay after cancel() to prevent garbled audio
-    if (isMobileDevice) {
-        setTimeout(doSpeak, 80);
-    } else {
-        doSpeak();
+    const btn = document.getElementById('phrases-speak-btn');
+    if (typeof window.speakText === 'function') {
+        window.speakText(text, { rate: speechRate, btn: btn });
     }
 }
 
