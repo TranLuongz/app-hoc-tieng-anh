@@ -1,86 +1,91 @@
-# English Vocabulary Quiz App 📚
+# English Learning App
 
-Ứng dụng học từ vựng tiếng Anh với **3000 từ thông dụng nhất**, chạy hoàn toàn trên trình duyệt (local), không cần server.
+Ứng dụng học tiếng Anh đa module chạy bằng HTML/CSS/Vanilla JS, deploy được trên Vercel.
 
-## Tính năng
+## Tính năng chính
 
-- **3000 từ vựng** - Lấy từ dataset [google-10000-english](https://github.com/first20hours/google-10000-english), dịch sang tiếng Việt
-- **Quiz trắc nghiệm** - Mỗi câu hỏi có 4 đáp án, chỉ 1 đáp án đúng
-- **Buộc chọn lại** khi sai - Không được bỏ qua, phải chọn đúng mới tiếp tục
-- **Lưu tiến trình** - localStorage giữ lại vị trí học, điểm số
-- **Xáo trộn từ** - Tùy chọn học theo thứ tự hoặc ngẫu nhiên
-- **Chế độ tối** - Giao diện dark mode dễ nhìn
-- **Phím tắt** - Nhấn 1-4 chọn đáp án, Enter/Space để tiếp tục
-- **Responsive** - Hiển thị tốt trên mobile và desktop
+- Vocabulary quiz (trắc nghiệm từ vựng, SRS review, wrong words review).
+- Grammar/Tenses hub (lý thuyết + luyện tập).
+- Phrases module (luyện câu theo chủ đề + yêu thích).
+- Story game + Sentence Auction.
+- Lưu tiến trình bằng localStorage.
+- TTS thống nhất giọng bằng Cloud TTS qua API route `/api/tts` + fallback Web Speech khi lỗi mạng/API.
 
-## Cấu trúc
+## Cấu trúc dự án (rút gọn)
 
-```
+```txt
 english-quiz-app/
-├── index.html          # Trang chính
-├── style.css           # Giao diện (CSS)
-├── app.js              # Logic quiz (JavaScript)
-├── words.json          # Dataset 3000 từ Anh-Việt
-├── generate_words.py   # Script tạo dataset
-└── README.md           # Tài liệu
+|-- index.html
+|-- app.js
+|-- phrases.js
+|-- tenses.js
+|-- game.js
+|-- style.css
+|-- phrases.css
+|-- tenses.css
+|-- game.css
+|-- words.json
+|-- phrases.json
+|-- tenses.json
+|-- grammar.json
+|-- stories.json
+|-- irregular_verbs.json
+|-- auction_questions.json
+|-- api/
+|   `-- tts.js
+|-- .env.example
+`-- README.md
 ```
 
-## Cách chạy
+## Thiết lập môi trường (Cloud TTS)
 
-### Cách 1: Mở trực tiếp
-Mở file `index.html` bằng trình duyệt (nên dùng Chrome/Edge).
+Tạo file `.env.local` (local) hoặc thêm biến môi trường trong Vercel:
 
-> ⚠️ Một số trình duyệt chặn fetch local file. Nếu gặp lỗi, dùng Cách 2.
+```env
+GOOGLE_CLOUD_TTS_API_KEY=your_google_cloud_tts_api_key
+GOOGLE_CLOUD_TTS_LANG=en-US
+GOOGLE_CLOUD_TTS_VOICE=en-US-Neural2-F
+```
 
-### Cách 2: Local server (khuyên dùng)
+Giải thích:
+
+- `GOOGLE_CLOUD_TTS_API_KEY`: bắt buộc, dùng ở server side API route.
+- `GOOGLE_CLOUD_TTS_LANG`: tùy chọn, mặc định `en-US`.
+- `GOOGLE_CLOUD_TTS_VOICE`: tùy chọn, mặc định `en-US-Neural2-F`.
+
+## Chạy local
+
+Khuyên dùng server thay vì mở trực tiếp file:
 
 ```bash
-# Python
-python -m http.server 8000
-
-# Node.js
-npx serve .
+npx serve . -p 3000
 ```
 
-Mở trình duyệt: `http://localhost:8000`
+Mở: `http://localhost:3000`
 
-## Cách tạo lại dataset
+Lưu ý: nếu không có API key, app vẫn đọc được nhờ fallback Web Speech nhưng giọng sẽ phụ thuộc từng trình duyệt/thiết bị.
 
-Nếu muốn tạo lại file `words.json`:
+## Deploy Vercel
 
-```bash
-pip install deep-translator requests
-python generate_words.py
-```
+1. Import repo lên Vercel.
+2. Root Directory: `english-quiz-app`.
+3. Thêm các Environment Variables ở trên.
+4. Redeploy.
 
-Script sẽ:
-1. Download danh sách từ từ [google-10000-english](https://github.com/first20hours/google-10000-english)
-2. Lọc 3000 từ phổ biến nhất
-3. Dịch sang tiếng Việt qua Google Translate
-4. Lưu vào `words.json`
+Sau deploy, frontend gọi `/api/tts` để lấy audio từ Cloud TTS. API key không lộ ra client.
 
-## Tech Stack
+## Cơ chế TTS hiện tại
 
-- HTML5 / CSS3 / Vanilla JavaScript
-- Google Fonts (Inter)
-- localStorage cho lưu tiến trình
-- Không framework, không build tools
+- Frontend gọi `window.speakText(...)` hoặc `speakWord(...)`.
+- Pipeline ưu tiên Cloud TTS (`/api/tts`).
+- Nếu Cloud lỗi, fallback về Web Speech API để không mất âm thanh.
 
-## Screenshots
+## Dataset và scripts
 
-### Màn hình chính
-- Logo, thống kê tiến trình
-- Toggle xáo trộn & dark mode
-
-### Màn hình quiz
-- Hiển thị từ tiếng Anh lớn
-- 4 nút đáp án tiếng Việt
-- Thanh tiến trình
-- Đếm đúng/sai
+- `words.json` chứa dữ liệu từ vựng.
+- `generate_words.py` dùng để tạo lại bộ từ (nếu cần).
+- `generate-cache-seed.js`/`answer-cache-seed.json` phục vụ cache/gợi ý dữ liệu.
 
 ## License
 
-MIT - Tự do sử dụng và chỉnh sửa.
-
-
-chuẩn bị thêm chức năng động từ bất quy tắc và có thể search kiểm tra lại tất cả những gì đã học ví dụ hover vào 1 động từ có bất quy tắc thì nó có thể hiển thị những từ bất quy tắc
+MIT.

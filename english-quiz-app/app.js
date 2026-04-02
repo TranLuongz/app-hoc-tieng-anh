@@ -977,9 +977,20 @@ let currentAudio = null;
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 let speakDelayTimer = null;
 
-// Free Dictionary API audio cache (word → URL string or null)
-// Dùng real human pronunciation thay TTS engine
+const TTS_CONFIG = {
+    cloudEndpoint: '/api/tts',
+    preferCloud: false,
+    useLegacyGoogleFallback: true,
+    useDictionaryFallback: false,
+};
+
+// In-memory cache: Dictionary API word audio (word → mp3 URL)
 const _dictAudioCache = {};
+// In-memory cache: Google TTS blob URLs (text key → blob URL)
+// Blob URLs tồn tại suốt session → repeat plays không cần network
+const _googleTTSCache = {};
+// In-memory cache: Cloud TTS blob URLs (text+rate key → blob URL)
+const _cloudTTSCache = {};
 
 function prefetchWordAudio(word) {
     if (!word || /\s/.test(word.trim())) return;
@@ -995,14 +1006,12 @@ function prefetchWordAudio(word) {
         })
         .then(function(data) {
             if (!data) return;
-            // Ưu tiên giọng US
             for (var i = 0; i < data.length; i++) {
                 var ph = data[i].phonetics || [];
                 for (var j = 0; j < ph.length; j++) {
                     if (ph[j].audio && ph[j].audio.includes('-us')) { _dictAudioCache[key] = ph[j].audio; return; }
                 }
             }
-            // Bất kỳ audio nào
             for (var i = 0; i < data.length; i++) {
                 var ph = data[i].phonetics || [];
                 for (var j = 0; j < ph.length; j++) {
@@ -1040,22 +1049,92 @@ function getBestEnglishVoice() {
     return null;
 }
 
-// Preload voices ngay khi khởi động — fixes Android async loading bug
+// Preload voices ngay khi khởi động
 getBestEnglishVoice();
 if (window.speechSynthesis.onvoiceschanged !== undefined) {
-    window.speechSynthesis.onvoiceschanged = () => { cachedVoice = null; getBestEnglishVoice(); };
+    window.speechSynthesis.onvoiceschanged = function() { cachedVoice = null; getBestEnglishVoice(); };
 }
 
-// Internal: phát âm bằng Web Speech API
+// ---- Helpers ----
+
+// Stop bất kỳ audio đang phát
+function _stopCurrentAudio() {
+    if (currentAudio) {
+        try { currentAudio.pause(); } catch(e) {}
+        currentAudio = null;
+    }
+    window.speechSynthesis.cancel();
+}
+
+// Play một audio URL với rate control qua playbackRate
+// rate: 1.0 = bình thường, 0.6 = chậm, v.v.
+function _playAudioUrl(url, btn, rate, onFail) {
+    var audio = new Audio(url);
+    audio.playbackRate = (rate && rate > 0) ? rate : 1.0;
+    currentAudio = audio;
+    if (btn) btn.classList.add('speaking');
+    audio.onended = function() {
+        if (btn) btn.classList.remove('speaking');
+        if (currentAudio === audio) currentAudio = null;
+    };
+    audio.onerror = function() {
+        if (btn) btn.classList.remove('speaking');
+        if (currentAudio === audio) currentAudio = null;
+        if (onFail) onFail();
+    };
+    audio.play().catch(function() {
+        if (btn) btn.classList.remove('speaking');
+        if (currentAudio === audio) currentAudio = null;
+        if (onFail) onFail();
+    });
+}
+
+// Chia text dài thành các đoạn ≤ maxLen ký tự tại ranh giới câu/từ
+function _splitTextForTTS(text, maxLen) {
+    maxLen = maxLen || 180;
+    if (text.length <= maxLen) return [text];
+    var chunks = [];
+    // Tách tại các dấu ngắt câu
+    var sentences = text.match(/[^.!?,;]+[.!?,;]*/g) || [text];
+    var current = '';
+    for (var i = 0; i < sentences.length; i++) {
+        var s = sentences[i].trim();
+        if (!s) continue;
+        if ((current + ' ' + s).trim().length <= maxLen) {
+            current = (current + ' ' + s).trim();
+        } else {
+            if (current) chunks.push(current);
+            // Nếu câu đơn vẫn quá dài → cắt tại khoảng trắng
+            if (s.length > maxLen) {
+                var words = s.split(' ');
+                current = '';
+                for (var w = 0; w < words.length; w++) {
+                    if ((current + ' ' + words[w]).trim().length <= maxLen) {
+                        current = (current + ' ' + words[w]).trim();
+                    } else {
+                        if (current) chunks.push(current);
+                        current = words[w];
+                    }
+                }
+            } else {
+                current = s;
+            }
+        }
+    }
+    if (current) chunks.push(current);
+    return chunks.length ? chunks : [text.slice(0, maxLen)];
+}
+
+// Fallback: Web Speech API (last resort, giọng local)
 function _speakViaWebSpeech(text, btn, rate) {
     window.speechSynthesis.cancel();
-    const doSpeak = function() {
-        const utt = new SpeechSynthesisUtterance(text);
+    var doSpeak = function() {
+        var utt = new SpeechSynthesisUtterance(text);
         utt.lang = 'en-US';
-        utt.rate = (rate != null) ? rate : (isMobile ? 0.85 : 0.9);
+        utt.rate = (rate != null && rate > 0) ? rate : 0.9;
         utt.pitch = 1;
         utt.volume = 1;
-        const voice = getBestEnglishVoice();
+        var voice = getBestEnglishVoice();
         if (voice) utt.voice = voice;
         if (btn) {
             btn.classList.add('speaking');
@@ -1064,56 +1143,205 @@ function _speakViaWebSpeech(text, btn, rate) {
         }
         window.speechSynthesis.speak(utt);
     };
-    if (isMobile) setTimeout(doSpeak, 80); else doSpeak();
+    setTimeout(doSpeak, isMobile ? 80 : 0);
 }
 
+function _base64ToBlobUrl(base64, mimeType) {
+    var binary = atob(base64);
+    var len = binary.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) bytes[i] = binary.charCodeAt(i);
+    var blob = new Blob([bytes], { type: mimeType || 'audio/mpeg' });
+    return URL.createObjectURL(blob);
+}
+
+function _getCloudTTSBlobUrl(text, rate) {
+    if (!TTS_CONFIG.preferCloud) return Promise.reject(new Error('cloud tts disabled'));
+    var normalizedRate = (rate && rate > 0) ? rate : 1.0;
+    var normalizedText = (text || '').trim();
+    var cacheKey = normalizedText.toLowerCase().slice(0, 320) + '|' + normalizedRate.toFixed(2);
+    if (_cloudTTSCache[cacheKey]) return Promise.resolve(_cloudTTSCache[cacheKey]);
+
+    return fetch(TTS_CONFIG.cloudEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            text: normalizedText.slice(0, 2000),
+            rate: normalizedRate,
+        })
+    })
+        .then(function(res) {
+            if (!res.ok) throw new Error('cloud tts ' + res.status);
+            return res.json();
+        })
+        .then(function(data) {
+            if (!data || !data.audioContent) throw new Error('empty cloud tts audio');
+            var blobUrl = _base64ToBlobUrl(data.audioContent, data.mimeType || 'audio/mpeg');
+            _cloudTTSCache[cacheKey] = blobUrl;
+            return blobUrl;
+        });
+}
+
+function _speakViaCloudTTS(text, btn, rate, onFail) {
+    _getCloudTTSBlobUrl(text, rate)
+        .then(function(url) {
+            _playAudioUrl(url, btn, rate, onFail);
+        })
+        .catch(function() {
+            if (onFail) onFail();
+        });
+}
+
+function _getGoogleTTSBlobUrl(text) {
+    var cacheKey = text.toLowerCase().trim().slice(0, 180);
+    if (_googleTTSCache[cacheKey]) return Promise.resolve(_googleTTSCache[cacheKey]);
+
+    var url = 'https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=en-US&client=gtx&q='
+        + encodeURIComponent(text.slice(0, 180));
+
+    return fetch(url)
+        .then(function(res) {
+            if (!res.ok) throw new Error('gtts ' + res.status);
+            return res.blob();
+        })
+        .then(function(blob) {
+            var blobUrl = URL.createObjectURL(blob);
+            _googleTTSCache[cacheKey] = blobUrl;
+            return blobUrl;
+        });
+}
+
+// Primary TTS: Google Translate TTS
+// Fetch → blob URL → cache in-memory → playbackRate cho speed control
+// Giọng Google nhất quán trên mọi thiết bị
+function _speakViaGoogleTTS(text, btn, rate, onFail) {
+    _getGoogleTTSBlobUrl(text)
+        .then(function(blobUrl) {
+            _playAudioUrl(blobUrl, btn, rate, onFail);
+        })
+        .catch(function() {
+            if (onFail) onFail();
+        });
+}
+
+// Phát tuần tự nhiều chunks (cho text dài)
+function _speakChunksSequentially(chunks, btn, rate, onFail) {
+    if (!chunks || !chunks.length) return;
+    if (btn) btn.classList.add('speaking');
+    var idx = 0;
+
+    function playNext() {
+        if (idx >= chunks.length) {
+            if (btn) btn.classList.remove('speaking');
+            return;
+        }
+
+        var chunk = chunks[idx++];
+        var getChunkAudio = null;
+        if (TTS_CONFIG.preferCloud) {
+            getChunkAudio = _getCloudTTSBlobUrl(chunk, rate).catch(function(err) {
+                if (TTS_CONFIG.useLegacyGoogleFallback) return _getGoogleTTSBlobUrl(chunk);
+                throw err;
+            });
+        } else {
+            getChunkAudio = _getGoogleTTSBlobUrl(chunk);
+        }
+
+        getChunkAudio
+            .then(function(url) {
+                var audio = new Audio(url);
+                audio.playbackRate = (rate && rate > 0) ? rate : 1.0;
+                currentAudio = audio;
+                audio.onended = function() { if (currentAudio === audio) currentAudio = null; playNext(); };
+                audio.onerror = function() {
+                    if (currentAudio === audio) currentAudio = null;
+                    if (btn) btn.classList.remove('speaking');
+                    if (onFail) onFail();
+                };
+                audio.play().catch(function() {
+                    if (currentAudio === audio) currentAudio = null;
+                    if (btn) btn.classList.remove('speaking');
+                    if (onFail) onFail();
+                });
+            })
+            .catch(function() {
+                if (btn) btn.classList.remove('speaking');
+                if (onFail) onFail();
+            });
+    }
+
+    playNext();
+}
+
+// ---- Main speak functions ----
+
 function speakWord(text) {
-    const word = (text || (wordText && wordText.textContent) || '').trim();
+    var word = (text || (wordText && wordText.textContent) || '').trim();
     if (!word || word === 'Loading...') return;
 
     if (speakDelayTimer) { clearTimeout(speakDelayTimer); speakDelayTimer = null; }
-    if (currentAudio) { try { currentAudio.pause(); } catch(e){} currentAudio = null; }
-    window.speechSynthesis.cancel();
+    _stopCurrentAudio();
 
-    const activeBtn = document.querySelector('.screen.active .speak-btn') || speakBtn;
+    var activeBtn = document.querySelector('.screen.active .speak-btn') || speakBtn;
 
-    // Từ đơn → thử Dictionary API cached audio (real human pronunciation)
-    if (!/\s/.test(word)) {
-        const audioUrl = _dictAudioCache[word.toLowerCase()];
-        if (audioUrl) {
-            const audio = new Audio(audioUrl);
-            currentAudio = audio;
-            if (activeBtn) activeBtn.classList.add('speaking');
-            audio.onended = function() {
-                if (activeBtn) activeBtn.classList.remove('speaking');
-                if (currentAudio === audio) currentAudio = null;
-            };
-            audio.onerror = function() {
-                if (activeBtn) activeBtn.classList.remove('speaking');
-                if (currentAudio === audio) currentAudio = null;
-                _speakViaWebSpeech(word, activeBtn, null);
-            };
-            audio.play().catch(function() {
-                if (activeBtn) activeBtn.classList.remove('speaking');
-                if (currentAudio === audio) currentAudio = null;
-                _speakViaWebSpeech(word, activeBtn, null);
-            });
-            return;
-        }
-        // Cache miss: bắt đầu fetch để lần sau dùng được
-        prefetchWordAudio(word);
+    // Cloud-first để đồng nhất giọng giữa browser/device.
+    var fallbackToWebSpeech = function() {
+        _speakViaWebSpeech(word, activeBtn, null);
+    };
+
+    if (TTS_CONFIG.preferCloud) {
+        _speakViaCloudTTS(word, activeBtn, 1.0, function() {
+            if (TTS_CONFIG.useDictionaryFallback && !/\s/.test(word)) {
+                var audioUrl = _dictAudioCache[word.toLowerCase()];
+                if (audioUrl) {
+                    _playAudioUrl(audioUrl, activeBtn, 1.0, fallbackToWebSpeech);
+                    return;
+                }
+                prefetchWordAudio(word);
+            }
+            if (TTS_CONFIG.useLegacyGoogleFallback) {
+                _speakViaGoogleTTS(word, activeBtn, 1.0, fallbackToWebSpeech);
+                return;
+            }
+            fallbackToWebSpeech();
+        });
+        return;
     }
 
-    _speakViaWebSpeech(word, activeBtn, null);
+    _speakViaGoogleTTS(word, activeBtn, 1.0, fallbackToWebSpeech);
 }
 
 // Global speak — dùng cho phrases.js và game.js
+// opts: { rate: number, btn: HTMLElement }
 window.speakText = function(text, opts) {
-    if (currentAudio) { try { currentAudio.pause(); } catch(e){} currentAudio = null; }
-    window.speechSynthesis.cancel();
-    const rate = (opts && opts.rate != null) ? opts.rate * (isMobile ? 0.95 : 1) : null;
-    const btn = (opts && opts.btn) || null;
-    _speakViaWebSpeech(text, btn, rate);
+    _stopCurrentAudio();
+    var btn = (opts && opts.btn) || null;
+    var rate = (opts && opts.rate != null && opts.rate > 0) ? opts.rate : 1.0;
+    var fallbackToWebSpeech = function() {
+        _speakViaWebSpeech(text, btn, rate);
+    };
+
+    var chunks = _splitTextForTTS(text);
+    if (TTS_CONFIG.preferCloud) {
+        if (chunks.length <= 1) {
+            _speakViaCloudTTS(text, btn, rate, function() {
+                if (TTS_CONFIG.useLegacyGoogleFallback) {
+                    _speakViaGoogleTTS(text, btn, rate, fallbackToWebSpeech);
+                    return;
+                }
+                fallbackToWebSpeech();
+            });
+            return;
+        }
+        _speakChunksSequentially(chunks, btn, rate, fallbackToWebSpeech);
+        return;
+    }
+
+    if (chunks.length <= 1) {
+        _speakViaGoogleTTS(text, btn, rate, fallbackToWebSpeech);
+        return;
+    }
+    _speakChunksSequentially(chunks, btn, rate, fallbackToWebSpeech);
 };
 
 // ===== Speech Recognition =====
