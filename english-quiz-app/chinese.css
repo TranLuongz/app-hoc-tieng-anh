@@ -1,0 +1,357 @@
+/* Chinese module styles */
+.chinese-hub-container,
+.chinese-grammar-hub-container,
+.chinese-grammar-theory-container {
+    max-width: 600px;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0 auto;
+}
+
+.chinese-toolbar {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0 1rem;
+}
+
+.chinese-dir-toggle .toggle-text {
+    font-weight: 700;
+}
+
+.chinese-module-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 0 1rem 2rem;
+    margin-top: 1rem;
+}
+
+.chinese-mode-card {
+    min-height: auto;
+}
+
+.chinese-setup-note {
+    margin: -0.2rem 0 0.8rem;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Grammar hub */
+.chinese-topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.85rem;
+    margin: 0.9rem 0 1rem;
+}
+
+.chinese-topic-card {
+    width: 100%;
+    text-align: left;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-organic);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 0.9rem;
+    cursor: pointer;
+    transition: transform var(--duration-fast), box-shadow var(--duration-fast), border-color var(--duration-fast);
+}
+
+.chinese-topic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.chinese-topic-card--locked {
+    opacity: 0.64;
+    cursor: not-allowed;
+}
+
+.chinese-topic-card--completed {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+}
+
+.chinese-topic-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+    margin-bottom: 0.4rem;
+}
+
+.chinese-topic-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.chinese-topic-badge {
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    background: var(--bg-sunken);
+    color: var(--text-secondary);
+}
+
+.chinese-topic-meta {
+    font-size: 0.77rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 0.55rem;
+}
+
+/* Grammar theory */
+.chinese-theory-panel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-organic);
+    background: var(--bg-card);
+    padding: 1rem;
+    margin: 0.7rem 0 1rem;
+}
+
+.chinese-theory-description {
+    margin: 0 0 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.chinese-theory-block {
+    margin-bottom: 0.95rem;
+}
+
+.chinese-theory-block-title {
+    font-weight: 800;
+    font-size: 0.88rem;
+    margin-bottom: 0.45rem;
+}
+
+.chinese-theory-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.chinese-theory-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.62rem 0.7rem;
+    background: var(--bg-sunken);
+}
+
+.chinese-theory-card-title {
+    font-size: 0.83rem;
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+}
+
+.chinese-theory-card-desc {
+    font-size: 0.79rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.chinese-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.chinese-chip {
+    border-radius: var(--radius-full);
+    padding: 0.25rem 0.65rem;
+    background: var(--bg-sunken);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.chinese-note-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+/* Phrases hub/favorites */
+.chinese-phrases-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.7rem;
+}
+
+.chinese-category-card {
+    border: 2px solid var(--border);
+    border-radius: var(--radius-organic);
+    background: var(--bg-card);
+    padding: 0.8rem;
+    text-align: left;
+    cursor: pointer;
+    transition: transform var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.chinese-category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.chinese-category-title {
+    font-size: 0.88rem;
+    font-weight: 800;
+    margin-bottom: 0.2rem;
+}
+
+.chinese-category-meta {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+.chinese-fav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 0.85rem 0;
+}
+
+.chinese-fav-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+}
+
+.chinese-fav-text {
+    min-width: 0;
+}
+
+.chinese-fav-zh {
+    font-weight: 800;
+}
+
+.chinese-fav-vi {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+}
+
+.chinese-fav-remove {
+    border: none;
+    background: var(--wrong-bg);
+    color: var(--wrong);
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    padding: 0.3rem 0.7rem;
+    cursor: pointer;
+}
+
+/* Align Chinese phrase hub with English phrases level colors */
+#chinese-phrases-level-filter .level-pill.active[data-level="HSK1"] { background: var(--correct); border-color: var(--correct); color: white; }
+#chinese-phrases-level-filter .level-pill.active[data-level="HSK2"] { background: var(--info); border-color: var(--info); color: white; }
+#chinese-phrases-level-filter .level-pill.active[data-level="HSK3"] { background: #D97706; border-color: #D97706; color: white; }
+#chinese-phrases-level-filter .level-pill.active[data-level="HSK4"] { background: #7C3AED; border-color: #7C3AED; color: white; }
+#chinese-phrases-level-filter .level-pill.active[data-level="HSK5"] { background: #DC2626; border-color: #DC2626; color: white; }
+#chinese-phrases-level-filter .level-pill.active[data-level="HSK6"] { background: #0F766E; border-color: #0F766E; color: white; }
+
+/* HSK badge colors on shared category cards */
+#chinese-phrases-categories .category-level-badge.completed[data-lv="HSK1"],
+#chinese-phrases-categories .category-level-badge.current[data-lv="HSK1"] { background: var(--correct); color: white; }
+#chinese-phrases-categories .category-level-badge.completed[data-lv="HSK2"],
+#chinese-phrases-categories .category-level-badge.current[data-lv="HSK2"] { background: var(--info); color: white; }
+#chinese-phrases-categories .category-level-badge.completed[data-lv="HSK3"],
+#chinese-phrases-categories .category-level-badge.current[data-lv="HSK3"] { background: #D97706; color: white; }
+#chinese-phrases-categories .category-level-badge.completed[data-lv="HSK4"],
+#chinese-phrases-categories .category-level-badge.current[data-lv="HSK4"] { background: #7C3AED; color: white; }
+#chinese-phrases-categories .category-level-badge.completed[data-lv="HSK5"],
+#chinese-phrases-categories .category-level-badge.current[data-lv="HSK5"] { background: #DC2626; color: white; }
+#chinese-phrases-categories .category-level-badge.completed[data-lv="HSK6"],
+#chinese-phrases-categories .category-level-badge.current[data-lv="HSK6"] { background: #0F766E; color: white; }
+
+/* Games */
+.chinese-game-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 0 1rem 2rem;
+    margin-top: 1rem;
+}
+
+/* Practice */
+.chinese-question-card {
+    text-align: center;
+}
+
+.chinese-main-text {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.chinese-sub-text {
+    margin-top: 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.96rem;
+}
+
+#chinese-options .option-btn {
+    text-align: left;
+}
+
+#chinese-bookmark-btn {
+    margin-left: 0.1rem;
+}
+
+#chinese-story-screen .story-scene {
+    min-height: 320px;
+}
+
+/* Chinese listening on shared practice screen: match English listening UI */
+#chinese-practice-screen.chinese-listening-mode .progress-bar-container,
+#chinese-practice-screen.chinese-listening-mode .score-badge,
+#chinese-practice-screen.chinese-listening-mode #chinese-mode-badge,
+#chinese-practice-screen.chinese-listening-mode #chinese-mc-area,
+#chinese-practice-screen.chinese-listening-mode #chinese-bookmark-btn,
+#chinese-practice-screen.chinese-listening-mode #chinese-speed-normal {
+    display: none !important;
+}
+
+#chinese-practice-screen.chinese-listening-mode .top-bar {
+    align-items: center;
+}
+
+#chinese-practice-screen.chinese-listening-mode .progress-info {
+    margin-left: auto;
+}
+
+#chinese-practice-screen.chinese-listening-mode .phrases-container {
+    padding-bottom: 2rem;
+}
+
+#chinese-practice-screen.chinese-listening-mode #chinese-question-card {
+    margin: 0 1rem;
+}
+
+#chinese-practice-screen.chinese-listening-mode #chinese-typing-area {
+    padding: 0 1rem;
+}
+
+#chinese-practice-screen.chinese-listening-mode #chinese-feedback,
+#chinese-practice-screen.chinese-listening-mode #chinese-correct-answer,
+#chinese-practice-screen.chinese-listening-mode #chinese-next-btn {
+    margin: 0 1rem;
+}
+
+@media (max-width: 768px) {
+    .chinese-main-text {
+        font-size: 1.75rem;
+    }
+
+    .chinese-topic-grid,
+    .chinese-phrases-category-grid {
+        grid-template-columns: 1fr;
+    }
+}

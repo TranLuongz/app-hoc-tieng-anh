@@ -60,6 +60,7 @@
     <link rel="stylesheet" href="tenses.css">
     <link rel="stylesheet" href="phrases.css">
     <link rel="stylesheet" href="game.css">
+    <link rel="stylesheet" href="chinese.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -75,8 +76,18 @@
     <!-- Desktop Sidebar Navigation -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <span class="sidebar-logo">EL</span>
-            <span class="sidebar-tagline">English Learning</span>
+            <span class="sidebar-logo">TDL</span>
+            <span class="sidebar-tagline">Học Tiếng</span>
+        </div>
+        <div class="sidebar-language-picker">
+            <label class="sidebar-language-label" for="learning-language-select">Ngôn ngữ đang học</label>
+            <div class="sidebar-language-control">
+                <select id="learning-language-select" class="sidebar-language-select">
+                    <option value="en">Tiếng Anh</option>
+                    <option value="zh">Tiếng Trung</option>
+                </select>
+                <span class="sidebar-language-arrow" aria-hidden="true">⌄</span>
+            </div>
         </div>
         <div class="sidebar-user-stats">
             <div class="sidebar-streak" id="sidebar-streak">
@@ -102,6 +113,10 @@
                 <span class="nav-icon">💬</span>
                 <span class="nav-label">Câu & Cụm từ</span>
             </button>
+            <button class="sidebar-nav-item" data-module="listening" id="nav-listening">
+                <span class="nav-icon">🎧</span>
+                <span class="nav-label">Luyện Nghe</span>
+            </button>
             <button class="sidebar-nav-item" data-module="games" id="nav-games">
                 <span class="nav-icon">🎮</span>
                 <span class="nav-label">Trò chơi</span>
@@ -125,9 +140,20 @@
     <!-- Home Screen (Module Hub) -->
     <div id="start-screen" class="screen active">
         <div class="start-container">
-            <div class="logo-icon">📚</div>
-            <h1>English Learning</h1>
-            <p class="subtitle">Học từ vựng và ngữ pháp tiếng Anh</p>
+            <div class="logo-icon" id="home-logo-icon">📚</div>
+            <h1 id="home-title">English Learning</h1>
+            <p class="subtitle" id="home-subtitle">Học từ vựng và ngữ pháp tiếng Anh</p>
+
+            <div class="sidebar-language-picker mobile-language-picker">
+                <label class="sidebar-language-label" for="learning-language-select-mobile">Ngôn ngữ đang học</label>
+                <div class="sidebar-language-control">
+                    <select id="learning-language-select-mobile" class="sidebar-language-select">
+                        <option value="en">Tiếng Anh</option>
+                        <option value="zh">Tiếng Trung</option>
+                    </select>
+                    <span class="sidebar-language-arrow" aria-hidden="true">⌄</span>
+                </div>
+            </div>
 
             <!-- Gamification Bar -->
             <div class="gamification-bar">
@@ -149,8 +175,8 @@
                 <button class="module-card" id="module-vocab-btn">
                     <div class="module-icon">A</div>
                     <div class="module-info">
-                        <div class="module-title">Từ vựng 3668 từ thông dụng</div>
-                        <div class="module-desc">3668 từ có IPA, phân loại theo level</div>
+                        <div class="module-title" id="module-vocab-title">Từ vựng 3668 từ thông dụng</div>
+                        <div class="module-desc" id="module-vocab-desc">3668 từ có IPA, phân loại theo level</div>
                         <div class="module-progress-bar-wrap">
                             <div class="module-progress-bar" id="vocab-progress-bar"></div>
                         </div>
@@ -161,8 +187,8 @@
                 <button class="module-card" id="module-tenses-btn">
                     <div class="module-icon">T</div>
                     <div class="module-info">
-                        <div class="module-title">12 Thì tiếng Anh</div>
-                        <div class="module-desc">Lý thuyết, luyện tập, ôn tập</div>
+                        <div class="module-title" id="module-tenses-title">12 Thì tiếng Anh</div>
+                        <div class="module-desc" id="module-tenses-desc">Lý thuyết, luyện tập, ôn tập</div>
                         <div class="module-progress-bar-wrap">
                             <div class="module-progress-bar" id="tenses-progress-bar"></div>
                         </div>
@@ -173,28 +199,39 @@
                 <button class="module-card" id="module-phrases-btn">
                     <div class="module-icon">💬</div>
                     <div class="module-info">
-                        <div class="module-title">Câu & Cụm từ</div>
-                        <div class="module-desc">9600+ câu Anh-Việt, A1-B2</div>
+                        <div class="module-title" id="module-phrases-title">Câu & Cụm từ</div>
+                        <div class="module-desc" id="module-phrases-desc">9600+ câu Anh-Việt, A1-B2</div>
                         <div class="module-progress-bar-wrap">
                             <div class="module-progress-bar" id="phrases-progress-bar"></div>
                         </div>
                         <div class="module-stat" id="phrases-stat">0 / 9633 câu</div>
                     </div>
                 </button>
+                <button class="module-card" id="module-listening-btn">
+                    <div class="module-icon">🎧</div>
+                    <div class="module-info">
+                        <div class="module-title" id="module-listening-title">Luyện Nghe</div>
+                        <div class="module-desc" id="module-listening-desc">Nghe và gõ lại câu tiếng Anh</div>
+                        <div class="module-progress-bar-wrap">
+                            <div class="module-progress-bar" id="listening-progress-bar"></div>
+                        </div>
+                        <div class="module-stat" id="listening-stat">0 / 9633 câu</div>
+                    </div>
+                </button>
+
                 <button class="module-card" id="module-game-btn">
                     <div class="module-icon">🎮</div>
                     <div class="module-info">
-                        <div class="module-title">Trò chơi tiếng Anh</div>
-                        <div class="module-desc">Học qua câu chuyện tương tác</div>
+                        <div class="module-title" id="module-game-title">Trò chơi tiếng Anh</div>
+                        <div class="module-desc" id="module-game-desc">Học qua câu chuyện tương tác</div>
                         <div class="module-progress-bar-wrap">
                             <div class="module-progress-bar" id="game-progress-bar"></div>
                         </div>
                         <div class="module-stat" id="game-stat">0 / 13 truyện</div>
                     </div>
                 </button>
-            </div>
-
-            <button class="module-card" id="module-stats-btn">
+                
+                <button class="module-card" id="module-stats-btn">
                 <div class="module-icon">📊</div>
                 <div class="module-info">
                     <div class="module-title">Thống kê học tập</div>
@@ -202,6 +239,9 @@
                     <div class="module-stat" id="stats-home-summary">Chuỗi: 0 ngày</div>
                 </div>
             </button>
+            </div>
+
+            
 
             <!-- Settings -->
             <div class="start-options">
@@ -632,15 +672,15 @@
             </div>
             <div class="stats-summary" id="stats-summary"></div>
             <div class="stats-section">
-                <h3 class="stats-section-title">Từ học mỗi ngày</h3>
+                <h3 class="stats-section-title" id="stats-section-chart-title">Từ học mỗi ngày</h3>
                 <div class="stats-chart" id="stats-chart"></div>
             </div>
             <div class="stats-section">
-                <h3 class="stats-section-title">Tiến trình SRS</h3>
+                <h3 class="stats-section-title" id="stats-section-srs-title">Tiến trình SRS</h3>
                 <div class="stats-srs" id="stats-srs"></div>
             </div>
             <div class="stats-section">
-                <h3 class="stats-section-title">Từ hay sai nhất</h3>
+                <h3 class="stats-section-title" id="stats-section-missed-title">Từ hay sai nhất</h3>
                 <div class="stats-missed" id="stats-missed"></div>
             </div>
         </div>
@@ -854,6 +894,486 @@
         </div>
     </div>
 
+
+    <!-- ===== Luyện Nghe — Listening Screen ===== -->
+    <div id="listening-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="ls-back-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Luyện Nghe</h2>
+                <div class="ls-counter" id="ls-counter">0/0</div>
+            </div>
+            <div class="ls-body">
+                <div class="ls-play-area">
+                    <p class="ls-hint-text">Nhấn nút bên dưới để nghe câu tiếng Anh</p>
+                    <button class="ls-speak-btn" id="ls-speak-btn">
+                        <span class="ls-speak-icon">🔊</span>
+                        <span class="ls-speak-label">Phát âm</span>
+                    </button>
+                    <button class="ls-speak-slow-btn" id="ls-speak-slow-btn">🐢 Chậm</button>
+                </div>
+                <div class="ls-input-area">
+                    <label class="ls-input-label">Bạn nghe thấy gì? Nhập bằng tiếng Anh:</label>
+                    <input type="text" class="ls-input" id="ls-input"
+                        placeholder="Type what you hear..." autocomplete="off" autocorrect="off" spellcheck="false">
+                    <button class="btn-primary btn-large ls-submit-btn" id="ls-submit-btn">Kiểm tra</button>
+                </div>
+                <div class="ls-feedback" id="ls-feedback" style="display:none"></div>
+                <div class="ls-answer-reveal" id="ls-answer-reveal" style="display:none">
+                    <span class="ls-answer-label">Đáp án đúng:</span>
+                    <span class="ls-answer-text" id="ls-answer-text"></span>
+                </div>
+                <button class="btn-secondary btn-large ls-next-btn" id="ls-next-btn" style="display:none">Câu tiếp theo →</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="chinese-hub-screen" class="screen">
+        <div class="tenses-container chinese-hub-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="chinese-hub-back-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Học Tiếng Trung</h2>
+                <div style="width:40px"></div>
+            </div>
+
+            <div class="chinese-toolbar">
+                <label class="toggle-option chinese-dir-toggle">
+                    <input type="checkbox" id="chinese-direction-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-text" id="chinese-direction-label">Hai chiều: Trung ↔ Việt</span>
+                </label>
+            </div>
+
+            <div class="module-grid chinese-module-grid">
+                <button class="module-card chinese-mode-card" id="chinese-mode-vocab-btn">
+                    <div class="module-icon">字</div>
+                    <div class="module-info">
+                        <div class="module-title">Từ vựng</div>
+                        <div class="module-desc" id="chinese-vocab-count">0 từ</div>
+                    </div>
+                </button>
+                <button class="module-card chinese-mode-card" id="chinese-mode-grammar-btn">
+                    <div class="module-icon">文</div>
+                    <div class="module-info">
+                        <div class="module-title">Ngữ pháp</div>
+                        <div class="module-desc" id="chinese-grammar-count">0 chủ đề</div>
+                    </div>
+                </button>
+                <button class="module-card chinese-mode-card" id="chinese-mode-phrases-btn">
+                    <div class="module-icon">句</div>
+                    <div class="module-info">
+                        <div class="module-title">Câu giao tiếp</div>
+                        <div class="module-desc" id="chinese-phrases-count">0 câu</div>
+                    </div>
+                </button>
+                <button class="module-card chinese-mode-card" id="chinese-mode-listening-btn">
+                    <div class="module-icon">🎧</div>
+                    <div class="module-info">
+                        <div class="module-title">Luyện nghe</div>
+                        <div class="module-desc">Nghe tiếng Trung và viết nghĩa Việt</div>
+                    </div>
+                </button>
+                <button class="module-card chinese-mode-card" id="chinese-mode-game-btn">
+                    <div class="module-icon">🎮</div>
+                    <div class="module-info">
+                        <div class="module-title">Trò chơi</div>
+                        <div class="module-desc" id="chinese-game-count">0 truyện</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="chinese-vocab-setup-screen" class="screen">
+        <div class="top-bar">
+            <button id="chinese-vocab-back-btn" class="icon-btn" title="Về trung tâm tiếng Trung">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <h2 class="top-bar-title">Từ vựng tiếng Trung</h2>
+            <div></div>
+        </div>
+        <div class="start-container">
+            <div class="phrases-level-filter" id="chinese-vocab-level-filter">
+                <button class="level-pill active" data-level="all">Tất cả</button>
+                <button class="level-pill" data-level="HSK1">HSK1</button>
+                <button class="level-pill" data-level="HSK2">HSK2</button>
+                <button class="level-pill" data-level="HSK3">HSK3</button>
+                <button class="level-pill" data-level="HSK4">HSK4</button>
+                <button class="level-pill" data-level="HSK5">HSK5</button>
+                <button class="level-pill" data-level="HSK6">HSK6</button>
+                <button class="level-pill" data-level="HSK7-9">HSK7-9</button>
+            </div>
+
+            <div class="start-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="chinese-vocab-stat-learned">0</span>
+                    <span class="stat-label">Đã nắm</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="chinese-vocab-stat-remaining">0</span>
+                    <span class="stat-label">Còn lại</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="chinese-vocab-stat-accuracy">0%</span>
+                    <span class="stat-label">Chính xác</span>
+                </div>
+            </div>
+
+            <div class="chinese-setup-note" id="chinese-vocab-setup-note">Sẵn sàng học liên tục đến khi hết từ trong cấp độ đã chọn.</div>
+
+            <button id="chinese-vocab-start-btn" class="btn-primary btn-large">Học từ mới</button>
+            <button id="chinese-vocab-review-btn" class="btn-secondary btn-large">Ôn SRS (0)</button>
+            <button id="chinese-vocab-wrong-btn" class="btn-secondary btn-large">Ôn từ sai (0)</button>
+            <button id="chinese-vocab-reset-btn" class="btn-secondary">Đặt lại tiến trình tiếng Trung</button>
+        </div>
+    </div>
+
+    <div id="chinese-grammar-hub-screen" class="screen">
+        <div class="tenses-container chinese-grammar-hub-container">
+            <div class="top-bar">
+                <button id="chinese-grammar-hub-back-btn" class="icon-btn" title="Về trung tâm tiếng Trung">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Ngữ pháp tiếng Trung</h2>
+                <div class="score-badge" id="chinese-grammar-hub-summary">0/0</div>
+            </div>
+            <div class="chinese-topic-grid" id="chinese-grammar-topic-grid"></div>
+            <button id="chinese-grammar-review-btn" class="btn-primary btn-large" disabled>Ôn tập tổng hợp</button>
+        </div>
+    </div>
+
+    <div id="chinese-grammar-theory-screen" class="screen">
+        <div class="tenses-container chinese-grammar-theory-container">
+            <div class="top-bar">
+                <button id="chinese-grammar-theory-back-btn" class="icon-btn" title="Quay lại danh sách chủ đề">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title" id="chinese-grammar-theory-title">Chủ đề</h2>
+                <span class="page-indicator" id="chinese-grammar-theory-level">HSK1</span>
+            </div>
+
+            <div class="chinese-theory-panel">
+                <p class="chinese-theory-description" id="chinese-grammar-theory-desc"></p>
+
+                <div class="chinese-theory-block">
+                    <div class="chinese-theory-block-title">Công thức</div>
+                    <div class="chinese-theory-list" id="chinese-grammar-theory-formulas"></div>
+                </div>
+
+                <div class="chinese-theory-block">
+                    <div class="chinese-theory-block-title">Từ khóa nhận biết</div>
+                    <div class="chinese-chip-list" id="chinese-grammar-theory-signals"></div>
+                </div>
+
+                <div class="chinese-theory-block">
+                    <div class="chinese-theory-block-title">Lưu ý nhanh</div>
+                    <ul class="chinese-note-list" id="chinese-grammar-theory-notes"></ul>
+                </div>
+            </div>
+
+            <button id="chinese-grammar-start-topic-btn" class="btn-primary btn-large">Bắt đầu luyện tập chủ đề này</button>
+        </div>
+    </div>
+
+    <div id="chinese-phrases-hub-screen" class="screen">
+        <div class="phrases-container chinese-phrases-hub-container">
+            <div class="top-bar">
+                <button id="chinese-phrases-hub-back-btn" class="icon-btn" title="Về trung tâm tiếng Trung">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Câu giao tiếp tiếng Trung</h2>
+                <button class="icon-btn" id="chinese-phrases-open-favorites-btn" title="Câu yêu thích">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </button>
+            </div>
+
+            <div class="phrases-stats-bar" id="chinese-phrases-hub-stats"></div>
+
+            <div class="phrases-level-filter" id="chinese-phrases-level-filter">
+                <button class="level-pill active" data-level="all">Tất cả</button>
+                <button class="level-pill" data-level="HSK1">HSK1</button>
+                <button class="level-pill" data-level="HSK2">HSK2</button>
+                <button class="level-pill" data-level="HSK3">HSK3</button>
+                <button class="level-pill" data-level="HSK4">HSK4</button>
+                <button class="level-pill" data-level="HSK5">HSK5</button>
+                <button class="level-pill" data-level="HSK6">HSK6</button>
+            </div>
+
+            <div class="phrases-categories" id="chinese-phrases-categories"></div>
+        </div>
+    </div>
+
+    <div id="chinese-phrases-favorites-screen" class="screen">
+        <div class="phrases-container chinese-phrases-favorites-container">
+            <div class="top-bar">
+                <button id="chinese-phrases-favorites-back-btn" class="icon-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Câu yêu thích</h2>
+                <span class="fav-count" id="chinese-phrases-favorites-count">0</span>
+            </div>
+
+            <div class="phrases-fav-list" id="chinese-phrases-favorites-list"></div>
+            <button id="chinese-phrases-favorites-practice-btn" class="btn-primary btn-large" style="display:none">Luyện tập danh sách yêu thích</button>
+        </div>
+    </div>
+
+    <div id="chinese-game-hub-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="chinese-game-hub-back-btn" title="Về trung tâm tiếng Trung">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Trò chơi tiếng Trung</h2>
+                <div style="width:40px"></div>
+            </div>
+
+            <div class="game-hub-grid chinese-game-grid">
+                <button class="game-type-card story-builder" id="chinese-open-story-select-btn">
+                    <div class="game-type-icon">📖</div>
+                    <div class="game-type-info">
+                        <div class="game-type-title">Story tương tác</div>
+                        <div class="game-type-desc">Chọn truyện, đọc hội thoại và ra quyết định</div>
+                    </div>
+                </button>
+                <button class="game-type-card sentence-auction" id="chinese-open-auction-btn">
+                    <div class="game-type-icon">💰</div>
+                    <div class="game-type-info">
+                        <div class="game-type-title">Sentence Auction Trung</div>
+                        <div class="game-type-desc">Đặt cược câu đúng sai theo ngữ pháp tiếng Trung</div>
+                        <div class="game-type-stat" id="chinese-auction-hub-stat">💰 100 xu</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="chinese-story-select-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="chinese-story-select-back-btn" title="Quay lại game hub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Chọn truyện tiếng Trung</h2>
+                <div style="width:40px"></div>
+            </div>
+            <div class="story-list" id="chinese-story-list"></div>
+        </div>
+    </div>
+
+    <div id="chinese-auction-home-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="chinese-auction-home-back-btn" title="Quay lại game hub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title">Sentence Auction Trung</h2>
+                <div style="width:40px"></div>
+            </div>
+
+            <div class="auction-home-content">
+                <div class="auction-coins-display">
+                    <span class="auction-coins-icon">💰</span>
+                    <span class="auction-coins-amount" id="chinese-auction-coins-amount">0</span>
+                    <span class="auction-coins-label">xu</span>
+                </div>
+                <div class="auction-daily-bonus" id="chinese-auction-daily-bonus"></div>
+                <button class="btn-primary btn-large auction-play-btn" id="chinese-auction-play-btn">🎮 Chơi ngay (15 câu)</button>
+                <button class="btn-secondary btn-large auction-mission-btn" id="chinese-auction-mission-btn">📝 Nhiệm vụ kiếm xu</button>
+                <div class="auction-mission-info" id="chinese-auction-mission-info"></div>
+                <div class="auction-stats-summary">
+                    <div class="auction-stat-item">
+                        <span class="auction-stat-number" id="chinese-auction-stat-games">0</span>
+                        <span class="auction-stat-label">Ván chơi</span>
+                    </div>
+                    <div class="auction-stat-item">
+                        <span class="auction-stat-number" id="chinese-auction-stat-correct">0</span>
+                        <span class="auction-stat-label">Đúng</span>
+                    </div>
+                    <div class="auction-stat-item">
+                        <span class="auction-stat-number" id="chinese-auction-stat-wrong">0</span>
+                        <span class="auction-stat-label">Sai</span>
+                    </div>
+                    <div class="auction-stat-item">
+                        <span class="auction-stat-number" id="chinese-auction-stat-best">0</span>
+                        <span class="auction-stat-label">Cao nhất</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chinese-auction-play-screen" class="screen">
+        <div class="game-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="chinese-auction-play-back-btn" title="Thoát">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title" id="chinese-auction-play-progress">1/15</h2>
+                <div class="auction-play-coins">💰 <span id="chinese-auction-play-coins">0</span></div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="story-progress-bar auction-progress-bar" id="chinese-auction-progress-bar"></div>
+            </div>
+            <div class="auction-question-area" id="chinese-auction-question-area"></div>
+            <div class="auction-bet-area" id="chinese-auction-bet-area" style="display:none">
+                <div class="auction-bet-label">Đặt cược:</div>
+                <div class="auction-bet-buttons">
+                    <button class="auction-bet-btn chinese-auction-bet-btn" data-bet="10">10 xu</button>
+                    <button class="auction-bet-btn chinese-auction-bet-btn" data-bet="20">20 xu</button>
+                    <button class="auction-bet-btn chinese-auction-bet-btn" data-bet="30">30 xu</button>
+                    <button class="auction-bet-btn chinese-auction-bet-btn" data-bet="50">50 xu</button>
+                </div>
+            </div>
+            <div class="auction-answer-area" id="chinese-auction-answer-area" style="display:none"></div>
+            <div class="auction-feedback" id="chinese-auction-feedback" style="display:none"></div>
+            <button class="btn-primary btn-large auction-next-btn" id="chinese-auction-next-btn" style="display:none">Câu tiếp theo →</button>
+        </div>
+    </div>
+
+    <div id="chinese-auction-result-screen" class="screen">
+        <div class="game-container">
+            <div class="auction-result-card">
+                <div class="auction-result-emoji" id="chinese-auction-result-emoji">🏆</div>
+                <h2 class="auction-result-title" id="chinese-auction-result-title">Kết quả</h2>
+                <div class="auction-result-coins" id="chinese-auction-result-coins"></div>
+                <div class="auction-result-stats">
+                    <div class="auction-result-stat">
+                        <span class="auction-result-stat-number" id="chinese-auction-result-correct">0</span>
+                        <span class="auction-result-stat-label">Đúng</span>
+                    </div>
+                    <div class="auction-result-stat">
+                        <span class="auction-result-stat-number" id="chinese-auction-result-wrong">0</span>
+                        <span class="auction-result-stat-label">Sai</span>
+                    </div>
+                    <div class="auction-result-stat">
+                        <span class="auction-result-stat-number" id="chinese-auction-result-earned">+0</span>
+                        <span class="auction-result-stat-label">Xu kiếm</span>
+                    </div>
+                    <div class="auction-result-stat">
+                        <span class="auction-result-stat-number" id="chinese-auction-result-lost">-0</span>
+                        <span class="auction-result-stat-label">Xu mất</span>
+                    </div>
+                </div>
+                <div class="auction-result-rank" id="chinese-auction-result-rank"></div>
+                <div class="auction-result-actions">
+                    <button class="btn-primary btn-large" id="chinese-auction-result-play-btn">Chơi lại</button>
+                    <button class="btn-secondary btn-large" id="chinese-auction-result-back-btn">Quay lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chinese-practice-screen" class="screen">
+        <div class="phrases-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="chinese-practice-back-btn" title="Quay lại">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="progress-info">
+                    <span id="chinese-counter">1 / 10</span>
+                </div>
+                <div class="score-badge">
+                    <span class="correct-count" id="chinese-correct">0</span>
+                    <span class="score-sep">·</span>
+                    <span class="wrong-count" id="chinese-wrong">0</span>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="chinese-progress-bar-practice"></div>
+            </div>
+
+            <div class="phrases-direction-badge" id="chinese-mode-badge">Từ vựng</div>
+
+            <div class="phrases-question-card chinese-question-card" id="chinese-question-card">
+                <div class="chinese-main-text" id="chinese-main-text">你好</div>
+                <div class="chinese-sub-text" id="chinese-sub-text">ni hao</div>
+                <div class="phrases-speak-row">
+                    <button class="speak-btn" id="chinese-speak-btn" title="Phát âm">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    </button>
+                    <button class="speed-btn" id="chinese-speed-normal">Normal</button>
+                    <button class="speed-btn" id="chinese-speed-slow">Slow</button>
+                    <button class="bookmark-btn" id="chinese-bookmark-btn" title="Đánh dấu yêu thích" style="display:none">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="phrases-mc-area" id="chinese-mc-area">
+                <div class="options-grid" id="chinese-options">
+                    <button class="option-btn" data-index="0" data-label="A"></button>
+                    <button class="option-btn" data-index="1" data-label="B"></button>
+                    <button class="option-btn" data-index="2" data-label="C"></button>
+                    <button class="option-btn" data-index="3" data-label="D"></button>
+                </div>
+            </div>
+
+            <div class="phrases-typing-area" id="chinese-typing-area" style="display:none">
+                <input type="text" id="chinese-typing-input" class="typing-input" placeholder="Nhập câu trả lời..." autocomplete="off" autocapitalize="off" spellcheck="false">
+                <button id="chinese-submit-btn" class="btn-primary">Kiểm tra</button>
+            </div>
+
+            <div class="feedback" id="chinese-feedback"></div>
+            <div class="phrases-correct-answer" id="chinese-correct-answer" style="display:none"></div>
+
+            <button id="chinese-next-btn" class="btn-primary btn-large" disabled>
+                Tiếp theo
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <div id="chinese-story-screen" class="screen">
+        <div class="game-container story-play-container">
+            <div class="top-bar">
+                <button class="icon-btn" id="chinese-story-back-btn" title="Thoát">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <h2 class="top-bar-title" id="chinese-story-title">Truyện tiếng Trung</h2>
+                <div class="story-score-badge" id="chinese-story-score">0 ⭐</div>
+            </div>
+            <div class="story-scene" id="chinese-story-scene">
+                <div class="scene-emoji" id="chinese-story-emoji">📖</div>
+                <div class="story-text" id="chinese-story-text"></div>
+                <div class="story-text-vi" id="chinese-story-text-vi" style="display:none"></div>
+                <div class="story-btn-row">
+                    <button class="story-translate-btn" id="chinese-story-speak-btn">Đọc</button>
+                    <button class="story-translate-btn" id="chinese-story-translate-btn">Dịch</button>
+                </div>
+            </div>
+            <div class="story-choices" id="chinese-story-choices"></div>
+        </div>
+    </div>
+
+    <div id="chinese-result-screen" class="screen">
+        <div class="start-container">
+            <div class="result-icon" id="chinese-result-icon">🎉</div>
+            <h2 id="chinese-result-title">Hoàn thành!</h2>
+            <p class="subtitle" id="chinese-result-subtitle">Tiếng Trung</p>
+            <div class="start-stats">
+                <div class="stat-item">
+                    <span class="stat-number correct-count" id="chinese-result-correct">0</span>
+                    <span class="stat-label">Đúng</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number wrong-count" id="chinese-result-wrong">0</span>
+                    <span class="stat-label">Sai</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="chinese-result-accuracy">0%</span>
+                    <span class="stat-label">Chính xác</span>
+                </div>
+            </div>
+            <button class="btn-primary btn-large" id="chinese-result-retry-btn">Luyện lại</button>
+            <button class="btn-secondary" id="chinese-result-hub-btn">Quay về module</button>
+        </div>
+    </div>
+
     </div><!-- /.main-content -->
 
     <!-- Mobile Bottom Tab Navigation -->
@@ -873,6 +1393,10 @@
         <button class="bottom-nav-item" data-module="phrases">
             <span class="bottom-nav-icon">💬</span>
             <span class="bottom-nav-label">Cụm từ</span>
+        </button>
+        <button class="bottom-nav-item" data-module="listening">
+            <span class="bottom-nav-icon">🎧</span>
+            <span class="bottom-nav-label">Nghe</span>
         </button>
         <button class="bottom-nav-item" data-module="games">
             <span class="bottom-nav-icon">🎮</span>
@@ -911,10 +1435,13 @@
     <!-- Confetti Container -->
     <div class="confetti-container" id="confetti-container"></div>
 
-    <script src="answer-match.js"></script>
-    <script src="app.js"></script>
-    <script src="tenses.js"></script>
-    <script src="phrases.js"></script>
-    <script src="game.js"></script>
+    <script defer src="answer-match.js"></script>
+    <script defer src="data-loader.js"></script>
+    <script defer src="app.js"></script>
+    <script defer src="tenses.js"></script>
+    <script defer src="phrases.js"></script>
+    <script defer src="game.js"></script>
+    <script defer src="listening.js"></script>
+    <script defer src="chinese.js"></script>
 </body>
 </html>

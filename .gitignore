@@ -1,1 +1,4 @@
 .claude/
+english-quiz-app/.env
+english-quiz-app/.env.local
+english-quiz-app/.env.*.local

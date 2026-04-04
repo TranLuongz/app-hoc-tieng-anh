@@ -21,6 +21,7 @@ module.exports = async function handler(req, res) {
     const text = (body && typeof body.text === 'string') ? body.text.trim() : '';
     const rawRate = Number(body && body.rate);
     const rate = Number.isFinite(rawRate) ? Math.max(0.6, Math.min(1.4, rawRate)) : 1.0;
+    const requestLang = (body && typeof body.lang === 'string') ? body.lang.trim() : '';
 
     if (!text) {
         return res.status(400).json({ error: 'Text is required' });
@@ -29,8 +30,21 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'Text too long (max 2000 chars)' });
     }
 
-    const languageCode = process.env.GOOGLE_CLOUD_TTS_LANG || 'en-US';
-    const voiceName = process.env.GOOGLE_CLOUD_TTS_VOICE || 'en-US-Neural2-F';
+    const langMap = {
+        'en': { languageCode: 'en-US', voiceName: 'en-US-Neural2-F' },
+        'en-US': { languageCode: 'en-US', voiceName: 'en-US-Neural2-F' },
+        'vi': { languageCode: 'vi-VN', voiceName: 'vi-VN-Neural2-A' },
+        'vi-VN': { languageCode: 'vi-VN', voiceName: 'vi-VN-Neural2-A' },
+        'zh': { languageCode: 'zh-CN', voiceName: 'zh-CN-Neural2-A' },
+        'zh-CN': { languageCode: 'zh-CN', voiceName: 'zh-CN-Neural2-A' },
+        'zh-TW': { languageCode: 'cmn-TW', voiceName: 'cmn-TW-Wavenet-A' },
+    };
+
+    const fallbackLang = process.env.GOOGLE_CLOUD_TTS_LANG || 'en-US';
+    const fallbackVoice = process.env.GOOGLE_CLOUD_TTS_VOICE || 'en-US-Neural2-F';
+    const mapped = langMap[requestLang] || langMap[requestLang.split('-')[0]] || null;
+    const languageCode = (mapped && mapped.languageCode) || fallbackLang;
+    const voiceName = (mapped && mapped.voiceName) || fallbackVoice;
 
     try {
         const upstream = await fetch(

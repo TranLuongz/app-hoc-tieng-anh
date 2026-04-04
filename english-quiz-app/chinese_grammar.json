@@ -1,0 +1,1319 @@
+{
+  "topics": [
+    {
+      "id": "ch_basic",
+      "order": 1,
+      "name": { "zh": "基本句型", "vi": "Câu cơ bản" },
+      "theory": {
+        "description": "Câu tiếng Trung theo thứ tự Chủ ngữ + Động từ + Tân ngữ (SVO), giống tiếng Việt. Động từ 是 dùng để nối danh từ, trợ từ 的 chỉ sở hữu.",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Câu với 是",
+            "structure": "S + 是 + N",
+            "structureVi": "Chủ ngữ + là + Danh từ",
+            "example": { "zh": "我是学生。", "vi": "Tôi là học sinh." },
+            "note": "是 không chia theo ngôi, luôn giữ nguyên"
+          },
+          {
+            "type": "affirmative",
+            "label": "Câu SVO cơ bản",
+            "structure": "S + V + O",
+            "structureVi": "Chủ ngữ + Động từ + Tân ngữ",
+            "example": { "zh": "我喝咖啡。", "vi": "Tôi uống cà phê." }
+          },
+          {
+            "type": "affirmative",
+            "label": "Sở hữu với 的",
+            "structure": "A + 的 + N",
+            "structureVi": "Người sở hữu + 的 + Danh từ",
+            "example": { "zh": "这是我的书。", "vi": "Đây là sách của tôi." },
+            "note": "的 tương đương \"của\" trong tiếng Việt"
+          }
+        ],
+        "signalWords": ["是 (là)", "的 (của)", "有 (có)", "在 (ở)", "这 (đây)", "那 (kia)"],
+        "usages": [
+          {
+            "rule": "Giới thiệu bản thân",
+            "description": "Dùng 是 để nói mình là ai, làm gì",
+            "example": { "zh": "我是老师。", "vi": "Tôi là giáo viên." }
+          },
+          {
+            "rule": "Nói về sở hữu",
+            "description": "Dùng 的 giữa người sở hữu và vật",
+            "example": { "zh": "这是她的手机。", "vi": "Đây là điện thoại của cô ấy." }
+          }
+        ],
+        "notes": [
+          "是 KHÔNG dùng để nói tính từ: Nói 他很高 (anh ấy cao), KHÔNG nói 他是高",
+          "的 có thể bỏ khi quan hệ thân thuộc: 我妈妈 = 我的妈妈"
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_basic_01",
+          "type": "fillInBlank",
+          "prompt": "Điền từ thích hợp",
+          "sentence": "我___学生。",
+          "correctAnswer": "是",
+          "distractors": ["有", "在", "会"],
+          "explanation": "A 是 B là mẫu câu danh từ cơ bản: Tôi là học sinh."
+        },
+        {
+          "id": "ch_basic_02",
+          "type": "fillInBlank",
+          "prompt": "Điền trợ từ sở hữu",
+          "sentence": "这是我___书。",
+          "correctAnswer": "的",
+          "distractors": ["吗", "了", "呢"],
+          "explanation": "我的书 = sách của tôi. 的 chỉ sở hữu."
+        },
+        {
+          "id": "ch_basic_03",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng ngữ pháp.",
+          "sentence": "Cô ấy là bác sĩ.",
+          "correctAnswer": "她是医生。",
+          "distractors": ["她是了医生。", "她有医生。", "她在医生。"],
+          "explanation": "Dùng 是 để nối chủ ngữ với danh từ chỉ nghề nghiệp."
+        },
+        {
+          "id": "ch_basic_04",
+          "type": "fillInBlank",
+          "prompt": "Điền từ thích hợp",
+          "sentence": "你___咖啡吗？",
+          "correctAnswer": "喝",
+          "distractors": ["吃", "看", "听"],
+          "explanation": "喝 dùng cho đồ uống: Bạn uống cà phê không?"
+        },
+        {
+          "id": "ch_basic_05",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng nghĩa: Đây là bạn của tôi.",
+          "sentence": "",
+          "correctAnswer": "这是我的朋友。",
+          "distractors": ["这有我的朋友。", "这在我朋友。", "我的这是朋友。"],
+          "explanation": "这是 + sở hữu + danh từ: Đây là bạn của tôi."
+        }
+      ]
+    },
+    {
+      "id": "ch_questions",
+      "order": 2,
+      "name": { "zh": "疑问句", "vi": "Câu hỏi" },
+      "theory": {
+        "description": "Tiếng Trung có nhiều cách đặt câu hỏi: thêm 吗 cuối câu (Yes/No), dùng từ nghi vấn (什么, 谁, 哪儿, 怎么), hoặc dùng cấu trúc A不A.",
+        "formulas": [
+          {
+            "type": "interrogative",
+            "label": "Câu hỏi Yes/No với 吗",
+            "structure": "Câu trần thuật + 吗？",
+            "structureVi": "Giữ nguyên câu + thêm 吗 cuối",
+            "example": { "zh": "你是学生吗？", "vi": "Bạn là học sinh phải không?" },
+            "note": "Không đảo trật tự từ như tiếng Anh"
+          },
+          {
+            "type": "interrogative",
+            "label": "Câu hỏi với từ nghi vấn",
+            "structure": "S + V + 什么/谁/哪儿/怎么？",
+            "structureVi": "Từ nghi vấn đặt đúng vị trí của câu trả lời",
+            "example": { "zh": "你在哪儿工作？", "vi": "Bạn làm việc ở đâu?" },
+            "note": "什么 = gì, 谁 = ai, 哪儿 = đâu, 怎么 = thế nào, 几/多少 = bao nhiêu"
+          },
+          {
+            "type": "interrogative",
+            "label": "Câu hỏi A不A",
+            "structure": "S + V不V + O？",
+            "structureVi": "Lặp lại động từ với 不 ở giữa",
+            "example": { "zh": "你去不去？", "vi": "Bạn có đi không?" }
+          }
+        ],
+        "signalWords": ["吗 (không?)", "什么 (gì)", "谁 (ai)", "哪儿/哪里 (đâu)", "怎么 (thế nào)", "几 (mấy)", "多少 (bao nhiêu)", "为什么 (tại sao)"],
+        "usages": [
+          {
+            "rule": "Hỏi xác nhận (Yes/No)",
+            "description": "Thêm 吗 vào cuối câu trần thuật",
+            "example": { "zh": "他会说英语吗？", "vi": "Anh ấy biết nói tiếng Anh không?" }
+          },
+          {
+            "rule": "Hỏi thông tin cụ thể",
+            "description": "Đặt từ nghi vấn vào vị trí của thông tin cần hỏi",
+            "example": { "zh": "你叫什么名字？", "vi": "Bạn tên gì?" }
+          }
+        ],
+        "notes": [
+          "KHÔNG dùng 吗 và từ nghi vấn trong cùng một câu",
+          "Trả lời câu hỏi 吗: lặp lại động từ (khẳng định) hoặc 不+động từ (phủ định). VD: 是/不是"
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_ques_01",
+          "type": "conjugation",
+          "prompt": "Từ nào là trợ từ nghi vấn cuối câu?",
+          "sentence": "",
+          "correctAnswer": "吗",
+          "distractors": ["了", "的", "把"],
+          "explanation": "吗 đặt cuối câu để biến câu trần thuật thành câu hỏi Yes/No."
+        },
+        {
+          "id": "ch_ques_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu hỏi đúng về địa điểm.",
+          "sentence": "",
+          "correctAnswer": "你在哪儿工作？",
+          "distractors": ["你工作哪儿？", "哪儿你工作？", "你在哪儿了工作？"],
+          "explanation": "在哪儿 đặt trước động từ để hỏi nơi chốn."
+        },
+        {
+          "id": "ch_ques_03",
+          "type": "fillInBlank",
+          "prompt": "Điền từ nghi vấn phù hợp",
+          "sentence": "你叫___名字？",
+          "correctAnswer": "什么",
+          "distractors": ["谁", "哪儿", "怎么"],
+          "explanation": "什么 = gì: Bạn tên gì?"
+        },
+        {
+          "id": "ch_ques_04",
+          "type": "conjugation",
+          "prompt": "Chọn câu hỏi đúng: Anh ấy là ai?",
+          "sentence": "",
+          "correctAnswer": "他是谁？",
+          "distractors": ["谁是他？", "他谁是？", "是他谁？"],
+          "explanation": "谁 đặt ở vị trí câu trả lời: 他是谁？→ 他是老师。"
+        },
+        {
+          "id": "ch_ques_05",
+          "type": "fillInBlank",
+          "prompt": "Biến thành câu hỏi",
+          "sentence": "你是学生___？",
+          "correctAnswer": "吗",
+          "distractors": ["了", "的", "呢"],
+          "explanation": "Thêm 吗 cuối câu trần thuật để tạo câu hỏi Yes/No."
+        }
+      ]
+    },
+    {
+      "id": "ch_negation",
+      "order": 3,
+      "name": { "zh": "否定句", "vi": "Câu phủ định" },
+      "theory": {
+        "description": "Tiếng Trung có 2 từ phủ định chính: 不 (bù) cho hiện tại/tương lai/thói quen, 没 (méi) cho quá khứ/đã hoàn thành. Chọn sai từ là lỗi rất phổ biến.",
+        "formulas": [
+          {
+            "type": "negative",
+            "label": "Phủ định với 不",
+            "structure": "S + 不 + V/Adj",
+            "structureVi": "Chủ ngữ + không + Động từ/Tính từ",
+            "example": { "zh": "我不喝咖啡。", "vi": "Tôi không uống cà phê." },
+            "note": "Dùng cho: thói quen, ý muốn, tính chất, tương lai"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định với 没(有)",
+            "structure": "S + 没(有) + V",
+            "structureVi": "Chủ ngữ + chưa/không + Động từ",
+            "example": { "zh": "我昨天没去学校。", "vi": "Hôm qua tôi không đi học." },
+            "note": "Dùng cho: quá khứ, hành động đã xảy ra (hoặc chưa xảy ra)"
+          },
+          {
+            "type": "negative",
+            "label": "Phủ định 是",
+            "structure": "S + 不是 + N",
+            "structureVi": "Chủ ngữ + không phải + Danh từ",
+            "example": { "zh": "他不是老师。", "vi": "Anh ấy không phải giáo viên." },
+            "note": "是 luôn phủ định bằng 不, KHÔNG dùng 没"
+          }
+        ],
+        "signalWords": ["不 (không - hiện tại)", "没/没有 (không/chưa - quá khứ)", "别 (đừng - mệnh lệnh)", "不是 (không phải)"],
+        "usages": [
+          {
+            "rule": "Phủ định thói quen/hiện tại",
+            "description": "Dùng 不 cho những gì thường xuyên hoặc hiện tại",
+            "example": { "zh": "我不吃辣的。", "vi": "Tôi không ăn cay." }
+          },
+          {
+            "rule": "Phủ định quá khứ",
+            "description": "Dùng 没 cho hành động đã xảy ra (hoặc chưa)",
+            "example": { "zh": "他没来上课。", "vi": "Anh ấy không đến lớp (hôm qua)." }
+          }
+        ],
+        "notes": [
+          "不 + 是/想/喜欢/会 (ý chí, sở thích, khả năng)",
+          "没 + 去/来/吃/做 (hành động cụ thể đã xảy ra)",
+          "Sai phổ biến: 我昨天不去 ✗ → 我昨天没去 ✓"
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_neg_01",
+          "type": "fillInBlank",
+          "prompt": "Phủ định thói quen hiện tại",
+          "sentence": "我___喝咖啡。",
+          "correctAnswer": "不",
+          "distractors": ["没", "了", "吗"],
+          "explanation": "不 dùng phủ định thói quen/hiện tại: Tôi không uống cà phê."
+        },
+        {
+          "id": "ch_neg_02",
+          "type": "fillInBlank",
+          "prompt": "Phủ định hành động hiện tại/tương lai",
+          "sentence": "今天我___去上班。",
+          "correctAnswer": "不",
+          "distractors": ["没", "了", "吗"],
+          "explanation": "不 phủ định hành động hiện tại/tương lai: Hôm nay tôi không đi làm."
+        },
+        {
+          "id": "ch_neg_03",
+          "type": "conjugation",
+          "prompt": "Câu nào đúng: Hôm qua tôi không đi học.",
+          "sentence": "",
+          "correctAnswer": "我昨天没去学校。",
+          "distractors": ["我昨天不去学校。", "我昨天没了学校。", "昨天我不去了学校。"],
+          "explanation": "Hành động quá khứ dùng 没, không dùng 不."
+        },
+        {
+          "id": "ch_neg_04",
+          "type": "fillInBlank",
+          "prompt": "Phủ định quá khứ",
+          "sentence": "他昨天___来上课。",
+          "correctAnswer": "没",
+          "distractors": ["不", "别", "了"],
+          "explanation": "没 dùng cho hành động quá khứ: Anh ấy hôm qua không đến lớp."
+        },
+        {
+          "id": "ch_neg_05",
+          "type": "conjugation",
+          "prompt": "Chọn câu phủ định đúng: Anh ấy không phải giáo viên.",
+          "sentence": "",
+          "correctAnswer": "他不是老师。",
+          "distractors": ["他没是老师。", "他没有老师。", "他不了老师。"],
+          "explanation": "是 luôn phủ định bằng 不是, không dùng 没."
+        }
+      ]
+    },
+    {
+      "id": "ch_measure",
+      "order": 4,
+      "name": { "zh": "量词", "vi": "Lượng từ" },
+      "theory": {
+        "description": "Trong tiếng Trung, khi nói số lượng phải thêm lượng từ giữa số và danh từ: 一本书 (một quyển sách). Mỗi loại danh từ có lượng từ riêng.",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Cấu trúc cơ bản",
+            "structure": "Số + Lượng từ + Danh từ",
+            "structureVi": "Một/Hai/Ba + Lượng từ + Danh từ",
+            "example": { "zh": "两本书", "vi": "Hai quyển sách" },
+            "note": "Không bao giờ nói 两书 (thiếu lượng từ)"
+          },
+          {
+            "type": "affirmative",
+            "label": "Với 这/那 (đây/kia)",
+            "structure": "这/那 + Lượng từ + Danh từ",
+            "structureVi": "Đây/Kia + Lượng từ + Danh từ",
+            "example": { "zh": "这本书很好。", "vi": "Quyển sách này rất hay." }
+          }
+        ],
+        "signalWords": ["个 (cái - chung)", "本 (quyển - sách)", "杯 (cốc/ly - đồ uống)", "只 (con - động vật nhỏ)", "件 (cái - quần áo, sự việc)", "张 (tờ/tấm - giấy, bàn)", "条 (con/sợi - dài, cá)", "位 (vị - lịch sự, cho người)"],
+        "usages": [
+          {
+            "rule": "个 là lượng từ \"vạn năng\"",
+            "description": "Khi không biết dùng lượng từ nào, có thể dùng 个",
+            "example": { "zh": "三个人 / 一个苹果", "vi": "Ba người / Một quả táo" }
+          },
+          {
+            "rule": "Lượng từ cho đồ uống",
+            "description": "杯 cho cốc/ly, 瓶 cho chai",
+            "example": { "zh": "请给我一杯水。", "vi": "Xin cho tôi một cốc nước." }
+          }
+        ],
+        "notes": [
+          "PHẢI có lượng từ khi dùng số hoặc 这/那 trước danh từ",
+          "Lượng từ sai không ảnh hưởng ý nghĩa nhưng nghe không tự nhiên",
+          "一 (yī) đổi thanh: yì + thanh 4 → yí, yì + các thanh khác → yì"
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_mw_01",
+          "type": "fillInBlank",
+          "prompt": "Điền lượng từ đúng",
+          "sentence": "一___书",
+          "correctAnswer": "本",
+          "distractors": ["个", "条", "张"],
+          "explanation": "本 là lượng từ thường dùng cho sách."
+        },
+        {
+          "id": "ch_mw_02",
+          "type": "fillInBlank",
+          "prompt": "Điền lượng từ đúng",
+          "sentence": "三___人",
+          "correctAnswer": "个",
+          "distractors": ["本", "杯", "件"],
+          "explanation": "个 là lượng từ phổ biến nhất, dùng cho người/vật."
+        },
+        {
+          "id": "ch_mw_03",
+          "type": "fillInBlank",
+          "prompt": "Điền lượng từ đúng",
+          "sentence": "请给我一___水。",
+          "correctAnswer": "杯",
+          "distractors": ["本", "个", "只"],
+          "explanation": "杯 là lượng từ cho đồ uống: một cốc/ly nước."
+        },
+        {
+          "id": "ch_mw_04",
+          "type": "fillInBlank",
+          "prompt": "Điền lượng từ đúng cho động vật",
+          "sentence": "两___猫",
+          "correctAnswer": "只",
+          "distractors": ["个", "本", "张"],
+          "explanation": "只 dùng cho động vật nhỏ: hai con mèo."
+        },
+        {
+          "id": "ch_mw_05",
+          "type": "fillInBlank",
+          "prompt": "Điền lượng từ đúng cho giấy",
+          "sentence": "一___纸",
+          "correctAnswer": "张",
+          "distractors": ["本", "条", "件"],
+          "explanation": "张 dùng cho vật phẳng: tờ giấy, bàn, ảnh."
+        }
+      ]
+    },
+    {
+      "id": "ch_aspect",
+      "order": 5,
+      "name": { "zh": "时态助词", "vi": "Trợ từ thời thái" },
+      "theory": {
+        "description": "Tiếng Trung không chia động từ theo thời, mà dùng trợ từ để đánh dấu: 了 (đã hoàn thành), 正在 (đang làm), 会 (sẽ/biết), 过 (đã từng).",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Hoàn thành với 了",
+            "structure": "S + V + 了 + O",
+            "structureVi": "Chủ ngữ + Động từ + 了 + Tân ngữ",
+            "example": { "zh": "我吃饭了。", "vi": "Tôi đã ăn cơm rồi." },
+            "note": "了 đặt sau động từ hoặc cuối câu"
+          },
+          {
+            "type": "affirmative",
+            "label": "Đang làm với 正在",
+            "structure": "S + 正在 + V + (呢)",
+            "structureVi": "Chủ ngữ + đang + Động từ + (呢)",
+            "example": { "zh": "我正在学习中文。", "vi": "Tôi đang học tiếng Trung." },
+            "note": "Có thể dùng 在 hoặc 正在, thêm 呢 cuối câu để nhấn mạnh"
+          },
+          {
+            "type": "affirmative",
+            "label": "Khả năng/Tương lai với 会",
+            "structure": "S + 会 + V",
+            "structureVi": "Chủ ngữ + biết/sẽ + Động từ",
+            "example": { "zh": "我会说中文。", "vi": "Tôi biết nói tiếng Trung." },
+            "note": "会 = biết làm (khả năng) hoặc sẽ (tương lai)"
+          }
+        ],
+        "signalWords": ["了 (đã/rồi)", "正在/在 (đang)", "会 (biết/sẽ)", "过 (đã từng)", "呢 (nhấn mạnh đang)", "要 (sắp/muốn)"],
+        "usages": [
+          {
+            "rule": "Nói về việc đã xảy ra",
+            "description": "Thêm 了 sau động từ hoặc cuối câu",
+            "example": { "zh": "他去了北京。", "vi": "Anh ấy đã đi Bắc Kinh." }
+          },
+          {
+            "rule": "Nói về việc đang xảy ra",
+            "description": "Thêm 正在/在 trước động từ",
+            "example": { "zh": "她在看书。", "vi": "Cô ấy đang đọc sách." }
+          },
+          {
+            "rule": "Nói về khả năng",
+            "description": "会 trước động từ diễn tả biết làm gì",
+            "example": { "zh": "你会游泳吗？", "vi": "Bạn biết bơi không?" }
+          }
+        ],
+        "notes": [
+          "了 có 2 vị trí: sau V (动态了) và cuối câu (语气了). Đôi khi dùng cả hai.",
+          "正在 vs 在: 正在 nhấn mạnh hơn, 在 nhẹ hơn. Cả hai đều đúng.",
+          "会 vs 能 vs 可以: 会 = biết (đã học), 能 = có thể (điều kiện), 可以 = được phép"
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_asp_01",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng nghĩa: Tôi đã ăn cơm rồi.",
+          "sentence": "",
+          "correctAnswer": "我吃饭了。",
+          "distractors": ["我会吃饭。", "我在吃饭。", "我想吃饭。"],
+          "explanation": "了 diễn tả hành động đã hoàn tất."
+        },
+        {
+          "id": "ch_asp_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu đang tiếp diễn.",
+          "sentence": "",
+          "correctAnswer": "我正在学习中文。",
+          "distractors": ["我学习了中文。", "我会学习中文。", "我常常学习中文。"],
+          "explanation": "正在 + động từ diễn tả hành động đang diễn ra."
+        },
+        {
+          "id": "ch_asp_03",
+          "type": "conjugation",
+          "prompt": "Chọn câu biểu thị khả năng.",
+          "sentence": "",
+          "correctAnswer": "我会说中文。",
+          "distractors": ["我说了中文。", "我正在说中文。", "我说中文吗。"],
+          "explanation": "会 dùng để diễn tả biết/có thể làm."
+        },
+        {
+          "id": "ch_asp_04",
+          "type": "conjugation",
+          "prompt": "Sắp xếp đúng: Tôi đang học tiếng Trung.",
+          "sentence": "",
+          "correctAnswer": "我正在学习中文。",
+          "distractors": ["中文学习正在我。", "正在我中文学习。", "我中文正在学习。"],
+          "explanation": "Mẫu: Chủ ngữ + 正在 + động từ + tân ngữ."
+        },
+        {
+          "id": "ch_asp_05",
+          "type": "fillInBlank",
+          "prompt": "Điền trợ từ hoàn thành",
+          "sentence": "他去___北京。",
+          "correctAnswer": "了",
+          "distractors": ["会", "在", "过"],
+          "explanation": "了 sau động từ chỉ hành động đã hoàn thành: Anh ấy đã đi Bắc Kinh."
+        }
+      ]
+    },
+    {
+      "id": "ch_compare",
+      "order": 6,
+      "name": { "zh": "比较与日常", "vi": "So sánh & Giao tiếp" },
+      "theory": {
+        "description": "Cấu trúc so sánh dùng 比, lịch sự dùng 请, thời gian dùng 每天/今天. Đây là những mẫu câu rất hay dùng hàng ngày.",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "So sánh hơn với 比",
+            "structure": "A + 比 + B + Adj",
+            "structureVi": "A + hơn + B + Tính từ",
+            "example": { "zh": "他比我高。", "vi": "Anh ấy cao hơn tôi." },
+            "note": "Tính từ đặt CUỐI câu, không thêm 很"
+          },
+          {
+            "type": "affirmative",
+            "label": "Yêu cầu lịch sự với 请",
+            "structure": "请 + V + (O)",
+            "structureVi": "Xin mời/hãy + Động từ",
+            "example": { "zh": "请坐。", "vi": "Mời ngồi." },
+            "note": "请 làm câu mệnh lệnh trở nên lịch sự"
+          },
+          {
+            "type": "affirmative",
+            "label": "Trạng từ thời gian",
+            "structure": "S + Thời gian + V + O",
+            "structureVi": "Chủ ngữ + Thời gian + Động từ + Tân ngữ",
+            "example": { "zh": "我每天去学校。", "vi": "Tôi mỗi ngày đi học." },
+            "note": "Thời gian đặt SAU chủ ngữ, TRƯỚC động từ"
+          }
+        ],
+        "signalWords": ["比 (hơn)", "更 (hơn nữa)", "最 (nhất)", "请 (xin mời)", "每天 (mỗi ngày)", "今天 (hôm nay)", "昨天 (hôm qua)", "明天 (ngày mai)"],
+        "usages": [
+          {
+            "rule": "So sánh hai đối tượng",
+            "description": "A 比 B + tính từ (không thêm 很)",
+            "example": { "zh": "北京比上海大。", "vi": "Bắc Kinh lớn hơn Thượng Hải." }
+          },
+          {
+            "rule": "Lịch sự trong giao tiếp",
+            "description": "请 đặt đầu câu mệnh lệnh",
+            "example": { "zh": "请进！", "vi": "Mời vào!" }
+          },
+          {
+            "rule": "Nói về thời gian",
+            "description": "Trạng từ thời gian đặt sau chủ ngữ hoặc đầu câu",
+            "example": { "zh": "我今天不去上班。", "vi": "Hôm nay tôi không đi làm." }
+          }
+        ],
+        "notes": [
+          "比 + Adj: KHÔNG thêm 很. Sai: 他比我很高 ✗ → Đúng: 他比我高 ✓",
+          "Thời gian luôn đặt TRƯỚC động từ: 我每天学习 ✓ (không nói 我学习每天 ✗)",
+          "Sắp xếp câu: Chủ ngữ + Thời gian + Địa điểm + Động từ + Tân ngữ"
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_comp_01",
+          "type": "conjugation",
+          "prompt": "Chọn cấu trúc so sánh đúng.",
+          "sentence": "",
+          "correctAnswer": "他比我高。",
+          "distractors": ["他高比我。", "他我比高。", "他比高我。"],
+          "explanation": "Mẫu chuẩn: A 比 B + tính từ."
+        },
+        {
+          "id": "ch_comp_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu mệnh lệnh lịch sự.",
+          "sentence": "",
+          "correctAnswer": "请坐。",
+          "distractors": ["坐了。", "坐吗？", "坐吧吗。"],
+          "explanation": "请 + động từ để yêu cầu lịch sự: Mời ngồi."
+        },
+        {
+          "id": "ch_comp_03",
+          "type": "fillInBlank",
+          "prompt": "Điền từ chỉ thời gian",
+          "sentence": "我___去学校。",
+          "correctAnswer": "每天",
+          "distractors": ["了", "吗", "吧"],
+          "explanation": "每天 = mỗi ngày: Tôi mỗi ngày đi học."
+        },
+        {
+          "id": "ch_comp_04",
+          "type": "conjugation",
+          "prompt": "Sắp xếp đúng: Tôi hôm nay đi học.",
+          "sentence": "",
+          "correctAnswer": "我今天去学校。",
+          "distractors": ["今天我去学校。", "我去今天学校。", "我去学校今天。"],
+          "explanation": "Thời gian đặt sau chủ ngữ: 我 + 今天 + 去 + 学校."
+        },
+        {
+          "id": "ch_comp_05",
+          "type": "conjugation",
+          "prompt": "Câu so sánh nào đúng ngữ pháp?",
+          "sentence": "",
+          "correctAnswer": "她比我高。",
+          "distractors": ["她比我很高。", "她很比我高。", "她高比我。"],
+          "explanation": "A 比 B + Adj. Không thêm 很 sau 比."
+        }
+      ]
+    },
+    {
+      "id": "ch_ba",
+      "order": 7,
+      "name": { "zh": "把字句", "vi": "Cấu trúc 把" },
+      "theory": {
+        "description": "把字句 dùng để đưa tân ngữ lên trước động từ khi nhấn mạnh kết quả xử lý lên đối tượng. Mẫu cơ bản: S + 把 + O + V + kết quả/bổ ngữ.",
+        "formulas": [
+          {
+            "type": "affirmative",
+            "label": "Mẫu cơ bản",
+            "structure": "S + 把 + O + V + Result",
+            "structureVi": "Chủ ngữ + 把 + Tân ngữ + Động từ + Kết quả",
+            "example": { "zh": "我把门关上了。", "vi": "Tôi đã đóng cửa lại." },
+            "note": "Sau động từ thường có thành phần kết quả như 上, 好, 完, 到..."
+          },
+          {
+            "type": "affirmative",
+            "label": "Phủ định",
+            "structure": "S + 没(有) + 把 + O + V + Result",
+            "structureVi": "Chủ ngữ + chưa/không + 把 + Tân ngữ + Động từ + Kết quả",
+            "example": { "zh": "我没把作业写完。", "vi": "Tôi chưa làm xong bài tập." }
+          }
+        ],
+        "signalWords": ["把", "完", "好", "到", "上", "开"],
+        "usages": [
+          {
+            "rule": "Nhấn mạnh xử lý đối tượng",
+            "description": "Đối tượng chịu tác động đứng ngay sau 把.",
+            "example": { "zh": "请把灯打开。", "vi": "Làm ơn bật đèn lên." }
+          },
+          {
+            "rule": "Dùng khi có kết quả rõ",
+            "description": "Nếu không có kết quả/bổ ngữ thì câu 把 thường thiếu tự nhiên.",
+            "example": { "zh": "他把杯子打碎了。", "vi": "Anh ấy làm vỡ cái cốc." }
+          }
+        ],
+        "notes": [
+          "Không dùng 把 với động từ trạng thái như 是, 有.",
+          "Câu 把 thường đi kèm trợ từ/ bổ ngữ kết quả, không chỉ nói V trống."
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_ba_01",
+          "type": "fillInBlank",
+          "prompt": "Điền cấu trúc đúng",
+          "sentence": "请___门关上。",
+          "correctAnswer": "把",
+          "distractors": ["被", "比", "给"],
+          "explanation": "Câu yêu cầu xử lý đối tượng dùng 把: 请把门关上。"
+        },
+        {
+          "id": "ch_ba_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu 把 đúng",
+          "sentence": "",
+          "correctAnswer": "我把书放在桌子上了。",
+          "distractors": ["我把书放。", "我书把放在桌子上了。", "我被书放在桌子上了。"],
+          "explanation": "Câu 把 chuẩn có trật tự S + 把 + O + V + vị trí/kết quả."
+        },
+        {
+          "id": "ch_ba_03",
+          "type": "fillInBlank",
+          "prompt": "Phủ định câu 把",
+          "sentence": "他___把作业做完。",
+          "correctAnswer": "没",
+          "distractors": ["不", "别", "了"],
+          "explanation": "Phủ định hành động hoàn thành với 把 thường dùng 没(有)."
+        },
+        {
+          "id": "ch_ba_04",
+          "type": "conjugation",
+          "prompt": "Câu nào tự nhiên hơn?",
+          "sentence": "",
+          "correctAnswer": "请把这句话写下来。",
+          "distractors": ["请把这句话写。", "请这句话把写下来。", "请被这句话写下来。"],
+          "explanation": "Với 把 nên có bổ ngữ kết quả như 下来."
+        },
+        {
+          "id": "ch_ba_05",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng ngữ pháp",
+          "sentence": "",
+          "correctAnswer": "老师把问题解释清楚了。",
+          "distractors": ["老师把问题解释了清楚。", "老师问题把解释清楚了。", "老师被问题解释清楚了。"],
+          "explanation": "Mẫu chuẩn: S + 把 + O + V + kết quả (清楚)."
+        }
+      ]
+    },
+    {
+      "id": "ch_bei",
+      "order": 8,
+      "name": { "zh": "被字句", "vi": "Câu bị động 被" },
+      "theory": {
+        "description": "被字句 diễn tả bị động: chủ thể chịu tác động đứng trước, tác nhân đứng sau 被 (có thể lược bỏ).",
+        "formulas": [
+          {
+            "type": "passive",
+            "label": "Bị động đầy đủ",
+            "structure": "Patient + 被 + Agent + V + (Result)",
+            "structureVi": "Đối tượng chịu tác động + bị + tác nhân + động từ + (kết quả)",
+            "example": { "zh": "我的手机被他弄坏了。", "vi": "Điện thoại của tôi bị anh ấy làm hỏng." }
+          },
+          {
+            "type": "passive",
+            "label": "Lược bỏ tác nhân",
+            "structure": "Patient + 被 + V + (Result)",
+            "structureVi": "Đối tượng chịu tác động + bị + động từ + (kết quả)",
+            "example": { "zh": "门被关上了。", "vi": "Cửa đã bị đóng lại." }
+          }
+        ],
+        "signalWords": ["被", "让", "给", "弄", "坏", "丢"],
+        "usages": [
+          {
+            "rule": "Nhấn mạnh kết quả bất lợi",
+            "description": "被字句 hay dùng khi người nói nhấn mạnh việc bị ảnh hưởng.",
+            "example": { "zh": "我被雨淋湿了。", "vi": "Tôi bị mưa làm ướt." }
+          },
+          {
+            "rule": "Tác nhân không quan trọng",
+            "description": "Có thể bỏ tác nhân nếu người thực hiện không cần nêu.",
+            "example": { "zh": "文件被删除了。", "vi": "Tài liệu đã bị xóa." }
+          }
+        ],
+        "notes": [
+          "被 thường đi với động từ có tác động rõ ràng lên đối tượng.",
+          "Không nên lạm dụng 被 với câu trung tính nếu không cần nhấn mạnh bị động."
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_bei_01",
+          "type": "fillInBlank",
+          "prompt": "Điền từ tạo bị động",
+          "sentence": "我的包___偷了。",
+          "correctAnswer": "被",
+          "distractors": ["把", "比", "在"],
+          "explanation": "Câu bị động dùng 被: 我的包被偷了。"
+        },
+        {
+          "id": "ch_bei_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu bị động đúng",
+          "sentence": "",
+          "correctAnswer": "作业被老师改好了。",
+          "distractors": ["作业把老师改好了。", "老师被作业改好了。", "作业被改好老师了。"],
+          "explanation": "Đối tượng chịu tác động đứng trước 被."
+        },
+        {
+          "id": "ch_bei_03",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng: Cửa đã bị đóng lại.",
+          "sentence": "",
+          "correctAnswer": "门被关上了。",
+          "distractors": ["门把关上了。", "门被关了上。", "被门关上了。"],
+          "explanation": "Mẫu lược tác nhân: 门被关上了。"
+        },
+        {
+          "id": "ch_bei_04",
+          "type": "fillInBlank",
+          "prompt": "Điền thành phần còn thiếu",
+          "sentence": "他___雨淋湿了。",
+          "correctAnswer": "被",
+          "distractors": ["把", "在", "跟"],
+          "explanation": "Diễn tả bị tác động bởi mưa dùng 被."
+        },
+        {
+          "id": "ch_bei_05",
+          "type": "conjugation",
+          "prompt": "Câu nào sai ngữ pháp?",
+          "sentence": "",
+          "correctAnswer": "被他我的电脑修好了。",
+          "distractors": ["我的电脑被他修好了。", "电脑被修好了。", "我的电脑被老师修好了。"],
+          "explanation": "Bị động phải đặt đối tượng chịu tác động trước 被."
+        }
+      ]
+    },
+    {
+      "id": "ch_result_comp",
+      "order": 9,
+      "name": { "zh": "结果补语", "vi": "Bổ ngữ kết quả" },
+      "theory": {
+        "description": "Bổ ngữ kết quả đặt sau động từ để nói kết quả hành động: 看懂, 写完, 听见, 做好...",
+        "formulas": [
+          {
+            "type": "complement",
+            "label": "Động từ + Kết quả",
+            "structure": "V + Result",
+            "structureVi": "Động từ + bổ ngữ kết quả",
+            "example": { "zh": "我听懂了。", "vi": "Tôi đã nghe hiểu." },
+            "note": "Kết quả thường gặp: 完, 好, 到, 见, 懂, 清楚"
+          },
+          {
+            "type": "complement",
+            "label": "Phủ định khả năng đạt kết quả",
+            "structure": "V + 不 + Result",
+            "structureVi": "Động từ + không + bổ ngữ kết quả",
+            "example": { "zh": "我看不懂这句话。", "vi": "Tôi không hiểu câu này." }
+          }
+        ],
+        "signalWords": ["完", "好", "到", "见", "懂", "清楚"],
+        "usages": [
+          {
+            "rule": "Nhấn mạnh kết quả đã đạt",
+            "description": "Khác với chỉ nói hành động, bổ ngữ kết quả cho biết hành động thành công hay không.",
+            "example": { "zh": "我写完作业了。", "vi": "Tôi viết xong bài tập rồi." }
+          },
+          {
+            "rule": "Mẫu không đạt kết quả",
+            "description": "Dùng V + 不 + Result để diễn tả không đạt được kết quả mong muốn.",
+            "example": { "zh": "我听不清楚。", "vi": "Tôi nghe không rõ." }
+          }
+        ],
+        "notes": [
+          "Không phải động từ nào cũng kết hợp với mọi bổ ngữ; cần học theo cụm.",
+          "V + 了 và V + Result + 了 khác nhau về độ nhấn mạnh kết quả."
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_res_01",
+          "type": "fillInBlank",
+          "prompt": "Điền bổ ngữ kết quả phù hợp",
+          "sentence": "我看___这本书了。",
+          "correctAnswer": "完",
+          "distractors": ["懂", "见", "上"],
+          "explanation": "看完 = đọc xong/đọc hết."
+        },
+        {
+          "id": "ch_res_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng nghĩa: Tôi nghe không rõ.",
+          "sentence": "",
+          "correctAnswer": "我听不清楚。",
+          "distractors": ["我不听清楚。", "我听没清楚。", "我清楚听不。"],
+          "explanation": "Mẫu phủ định khả năng kết quả: V + 不 + Result."
+        },
+        {
+          "id": "ch_res_03",
+          "type": "fillInBlank",
+          "prompt": "Điền từ còn thiếu",
+          "sentence": "老师说得太快，我听___。",
+          "correctAnswer": "不懂",
+          "distractors": ["完", "见", "起来"],
+          "explanation": "听不懂 = nghe không hiểu."
+        },
+        {
+          "id": "ch_res_04",
+          "type": "conjugation",
+          "prompt": "Câu nào dùng bổ ngữ kết quả đúng?",
+          "sentence": "",
+          "correctAnswer": "他把问题解释清楚了。",
+          "distractors": ["他把问题解释了清楚。", "他问题解释清楚把了。", "他解释不问题清楚。"],
+          "explanation": "解释清楚 là cụm động từ + bổ ngữ kết quả đúng."
+        },
+        {
+          "id": "ch_res_05",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng",
+          "sentence": "",
+          "correctAnswer": "我找到了钥匙。",
+          "distractors": ["我找了到钥匙。", "我找到钥匙了着。", "我到找了钥匙。"],
+          "explanation": "找到 = tìm thấy, bổ ngữ kết quả 到."
+        }
+      ]
+    },
+    {
+      "id": "ch_condition",
+      "order": 10,
+      "name": { "zh": "条件句", "vi": "Câu điều kiện" },
+      "theory": {
+        "description": "Tiếng Trung dùng nhiều cấu trúc điều kiện như 如果...就..., 要是...就..., 只有...才..., 除非...才....",
+        "formulas": [
+          {
+            "type": "conditional",
+            "label": "Nếu... thì...",
+            "structure": "如果/要是 + Condition, 就 + Result",
+            "structureVi": "Nếu + điều kiện, thì + kết quả",
+            "example": { "zh": "如果下雨，我们就不去。", "vi": "Nếu mưa thì chúng ta không đi." }
+          },
+          {
+            "type": "conditional",
+            "label": "Chỉ khi... mới...",
+            "structure": "只有 + Condition, 才 + Result",
+            "structureVi": "Chỉ khi + điều kiện, mới + kết quả",
+            "example": { "zh": "只有努力，才会成功。", "vi": "Chỉ khi nỗ lực mới thành công." }
+          }
+        ],
+        "signalWords": ["如果", "要是", "就", "只有", "才", "除非"],
+        "usages": [
+          {
+            "rule": "Điều kiện thông thường",
+            "description": "Nếu điều kiện xảy ra thì kết quả theo sau với 就.",
+            "example": { "zh": "要是你有空，就来我家吧。", "vi": "Nếu bạn rảnh thì đến nhà mình nhé." }
+          },
+          {
+            "rule": "Điều kiện bắt buộc",
+            "description": "Dùng 只有...才... để nhấn mạnh điều kiện duy nhất.",
+            "example": { "zh": "只有他说，大家才相信。", "vi": "Chỉ khi anh ấy nói mọi người mới tin." }
+          }
+        ],
+        "notes": [
+          "Nếu có 就 ở vế sau thì vế trước nên có từ dẫn điều kiện rõ ràng (如果/要是).",
+          "只有...才... khác với 如果...就... ở mức độ bắt buộc của điều kiện."
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_cond_01",
+          "type": "fillInBlank",
+          "prompt": "Điền từ phù hợp",
+          "sentence": "___你明天有空，我们就一起吃饭。",
+          "correctAnswer": "如果",
+          "distractors": ["虽然", "因为", "或者"],
+          "explanation": "Câu điều kiện thông thường dùng 如果...就...."
+        },
+        {
+          "id": "ch_cond_02",
+          "type": "fillInBlank",
+          "prompt": "Điền từ liên kết kết quả",
+          "sentence": "要是下雨，我们___在家学习。",
+          "correctAnswer": "就",
+          "distractors": ["才", "也", "又"],
+          "explanation": "Vế kết quả trong mẫu nếu-thì thường dùng 就."
+        },
+        {
+          "id": "ch_cond_03",
+          "type": "conjugation",
+          "prompt": "Chọn câu 只有...才... đúng",
+          "sentence": "",
+          "correctAnswer": "只有早点睡，才不会累。",
+          "distractors": ["如果早点睡，才不会累。", "只有早点睡，就不会累。", "才早点睡，只有不会累。"],
+          "explanation": "Mẫu chuẩn bắt buộc là 只有...才...."
+        },
+        {
+          "id": "ch_cond_04",
+          "type": "conjugation",
+          "prompt": "Câu nào đúng ngữ pháp?",
+          "sentence": "",
+          "correctAnswer": "要是你不去，我就不去。",
+          "distractors": ["要是你不去，我才不去。", "你要是不去，才我不去。", "我就不去，要是你不去才。"],
+          "explanation": "Điều kiện thường dùng 要是...就...."
+        },
+        {
+          "id": "ch_cond_05",
+          "type": "conjugation",
+          "prompt": "Chọn câu tự nhiên hơn",
+          "sentence": "",
+          "correctAnswer": "如果你需要帮助，就告诉我。",
+          "distractors": ["如果你需要帮助，才告诉我。", "你需要帮助如果，就告诉我。", "如果需要你帮助，就告诉我。"],
+          "explanation": "Cấu trúc điều kiện chuẩn: 如果..., 就...."
+        }
+      ]
+    },
+    {
+      "id": "ch_degree_comp",
+      "order": 11,
+      "name": { "zh": "程度补语", "vi": "Bổ ngữ mức độ (得)" },
+      "theory": {
+        "description": "Bổ ngữ mức độ với 得 dùng để nói hành động diễn ra ở mức nào: nói nhanh/chậm, viết đẹp, ngủ ngon...",
+        "formulas": [
+          {
+            "type": "complement",
+            "label": "Mẫu cơ bản",
+            "structure": "S + V + 得 + Adj",
+            "structureVi": "Chủ ngữ + động từ +得+ tính từ",
+            "example": { "zh": "他说得很快。", "vi": "Anh ấy nói rất nhanh." },
+            "note": "得 ở đây là trợ từ cấu trúc, không phải động từ 得到"
+          },
+          {
+            "type": "complement",
+            "label": "Phủ định mức độ",
+            "structure": "S + V + 得 + 不 + Adj",
+            "structureVi": "Chủ ngữ + động từ +得+ không + tính từ",
+            "example": { "zh": "我听得不太清楚。", "vi": "Tôi nghe không rõ lắm." }
+          }
+        ],
+        "signalWords": ["得", "很", "不太", "清楚", "快", "慢"],
+        "usages": [
+          {
+            "rule": "Mô tả chất lượng hành động",
+            "description": "Dùng để đánh giá hành động làm tốt/chưa tốt ra sao.",
+            "example": { "zh": "她写得很漂亮。", "vi": "Cô ấy viết rất đẹp." }
+          },
+          {
+            "rule": "Mẫu thường gặp trong hội thoại",
+            "description": "Nghe/nhìn không rõ thường dùng 得不太...",
+            "example": { "zh": "我看得不太清楚。", "vi": "Tôi nhìn không rõ lắm." }
+          }
+        ],
+        "notes": [
+          "Không nhầm với trợ từ kết cấu 的 và địa trạng từ 地.",
+          "Nhiều câu đời thường có thể lược chủ ngữ khi ngữ cảnh rõ."
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_deg_01",
+          "type": "fillInBlank",
+          "prompt": "Điền trợ từ phù hợp",
+          "sentence": "他说___很快。",
+          "correctAnswer": "得",
+          "distractors": ["的", "地", "了"],
+          "explanation": "Bổ ngữ mức độ dùng 得: 说得很快."
+        },
+        {
+          "id": "ch_deg_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng ngữ pháp",
+          "sentence": "",
+          "correctAnswer": "她唱得很好听。",
+          "distractors": ["她唱的很好听。", "她得唱很好听。", "她唱很得好听。"],
+          "explanation": "V + 得 + Adj là trật tự chuẩn."
+        },
+        {
+          "id": "ch_deg_03",
+          "type": "fillInBlank",
+          "prompt": "Điền từ còn thiếu",
+          "sentence": "我听得___清楚。",
+          "correctAnswer": "不太",
+          "distractors": ["没有", "非常", "已经"],
+          "explanation": "Mẫu diễn tả chưa rõ: 听得不太清楚."
+        },
+        {
+          "id": "ch_deg_04",
+          "type": "conjugation",
+          "prompt": "Câu nào đúng nghĩa: Em trai chạy rất nhanh.",
+          "sentence": "",
+          "correctAnswer": "弟弟跑得很快。",
+          "distractors": ["弟弟很跑得快。", "弟弟跑很得快。", "弟弟得跑很快。"],
+          "explanation": "Mẫu chuẩn: 跑得很快."
+        },
+        {
+          "id": "ch_deg_05",
+          "type": "conjugation",
+          "prompt": "Chọn câu tự nhiên hơn",
+          "sentence": "",
+          "correctAnswer": "你写得越来越好了。",
+          "distractors": ["你写越来越得好了。", "你得写越来越好了。", "你写的越来越好了。"],
+          "explanation": "Mức độ của hành động dùng 得."
+        }
+      ]
+    },
+    {
+      "id": "ch_direction_comp",
+      "order": 12,
+      "name": { "zh": "趋向补语", "vi": "Bổ ngữ xu hướng (来/去)" },
+      "theory": {
+        "description": "Bổ ngữ xu hướng cho biết hướng chuyển động: lại gần người nói (来) hay rời xa (去), hoặc hướng lên/xuống/vào/ra.",
+        "formulas": [
+          {
+            "type": "complement",
+            "label": "Động từ + 来/去",
+            "structure": "V + 来 / V + 去",
+            "structureVi": "Động từ + lại đây / đi",
+            "example": { "zh": "你快进来！", "vi": "Bạn mau vào đây!" },
+            "note": "来 lấy mốc nhìn ở người nói"
+          },
+          {
+            "type": "complement",
+            "label": "Hướng kép",
+            "structure": "V + 上/下/进/出/回/过 + 来/去",
+            "structureVi": "Động từ + hướng + 来/去",
+            "example": { "zh": "他走进去了。", "vi": "Anh ấy đi vào trong rồi." }
+          }
+        ],
+        "signalWords": ["来", "去", "上来", "下去", "进去", "出来", "回来", "过去"],
+        "usages": [
+          {
+            "rule": "Mốc nhìn người nói",
+            "description": "同一 hành động nhưng dùng 来/去 khác nhau theo vị trí người nói.",
+            "example": { "zh": "你过来一下。", "vi": "Bạn qua đây một chút." }
+          },
+          {
+            "rule": "Miêu tả chuyển động rõ hướng",
+            "description": "Dùng hướng kép để nói chính xác hướng lên/xuống/vào/ra.",
+            "example": { "zh": "孩子跑出去玩了。", "vi": "Đứa bé chạy ra ngoài chơi rồi." }
+          }
+        ],
+        "notes": [
+          "Nếu không muốn nhấn hướng, có thể chỉ dùng động từ chính.",
+          "Trong hội thoại, 过来/过去 xuất hiện rất nhiều."
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_dir_01",
+          "type": "fillInBlank",
+          "prompt": "Điền bổ ngữ xu hướng",
+          "sentence": "请进___坐。",
+          "correctAnswer": "来",
+          "distractors": ["去", "上", "出"],
+          "explanation": "Mời vào gần người nói dùng 进来."
+        },
+        {
+          "id": "ch_dir_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng ngữ pháp",
+          "sentence": "",
+          "correctAnswer": "他跑出去了。",
+          "distractors": ["他跑去出了。", "他出去跑了。", "他跑了出去来。"],
+          "explanation": "Mẫu tự nhiên: V + 出去."
+        },
+        {
+          "id": "ch_dir_03",
+          "type": "fillInBlank",
+          "prompt": "Điền từ phù hợp",
+          "sentence": "你把书拿___给我。",
+          "correctAnswer": "来",
+          "distractors": ["去", "下", "上"],
+          "explanation": "Đem về phía người nói dùng 拿来."
+        },
+        {
+          "id": "ch_dir_04",
+          "type": "conjugation",
+          "prompt": "Câu nào đúng: Tôi đi qua đó ngay.",
+          "sentence": "",
+          "correctAnswer": "我马上过去。",
+          "distractors": ["我马上过来。", "我马上去过。", "我过马上去。"],
+          "explanation": "Rời xa người nói về phía kia dùng 过去."
+        },
+        {
+          "id": "ch_dir_05",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng",
+          "sentence": "",
+          "correctAnswer": "老师走进教室来了。",
+          "distractors": ["老师进走教室来了。", "老师走来进教室了。", "老师走进来教室了去。"],
+          "explanation": "Trật tự chuẩn: 走进...来."
+        }
+      ]
+    },
+    {
+      "id": "ch_lian_dou",
+      "order": 13,
+      "name": { "zh": "连…都…", "vi": "Mẫu nhấn mạnh 连…都/也…" },
+      "theory": {
+        "description": "连...都/也... dùng để nhấn mạnh mức độ bất ngờ: ngay cả X mà cũng Y.",
+        "formulas": [
+          {
+            "type": "emphasis",
+            "label": "Mẫu cơ bản",
+            "structure": "连 + X + 都/也 + Y",
+            "structureVi": "Ngay cả X mà cũng Y",
+            "example": { "zh": "连孩子都懂这个道理。", "vi": "Ngay cả trẻ con cũng hiểu đạo lý này." }
+          },
+          {
+            "type": "emphasis",
+            "label": "Mẫu phủ định",
+            "structure": "连 + X + 都/也 + 不/没 + V",
+            "structureVi": "Ngay cả X cũng không...",
+            "example": { "zh": "他连名字都没写。", "vi": "Anh ấy ngay cả tên cũng không viết." }
+          }
+        ],
+        "signalWords": ["连", "都", "也", "甚至", "居然"],
+        "usages": [
+          {
+            "rule": "Nhấn mạnh tính bất ngờ",
+            "description": "Dùng khi kết quả vượt kỳ vọng bình thường.",
+            "example": { "zh": "连老师也不知道答案。", "vi": "Ngay cả giáo viên cũng không biết đáp án." }
+          },
+          {
+            "rule": "Nói mức độ tối thiểu",
+            "description": "Thường dùng trong phàn nàn, nhấn mạnh thiếu sót.",
+            "example": { "zh": "他连一句谢谢都没说。", "vi": "Anh ấy ngay cả một câu cảm ơn cũng không nói." }
+          }
+        ],
+        "notes": [
+          "都 và 也 đều dùng được, 都 phổ biến hơn trong văn nói trung tính.",
+          "Thành phần sau 连 thường là điểm nhấn mang sắc thái bất ngờ."
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_lian_01",
+          "type": "fillInBlank",
+          "prompt": "Điền từ nhấn mạnh",
+          "sentence": "___老师都不知道。",
+          "correctAnswer": "连",
+          "distractors": ["把", "被", "比"],
+          "explanation": "Mẫu nhấn mạnh bắt đầu bằng 连."
+        },
+        {
+          "id": "ch_lian_02",
+          "type": "fillInBlank",
+          "prompt": "Điền trợ từ phù hợp",
+          "sentence": "连他___不来。",
+          "correctAnswer": "都",
+          "distractors": ["把", "在", "比"],
+          "explanation": "Mẫu: 连...都..."
+        },
+        {
+          "id": "ch_lian_03",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng ngữ pháp",
+          "sentence": "",
+          "correctAnswer": "连这个字我也不会写。",
+          "distractors": ["这个字连我也不会写。", "我也不会写连这个字。", "连我这个字也不会写。"],
+          "explanation": "Trật tự tự nhiên: 连 + tân ngữ nhấn mạnh + 也/都 + vị ngữ."
+        },
+        {
+          "id": "ch_lian_04",
+          "type": "conjugation",
+          "prompt": "Câu nào đúng nghĩa: Ngay cả bữa sáng anh ấy cũng chưa ăn.",
+          "sentence": "",
+          "correctAnswer": "他连早饭都没吃。",
+          "distractors": ["他连早饭没都吃。", "他都没吃连早饭。", "连他早饭都吃没。"],
+          "explanation": "Mẫu phủ định: 连...都没+V."
+        },
+        {
+          "id": "ch_lian_05",
+          "type": "conjugation",
+          "prompt": "Chọn câu tự nhiên nhất",
+          "sentence": "",
+          "correctAnswer": "连小孩子都知道这个问题。",
+          "distractors": ["小孩子连都知道这个问题。", "都连小孩子知道这个问题。", "连知道小孩子都这个问题。"],
+          "explanation": "Mẫu nhấn mạnh đúng là 连X都Y."
+        }
+      ]
+    },
+    {
+      "id": "ch_trend",
+      "order": 14,
+      "name": { "zh": "趋势表达", "vi": "Diễn đạt xu hướng (越…越…/越来越…)" },
+      "theory": {
+        "description": "Dùng 越...越... hoặc 越来越... để diễn tả xu hướng tăng/giảm theo thời gian hoặc theo mức độ.",
+        "formulas": [
+          {
+            "type": "trend",
+            "label": "Mẫu 越A越B",
+            "structure": "越 + A + 越 + B",
+            "structureVi": "Càng A càng B",
+            "example": { "zh": "天气越冷，我越不想出门。", "vi": "Thời tiết càng lạnh tôi càng không muốn ra ngoài." }
+          },
+          {
+            "type": "trend",
+            "label": "Mẫu 越来越",
+            "structure": "S + 越来越 + Adj/V",
+            "structureVi": "Ngày càng...",
+            "example": { "zh": "他的中文越来越好了。", "vi": "Tiếng Trung của anh ấy ngày càng tốt hơn." }
+          }
+        ],
+        "signalWords": ["越", "越来越", "一天比一天", "更加", "逐渐"],
+        "usages": [
+          {
+            "rule": "Xu hướng thay đổi theo thời gian",
+            "description": "Nói sự tiến bộ hoặc xấu đi dần.",
+            "example": { "zh": "城市越来越热闹。", "vi": "Thành phố ngày càng nhộn nhịp." }
+          },
+          {
+            "rule": "Quan hệ tỉ lệ",
+            "description": "Một điều đổi thì điều kia đổi theo.",
+            "example": { "zh": "你练得越多，说得越流利。", "vi": "Bạn luyện càng nhiều thì nói càng trôi chảy." }
+          }
+        ],
+        "notes": [
+          "越...越... thường đi kèm hai vế có quan hệ phụ thuộc.",
+          "越来越 phía sau thường là tính từ hoặc trạng thái, không cần lặp chủ ngữ nhiều lần."
+        ]
+      },
+      "exercises": [
+        {
+          "id": "ch_trend_01",
+          "type": "fillInBlank",
+          "prompt": "Điền từ phù hợp",
+          "sentence": "他的中文___好了。",
+          "correctAnswer": "越来越",
+          "distractors": ["连", "把", "被"],
+          "explanation": "Diễn đạt xu hướng tăng dùng 越来越."
+        },
+        {
+          "id": "ch_trend_02",
+          "type": "conjugation",
+          "prompt": "Chọn câu đúng: Càng học càng hiểu.",
+          "sentence": "",
+          "correctAnswer": "越学越懂。",
+          "distractors": ["越学懂越。", "学越越懂。", "越懂越学。"],
+          "explanation": "Mẫu chuẩn: 越A越B."
+        },
+        {
+          "id": "ch_trend_03",
+          "type": "fillInBlank",
+          "prompt": "Điền thành phần còn thiếu",
+          "sentence": "天气越冷，我___不想出门。",
+          "correctAnswer": "越",
+          "distractors": ["更", "都", "就"],
+          "explanation": "Cấu trúc đối ứng: 越...，越..."
+        },
+        {
+          "id": "ch_trend_04",
+          "type": "conjugation",
+          "prompt": "Chọn câu tự nhiên hơn",
+          "sentence": "",
+          "correctAnswer": "这个城市越来越方便了。",
+          "distractors": ["这个城市越方便越了。", "这个城市方便越来越了。", "这个城市越来越了方便。"],
+          "explanation": "越来越 + Adj + 了 là cấu trúc phổ biến."
+        },
+        {
+          "id": "ch_trend_05",
+          "type": "conjugation",
+          "prompt": "Câu nào đúng ngữ pháp?",
+          "sentence": "",
+          "correctAnswer": "你练得越多，发音越标准。",
+          "distractors": ["你越练得多，发音标准越。", "你练得多越，发音越标准。", "你越多练得，发音越标准。"],
+          "explanation": "Mẫu tương quan đúng: 越...越..."
+        }
+      ]
+    }
+  ],
+  "reviewExercises": [
+    { "topicId": "ch_basic", "id": "ch_basic_01", "type": "fillInBlank", "prompt": "Điền từ thích hợp", "sentence": "我___学生。", "correctAnswer": "是", "distractors": ["有", "在", "会"], "explanation": "A 是 B: Tôi là học sinh." },
+    { "topicId": "ch_questions", "id": "ch_ques_01", "type": "conjugation", "prompt": "Từ nào là trợ từ nghi vấn cuối câu?", "sentence": "", "correctAnswer": "吗", "distractors": ["了", "的", "把"], "explanation": "吗 tạo câu hỏi Yes/No." },
+    { "topicId": "ch_negation", "id": "ch_neg_01", "type": "fillInBlank", "prompt": "Phủ định hiện tại", "sentence": "我___喝咖啡。", "correctAnswer": "不", "distractors": ["没", "了", "吗"], "explanation": "不 phủ định thói quen." },
+    { "topicId": "ch_measure", "id": "ch_mw_01", "type": "fillInBlank", "prompt": "Lượng từ cho sách", "sentence": "一___书", "correctAnswer": "本", "distractors": ["个", "条", "张"], "explanation": "本 dùng cho sách." },
+    { "topicId": "ch_aspect", "id": "ch_asp_01", "type": "conjugation", "prompt": "Đã hoàn thành", "sentence": "", "correctAnswer": "我吃饭了。", "distractors": ["我会吃饭。", "我在吃饭。", "我想吃饭。"], "explanation": "了 = đã hoàn thành." },
+    { "topicId": "ch_compare", "id": "ch_comp_01", "type": "conjugation", "prompt": "So sánh đúng", "sentence": "", "correctAnswer": "他比我高。", "distractors": ["他高比我。", "他我比高。", "他比高我。"], "explanation": "A 比 B + Adj." },
+    { "topicId": "ch_ba", "id": "ch_ba_01", "type": "fillInBlank", "prompt": "Điền cấu trúc 把", "sentence": "请___门关上。", "correctAnswer": "把", "distractors": ["被", "比", "给"], "explanation": "Câu xử lý đối tượng thường dùng 把." },
+    { "topicId": "ch_bei", "id": "ch_bei_01", "type": "fillInBlank", "prompt": "Điền từ bị động", "sentence": "我的包___偷了。", "correctAnswer": "被", "distractors": ["把", "比", "在"], "explanation": "Bị động dùng 被." },
+    { "topicId": "ch_result_comp", "id": "ch_res_02", "type": "conjugation", "prompt": "Bổ ngữ kết quả", "sentence": "", "correctAnswer": "我听不清楚。", "distractors": ["我不听清楚。", "我听没清楚。", "我清楚听不。"], "explanation": "Mẫu phủ định khả năng kết quả: V + 不 + Result." },
+    { "topicId": "ch_condition", "id": "ch_cond_01", "type": "fillInBlank", "prompt": "Câu điều kiện", "sentence": "___你明天有空，我们就一起吃饭。", "correctAnswer": "如果", "distractors": ["虽然", "因为", "或者"], "explanation": "Mẫu điều kiện phổ biến: 如果...就...." },
+    { "topicId": "ch_degree_comp", "id": "ch_deg_01", "type": "fillInBlank", "prompt": "Bổ ngữ mức độ", "sentence": "他说___很快。", "correctAnswer": "得", "distractors": ["的", "地", "了"], "explanation": "Mẫu V + 得 + Adj." },
+    { "topicId": "ch_direction_comp", "id": "ch_dir_01", "type": "fillInBlank", "prompt": "Bổ ngữ xu hướng", "sentence": "请进___坐。", "correctAnswer": "来", "distractors": ["去", "上", "出"], "explanation": "Mời vào gần người nói dùng 来." },
+    { "topicId": "ch_lian_dou", "id": "ch_lian_01", "type": "fillInBlank", "prompt": "Mẫu 连...都...", "sentence": "___老师都不知道。", "correctAnswer": "连", "distractors": ["把", "被", "比"], "explanation": "Mẫu nhấn mạnh bắt đầu bằng 连." },
+    { "topicId": "ch_trend", "id": "ch_trend_01", "type": "fillInBlank", "prompt": "Xu hướng", "sentence": "他的中文___好了。", "correctAnswer": "越来越", "distractors": ["连", "把", "被"], "explanation": "Xu hướng tăng dùng 越来越." }
+  ]
+}

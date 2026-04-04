@@ -259,6 +259,7 @@
     const synonymRulesVi = buildReplacementRules(synonymMapVi);
     const synonymRulesEn = buildReplacementRules(synonymMapEn);
     const VI_CHAR_REGEX = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i;
+    const CJK_CHAR_REGEX = /[\u3400-\u9FFF]/;
 
     // ===== Stop words for content-word matching =====
     const STOP_WORDS_EN = new Set([
@@ -284,6 +285,13 @@
         'ở', 'tại', 'từ', 'đến', 'về', 'ra', 'vào',
         'tôi', 'bạn', 'anh', 'chị', 'em', 'nó', 'họ', 'chúng',
         'một', 'hai', 'ba', 'nhiều', 'ít', 'mỗi', 'mọi',
+    ]);
+
+    const STOP_WORDS_ZH = new Set([
+        '的', '了', '在', '是', '有', '和', '就', '都', '而', '及',
+        '与', '着', '或', '一个', '沒有', '没有', '我们', '你们', '他们', '她们',
+        '它们', '这', '那', '吗', '呢', '吧', '啊', '呀', '很', '也',
+        '不', '我', '你', '他', '她', '它', '要', '会', '能', '可以',
     ]);
 
     // ===== Cache (localStorage) =====
@@ -438,18 +446,46 @@
         return text.replace(/\b(a|an|the|to)\b/gi, '').replace(/\s+/g, ' ').trim();
     }
 
+    function containsCJK(text) {
+        return CJK_CHAR_REGEX.test(text || '');
+    }
+
+    function stripChinesePunctuation(text) {
+        return (text || '').replace(/[，。！？；：、（）《》“”‘’【】…\-]/g, '').replace(/\s+/g, ' ').trim();
+    }
+
+    function normalizePinyin(text) {
+        if (!text) return '';
+        var base = stripDiacritics(text.toLowerCase().trim())
+            .replace(/ü/g, 'u')
+            .replace(/[0-9]/g, '')
+            .replace(/[^a-z\s]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+        return base;
+    }
+
+    function tokenizeChinese(text) {
+        var compact = stripChinesePunctuation(text).replace(/\s+/g, '');
+        if (!compact) return [];
+        return compact.split('');
+    }
+
     // ===== Content-word comparison (bỏ stop words, so sánh synonym-aware) =====
     function compareContentWords(text1, text2) {
         const norm1 = normalizeText(text1);
         const norm2 = normalizeText(text2);
         if (!norm1 || !norm2) return false;
 
-        // Detect language by checking for Vietnamese chars
-        const isVietnamese = VI_CHAR_REGEX.test(text1) || VI_CHAR_REGEX.test(text2);
-        const stopWords = isVietnamese ? STOP_WORDS_VI : STOP_WORDS_EN;
+        const isChinese = containsCJK(text1) || containsCJK(text2);
+        const isVietnamese = !isChinese && (VI_CHAR_REGEX.test(text1) || VI_CHAR_REGEX.test(text2));
+        const stopWords = isChinese ? STOP_WORDS_ZH : (isVietnamese ? STOP_WORDS_VI : STOP_WORDS_EN);
         const synMap = isVietnamese ? synonymMapVi : synonymMapEn;
 
         const getContentWords = t => {
+            if (isChinese) {
+                return tokenizeChinese(t).filter(w => w && !stopWords.has(w));
+            }
             const words = t.split(' ').filter(w => w && !stopWords.has(w));
             return words.map(w => {
                 const stripped = stripDiacritics(w);
@@ -472,11 +508,23 @@
         const mode = (options && options.mode) || 'phrase';
         const normUser = normalizeText(userInput);
         const normCorrect = normalizeText(correctAnswer);
+        const zhCandidate = (options && options.targetLang === 'zh') || containsCJK(normUser) || containsCJK(normCorrect);
 
         if (!normUser || !normCorrect) return 'wrong';
 
         // Tier 1: Exact normalized match
         if (normUser === normCorrect) return 'correct';
+
+        // Tier 1b: Chinese direct + pinyin normalization
+        if (zhCandidate) {
+            const zhUser = stripChinesePunctuation(normUser).replace(/\s+/g, '');
+            const zhCorrect = stripChinesePunctuation(normCorrect).replace(/\s+/g, '');
+            if (zhUser && zhCorrect && zhUser === zhCorrect) return 'correct';
+
+            const pyUser = normalizePinyin(normUser);
+            const pyCorrect = normalizePinyin(normCorrect);
+            if (pyUser && pyCorrect && pyUser === pyCorrect) return 'correct';
+        }
 
         // Tier 2: Pronoun canonicalization
         const canonUser = canonicalizePronouns(normUser);
@@ -503,6 +551,17 @@
         const dist = levenshteinDistance(strippedUser, strippedCorrect);
         const threshold = Math.min(4, Math.max(1, Math.floor(maxLen * 0.15)));
         if (dist <= threshold) return 'close';
+
+        // Tier 5b: pinyin close match for Chinese workflows
+        if (zhCandidate) {
+            const pyUser = normalizePinyin(normUser);
+            const pyCorrect = normalizePinyin(normCorrect);
+            if (pyUser && pyCorrect) {
+                const pyDist = levenshteinDistance(pyUser, pyCorrect);
+                const pyThreshold = Math.min(4, Math.max(1, Math.floor(Math.max(pyCorrect.length, 1) * 0.18)));
+                if (pyDist <= pyThreshold) return 'close';
+            }
+        }
 
         // Tier 6: Word overlap (skip for word_order)
         if (mode !== 'word_order') {
@@ -633,6 +692,9 @@
     function detectLangPair(userInput, correctAnswer, options) {
         if (options && options.fromLang && options.toLang) {
             return { fromLang: options.fromLang, toLang: options.toLang };
+        }
+        if (containsCJK(correctAnswer) || containsCJK(userInput)) {
+            return { fromLang: 'zh', toLang: 'vi' };
         }
         // Check both userInput and correctAnswer — they are in the same language
         if (VI_CHAR_REGEX.test(correctAnswer) || VI_CHAR_REGEX.test(userInput)) {

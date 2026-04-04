@@ -1,0 +1,65 @@
+{
+  "questions": [
+    {
+      "id": "caq_001",
+      "type": "fill_blank",
+      "sentence": "我___学生。",
+      "options": ["是", "有", "在", "会"],
+      "correctAnswer": "是",
+      "explanation": "A 是 B là mẫu câu danh từ cơ bản."
+    },
+    {
+      "id": "caq_002",
+      "type": "fill_blank",
+      "sentence": "你___咖啡吗？",
+      "options": ["喝", "吃", "看", "听"],
+      "correctAnswer": "喝",
+      "explanation": "喝 dùng cho đồ uống."
+    },
+    {
+      "id": "caq_003",
+      "type": "fill_blank",
+      "sentence": "今天我___去上班。",
+      "options": ["不", "没", "了", "吗"],
+      "correctAnswer": "不",
+      "explanation": "不 phủ định hành động hiện tại/tương lai."
+    },
+    {
+      "id": "caq_004",
+      "type": "fill_blank",
+      "sentence": "请给我一___水。",
+      "options": ["杯", "本", "个", "只"],
+      "correctAnswer": "杯",
+      "explanation": "杯 là lượng từ cho đồ uống."
+    },
+    {
+      "id": "caq_005",
+      "type": "grammar_check",
+      "sentence": "我昨天不去学校。",
+      "isCorrect": false,
+      "correction": "我昨天没去学校。",
+      "explanation": "Với hành động đã xảy ra trong quá khứ thường dùng 没."
+    },
+    {
+      "id": "caq_006",
+      "type": "grammar_check",
+      "sentence": "她比我高。",
+      "isCorrect": true,
+      "explanation": "Mẫu so sánh chuẩn A 比 B + tính từ."
+    },
+    {
+      "id": "caq_007",
+      "type": "word_order",
+      "words": ["今天", "我", "去", "学校"],
+      "correctOrder": ["我", "今天", "去", "学校"],
+      "explanation": "Trạng từ thời gian có thể đặt sau chủ ngữ."
+    },
+    {
+      "id": "caq_008",
+      "type": "word_order",
+      "words": ["中文", "学习", "正在", "我"],
+      "correctOrder": ["我", "正在", "学习", "中文"],
+      "explanation": "Mẫu: Chủ ngữ + 正在 + động từ + tân ngữ."
+    }
+  ]
+}

@@ -29,8 +29,12 @@ const phrasesFavScreen = document.getElementById('phrases-favorites-screen');
 async function initPhrases() {
     if (!phrasesData) {
         try {
-            const res = await fetch('phrases.json');
-            phrasesData = await res.json();
+            if (window.AppDataLoader && typeof window.AppDataLoader.getPhrasesPayload === 'function') {
+                phrasesData = await window.AppDataLoader.getPhrasesPayload();
+            } else {
+                const res = await fetch('phrases.json');
+                phrasesData = await res.json();
+            }
         } catch (e) {
             console.error('Failed to load phrases.json', e);
             return;
@@ -296,6 +300,9 @@ function showPhraseExercise() {
 
     const phrase = practiceQueue[pIdx];
     const total = practiceQueue.length;
+
+    // Mark phrase as seen globally (cross-module deduplication với Luyện Nghe)
+    if (window.SeenPhrases && phrase.id) window.SeenPhrases.add(phrase.id);
 
     // Counter
     document.getElementById('phrases-counter').textContent = `${pIdx + 1} / ${total}`;

@@ -1,0 +1,139 @@
+{
+  "stories": [
+    {
+      "id": "cs_001",
+      "title": "早上的咖啡店",
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "emoji": "☕",
+          "zh": "你走进一家咖啡店，店员对你说：你好！你想喝什么？",
+          "vi": "Bạn bước vào quán cafe, nhân viên chào bạn và hỏi muốn uống gì.",
+          "choices": [
+            {
+              "text": "我想喝咖啡。",
+              "next": "coffee",
+              "points": 2
+            },
+            {
+              "text": "我想喝茶。",
+              "next": "tea",
+              "points": 2
+            }
+          ]
+        },
+        "coffee": {
+          "emoji": "☕",
+          "zh": "店员问：热的还是冰的？",
+          "vi": "Nhân viên hỏi: nóng hay đá?",
+          "choices": [
+            {
+              "text": "热的，谢谢。",
+              "next": "end_good",
+              "points": 3
+            },
+            {
+              "text": "冰的，谢谢。",
+              "next": "end_good",
+              "points": 3
+            }
+          ]
+        },
+        "tea": {
+          "emoji": "🍵",
+          "zh": "店员说：好的，一杯茶。你还要点什么吗？",
+          "vi": "Nhân viên nói: Một ly trà. Bạn còn gọi gì nữa không?",
+          "choices": [
+            {
+              "text": "不要了，谢谢。",
+              "next": "end_ok",
+              "points": 2
+            },
+            {
+              "text": "再要一个面包。",
+              "next": "end_good",
+              "points": 4
+            }
+          ]
+        },
+        "end_ok": {
+          "emoji": "🙂",
+          "zh": "你顺利点完单，开始今天的学习。",
+          "vi": "Bạn gọi món xong và bắt đầu ngày học mới.",
+          "ending": true
+        },
+        "end_good": {
+          "emoji": "🌟",
+          "zh": "你用中文流利地点单成功，店员夸你说得很好！",
+          "vi": "Bạn gọi món tiếng Trung rất trôi chảy, nhân viên khen bạn nói tốt.",
+          "ending": true
+        }
+      }
+    },
+    {
+      "id": "cs_002",
+      "title": "地铁站",
+      "startNode": "start",
+      "nodes": {
+        "start": {
+          "emoji": "🚇",
+          "zh": "你在地铁站，不知道去北京路怎么走。",
+          "vi": "Bạn ở ga tàu điện và không biết đi đường đến Bắc Kinh Lộ.",
+          "choices": [
+            {
+              "text": "请问，北京路在哪儿？",
+              "next": "ask",
+              "points": 3
+            },
+            {
+              "text": "北京路。",
+              "next": "ask_short",
+              "points": 1
+            }
+          ]
+        },
+        "ask": {
+          "emoji": "🧭",
+          "zh": "路人说：坐二号线，两站就到。",
+          "vi": "Người qua đường nói: Đi tuyến số 2, 2 trạm là tới.",
+          "choices": [
+            {
+              "text": "谢谢你！",
+              "next": "end_good",
+              "points": 3
+            },
+            {
+              "text": "好的，我知道了。",
+              "next": "end_ok",
+              "points": 2
+            }
+          ]
+        },
+        "ask_short": {
+          "emoji": "🤔",
+          "zh": "路人没听懂你想问什么。",
+          "vi": "Người qua đường không hiểu rõ bạn muốn hỏi gì.",
+          "choices": [
+            {
+              "text": "请问，北京路在哪儿？",
+              "next": "ask",
+              "points": 2
+            }
+          ]
+        },
+        "end_ok": {
+          "emoji": "🙂",
+          "zh": "你找到路了，继续每天学中文。",
+          "vi": "Bạn đã tìm được đường và tiếp tục học tiếng Trung mỗi ngày.",
+          "ending": true
+        },
+        "end_good": {
+          "emoji": "🏆",
+          "zh": "你用中文问路很自然，太棒了！",
+          "vi": "Bạn hỏi đường tự nhiên bằng tiếng Trung, rất tốt!",
+          "ending": true
+        }
+      }
+    }
+  ]
+}

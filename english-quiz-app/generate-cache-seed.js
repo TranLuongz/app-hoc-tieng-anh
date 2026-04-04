@@ -157,8 +157,22 @@ async function main() {
     const phrasesData = JSON.parse(fs.readFileSync(path.join(DIR, 'phrases.json'), 'utf-8'));
     const phrases = phrasesData.phrases || phrasesData;
 
+    const zhWordsFile = path.join(DIR, 'chinese_words.json');
+    const zhPhrasesFile = path.join(DIR, 'chinese_phrases.json');
+    const zhWords = fs.existsSync(zhWordsFile)
+        ? JSON.parse(fs.readFileSync(zhWordsFile, 'utf-8'))
+        : [];
+    const zhPhrasesData = fs.existsSync(zhPhrasesFile)
+        ? JSON.parse(fs.readFileSync(zhPhrasesFile, 'utf-8'))
+        : { phrases: [] };
+    const zhPhrases = zhPhrasesData.phrases || [];
+
     console.log(`Từ vựng: ${words.length} từ`);
     console.log(`Cụm từ: ${phrases.length} câu`);
+    if (zhWords.length || zhPhrases.length) {
+        console.log(`Trung - Từ vựng: ${zhWords.length} từ`);
+        console.log(`Trung - Cụm từ: ${zhPhrases.length} câu`);
+    }
 
     let seed = loadSeed();
     let progress = loadProgress();
@@ -248,6 +262,69 @@ async function main() {
         const speed = (batchEnd / elapsed).toFixed(1);
         const eta = speed > 0 ? ((phrases.length - batchEnd) / speed).toFixed(0) : '?';
         console.log(`  [${pct}%] ${batchEnd}/${phrases.length} câu | +${totalAdded - phase1Added} mới | ${elapsed}s | ~${eta}s còn lại`);
+    }
+
+    // ===== Phase 3: Tiếng Trung (optional) =====
+    if (zhWords.length || zhPhrases.length) {
+        console.log(`\n--- Phase 3: Tiếng Trung ---`);
+
+        if (zhWords.length) {
+            for (let batchStart = 0; batchStart < zhWords.length; batchStart += BATCH_SIZE) {
+                const batchEnd = Math.min(batchStart + BATCH_SIZE, zhWords.length);
+                const batch = zhWords.slice(batchStart, batchEnd);
+
+                const tasks = [];
+                batch.forEach(w => {
+                    tasks.push({ type: 'vi', word: w, promise: translateRace(w.word, 'zh', 'vi') });
+                    tasks.push({ type: 'zh', word: w, promise: translateRace(w.meaning, 'vi', 'zh') });
+                });
+
+                for (let i = 0; i < tasks.length; i += CONCURRENCY) {
+                    const chunk = tasks.slice(i, i + CONCURRENCY);
+                    const results = await Promise.all(chunk.map(t => t.promise));
+                    results.forEach((result, idx) => {
+                        const task = chunk[idx];
+                        if (!result) return;
+                        if (task.type === 'vi') {
+                            const parts = result.split(/[,;/]/).map(s => s.trim()).filter(Boolean);
+                            parts.forEach(part => { if (addToSeed(seed, task.word.meaning, part)) totalAdded++; });
+                        } else {
+                            const parts = result.split(/[,;/]/).map(s => s.trim()).filter(Boolean);
+                            parts.forEach(part => { if (addToSeed(seed, task.word.word, part)) totalAdded++; });
+                        }
+                    });
+                    if (i + CONCURRENCY < tasks.length) await sleep(DELAY_MS);
+                }
+            }
+        }
+
+        if (zhPhrases.length) {
+            for (let batchStart = 0; batchStart < zhPhrases.length; batchStart += BATCH_SIZE) {
+                const batchEnd = Math.min(batchStart + BATCH_SIZE, zhPhrases.length);
+                const batch = zhPhrases.slice(batchStart, batchEnd);
+
+                const tasks = [];
+                batch.forEach(p => {
+                    tasks.push({ type: 'vi', phrase: p, promise: translateRace(p.zh, 'zh', 'vi') });
+                    tasks.push({ type: 'zh', phrase: p, promise: translateRace(p.vi, 'vi', 'zh') });
+                });
+
+                for (let i = 0; i < tasks.length; i += CONCURRENCY) {
+                    const chunk = tasks.slice(i, i + CONCURRENCY);
+                    const results = await Promise.all(chunk.map(t => t.promise));
+                    results.forEach((result, idx) => {
+                        const task = chunk[idx];
+                        if (!result) return;
+                        if (task.type === 'vi') {
+                            if (addToSeed(seed, task.phrase.vi, result)) totalAdded++;
+                        } else {
+                            if (addToSeed(seed, task.phrase.zh, result)) totalAdded++;
+                        }
+                    });
+                    if (i + CONCURRENCY < tasks.length) await sleep(DELAY_MS);
+                }
+            }
+        }
     }
 
     // ===== Done =====

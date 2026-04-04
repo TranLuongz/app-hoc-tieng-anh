@@ -1,0 +1,7 @@
+# Development utilities (not needed at runtime)
+*.py
+
+# Local/docs files
+README.md
+.env.example
+THIRD_PARTY_DATA_LICENSES.md

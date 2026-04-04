@@ -184,10 +184,24 @@ const statAccuracy = document.getElementById('stat-accuracy');
 const wordPhonetic = document.getElementById('word-phonetic');
 const wordInfo = document.getElementById('word-info');
 const speakBtn = document.getElementById('speak-btn');
+const learningLanguageSelect = document.getElementById('learning-language-select');
+const learningLanguageSelectMobile = document.getElementById('learning-language-select-mobile');
+const homeLogoIconEl = document.getElementById('home-logo-icon');
+const homeTitleEl = document.getElementById('home-title');
+const homeSubtitleEl = document.getElementById('home-subtitle');
+
+const LEARNING_LANG_KEY = 'eq_learning_lang';
+let currentLearningLang = 'en';
+let forcedNavModule = null;
+let chineseWordsCache = null;
+let vocabDataReady = false;
+let vocabLoadPromise = null;
+let coreAppInitialized = false;
+let vocabModuleInitialized = false;
 
 // ===== Shared: Show Screen =====
 // Quiz/practice screens where bottom nav should be hidden
-const quizScreenIds = ['quiz-screen', 'vocab-review-screen', 'tenses-practice-screen', 'phrases-practice-screen', 'story-play-screen', 'auction-play-screen'];
+const quizScreenIds = ['quiz-screen', 'vocab-review-screen', 'tenses-practice-screen', 'phrases-practice-screen', 'story-play-screen', 'auction-play-screen', 'listening-screen', 'chinese-practice-screen', 'chinese-story-screen', 'chinese-auction-play-screen'];
 
 function showScreen(screen, direction) {
     document.querySelectorAll('.screen').forEach(s => {
@@ -209,8 +223,12 @@ function showScreen(screen, direction) {
     if (screenId.startsWith('tenses')) mod = 'tenses';
     else if (screenId.startsWith('phrases')) mod = 'phrases';
     else if (screenId.startsWith('game') || screenId.startsWith('story') || screenId.startsWith('auction')) mod = 'games';
+    else if (screenId === 'listening-screen') mod = 'listening';
     else if (screenId === 'stats-screen') mod = 'stats';
+    else if (screenId.startsWith('chinese')) mod = forcedNavModule || 'home';
     else if (screenId.startsWith('vocab') || screenId === 'quiz-screen') mod = 'vocab';
+
+    if (!screenId.startsWith('chinese')) forcedNavModule = null;
 
     document.querySelectorAll('.sidebar-nav-item').forEach(i => {
         i.classList.toggle('active', i.dataset.module === mod);
@@ -232,6 +250,12 @@ function showScreen(screen, direction) {
     }
 }
 
+function getLearningLanguage() {
+    return currentLearningLang;
+}
+
+window.getLearningLanguage = getLearningLanguage;
+
 // ===== Utility =====
 function todayStr() {
     return new Date().toISOString().slice(0, 10);
@@ -245,34 +269,415 @@ function shuffleVocabArray(arr) {
     return arr;
 }
 
-// ===== Initialize =====
-async function init() {
+function loadWordsFromSource() {
+    if (window.AppDataLoader && typeof window.AppDataLoader.getWords === 'function') {
+        return window.AppDataLoader.getWords();
+    }
+    return fetch('words.json').then(function (response) {
+        if (!response.ok) throw new Error('Failed to load words.json (' + response.status + ')');
+        return response.json();
+    });
+}
+
+async function ensureVocabDataLoaded() {
+    if (vocabDataReady && words.length > 0) return true;
+    if (vocabLoadPromise) return vocabLoadPromise;
+
+    vocabLoadPromise = (async function () {
+        try {
+            const loadedWords = await loadWordsFromSource();
+            words = Array.isArray(loadedWords) ? loadedWords : [];
+            vocabDataReady = true;
+
+            shuffledOrder = Array.isArray(shuffledOrder)
+                ? shuffledOrder.filter(idx => idx >= 0 && idx < words.length)
+                : [];
+            if (currentIndex >= shuffledOrder.length) currentIndex = 0;
+
+            buildFilteredIndices();
+            updateStartStats();
+            updateHomeStats();
+            return true;
+        } catch (e) {
+            console.error('Error loading words:', e);
+            return false;
+        } finally {
+            vocabLoadPromise = null;
+        }
+    })();
+
+    return vocabLoadPromise;
+}
+
+const HOME_UI_COPY = {
+    en: {
+        logo: '📚',
+        title: 'English Learning',
+        subtitle: 'Học từ vựng và ngữ pháp tiếng Anh',
+        cards: {
+            vocab: {
+                icon: 'A',
+                title: 'Từ vựng 3668 từ thông dụng',
+                desc: '3668 từ có IPA, phân loại theo level'
+            },
+            tenses: {
+                icon: 'T',
+                title: '12 Thì tiếng Anh',
+                desc: 'Lý thuyết, luyện tập, ôn tập'
+            },
+            phrases: {
+                icon: '💬',
+                title: 'Câu & Cụm từ',
+                desc: '9600+ câu Anh-Việt, A1-B2'
+            },
+            listening: {
+                icon: '🎧',
+                title: 'Luyện Nghe',
+                desc: 'Nghe và gõ lại câu tiếng Anh'
+            },
+            games: {
+                icon: '🎮',
+                title: 'Trò chơi tiếng Anh',
+                desc: 'Học qua câu chuyện tương tác'
+            }
+        }
+    },
+    zh: {
+        logo: '中',
+        title: 'Chinese Learning',
+        subtitle: 'Học tiếng Trung theo cùng giao diện',
+        cards: {
+            vocab: {
+                icon: '字',
+                title: 'Từ vựng tiếng Trung',
+                desc: 'Hán tự theo HSK, pinyin và nghĩa Việt'
+            },
+            tenses: {
+                icon: '文',
+                title: 'Ngữ pháp tiếng Trung',
+                desc: 'Mẫu câu và bài tập chọn đáp án'
+            },
+            phrases: {
+                icon: '句',
+                title: 'Câu giao tiếp tiếng Trung',
+                desc: 'Luyện dịch Trung-Việt hai chiều'
+            },
+            listening: {
+                icon: '🎧',
+                title: 'Luyện nghe tiếng Trung',
+                desc: 'Nghe tiếng Trung và trả lời'
+            },
+            games: {
+                icon: '🎮',
+                title: 'Trò chơi tiếng Trung',
+                desc: 'Story tương tác + Sentence Auction'
+            }
+        }
+    }
+};
+
+function loadLearningLanguage() {
+    const saved = localStorage.getItem(LEARNING_LANG_KEY);
+    currentLearningLang = saved === 'zh' ? 'zh' : 'en';
+}
+
+function setLearningLanguage(lang) {
+    currentLearningLang = lang === 'zh' ? 'zh' : 'en';
+    localStorage.setItem(LEARNING_LANG_KEY, currentLearningLang);
+    if (learningLanguageSelect) learningLanguageSelect.value = currentLearningLang;
+    if (learningLanguageSelectMobile) learningLanguageSelectMobile.value = currentLearningLang;
+    applyHomeLanguageCopy();
+    updateIrregularVerbUI();
+    setStatsSectionTitlesByLanguage();
+    showScreen(startScreen);
+    updateHomeStats();
+}
+
+function updateIrregularVerbUI() {
+    const isZh = currentLearningLang === 'zh';
+    const ivFab = document.getElementById('iv-fab');
+    const ivBadge = document.getElementById('iv-badge');
+    const ivOverlay = document.getElementById('iv-overlay');
+
+    if (ivFab) ivFab.style.display = isZh ? 'none' : '';
+    if (ivBadge) ivBadge.style.display = isZh ? 'none' : 'none';
+    if (isZh && ivOverlay) ivOverlay.classList.remove('active');
+}
+
+function setStatsSectionTitlesByLanguage() {
+    const chartTitle = document.getElementById('stats-section-chart-title');
+    const srsTitle = document.getElementById('stats-section-srs-title');
+    const missedTitle = document.getElementById('stats-section-missed-title');
+
+    if (currentLearningLang === 'zh') {
+        if (chartTitle) chartTitle.textContent = 'Lượt luyện theo chế độ';
+        if (srsTitle) srsTitle.textContent = 'Tiến trình từ vựng HSK';
+        if (missedTitle) missedTitle.textContent = 'Từ vựng hay sai nhất';
+    } else {
+        if (chartTitle) chartTitle.textContent = 'Từ học mỗi ngày';
+        if (srsTitle) srsTitle.textContent = 'Tiến trình SRS';
+        if (missedTitle) missedTitle.textContent = 'Từ hay sai nhất';
+    }
+}
+
+function setupLearningLanguageSelector() {
+    const selectors = [learningLanguageSelect, learningLanguageSelectMobile].filter(Boolean);
+    if (!selectors.length) return;
+
+    selectors.forEach(function (sel) {
+        sel.value = currentLearningLang;
+        sel.addEventListener('change', function () {
+            setLearningLanguage(sel.value);
+        });
+    });
+}
+
+function applyHomeLanguageCopy() {
+    const key = currentLearningLang === 'zh' ? 'zh' : 'en';
+    const copy = HOME_UI_COPY[key];
+    if (!copy) return;
+
+    if (homeLogoIconEl) homeLogoIconEl.textContent = copy.logo;
+    if (homeTitleEl) homeTitleEl.textContent = copy.title;
+    if (homeSubtitleEl) homeSubtitleEl.textContent = copy.subtitle;
+
+    const map = [
+        ['vocab', 'module-vocab-btn', 'module-vocab-title', 'module-vocab-desc'],
+        ['tenses', 'module-tenses-btn', 'module-tenses-title', 'module-tenses-desc'],
+        ['phrases', 'module-phrases-btn', 'module-phrases-title', 'module-phrases-desc'],
+        ['listening', 'module-listening-btn', 'module-listening-title', 'module-listening-desc'],
+        ['games', 'module-game-btn', 'module-game-title', 'module-game-desc']
+    ];
+
+    map.forEach(function (row) {
+        const cardKey = row[0];
+        const btnId = row[1];
+        const titleId = row[2];
+        const descId = row[3];
+        const cardCopy = copy.cards[cardKey];
+        if (!cardCopy) return;
+
+        const btn = document.getElementById(btnId);
+        const icon = btn ? btn.querySelector('.module-icon') : null;
+        const title = document.getElementById(titleId);
+        const desc = document.getElementById(descId);
+
+        if (icon) icon.textContent = cardCopy.icon;
+        if (title) title.textContent = cardCopy.title;
+        if (desc) desc.textContent = cardCopy.desc;
+    });
+}
+
+function getChineseProgressSnapshot() {
+    let parsed = null;
     try {
-        const response = await fetch('words.json');
-        words = await response.json();
+        parsed = JSON.parse(localStorage.getItem('eq_chinese_progress') || '{}');
     } catch (e) {
-        console.error('Error loading words:', e);
+        parsed = {};
     }
 
+    const sessions = parsed.sessions || {};
+    const modeCorrect = parsed.modeCorrect || {};
+    const modeWrong = parsed.modeWrong || {};
+    const vocabSrs = parsed.vocabSrs || {};
+    const vocabWrong = parsed.vocabWrong || {};
+    const correct = Number(parsed.correct || 0);
+    const wrong = Number(parsed.wrong || 0);
+    const today = todayStr();
+
+    let dueVocab = 0;
+    let learnedVocab = 0;
+    Object.keys(vocabSrs).forEach(id => {
+        const rec = vocabSrs[id] || {};
+        const lv = Number(rec.level || 0);
+        if (lv > 0) learnedVocab++;
+        if (lv > 0 && rec.nextDue && String(rec.nextDue) <= today) dueVocab++;
+    });
+
+    const totalSessions = Number(sessions.vocab || 0)
+        + Number(sessions.phrases || 0)
+        + Number(sessions.listening || 0)
+        + Number(sessions.grammar || 0)
+        + Number(sessions.story || 0);
+
+    const totalModeCorrect = Number(modeCorrect.vocab || 0)
+        + Number(modeCorrect.phrases || 0)
+        + Number(modeCorrect.listening || 0)
+        + Number(modeCorrect.grammar || 0)
+        + Number(modeCorrect.story || 0);
+
+    const totalModeWrong = Number(modeWrong.vocab || 0)
+        + Number(modeWrong.phrases || 0)
+        + Number(modeWrong.listening || 0)
+        + Number(modeWrong.grammar || 0)
+        + Number(modeWrong.story || 0);
+
+    return {
+        sessions: {
+            vocab: Number(sessions.vocab || 0),
+            phrases: Number(sessions.phrases || 0),
+            listening: Number(sessions.listening || 0),
+            grammar: Number(sessions.grammar || 0),
+            story: Number(sessions.story || 0)
+        },
+        modeCorrect: {
+            vocab: Number(modeCorrect.vocab || 0),
+            phrases: Number(modeCorrect.phrases || 0),
+            listening: Number(modeCorrect.listening || 0),
+            grammar: Number(modeCorrect.grammar || 0),
+            story: Number(modeCorrect.story || 0)
+        },
+        modeWrong: {
+            vocab: Number(modeWrong.vocab || 0),
+            phrases: Number(modeWrong.phrases || 0),
+            listening: Number(modeWrong.listening || 0),
+            grammar: Number(modeWrong.grammar || 0),
+            story: Number(modeWrong.story || 0)
+        },
+        totalSessions,
+        totalModeCorrect,
+        totalModeWrong,
+        answered: correct + wrong,
+        storyBest: Number(parsed.storyBest || 0),
+        dueVocab,
+        learnedVocab,
+        vocabSrs,
+        vocabWrong
+    };
+}
+
+async function updateChineseHomeStatsView() {
+    let summary = null;
+    if (typeof window.getChineseHomeSummary === 'function') {
+        try {
+            summary = await window.getChineseHomeSummary();
+        } catch (e) {
+            summary = null;
+        }
+    }
+    if (!summary) {
+        summary = { words: 0, phrases: 0, grammar: 0, stories: 0 };
+    }
+
+    const progress = getChineseProgressSnapshot();
+    const answeredRatio = summary.words > 0 ? Math.min(100, (progress.answered / summary.words) * 100) : 0;
+
+    const vocabStat = document.getElementById('vocab-stat');
+    const tensesStat = document.getElementById('tenses-stat');
+    const phrasesStat = document.getElementById('phrases-stat');
+    const listeningStat = document.getElementById('listening-stat');
+    const gameStat = document.getElementById('game-stat');
+
+    if (vocabStat) vocabStat.textContent = `${summary.words} từ`;
+    if (tensesStat) tensesStat.textContent = `${summary.grammar} bài`;
+    if (phrasesStat) phrasesStat.textContent = `${summary.phrases} câu`;
+    if (listeningStat) listeningStat.textContent = `${summary.phrases} câu`;
+    if (gameStat) gameStat.textContent = `${summary.stories} truyện · Best ${progress.storyBest} ⭐`;
+
+    const vocabBar = document.getElementById('vocab-progress-bar');
+    const tensesBar = document.getElementById('tenses-progress-bar');
+    const phrasesBar = document.getElementById('phrases-progress-bar');
+    const listeningBar = document.getElementById('listening-progress-bar');
+    const gameBar = document.getElementById('game-progress-bar');
+
+    if (vocabBar) vocabBar.style.width = answeredRatio + '%';
+    if (tensesBar) tensesBar.style.width = Math.min(100, progress.sessions.grammar * 10) + '%';
+    if (phrasesBar) phrasesBar.style.width = answeredRatio + '%';
+    if (listeningBar) listeningBar.style.width = Math.min(100, progress.sessions.listening * 10) + '%';
+    if (gameBar) gameBar.style.width = Math.min(100, progress.sessions.story * 10) + '%';
+}
+
+function openChineseModuleMode(mode, navModule) {
+    forcedNavModule = navModule || 'home';
+    if (typeof window.openChineseModule === 'function') {
+        window.openChineseModule(mode);
+        return;
+    }
+    if (typeof window.initChinese === 'function') window.initChinese();
+}
+
+async function openModule(moduleKey) {
+    const mod = moduleKey || 'home';
+    if (mod === 'home') {
+        showScreen(startScreen);
+        updateHomeStats();
+        return;
+    }
+    if (mod === 'stats') {
+        await showStatsScreen();
+        return;
+    }
+
+    if (currentLearningLang === 'zh') {
+        if (mod === 'vocab') return openChineseModuleMode('vocab_setup', 'vocab');
+        if (mod === 'tenses') return openChineseModuleMode('grammar_hub', 'tenses');
+        if (mod === 'phrases') return openChineseModuleMode('phrases_hub', 'phrases');
+        if (mod === 'listening') return openChineseModuleMode('listening', 'listening');
+        if (mod === 'games') return openChineseModuleMode('game_hub', 'games');
+        return;
+    }
+
+    if (mod === 'vocab') return showVocabSetup();
+    if (mod === 'tenses' && typeof initTenses === 'function') return initTenses();
+    if (mod === 'phrases' && typeof initPhrases === 'function') return initPhrases();
+    if (mod === 'listening' && typeof window.initListening === 'function') return window.initListening();
+    if (mod === 'games' && typeof initGame === 'function') return initGame();
+}
+
+window.refreshLocalizedHome = function () {
+    updateHomeStats();
+};
+
+// ===== Initialize =====
+function initCoreApp() {
+    if (coreAppInitialized) return;
     loadProgress();
     loadWordData();
     loadDailyStats();
+    loadLearningLanguage();
     loadSettings();
-    buildFilteredIndices();
+    setupLearningLanguageSelector();
+    applyHomeLanguageCopy();
+    updateIrregularVerbUI();
+    setStatsSectionTitlesByLanguage();
     updateHomeStats();
 
     // Home screen - module selection
-    document.getElementById('module-vocab-btn').addEventListener('click', showVocabSetup);
-    document.getElementById('module-tenses-btn').addEventListener('click', () => {
-        if (typeof initTenses === 'function') initTenses();
+    document.getElementById('module-vocab-btn').addEventListener('click', () => openModule('vocab'));
+    document.getElementById('module-tenses-btn').addEventListener('click', () => openModule('tenses'));
+    document.getElementById('module-phrases-btn').addEventListener('click', () => openModule('phrases'));
+    document.getElementById('module-listening-btn').addEventListener('click', () => openModule('listening'));
+    document.getElementById('module-game-btn').addEventListener('click', () => openModule('games'));
+    document.getElementById('module-stats-btn').addEventListener('click', () => openModule('stats'));
+
+    // Stats
+    document.getElementById('stats-back-btn').addEventListener('click', () => {
+        updateHomeStats();
+        showScreen(startScreen, 'back');
     });
-    document.getElementById('module-phrases-btn').addEventListener('click', () => {
-        if (typeof initPhrases === 'function') initPhrases();
-    });
-    document.getElementById('module-game-btn').addEventListener('click', () => {
-        if (typeof initGame === 'function') initGame();
-    });
-    document.getElementById('module-stats-btn').addEventListener('click', showStatsScreen);
+
+    // Settings
+    darkmodeToggle.addEventListener('change', onDarkmodeChange);
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', handleKeyboard);
+
+    // Speech Recognition
+    initSpeechRecognition();
+
+    // ===== Desktop Sidebar =====
+    initSidebar();
+
+    // ===== Mobile Bottom Nav =====
+    initBottomNav();
+
+    // ===== Gamification =====
+    updateGamificationBar();
+    coreAppInitialized = true;
+}
+
+function initVocabModule() {
+    if (vocabModuleInitialized) return;
 
     // Level filter
     document.querySelectorAll('#vocab-level-filter .level-pill').forEach(btn => {
@@ -317,30 +722,12 @@ async function init() {
     });
     document.getElementById('review-retry-btn').addEventListener('click', () => startReviewMode(vocabReviewMode));
     document.getElementById('review-back-setup-btn').addEventListener('click', () => showVocabSetup());
+    vocabModuleInitialized = true;
+}
 
-    // Stats
-    document.getElementById('stats-back-btn').addEventListener('click', () => {
-        updateHomeStats();
-        showScreen(startScreen, 'back');
-    });
-
-    // Settings
-    darkmodeToggle.addEventListener('change', onDarkmodeChange);
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', handleKeyboard);
-
-    // Speech Recognition
-    initSpeechRecognition();
-
-    // ===== Desktop Sidebar =====
-    initSidebar();
-
-    // ===== Mobile Bottom Nav =====
-    initBottomNav();
-
-    // ===== Gamification =====
-    updateGamificationBar();
+async function init() {
+    initCoreApp();
+    initVocabModule();
 }
 
 function initSidebar() {
@@ -357,15 +744,7 @@ function initSidebar() {
     // Sidebar nav items
     document.querySelectorAll('.sidebar-nav-item').forEach(item => {
         item.addEventListener('click', () => {
-            const mod = item.dataset.module;
-            document.querySelectorAll('.sidebar-nav-item').forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            if (mod === 'home') showScreen(startScreen);
-            else if (mod === 'vocab') showVocabSetup();
-            else if (mod === 'tenses' && typeof initTenses === 'function') initTenses();
-            else if (mod === 'phrases' && typeof initPhrases === 'function') initPhrases();
-            else if (mod === 'games' && typeof initGame === 'function') initGame();
-            else if (mod === 'stats') showStatsScreen();
+            openModule(item.dataset.module);
         });
     });
 
@@ -384,17 +763,57 @@ function updateSidebarStreak() {
 function initBottomNav() {
     document.querySelectorAll('.bottom-nav-item').forEach(item => {
         item.addEventListener('click', () => {
-            const mod = item.dataset.module;
-            document.querySelectorAll('.bottom-nav-item').forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            if (mod === 'home') showScreen(startScreen);
-            else if (mod === 'vocab') showVocabSetup();
-            else if (mod === 'tenses' && typeof initTenses === 'function') initTenses();
-            else if (mod === 'phrases' && typeof initPhrases === 'function') initPhrases();
-            else if (mod === 'games' && typeof initGame === 'function') initGame();
+            openModule(item.dataset.module);
         });
     });
 }
+
+// ===== SeenPhrases — Global cross-module tracker =====
+// Theo dõi phrase ID đã hiển thị ở bất kỳ module nào (Phrases + Listening)
+// Để khi học Cụm từ xong sang Luyện Nghe không bị lặp câu đã học
+window.SeenPhrases = (function () {
+    var KEY = 'eq_seen_p';
+    var MAX = 10000; // giới hạn tối đa trước khi reset
+    var _seen = null;
+
+    function _load() {
+        if (_seen) return;
+        try { _seen = JSON.parse(localStorage.getItem(KEY) || '[]'); }
+        catch (e) { _seen = []; }
+    }
+
+    function _save() {
+        try { localStorage.setItem(KEY, JSON.stringify(_seen)); }
+        catch (e) { /* ignore */ }
+    }
+
+    return {
+        add: function (id) {
+            _load();
+            if (!_seen.includes(id)) {
+                _seen.push(id);
+                if (_seen.length > MAX) _seen = _seen.slice(-MAX); // giữ MAX mới nhất
+                _save();
+            }
+        },
+        has: function (id) {
+            _load();
+            return _seen.includes(id);
+        },
+        getAll: function () {
+            _load();
+            return _seen.slice();
+        },
+        reset: function () {
+            _seen = [];
+            _save();
+        },
+        count: function () {
+            _load();
+            return _seen.length;
+        }
+    };
+})();
 
 // ===== XP & Gamification System =====
 let totalXP = parseInt(localStorage.getItem('elXP') || '0');
@@ -467,22 +886,36 @@ function launchConfetti(x, y, count) {
 
 // ===== Home Stats =====
 function updateHomeStats() {
-    if (words.length > 0) {
-        const vocabStat = document.getElementById('vocab-stat');
-        const vocabBar = document.getElementById('vocab-progress-bar');
-        if (vocabStat) vocabStat.textContent = `${currentIndex} / ${words.length} từ`;
-        if (vocabBar) vocabBar.style.width = `${(currentIndex / words.length) * 100}%`;
+    if (currentLearningLang === 'zh') {
+        updateChineseHomeStatsView();
+    } else {
+        if (words.length > 0) {
+            const vocabStat = document.getElementById('vocab-stat');
+            const vocabBar = document.getElementById('vocab-progress-bar');
+            if (vocabStat) vocabStat.textContent = `${currentIndex} / ${words.length} từ`;
+            if (vocabBar) vocabBar.style.width = `${(currentIndex / words.length) * 100}%`;
+        }
+        if (typeof updatePhrasesHomeStat === 'function') updatePhrasesHomeStat();
     }
-    if (typeof updatePhrasesHomeStat === 'function') updatePhrasesHomeStat();
 
     // Stats home summary
     const statsEl = document.getElementById('stats-home-summary');
     if (statsEl) {
-        const streak = calculateStreak();
-        const dueCount = getDueWords().length;
-        let text = `Chuỗi: ${streak} ngày`;
-        if (dueCount > 0) text += ` · ${dueCount} từ cần ôn`;
-        statsEl.textContent = text;
+        if (currentLearningLang === 'zh') {
+            const zh = getChineseProgressSnapshot();
+            const total = zh.totalModeCorrect + zh.totalModeWrong;
+            const acc = total > 0 ? Math.round((zh.totalModeCorrect / total) * 100) : 0;
+            let text = `Lượt luyện: ${zh.totalSessions}`;
+            if (zh.dueVocab > 0) text += ` · ${zh.dueVocab} từ cần ôn`;
+            if (total > 0) text += ` · ${acc}% chính xác`;
+            statsEl.textContent = text;
+        } else {
+            const streak = calculateStreak();
+            const dueCount = getDueWords().length;
+            let text = `Chuỗi: ${streak} ngày`;
+            if (dueCount > 0) text += ` · ${dueCount} từ cần ôn`;
+            statsEl.textContent = text;
+        }
     }
 
     updateGamificationBar();
@@ -517,7 +950,18 @@ function getLevelProgress() {
 }
 
 // ===== Vocab Setup Screen =====
-function showVocabSetup() {
+async function showVocabSetup() {
+    if (currentLearningLang === 'zh') {
+        openChineseModuleMode('vocab_setup', 'vocab');
+        return;
+    }
+
+    const ready = await ensureVocabDataLoaded();
+    if (!ready || words.length === 0) {
+        console.error('Vocab data is not available');
+        return;
+    }
+
     updateStartStats();
     showScreen(vocabSetupScreen);
 }
@@ -817,8 +1261,9 @@ function resetProgress() {
 }
 
 // ===== Quiz Navigation =====
-function startQuiz() {
-    if (filteredIndices.length === 0) return;
+async function startQuiz() {
+    const ready = await ensureVocabDataLoaded();
+    if (!ready || filteredIndices.length === 0) return;
     sessionStartTime = Date.now();
 
     if (isShuffled) {
@@ -868,7 +1313,9 @@ function showWord() {
     // Irregular verb indicator
     const ivBadge = document.getElementById('iv-badge');
     if (ivBadge) {
-        if (currentWord.type && currentWord.type.toLowerCase().includes('verb') && IrregularVerbs.isIrregular(currentWord.word)) {
+        if (currentLearningLang === 'zh') {
+            ivBadge.style.display = 'none';
+        } else if (currentWord.type && currentWord.type.toLowerCase().includes('verb') && IrregularVerbs.isIrregular(currentWord.word)) {
             ivBadge.style.display = 'inline-flex';
             ivBadge.onclick = () => IrregularVerbs.lookup(currentWord.word);
         } else {
@@ -972,7 +1419,7 @@ function nextWord() {
 }
 
 // ===== Text-to-Speech (Enhanced) =====
-let cachedVoice = null;
+let cachedVoiceByLang = {};
 let currentAudio = null;
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 let speakDelayTimer = null;
@@ -991,6 +1438,25 @@ const _dictAudioCache = {};
 const _googleTTSCache = {};
 // In-memory cache: Cloud TTS blob URLs (text+rate key → blob URL)
 const _cloudTTSCache = {};
+
+const CJK_CHAR_REGEX = /[\u3400-\u9FFF]/;
+
+function normalizeLangCode(langCode) {
+    const lc = (langCode || '').toLowerCase();
+    if (lc.startsWith('zh')) return 'zh-CN';
+    if (lc.startsWith('vi')) return 'vi-VN';
+    return 'en-US';
+}
+
+function inferLangCodeFromText(text, fallback) {
+    const explicit = normalizeLangCode(fallback);
+    if (fallback) return explicit;
+    const s = String(text || '');
+    if (CJK_CHAR_REGEX.test(s)) return 'zh-CN';
+    const hasVi = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i.test(s);
+    if (hasVi) return 'vi-VN';
+    return 'en-US';
+}
 
 function prefetchWordAudio(word) {
     if (!word || /\s/.test(word.trim())) return;
@@ -1023,36 +1489,60 @@ function prefetchWordAudio(word) {
         .catch(function() { clearTimeout(tid); _dictAudioCache[key] = null; });
 }
 
-function getBestEnglishVoice() {
-    if (cachedVoice) return cachedVoice;
+function getBestVoice(langCode) {
+    const lang = normalizeLangCode(langCode);
+    if (cachedVoiceByLang[lang]) return cachedVoiceByLang[lang];
     const voices = window.speechSynthesis.getVoices();
     if (!voices.length) return null;
 
-    const priorities = [
-        v => v.lang === 'en-US' && v.name.includes('Google US English'),
-        v => v.lang === 'en-US' && v.name.includes('Google'),
-        v => v.lang === 'en-US' && /enhanced|premium/i.test(v.name),
-        v => v.lang === 'en-US' && v.name.includes('Samantha'),
-        v => v.lang === 'en-GB' && /enhanced|premium/i.test(v.name),
-        v => v.lang === 'en-GB' && v.name.includes('Daniel'),
-        v => v.lang === 'en-US' && !v.localService,
-        v => v.lang === 'en-US' && v.localService,
-        v => v.lang === 'en-US',
-        v => v.lang === 'en-GB',
-        v => v.lang.startsWith('en'),
-    ];
+    var priorities;
+    if (lang === 'zh-CN') {
+        priorities = [
+            v => v.lang === 'zh-CN' && v.name.toLowerCase().includes('google'),
+            v => v.lang === 'zh-CN' && /mandarin|chinese/i.test(v.name),
+            v => v.lang === 'zh-CN',
+            v => v.lang === 'zh-TW',
+            v => v.lang.startsWith('zh'),
+        ];
+    } else if (lang === 'vi-VN') {
+        priorities = [
+            v => v.lang === 'vi-VN' && v.name.toLowerCase().includes('google'),
+            v => v.lang === 'vi-VN',
+            v => v.lang.startsWith('vi'),
+        ];
+    } else {
+        priorities = [
+            v => v.lang === 'en-US' && v.name.includes('Google US English'),
+            v => v.lang === 'en-US' && v.name.includes('Google'),
+            v => v.lang === 'en-US' && /enhanced|premium/i.test(v.name),
+            v => v.lang === 'en-US' && v.name.includes('Samantha'),
+            v => v.lang === 'en-GB' && /enhanced|premium/i.test(v.name),
+            v => v.lang === 'en-GB' && v.name.includes('Daniel'),
+            v => v.lang === 'en-US' && !v.localService,
+            v => v.lang === 'en-US' && v.localService,
+            v => v.lang === 'en-US',
+            v => v.lang === 'en-GB',
+            v => v.lang.startsWith('en'),
+        ];
+    }
 
     for (const test of priorities) {
         const found = voices.find(test);
-        if (found) { cachedVoice = found; return found; }
+        if (found) { cachedVoiceByLang[lang] = found; return found; }
     }
     return null;
 }
 
 // Preload voices ngay khi khởi động
-getBestEnglishVoice();
+getBestVoice('en-US');
+getBestVoice('zh-CN');
 if (window.speechSynthesis.onvoiceschanged !== undefined) {
-    window.speechSynthesis.onvoiceschanged = function() { cachedVoice = null; getBestEnglishVoice(); };
+    window.speechSynthesis.onvoiceschanged = function() {
+        cachedVoiceByLang = {};
+        getBestVoice('en-US');
+        getBestVoice('zh-CN');
+        getBestVoice('vi-VN');
+    };
 }
 
 // ---- Helpers ----
@@ -1063,6 +1553,7 @@ function _stopCurrentAudio() {
         try { currentAudio.pause(); } catch(e) {}
         currentAudio = null;
     }
+    _stopWebSpeechKeepalive();
     window.speechSynthesis.cancel();
 }
 
@@ -1125,25 +1616,46 @@ function _splitTextForTTS(text, maxLen) {
     return chunks.length ? chunks : [text.slice(0, maxLen)];
 }
 
+// Keepalive để chống Chrome/Chromium bug: Web Speech tự pause sau ~15s
+var _webSpeechKeepalive = null;
+function _startWebSpeechKeepalive() {
+    _stopWebSpeechKeepalive();
+    _webSpeechKeepalive = setInterval(function() {
+        if (!window.speechSynthesis.speaking) { _stopWebSpeechKeepalive(); return; }
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+    }, 10000);
+}
+function _stopWebSpeechKeepalive() {
+    if (_webSpeechKeepalive) { clearInterval(_webSpeechKeepalive); _webSpeechKeepalive = null; }
+}
+
 // Fallback: Web Speech API (last resort, giọng local)
-function _speakViaWebSpeech(text, btn, rate) {
+function _speakViaWebSpeech(text, btn, rate, langCode) {
     window.speechSynthesis.cancel();
+    _stopWebSpeechKeepalive();
     var doSpeak = function() {
         var utt = new SpeechSynthesisUtterance(text);
-        utt.lang = 'en-US';
+        var normalizedLang = normalizeLangCode(langCode);
+        utt.lang = normalizedLang;
         utt.rate = (rate != null && rate > 0) ? rate : 0.9;
         utt.pitch = 1;
         utt.volume = 1;
-        var voice = getBestEnglishVoice();
+        var voice = getBestVoice(normalizedLang);
         if (voice) utt.voice = voice;
-        if (btn) {
-            btn.classList.add('speaking');
-            utt.onend = function() { btn.classList.remove('speaking'); };
-            utt.onerror = function() { btn.classList.remove('speaking'); };
-        }
+        if (btn) btn.classList.add('speaking');
+        utt.onend = function() {
+            _stopWebSpeechKeepalive();
+            if (btn) btn.classList.remove('speaking');
+        };
+        utt.onerror = function() {
+            _stopWebSpeechKeepalive();
+            if (btn) btn.classList.remove('speaking');
+        };
         window.speechSynthesis.speak(utt);
+        _startWebSpeechKeepalive();
     };
-    setTimeout(doSpeak, isMobile ? 80 : 0);
+    setTimeout(doSpeak, isMobile ? 80 : 20);
 }
 
 function _base64ToBlobUrl(base64, mimeType) {
@@ -1155,11 +1667,12 @@ function _base64ToBlobUrl(base64, mimeType) {
     return URL.createObjectURL(blob);
 }
 
-function _getCloudTTSBlobUrl(text, rate) {
+function _getCloudTTSBlobUrl(text, rate, langCode) {
     if (!TTS_CONFIG.preferCloud) return Promise.reject(new Error('cloud tts disabled'));
     var normalizedRate = (rate && rate > 0) ? rate : 1.0;
     var normalizedText = (text || '').trim();
-    var cacheKey = normalizedText.toLowerCase().slice(0, 320) + '|' + normalizedRate.toFixed(2);
+    var normalizedLang = normalizeLangCode(langCode);
+    var cacheKey = normalizedLang + '|' + normalizedText.toLowerCase().slice(0, 320) + '|' + normalizedRate.toFixed(2);
     if (_cloudTTSCache[cacheKey]) return Promise.resolve(_cloudTTSCache[cacheKey]);
 
     return fetch(TTS_CONFIG.cloudEndpoint, {
@@ -1168,6 +1681,7 @@ function _getCloudTTSBlobUrl(text, rate) {
         body: JSON.stringify({
             text: normalizedText.slice(0, 2000),
             rate: normalizedRate,
+            lang: normalizedLang,
         })
     })
         .then(function(res) {
@@ -1182,8 +1696,8 @@ function _getCloudTTSBlobUrl(text, rate) {
         });
 }
 
-function _speakViaCloudTTS(text, btn, rate, onFail) {
-    _getCloudTTSBlobUrl(text, rate)
+function _speakViaCloudTTS(text, btn, rate, langCode, onFail) {
+    _getCloudTTSBlobUrl(text, rate, langCode)
         .then(function(url) {
             _playAudioUrl(url, btn, rate, onFail);
         })
@@ -1192,11 +1706,13 @@ function _speakViaCloudTTS(text, btn, rate, onFail) {
         });
 }
 
-function _getGoogleTTSBlobUrl(text) {
-    var cacheKey = text.toLowerCase().trim().slice(0, 180);
+function _getGoogleTTSBlobUrl(text, langCode) {
+    var normalizedLang = normalizeLangCode(langCode);
+    var cacheKey = normalizedLang + '|' + text.toLowerCase().trim().slice(0, 180);
     if (_googleTTSCache[cacheKey]) return Promise.resolve(_googleTTSCache[cacheKey]);
 
-    var url = 'https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=en-US&client=gtx&q='
+    // tw-ob client ổn định hơn gtx, ít bị block hơn trên các trình duyệt không phải Chrome
+    var url = 'https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=' + encodeURIComponent(normalizedLang) + '&client=tw-ob&q='
         + encodeURIComponent(text.slice(0, 180));
 
     return fetch(url)
@@ -1205,6 +1721,7 @@ function _getGoogleTTSBlobUrl(text) {
             return res.blob();
         })
         .then(function(blob) {
+            if (!blob || blob.size < 100) throw new Error('gtts empty blob');
             var blobUrl = URL.createObjectURL(blob);
             _googleTTSCache[cacheKey] = blobUrl;
             return blobUrl;
@@ -1214,8 +1731,8 @@ function _getGoogleTTSBlobUrl(text) {
 // Primary TTS: Google Translate TTS
 // Fetch → blob URL → cache in-memory → playbackRate cho speed control
 // Giọng Google nhất quán trên mọi thiết bị
-function _speakViaGoogleTTS(text, btn, rate, onFail) {
-    _getGoogleTTSBlobUrl(text)
+function _speakViaGoogleTTS(text, btn, rate, langCode, onFail) {
+    _getGoogleTTSBlobUrl(text, langCode)
         .then(function(blobUrl) {
             _playAudioUrl(blobUrl, btn, rate, onFail);
         })
@@ -1225,7 +1742,7 @@ function _speakViaGoogleTTS(text, btn, rate, onFail) {
 }
 
 // Phát tuần tự nhiều chunks (cho text dài)
-function _speakChunksSequentially(chunks, btn, rate, onFail) {
+function _speakChunksSequentially(chunks, btn, rate, langCode, onFail) {
     if (!chunks || !chunks.length) return;
     if (btn) btn.classList.add('speaking');
     var idx = 0;
@@ -1239,12 +1756,12 @@ function _speakChunksSequentially(chunks, btn, rate, onFail) {
         var chunk = chunks[idx++];
         var getChunkAudio = null;
         if (TTS_CONFIG.preferCloud) {
-            getChunkAudio = _getCloudTTSBlobUrl(chunk, rate).catch(function(err) {
-                if (TTS_CONFIG.useLegacyGoogleFallback) return _getGoogleTTSBlobUrl(chunk);
+            getChunkAudio = _getCloudTTSBlobUrl(chunk, rate, langCode).catch(function(err) {
+                if (TTS_CONFIG.useLegacyGoogleFallback) return _getGoogleTTSBlobUrl(chunk, langCode);
                 throw err;
             });
         } else {
-            getChunkAudio = _getGoogleTTSBlobUrl(chunk);
+            getChunkAudio = _getGoogleTTSBlobUrl(chunk, langCode);
         }
 
         getChunkAudio
@@ -1283,14 +1800,15 @@ function speakWord(text) {
     _stopCurrentAudio();
 
     var activeBtn = document.querySelector('.screen.active .speak-btn') || speakBtn;
+    var langCode = 'en-US';
 
     // Cloud-first để đồng nhất giọng giữa browser/device.
     var fallbackToWebSpeech = function() {
-        _speakViaWebSpeech(word, activeBtn, null);
+        _speakViaWebSpeech(word, activeBtn, null, langCode);
     };
 
     if (TTS_CONFIG.preferCloud) {
-        _speakViaCloudTTS(word, activeBtn, 1.0, function() {
+        _speakViaCloudTTS(word, activeBtn, 1.0, langCode, function() {
             if (TTS_CONFIG.useDictionaryFallback && !/\s/.test(word)) {
                 var audioUrl = _dictAudioCache[word.toLowerCase()];
                 if (audioUrl) {
@@ -1300,7 +1818,7 @@ function speakWord(text) {
                 prefetchWordAudio(word);
             }
             if (TTS_CONFIG.useLegacyGoogleFallback) {
-                _speakViaGoogleTTS(word, activeBtn, 1.0, fallbackToWebSpeech);
+                _speakViaGoogleTTS(word, activeBtn, 1.0, langCode, fallbackToWebSpeech);
                 return;
             }
             fallbackToWebSpeech();
@@ -1308,40 +1826,41 @@ function speakWord(text) {
         return;
     }
 
-    _speakViaGoogleTTS(word, activeBtn, 1.0, fallbackToWebSpeech);
+    _speakViaGoogleTTS(word, activeBtn, 1.0, langCode, fallbackToWebSpeech);
 }
 
 // Global speak — dùng cho phrases.js và game.js
-// opts: { rate: number, btn: HTMLElement }
+// opts: { rate: number, btn: HTMLElement, lang: 'en-US'|'vi-VN'|'zh-CN' }
 window.speakText = function(text, opts) {
     _stopCurrentAudio();
     var btn = (opts && opts.btn) || null;
     var rate = (opts && opts.rate != null && opts.rate > 0) ? opts.rate : 1.0;
+    var langCode = inferLangCodeFromText(text, opts && opts.lang);
     var fallbackToWebSpeech = function() {
-        _speakViaWebSpeech(text, btn, rate);
+        _speakViaWebSpeech(text, btn, rate, langCode);
     };
 
     var chunks = _splitTextForTTS(text);
     if (TTS_CONFIG.preferCloud) {
         if (chunks.length <= 1) {
-            _speakViaCloudTTS(text, btn, rate, function() {
+            _speakViaCloudTTS(text, btn, rate, langCode, function() {
                 if (TTS_CONFIG.useLegacyGoogleFallback) {
-                    _speakViaGoogleTTS(text, btn, rate, fallbackToWebSpeech);
+                    _speakViaGoogleTTS(text, btn, rate, langCode, fallbackToWebSpeech);
                     return;
                 }
                 fallbackToWebSpeech();
             });
             return;
         }
-        _speakChunksSequentially(chunks, btn, rate, fallbackToWebSpeech);
+        _speakChunksSequentially(chunks, btn, rate, langCode, fallbackToWebSpeech);
         return;
     }
 
     if (chunks.length <= 1) {
-        _speakViaGoogleTTS(text, btn, rate, fallbackToWebSpeech);
+        _speakViaGoogleTTS(text, btn, rate, langCode, fallbackToWebSpeech);
         return;
     }
-    _speakChunksSequentially(chunks, btn, rate, fallbackToWebSpeech);
+    _speakChunksSequentially(chunks, btn, rate, langCode, fallbackToWebSpeech);
 };
 
 // ===== Speech Recognition =====
@@ -1497,6 +2016,9 @@ function showSpeechResult(text, result) {
 
 // ===== Vocab Review (General / Wrong / SRS) =====
 async function startReviewMode(mode) {
+    const ready = await ensureVocabDataLoaded();
+    if (!ready || words.length === 0) return;
+
     vocabReviewMode = mode;
     let pool = [];
 
@@ -1517,8 +2039,12 @@ async function startReviewMode(mode) {
     // Load phrases.json for context hints (cache)
     if (!phrasesCache) {
         try {
-            const res = await fetch('phrases.json');
-            phrasesCache = await res.json();
+            if (window.AppDataLoader && typeof window.AppDataLoader.getPhrasesPayload === 'function') {
+                phrasesCache = await window.AppDataLoader.getPhrasesPayload();
+            } else {
+                const res = await fetch('phrases.json');
+                phrasesCache = await res.json();
+            }
         } catch (e) { /* hints won't work but review still works */ }
     }
 
@@ -1733,11 +2259,199 @@ function nextReviewWord() {
 }
 
 // ===== Stats Dashboard =====
-function showStatsScreen() {
-    renderStatsSummary();
-    renderDailyChart();
-    renderSRSProgress();
-    renderMissedWords();
+async function loadChineseWordsForStats() {
+    if (Array.isArray(chineseWordsCache)) return chineseWordsCache;
+    try {
+        const res = await fetch('chinese_words.json');
+        chineseWordsCache = res.ok ? await res.json() : [];
+    } catch (e) {
+        chineseWordsCache = [];
+    }
+    return chineseWordsCache;
+}
+
+async function renderChineseStatsSummary() {
+    const container = document.getElementById('stats-summary');
+    if (!container) return;
+
+    let summary = { words: 0, phrases: 0, grammar: 0, stories: 0 };
+    if (typeof window.getChineseHomeSummary === 'function') {
+        try {
+            const s = await window.getChineseHomeSummary();
+            if (s) summary = s;
+        } catch (e) {
+            // ignore
+        }
+    }
+
+    const p = getChineseProgressSnapshot();
+    const totalAnswer = p.totalModeCorrect + p.totalModeWrong;
+    const acc = totalAnswer > 0 ? Math.round((p.totalModeCorrect / totalAnswer) * 100) : 0;
+
+    container.innerHTML = `
+        <div class="stats-card">
+            <div class="stats-card-number">${p.totalSessions}</div>
+            <div class="stats-card-label">Lượt luyện</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-number">${p.learnedVocab}</div>
+            <div class="stats-card-label">Từ đã học</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-number">${p.dueVocab}</div>
+            <div class="stats-card-label">Cần ôn</div>
+        </div>
+        <div class="stats-card">
+            <div class="stats-card-number">${acc}%</div>
+            <div class="stats-card-label">Chính xác</div>
+        </div>
+    `;
+
+    // Keep section context informative for Chinese dataset size
+    const chartTitle = document.getElementById('stats-section-chart-title');
+    if (chartTitle) {
+        chartTitle.textContent = `Lượt luyện theo chế độ (Từ: ${summary.words}, Câu: ${summary.phrases})`;
+    }
+}
+
+function renderChineseModeChart() {
+    const container = document.getElementById('stats-chart');
+    if (!container) return;
+
+    const p = getChineseProgressSnapshot();
+    const rows = [
+        { key: 'vocab', label: 'Từ', count: Number(p.sessions.vocab || 0) },
+        { key: 'grammar', label: 'Ngữ', count: Number(p.sessions.grammar || 0) },
+        { key: 'phrases', label: 'Câu', count: Number(p.sessions.phrases || 0) },
+        { key: 'listening', label: 'Nghe', count: Number(p.sessions.listening || 0) },
+        { key: 'story', label: 'Game', count: Number(p.sessions.story || 0) }
+    ];
+
+    let maxVal = 1;
+    rows.forEach(r => { if (r.count > maxVal) maxVal = r.count; });
+
+    container.innerHTML = rows.map(r => `
+        <div class="chart-bar-wrap">
+            <div class="chart-bar" style="height: ${Math.max((r.count / maxVal) * 100, r.count > 0 ? 8 : 2)}%">
+                ${r.count > 0 ? `<span class="chart-bar-val">${r.count}</span>` : ''}
+            </div>
+            <div class="chart-bar-label">${r.label}</div>
+        </div>
+    `).join('');
+}
+
+async function renderChineseSRSProgress() {
+    const container = document.getElementById('stats-srs');
+    if (!container) return;
+
+    let totalWords = 0;
+    if (typeof window.getChineseHomeSummary === 'function') {
+        try {
+            const s = await window.getChineseHomeSummary();
+            totalWords = Number((s && s.words) || 0);
+        } catch (e) {
+            totalWords = 0;
+        }
+    }
+    if (!totalWords) {
+        const words = await loadChineseWordsForStats();
+        totalWords = Array.isArray(words) ? words.length : 0;
+    }
+
+    const p = getChineseProgressSnapshot();
+    const counts = { new: 0, learning: 0, reviewing: 0, mastering: 0, mastered: 0 };
+
+    Object.keys(p.vocabSrs || {}).forEach(id => {
+        const rec = p.vocabSrs[id] || {};
+        const lv = Number(rec.level || 0);
+        if (lv <= 0) return;
+        if (lv === 1) counts.learning++;
+        else if (lv === 2) counts.reviewing++;
+        else if (lv === 3 || lv === 4) counts.mastering++;
+        else counts.mastered++;
+    });
+
+    const learned = counts.learning + counts.reviewing + counts.mastering + counts.mastered;
+    counts.new = Math.max(0, totalWords - learned);
+
+    const total = Math.max(1, totalWords);
+    const items = [
+        { label: 'Chưa học', count: counts.new, color: '#94a3b8' },
+        { label: 'Mới học', count: counts.learning, color: '#f59e0b' },
+        { label: 'Đang ôn', count: counts.reviewing, color: '#3b82f6' },
+        { label: 'Củng cố', count: counts.mastering, color: '#8b5cf6' },
+        { label: 'Đã thuộc', count: counts.mastered, color: '#10b981' }
+    ];
+
+    container.innerHTML = `
+        <div class="srs-bar">
+            ${items.filter(it => it.count > 0).map(it =>
+                `<div class="srs-bar-segment" style="width:${(it.count / total) * 100}%;background:${it.color}" title="${it.label}: ${it.count}"></div>`
+            ).join('')}
+        </div>
+        <div class="srs-legend">
+            ${items.map(it =>
+                `<span class="srs-legend-item"><span class="srs-dot" style="background:${it.color}"></span>${it.label}: ${it.count}</span>`
+            ).join('')}
+        </div>
+    `;
+}
+
+async function renderChineseMissedWords() {
+    const container = document.getElementById('stats-missed');
+    if (!container) return;
+
+    const p = getChineseProgressSnapshot();
+    const wrongMap = p.vocabWrong || {};
+    const entries = Object.keys(wrongMap)
+        .map(id => ({ id, wrongCount: Number(wrongMap[id] || 0) }))
+        .filter(r => r.wrongCount > 0)
+        .sort((a, b) => b.wrongCount - a.wrongCount)
+        .slice(0, 10);
+
+    if (!entries.length) {
+        container.innerHTML = '<div class="stats-empty">Chưa có từ nào sai</div>';
+        return;
+    }
+
+    const words = await loadChineseWordsForStats();
+    const byId = {};
+    (Array.isArray(words) ? words : []).forEach(w => {
+        if (w && w.id) byId[w.id] = w;
+    });
+
+    container.innerHTML = entries.map((m, i) => {
+        const w = byId[m.id] || {};
+        const wordText = w.word || m.id;
+        const meaningText = w.meaning || '';
+        return `
+            <div class="missed-item">
+                <span class="missed-rank">${i + 1}</span>
+                <div class="missed-info">
+                    <span class="missed-word">${wordText}</span>
+                    <span class="missed-meaning">${meaningText}</span>
+                </div>
+                <span class="missed-count">${m.wrongCount} sai</span>
+            </div>
+        `;
+    }).join('');
+}
+
+async function showStatsScreen() {
+    setStatsSectionTitlesByLanguage();
+
+    if (currentLearningLang === 'zh') {
+        await renderChineseStatsSummary();
+        renderChineseModeChart();
+        await renderChineseSRSProgress();
+        await renderChineseMissedWords();
+    } else {
+        renderStatsSummary();
+        renderDailyChart();
+        renderSRSProgress();
+        renderMissedWords();
+    }
+
     showScreen(document.getElementById('stats-screen'));
 }
 
