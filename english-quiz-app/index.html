@@ -65,11 +65,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- Vercel Web Analytics -->
+    <!-- Vercel Web Analytics (skip on localhost) -->
     <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        (function () {
+            var host = window.location.hostname;
+            var isLocal = host === 'localhost' || host === '127.0.0.1' || host === '::1';
+            if (isLocal) return;
+            window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+            var script = document.createElement('script');
+            script.defer = true;
+            script.src = 'https://cdn.vercel-insights.com/v1/script.js';
+            document.head.appendChild(script);
+        })();
     </script>
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 <body>
     <div class="app-shell">

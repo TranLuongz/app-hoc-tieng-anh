@@ -1,0 +1,9 @@
+{
+  "name": "english-quiz-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "English/Chinese learning web app",
+  "dependencies": {
+    "msedge-tts": "^2.0.4"
+  }
+}

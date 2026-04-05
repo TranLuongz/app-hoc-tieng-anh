@@ -1323,7 +1323,18 @@ function showWord() {
         }
     }
 
-    speakWord(currentWord.word);
+    const nextQuizIndex = (currentIndex + 1 < shuffledOrder.length) ? shuffledOrder[currentIndex + 1] : null;
+    const nextQuizWord = Number.isInteger(nextQuizIndex) ? words[nextQuizIndex] : null;
+    speakWord(currentWord.word, {
+        auto: true,
+        audioId: _buildWordAudioIdByRealIndex(realIndex),
+        preloadNext: nextQuizWord ? {
+            text: nextQuizWord.word,
+            lang: 'en-US',
+            rate: 1.0,
+            audioId: _buildWordAudioIdByRealIndex(nextQuizIndex),
+        } : null,
+    });
 
     const options = generateOptions(realIndex);
     optionBtns.forEach((btn, i) => {
@@ -1418,39 +1429,50 @@ function nextWord() {
     showWord();
 }
 
-// ===== Text-to-Speech (Enhanced) =====
+// ===== Text-to-Speech (Hybrid Pipeline) =====
 let cachedVoiceByLang = {};
 let currentAudio = null;
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 let speakDelayTimer = null;
+let ttsUserGestureUnlocked = false;
+let ttsPendingSpeakTask = null;
+let ttsGestureHooksBound = false;
+let ttsPreloadTimer = null;
+let _ttsDbPromise = null;
 
 const TTS_CONFIG = {
+    enablePreGeneratedAudio: false,
+    preGeneratedBasePath: '/audio',
+    edgeEndpoint: '/api/edge-tts',
+    enableCloudFallback: false,
     cloudEndpoint: '/api/tts',
-    preferCloud: false,
-    useLegacyGoogleFallback: true,
-    useDictionaryFallback: false,
+    maxNetworkRetries: 2,
+    networkFirstTimeoutMsAuto: 900,
+    preloadDelayMs: 120,
+    enableIndexedDbCache: true,
+    idbName: 'eq_tts_cache_v1',
+    idbStore: 'clips',
 };
 
-// In-memory cache: Dictionary API word audio (word → mp3 URL)
-const _dictAudioCache = {};
-// In-memory cache: Google TTS blob URLs (text key → blob URL)
-// Blob URLs tồn tại suốt session → repeat plays không cần network
-const _googleTTSCache = {};
-// In-memory cache: Cloud TTS blob URLs (text+rate key → blob URL)
-const _cloudTTSCache = {};
-
+const _ttsObjectUrlCache = {};
+const _ttsPromiseCache = {};
+const _ttsEndpointAvailability = { edge: null, cloud: null };
+const _ttsPreGeneratedState = {
+    enabled: !!TTS_CONFIG.enablePreGeneratedAudio,
+    missCount: 0,
+    disableAfterMisses: 12,
+};
 const CJK_CHAR_REGEX = /[\u3400-\u9FFF]/;
 
 function normalizeLangCode(langCode) {
-    const lc = (langCode || '').toLowerCase();
+    const lc = String(langCode || '').toLowerCase();
     if (lc.startsWith('zh')) return 'zh-CN';
     if (lc.startsWith('vi')) return 'vi-VN';
     return 'en-US';
 }
 
 function inferLangCodeFromText(text, fallback) {
-    const explicit = normalizeLangCode(fallback);
-    if (fallback) return explicit;
+    if (fallback) return normalizeLangCode(fallback);
     const s = String(text || '');
     if (CJK_CHAR_REGEX.test(s)) return 'zh-CN';
     const hasVi = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i.test(s);
@@ -1458,35 +1480,111 @@ function inferLangCodeFromText(text, fallback) {
     return 'en-US';
 }
 
-function prefetchWordAudio(word) {
-    if (!word || /\s/.test(word.trim())) return;
-    const key = word.toLowerCase().trim();
-    if (key in _dictAudioCache) return;
-    const controller = new AbortController();
-    const tid = setTimeout(function() { controller.abort(); }, 5000);
-    fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(key), { signal: controller.signal })
-        .then(function(res) {
-            clearTimeout(tid);
-            if (!res.ok) { _dictAudioCache[key] = null; return null; }
-            return res.json();
-        })
-        .then(function(data) {
-            if (!data) return;
-            for (var i = 0; i < data.length; i++) {
-                var ph = data[i].phonetics || [];
-                for (var j = 0; j < ph.length; j++) {
-                    if (ph[j].audio && ph[j].audio.includes('-us')) { _dictAudioCache[key] = ph[j].audio; return; }
+function _sleep(ms) {
+    return new Promise(function (resolve) { setTimeout(resolve, ms); });
+}
+
+async function _fetchWithRetry(url, options, retries, baseDelayMs) {
+    const maxRetry = Math.max(0, Number(retries || 0));
+    const baseDelay = Math.max(120, Number(baseDelayMs || 240));
+    let lastErr = null;
+    for (let attempt = 0; attempt <= maxRetry; attempt++) {
+        try {
+            const res = await fetch(url, options);
+            if (res.ok) return res;
+            if (res.status < 500 && res.status !== 429) return res;
+            lastErr = new Error('HTTP ' + res.status);
+        } catch (e) {
+            lastErr = e;
+        }
+        if (attempt < maxRetry) await _sleep(baseDelay * Math.pow(2, attempt));
+    }
+    throw lastErr || new Error('request failed');
+}
+
+function _safeTextKey(text, maxLen) {
+    return String(text || '').toLowerCase().replace(/\s+/g, ' ').trim().slice(0, maxLen || 320);
+}
+
+function _cacheBlobToObjectUrl(cacheKey, blob) {
+    if (_ttsObjectUrlCache[cacheKey]) return _ttsObjectUrlCache[cacheKey];
+    const url = URL.createObjectURL(blob);
+    _ttsObjectUrlCache[cacheKey] = url;
+    return url;
+}
+
+function _openTtsCacheDb() {
+    if (!TTS_CONFIG.enableIndexedDbCache) return Promise.resolve(null);
+    if (!('indexedDB' in window)) return Promise.resolve(null);
+    if (_ttsDbPromise) return _ttsDbPromise;
+    _ttsDbPromise = new Promise(function (resolve) {
+        try {
+            const req = indexedDB.open(TTS_CONFIG.idbName, 1);
+            req.onupgradeneeded = function (event) {
+                const db = event.target.result;
+                if (!db.objectStoreNames.contains(TTS_CONFIG.idbStore)) {
+                    db.createObjectStore(TTS_CONFIG.idbStore, { keyPath: 'key' });
                 }
-            }
-            for (var i = 0; i < data.length; i++) {
-                var ph = data[i].phonetics || [];
-                for (var j = 0; j < ph.length; j++) {
-                    if (ph[j].audio) { _dictAudioCache[key] = ph[j].audio; return; }
-                }
-            }
-            _dictAudioCache[key] = null;
-        })
-        .catch(function() { clearTimeout(tid); _dictAudioCache[key] = null; });
+            };
+            req.onsuccess = function (event) { resolve(event.target.result); };
+            req.onerror = function () { resolve(null); };
+        } catch (e) {
+            resolve(null);
+        }
+    });
+    return _ttsDbPromise;
+}
+
+async function _idbGetBlob(cacheKey) {
+    const db = await _openTtsCacheDb();
+    if (!db) return null;
+    return new Promise(function (resolve) {
+        try {
+            const req = db.transaction(TTS_CONFIG.idbStore, 'readonly').objectStore(TTS_CONFIG.idbStore).get(cacheKey);
+            req.onsuccess = function () {
+                const rec = req.result;
+                resolve(rec && rec.blob ? rec.blob : null);
+            };
+            req.onerror = function () { resolve(null); };
+        } catch (e) {
+            resolve(null);
+        }
+    });
+}
+
+async function _idbSetBlob(cacheKey, blob) {
+    const db = await _openTtsCacheDb();
+    if (!db) return;
+    return new Promise(function (resolve) {
+        try {
+            const tx = db.transaction(TTS_CONFIG.idbStore, 'readwrite');
+            tx.objectStore(TTS_CONFIG.idbStore).put({ key: cacheKey, blob: blob, ts: Date.now() });
+            tx.oncomplete = function () { resolve(); };
+            tx.onerror = function () { resolve(); };
+        } catch (e) {
+            resolve();
+        }
+    });
+}
+
+function _bindTtsGestureUnlock() {
+    if (ttsGestureHooksBound) return;
+    ttsGestureHooksBound = true;
+    const unlock = function () {
+        ttsUserGestureUnlocked = true;
+        if (ttsPendingSpeakTask) {
+            const task = ttsPendingSpeakTask;
+            ttsPendingSpeakTask = null;
+            task();
+        }
+    };
+    document.addEventListener('pointerdown', unlock, { passive: true });
+    document.addEventListener('touchstart', unlock, { passive: true });
+    document.addEventListener('keydown', unlock, { passive: true });
+}
+
+function _queueSpeakUntilGesture(task) {
+    ttsPendingSpeakTask = task;
 }
 
 function getBestVoice(langCode) {
@@ -1495,7 +1593,7 @@ function getBestVoice(langCode) {
     const voices = window.speechSynthesis.getVoices();
     if (!voices.length) return null;
 
-    var priorities;
+    let priorities;
     if (lang === 'zh-CN') {
         priorities = [
             v => v.lang === 'zh-CN' && v.name.toLowerCase().includes('google'),
@@ -1528,16 +1626,20 @@ function getBestVoice(langCode) {
 
     for (const test of priorities) {
         const found = voices.find(test);
-        if (found) { cachedVoiceByLang[lang] = found; return found; }
+        if (found) {
+            cachedVoiceByLang[lang] = found;
+            return found;
+        }
     }
     return null;
 }
 
-// Preload voices ngay khi khởi động
 getBestVoice('en-US');
 getBestVoice('zh-CN');
+getBestVoice('vi-VN');
+_bindTtsGestureUnlock();
 if (window.speechSynthesis.onvoiceschanged !== undefined) {
-    window.speechSynthesis.onvoiceschanged = function() {
+    window.speechSynthesis.onvoiceschanged = function () {
         cachedVoiceByLang = {};
         getBestVoice('en-US');
         getBestVoice('zh-CN');
@@ -1545,322 +1647,487 @@ if (window.speechSynthesis.onvoiceschanged !== undefined) {
     };
 }
 
-// ---- Helpers ----
+let _webSpeechKeepalive = null;
+function _startWebSpeechKeepalive() {
+    _stopWebSpeechKeepalive();
+    _webSpeechKeepalive = setInterval(function () {
+        if (!window.speechSynthesis.speaking) {
+            _stopWebSpeechKeepalive();
+            return;
+        }
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+    }, 10000);
+}
 
-// Stop bất kỳ audio đang phát
+function _stopWebSpeechKeepalive() {
+    if (_webSpeechKeepalive) {
+        clearInterval(_webSpeechKeepalive);
+        _webSpeechKeepalive = null;
+    }
+}
+
 function _stopCurrentAudio() {
     if (currentAudio) {
-        try { currentAudio.pause(); } catch(e) {}
+        try { currentAudio.pause(); } catch (e) { /* ignore */ }
         currentAudio = null;
     }
     _stopWebSpeechKeepalive();
     window.speechSynthesis.cancel();
 }
 
-// Play một audio URL với rate control qua playbackRate
-// rate: 1.0 = bình thường, 0.6 = chậm, v.v.
 function _playAudioUrl(url, btn, rate, onFail) {
-    var audio = new Audio(url);
+    const audio = new Audio(url);
     audio.playbackRate = (rate && rate > 0) ? rate : 1.0;
     currentAudio = audio;
     if (btn) btn.classList.add('speaking');
-    audio.onended = function() {
+    audio.onended = function () {
         if (btn) btn.classList.remove('speaking');
         if (currentAudio === audio) currentAudio = null;
     };
-    audio.onerror = function() {
+    audio.onerror = function () {
         if (btn) btn.classList.remove('speaking');
         if (currentAudio === audio) currentAudio = null;
         if (onFail) onFail();
     };
-    audio.play().catch(function() {
+    audio.play().catch(function () {
         if (btn) btn.classList.remove('speaking');
         if (currentAudio === audio) currentAudio = null;
         if (onFail) onFail();
     });
 }
 
-// Chia text dài thành các đoạn ≤ maxLen ký tự tại ranh giới câu/từ
 function _splitTextForTTS(text, maxLen) {
     maxLen = maxLen || 180;
     if (text.length <= maxLen) return [text];
-    var chunks = [];
-    // Tách tại các dấu ngắt câu
-    var sentences = text.match(/[^.!?,;]+[.!?,;]*/g) || [text];
-    var current = '';
-    for (var i = 0; i < sentences.length; i++) {
-        var s = sentences[i].trim();
+    const chunks = [];
+    const sentences = text.match(/[^.!?,;]+[.!?,;]*/g) || [text];
+    let current = '';
+
+    for (let i = 0; i < sentences.length; i++) {
+        const s = sentences[i].trim();
         if (!s) continue;
         if ((current + ' ' + s).trim().length <= maxLen) {
             current = (current + ' ' + s).trim();
-        } else {
-            if (current) chunks.push(current);
-            // Nếu câu đơn vẫn quá dài → cắt tại khoảng trắng
-            if (s.length > maxLen) {
-                var words = s.split(' ');
-                current = '';
-                for (var w = 0; w < words.length; w++) {
-                    if ((current + ' ' + words[w]).trim().length <= maxLen) {
-                        current = (current + ' ' + words[w]).trim();
-                    } else {
-                        if (current) chunks.push(current);
-                        current = words[w];
-                    }
+            continue;
+        }
+
+        if (current) chunks.push(current);
+        if (s.length > maxLen) {
+            const wordsArr = s.split(' ');
+            current = '';
+            for (let w = 0; w < wordsArr.length; w++) {
+                if ((current + ' ' + wordsArr[w]).trim().length <= maxLen) {
+                    current = (current + ' ' + wordsArr[w]).trim();
+                } else {
+                    if (current) chunks.push(current);
+                    current = wordsArr[w];
                 }
-            } else {
-                current = s;
             }
+        } else {
+            current = s;
         }
     }
     if (current) chunks.push(current);
     return chunks.length ? chunks : [text.slice(0, maxLen)];
 }
 
-// Keepalive để chống Chrome/Chromium bug: Web Speech tự pause sau ~15s
-var _webSpeechKeepalive = null;
-function _startWebSpeechKeepalive() {
-    _stopWebSpeechKeepalive();
-    _webSpeechKeepalive = setInterval(function() {
-        if (!window.speechSynthesis.speaking) { _stopWebSpeechKeepalive(); return; }
-        window.speechSynthesis.pause();
-        window.speechSynthesis.resume();
-    }, 10000);
-}
-function _stopWebSpeechKeepalive() {
-    if (_webSpeechKeepalive) { clearInterval(_webSpeechKeepalive); _webSpeechKeepalive = null; }
-}
-
-// Fallback: Web Speech API (last resort, giọng local)
 function _speakViaWebSpeech(text, btn, rate, langCode) {
     window.speechSynthesis.cancel();
     _stopWebSpeechKeepalive();
-    var doSpeak = function() {
-        var utt = new SpeechSynthesisUtterance(text);
-        var normalizedLang = normalizeLangCode(langCode);
-        utt.lang = normalizedLang;
-        utt.rate = (rate != null && rate > 0) ? rate : 0.9;
-        utt.pitch = 1;
-        utt.volume = 1;
-        var voice = getBestVoice(normalizedLang);
-        if (voice) utt.voice = voice;
+    const run = function () {
+        const utter = new SpeechSynthesisUtterance(text);
+        const normalizedLang = normalizeLangCode(langCode);
+        utter.lang = normalizedLang;
+        utter.rate = (rate != null && rate > 0) ? rate : 0.9;
+        utter.pitch = 1;
+        utter.volume = 1;
+        const voice = getBestVoice(normalizedLang);
+        if (voice) utter.voice = voice;
         if (btn) btn.classList.add('speaking');
-        utt.onend = function() {
+        utter.onend = function () {
             _stopWebSpeechKeepalive();
             if (btn) btn.classList.remove('speaking');
         };
-        utt.onerror = function() {
+        utter.onerror = function () {
             _stopWebSpeechKeepalive();
             if (btn) btn.classList.remove('speaking');
         };
-        window.speechSynthesis.speak(utt);
+        window.speechSynthesis.speak(utter);
         _startWebSpeechKeepalive();
     };
-    setTimeout(doSpeak, isMobile ? 80 : 20);
+    setTimeout(run, isMobile ? 80 : 20);
 }
 
-function _base64ToBlobUrl(base64, mimeType) {
-    var binary = atob(base64);
-    var len = binary.length;
-    var bytes = new Uint8Array(len);
-    for (var i = 0; i < len; i++) bytes[i] = binary.charCodeAt(i);
-    var blob = new Blob([bytes], { type: mimeType || 'audio/mpeg' });
-    return URL.createObjectURL(blob);
+function _base64ToBlob(base64, mimeType) {
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return new Blob([bytes], { type: mimeType || 'audio/mpeg' });
 }
 
-function _getCloudTTSBlobUrl(text, rate, langCode) {
-    if (!TTS_CONFIG.preferCloud) return Promise.reject(new Error('cloud tts disabled'));
-    var normalizedRate = (rate && rate > 0) ? rate : 1.0;
-    var normalizedText = (text || '').trim();
-    var normalizedLang = normalizeLangCode(langCode);
-    var cacheKey = normalizedLang + '|' + normalizedText.toLowerCase().slice(0, 320) + '|' + normalizedRate.toFixed(2);
-    if (_cloudTTSCache[cacheKey]) return Promise.resolve(_cloudTTSCache[cacheKey]);
-
-    return fetch(TTS_CONFIG.cloudEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            text: normalizedText.slice(0, 2000),
-            rate: normalizedRate,
-            lang: normalizedLang,
-        })
-    })
-        .then(function(res) {
-            if (!res.ok) throw new Error('cloud tts ' + res.status);
-            return res.json();
-        })
-        .then(function(data) {
-            if (!data || !data.audioContent) throw new Error('empty cloud tts audio');
-            var blobUrl = _base64ToBlobUrl(data.audioContent, data.mimeType || 'audio/mpeg');
-            _cloudTTSCache[cacheKey] = blobUrl;
-            return blobUrl;
-        });
+function _langFolder(langCode) {
+    const normalized = normalizeLangCode(langCode);
+    if (normalized.startsWith('zh')) return 'zh';
+    if (normalized.startsWith('vi')) return 'vi';
+    return 'en';
 }
 
-function _speakViaCloudTTS(text, btn, rate, langCode, onFail) {
-    _getCloudTTSBlobUrl(text, rate, langCode)
-        .then(function(url) {
-            _playAudioUrl(url, btn, rate, onFail);
-        })
-        .catch(function() {
-            if (onFail) onFail();
-        });
+function _sanitizeAudioId(audioId) {
+    return String(audioId || '').trim().replace(/\.mp3$/i, '').replace(/[^a-zA-Z0-9_-]/g, '');
 }
 
-function _getGoogleTTSBlobUrl(text, langCode) {
-    var normalizedLang = normalizeLangCode(langCode);
-    var cacheKey = normalizedLang + '|' + text.toLowerCase().trim().slice(0, 180);
-    if (_googleTTSCache[cacheKey]) return Promise.resolve(_googleTTSCache[cacheKey]);
-
-    // tw-ob client ổn định hơn gtx, ít bị block hơn trên các trình duyệt không phải Chrome
-    var url = 'https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=' + encodeURIComponent(normalizedLang) + '&client=tw-ob&q='
-        + encodeURIComponent(text.slice(0, 180));
-
-    return fetch(url)
-        .then(function(res) {
-            if (!res.ok) throw new Error('gtts ' + res.status);
-            return res.blob();
-        })
-        .then(function(blob) {
-            if (!blob || blob.size < 100) throw new Error('gtts empty blob');
-            var blobUrl = URL.createObjectURL(blob);
-            _googleTTSCache[cacheKey] = blobUrl;
-            return blobUrl;
-        });
+function _buildPreGeneratedAudioUrl(audioId, langCode) {
+    const safeId = _sanitizeAudioId(audioId);
+    if (!safeId) return null;
+    return TTS_CONFIG.preGeneratedBasePath + '/' + _langFolder(langCode) + '/' + safeId + '.mp3';
 }
 
-// Primary TTS: Google Translate TTS
-// Fetch → blob URL → cache in-memory → playbackRate cho speed control
-// Giọng Google nhất quán trên mọi thiết bị
-function _speakViaGoogleTTS(text, btn, rate, langCode, onFail) {
-    _getGoogleTTSBlobUrl(text, langCode)
-        .then(function(blobUrl) {
-            _playAudioUrl(blobUrl, btn, rate, onFail);
-        })
-        .catch(function() {
-            if (onFail) onFail();
-        });
+function _toEdgeRate(rate) {
+    const r = Number.isFinite(Number(rate)) ? Number(rate) : 1.0;
+    const bounded = Math.max(0.6, Math.min(1.4, r));
+    const pct = Math.round((bounded - 1.0) * 100);
+    return (pct >= 0 ? '+' : '') + pct + '%';
 }
 
-// Phát tuần tự nhiều chunks (cho text dài)
+function _getEnglishWordAudioIdByWord(wordText) {
+    if (!Array.isArray(words) || !words.length || !wordText) return null;
+    const target = String(wordText).trim().toLowerCase();
+    const idx = words.findIndex(function (w) {
+        return String((w && w.word) || '').trim().toLowerCase() === target;
+    });
+    if (idx < 0) return null;
+    return 'ew_' + String(idx + 1).padStart(5, '0');
+}
+
+function _buildWordAudioIdByRealIndex(realIndex) {
+    if (!Number.isInteger(realIndex) || realIndex < 0) return null;
+    return 'ew_' + String(realIndex + 1).padStart(5, '0');
+}
+
+async function _resolveBlobUrlFromIndexedDbOrNetwork(cacheKey, loader) {
+    if (_ttsObjectUrlCache[cacheKey]) return _ttsObjectUrlCache[cacheKey];
+    if (_ttsPromiseCache[cacheKey]) return _ttsPromiseCache[cacheKey];
+
+    _ttsPromiseCache[cacheKey] = (async function () {
+        const blobFromDb = await _idbGetBlob(cacheKey);
+        if (blobFromDb) return _cacheBlobToObjectUrl(cacheKey, blobFromDb);
+
+        const freshBlob = await loader();
+        if (!freshBlob || !freshBlob.size) throw new Error('empty audio blob');
+        await _idbSetBlob(cacheKey, freshBlob);
+        return _cacheBlobToObjectUrl(cacheKey, freshBlob);
+    })().finally(function () {
+        delete _ttsPromiseCache[cacheKey];
+    });
+
+    return _ttsPromiseCache[cacheKey];
+}
+
+async function _getPreGeneratedAudioBlobUrl(audioId, langCode) {
+    if (!_ttsPreGeneratedState.enabled) {
+        throw new Error('pre-generated audio disabled for this session');
+    }
+    const sourceUrl = _buildPreGeneratedAudioUrl(audioId, langCode);
+    if (!sourceUrl) throw new Error('missing pre-generated audio id');
+    const cacheKey = 'pregen|' + sourceUrl;
+    return _resolveBlobUrlFromIndexedDbOrNetwork(cacheKey, async function () {
+        const res = await _fetchWithRetry(sourceUrl, { method: 'GET' }, 1, 180);
+        if (!res.ok && res.status === 404) {
+            _ttsPreGeneratedState.missCount += 1;
+            if (_ttsPreGeneratedState.missCount >= _ttsPreGeneratedState.disableAfterMisses) {
+                _ttsPreGeneratedState.enabled = false;
+            }
+        }
+        if (!res.ok) throw new Error('pregen ' + res.status);
+        _ttsPreGeneratedState.missCount = 0;
+        const blob = await res.blob();
+        if (!blob || blob.size < 100) throw new Error('pregen empty blob');
+        return blob;
+    });
+}
+
+async function _getEdgeTTSBlobUrl(text, rate, langCode) {
+    const normalizedText = String(text || '').trim();
+    const normalizedLang = normalizeLangCode(langCode);
+    const normalizedRate = Number.isFinite(Number(rate)) ? Number(rate) : 1.0;
+    const cacheKey = 'edge|' + normalizedLang + '|' + normalizedRate.toFixed(2) + '|' + _safeTextKey(normalizedText, 360);
+
+    if (_ttsEndpointAvailability.edge === false) {
+        throw new Error('edge tts endpoint unavailable');
+    }
+
+    return _resolveBlobUrlFromIndexedDbOrNetwork(cacheKey, async function () {
+        const res = await _fetchWithRetry(
+            TTS_CONFIG.edgeEndpoint,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    text: normalizedText.slice(0, 2000),
+                    lang: normalizedLang,
+                    rate: normalizedRate,
+                    edgeRate: _toEdgeRate(normalizedRate),
+                }),
+            },
+            TTS_CONFIG.maxNetworkRetries,
+            260
+        );
+
+        if (!res.ok && res.status === 404) {
+            _ttsEndpointAvailability.edge = false;
+        }
+        if (!res.ok) throw new Error('edge tts ' + res.status);
+        _ttsEndpointAvailability.edge = true;
+        const data = await res.json();
+        if (!data || !data.audioContent) throw new Error('edge tts empty audio');
+        return _base64ToBlob(data.audioContent, data.mimeType || 'audio/mpeg');
+    });
+}
+
+async function _getCloudTTSBlobUrl(text, rate, langCode) {
+    if (!TTS_CONFIG.enableCloudFallback) {
+        throw new Error('cloud fallback disabled');
+    }
+    const normalizedText = String(text || '').trim();
+    const normalizedLang = normalizeLangCode(langCode);
+    const normalizedRate = Number.isFinite(Number(rate)) ? Number(rate) : 1.0;
+    const cacheKey = 'cloud|' + normalizedLang + '|' + normalizedRate.toFixed(2) + '|' + _safeTextKey(normalizedText, 320);
+
+    if (_ttsEndpointAvailability.cloud === false) {
+        throw new Error('cloud tts endpoint unavailable');
+    }
+
+    return _resolveBlobUrlFromIndexedDbOrNetwork(cacheKey, async function () {
+        const res = await _fetchWithRetry(
+            TTS_CONFIG.cloudEndpoint,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    text: normalizedText.slice(0, 2000),
+                    rate: normalizedRate,
+                    lang: normalizedLang,
+                }),
+            },
+            TTS_CONFIG.maxNetworkRetries,
+            280
+        );
+
+        if (!res.ok && res.status !== 429) {
+            _ttsEndpointAvailability.cloud = false;
+        }
+        if (!res.ok) throw new Error('cloud tts ' + res.status);
+        _ttsEndpointAvailability.cloud = true;
+
+        const data = await res.json();
+        if (!data || !data.audioContent) throw new Error('cloud tts empty audio');
+        return _base64ToBlob(data.audioContent, data.mimeType || 'audio/mpeg');
+    });
+}
+
+async function _resolveHybridAudioUrl(text, rate, langCode, audioId) {
+    if (!text) throw new Error('empty text');
+    if (audioId) {
+        try {
+            return await _getPreGeneratedAudioBlobUrl(audioId, langCode);
+        } catch (e) {
+            // continue fallback chain
+        }
+    }
+    try {
+        return await _getEdgeTTSBlobUrl(text, rate, langCode);
+    } catch (e) {
+        // continue fallback chain
+    }
+    try {
+        return await _getCloudTTSBlobUrl(text, rate, langCode);
+    } catch (e) {
+        // continue fallback chain
+    }
+    throw new Error('all network tts providers failed');
+}
+
+function _scheduleAudioPreload(preloadSpec) {
+    if (!preloadSpec) return;
+    if (ttsPreloadTimer) {
+        clearTimeout(ttsPreloadTimer);
+        ttsPreloadTimer = null;
+    }
+
+    const run = function (spec) {
+        if (!spec) return;
+        const text = String(spec.text || '').trim();
+        if (!text) return;
+        const langCode = normalizeLangCode(spec.lang || inferLangCodeFromText(text));
+        const rate = Number.isFinite(Number(spec.rate)) ? Number(spec.rate) : 1.0;
+        const audioId = spec.audioId || null;
+        _resolveHybridAudioUrl(text, rate, langCode, audioId).catch(function () { /* ignore preload failure */ });
+    };
+
+    ttsPreloadTimer = setTimeout(function () {
+        if (Array.isArray(preloadSpec)) preloadSpec.forEach(run);
+        else run(preloadSpec);
+    }, TTS_CONFIG.preloadDelayMs);
+}
+
 function _speakChunksSequentially(chunks, btn, rate, langCode, onFail) {
     if (!chunks || !chunks.length) return;
     if (btn) btn.classList.add('speaking');
-    var idx = 0;
+    let idx = 0;
 
-    function playNext() {
+    const playNext = function () {
         if (idx >= chunks.length) {
             if (btn) btn.classList.remove('speaking');
             return;
         }
-
-        var chunk = chunks[idx++];
-        var getChunkAudio = null;
-        if (TTS_CONFIG.preferCloud) {
-            getChunkAudio = _getCloudTTSBlobUrl(chunk, rate, langCode).catch(function(err) {
-                if (TTS_CONFIG.useLegacyGoogleFallback) return _getGoogleTTSBlobUrl(chunk, langCode);
-                throw err;
-            });
-        } else {
-            getChunkAudio = _getGoogleTTSBlobUrl(chunk, langCode);
-        }
-
-        getChunkAudio
-            .then(function(url) {
-                var audio = new Audio(url);
+        const chunk = chunks[idx++];
+        _resolveHybridAudioUrl(chunk, rate, langCode, null)
+            .then(function (url) {
+                const audio = new Audio(url);
                 audio.playbackRate = (rate && rate > 0) ? rate : 1.0;
                 currentAudio = audio;
-                audio.onended = function() { if (currentAudio === audio) currentAudio = null; playNext(); };
-                audio.onerror = function() {
+                audio.onended = function () {
+                    if (currentAudio === audio) currentAudio = null;
+                    playNext();
+                };
+                audio.onerror = function () {
                     if (currentAudio === audio) currentAudio = null;
                     if (btn) btn.classList.remove('speaking');
                     if (onFail) onFail();
                 };
-                audio.play().catch(function() {
+                audio.play().catch(function () {
                     if (currentAudio === audio) currentAudio = null;
                     if (btn) btn.classList.remove('speaking');
                     if (onFail) onFail();
                 });
             })
-            .catch(function() {
+            .catch(function () {
                 if (btn) btn.classList.remove('speaking');
                 if (onFail) onFail();
             });
-    }
+    };
 
     playNext();
 }
 
-// ---- Main speak functions ----
+function _speakViaHybridPipeline(text, opts) {
+    const normalizedText = String(text || '').trim();
+    if (!normalizedText) return;
 
-function speakWord(text) {
-    var word = (text || (wordText && wordText.textContent) || '').trim();
-    if (!word || word === 'Loading...') return;
+    const btn = (opts && opts.btn) || null;
+    const rate = (opts && Number.isFinite(Number(opts.rate)) && Number(opts.rate) > 0) ? Number(opts.rate) : 1.0;
+    const langCode = normalizeLangCode((opts && opts.lang) || inferLangCodeFromText(normalizedText));
+    const audioId = (opts && opts.audioId) ? String(opts.audioId) : null;
+    const isAuto = !!(opts && opts.auto);
+    const preloadNext = opts && opts.preloadNext;
 
-    if (speakDelayTimer) { clearTimeout(speakDelayTimer); speakDelayTimer = null; }
+    if (isAuto && !ttsUserGestureUnlocked) {
+        _queueSpeakUntilGesture(function () {
+            _speakViaHybridPipeline(normalizedText, Object.assign({}, opts, { auto: false }));
+        });
+        _scheduleAudioPreload(preloadNext);
+        return;
+    }
+
     _stopCurrentAudio();
-
-    var activeBtn = document.querySelector('.screen.active .speak-btn') || speakBtn;
-    var langCode = 'en-US';
-
-    // Cloud-first để đồng nhất giọng giữa browser/device.
-    var fallbackToWebSpeech = function() {
-        _speakViaWebSpeech(word, activeBtn, null, langCode);
+    const fallbackToWebSpeech = function () {
+        _speakViaWebSpeech(normalizedText, btn, rate, langCode);
+    };
+    let autoTimeoutId = null;
+    let settled = false;
+    let preloadScheduled = false;
+    const schedulePreloadOnce = function () {
+        if (preloadScheduled) return;
+        preloadScheduled = true;
+        _scheduleAudioPreload(preloadNext);
     };
 
-    if (TTS_CONFIG.preferCloud) {
-        _speakViaCloudTTS(word, activeBtn, 1.0, langCode, function() {
-            if (TTS_CONFIG.useDictionaryFallback && !/\s/.test(word)) {
-                var audioUrl = _dictAudioCache[word.toLowerCase()];
-                if (audioUrl) {
-                    _playAudioUrl(audioUrl, activeBtn, 1.0, fallbackToWebSpeech);
-                    return;
-                }
-                prefetchWordAudio(word);
+    const chunks = _splitTextForTTS(normalizedText);
+    if (chunks.length > 1 && !audioId) {
+        _speakChunksSequentially(chunks, btn, rate, langCode, fallbackToWebSpeech);
+        schedulePreloadOnce();
+        return;
+    }
+
+    if (isAuto && TTS_CONFIG.networkFirstTimeoutMsAuto > 0) {
+        autoTimeoutId = setTimeout(function () {
+            if (settled) return;
+            settled = true;
+            fallbackToWebSpeech();
+            schedulePreloadOnce();
+        }, TTS_CONFIG.networkFirstTimeoutMsAuto);
+    }
+
+    _resolveHybridAudioUrl(normalizedText, rate, langCode, audioId)
+        .then(function (url) {
+            if (settled) return;
+            settled = true;
+            if (autoTimeoutId) {
+                clearTimeout(autoTimeoutId);
+                autoTimeoutId = null;
             }
-            if (TTS_CONFIG.useLegacyGoogleFallback) {
-                _speakViaGoogleTTS(word, activeBtn, 1.0, langCode, fallbackToWebSpeech);
-                return;
+            _playAudioUrl(url, btn, rate, fallbackToWebSpeech);
+        })
+        .catch(function () {
+            if (settled) return;
+            settled = true;
+            if (autoTimeoutId) {
+                clearTimeout(autoTimeoutId);
+                autoTimeoutId = null;
             }
             fallbackToWebSpeech();
+        })
+        .finally(function () {
+            if (autoTimeoutId) {
+                clearTimeout(autoTimeoutId);
+                autoTimeoutId = null;
+            }
+            schedulePreloadOnce();
         });
-        return;
-    }
-
-    _speakViaGoogleTTS(word, activeBtn, 1.0, langCode, fallbackToWebSpeech);
 }
 
-// Global speak — dùng cho phrases.js và game.js
-// opts: { rate: number, btn: HTMLElement, lang: 'en-US'|'vi-VN'|'zh-CN' }
-window.speakText = function(text, opts) {
-    _stopCurrentAudio();
-    var btn = (opts && opts.btn) || null;
-    var rate = (opts && opts.rate != null && opts.rate > 0) ? opts.rate : 1.0;
-    var langCode = inferLangCodeFromText(text, opts && opts.lang);
-    var fallbackToWebSpeech = function() {
-        _speakViaWebSpeech(text, btn, rate, langCode);
+function _buildNextWordPreloadSpec(wordText) {
+    const currentId = _getEnglishWordAudioIdByWord(wordText);
+    if (!Array.isArray(words) || !words.length || !currentId) return null;
+    const currentIdx = Number(currentId.replace('ew_', '')) - 1;
+    const nextIdx = currentIdx + 1;
+    if (nextIdx < 0 || nextIdx >= words.length) return null;
+    const nextWord = words[nextIdx];
+    if (!nextWord || !nextWord.word) return null;
+    return {
+        text: nextWord.word,
+        lang: 'en-US',
+        rate: 1.0,
+        audioId: 'ew_' + String(nextIdx + 1).padStart(5, '0'),
     };
+}
 
-    var chunks = _splitTextForTTS(text);
-    if (TTS_CONFIG.preferCloud) {
-        if (chunks.length <= 1) {
-            _speakViaCloudTTS(text, btn, rate, langCode, function() {
-                if (TTS_CONFIG.useLegacyGoogleFallback) {
-                    _speakViaGoogleTTS(text, btn, rate, langCode, fallbackToWebSpeech);
-                    return;
-                }
-                fallbackToWebSpeech();
-            });
-            return;
-        }
-        _speakChunksSequentially(chunks, btn, rate, langCode, fallbackToWebSpeech);
-        return;
+function speakWord(text, opts) {
+    const word = String(text || (wordText && wordText.textContent) || '').trim();
+    if (!word || word === 'Loading...') return;
+
+    if (speakDelayTimer) {
+        clearTimeout(speakDelayTimer);
+        speakDelayTimer = null;
     }
 
-    if (chunks.length <= 1) {
-        _speakViaGoogleTTS(text, btn, rate, langCode, fallbackToWebSpeech);
-        return;
-    }
-    _speakChunksSequentially(chunks, btn, rate, langCode, fallbackToWebSpeech);
+    const activeBtn = (opts && opts.btn) || document.querySelector('.screen.active .speak-btn') || speakBtn;
+    const audioId = (opts && opts.audioId) || _getEnglishWordAudioIdByWord(word);
+    const preloadNext = (opts && opts.preloadNext) || _buildNextWordPreloadSpec(word);
+
+    _speakViaHybridPipeline(word, {
+        btn: activeBtn,
+        rate: 1.0,
+        lang: 'en-US',
+        audioId: audioId,
+        auto: !!(opts && opts.auto),
+        preloadNext: preloadNext,
+    });
+}
+
+window.speakText = function (text, opts) {
+    _speakViaHybridPipeline(text, opts || {});
 };
 
 // ===== Speech Recognition =====
@@ -2079,7 +2346,19 @@ function showReviewWord() {
     document.getElementById('review-word-phonetic').textContent = word.phonetic || '—';
     document.getElementById('review-word-info').textContent = [word.type, word.level].filter(Boolean).join(' · ');
 
-    speakWord(word.word);
+    const nextReviewIndex = (reviewIdx + 1 < reviewQueue.length) ? reviewQueue[reviewIdx + 1] : null;
+    const nextReviewWord = Number.isInteger(nextReviewIndex) ? words[nextReviewIndex] : null;
+
+    speakWord(word.word, {
+        auto: true,
+        audioId: _buildWordAudioIdByRealIndex(reviewQueue[reviewIdx]),
+        preloadNext: nextReviewWord ? {
+            text: nextReviewWord.word,
+            lang: 'en-US',
+            rate: 1.0,
+            audioId: _buildWordAudioIdByRealIndex(nextReviewIndex),
+        } : null,
+    });
 
     const input = document.getElementById('review-typing-input');
     input.value = '';

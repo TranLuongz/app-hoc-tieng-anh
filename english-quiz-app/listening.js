@@ -103,11 +103,24 @@
     }
 
     // ===== TTS =====
-    function lsSpeak(rate) {
+    function lsSpeak(rate, options) {
         var phrase = lsQueue[lsIdx];
         if (!phrase) return;
         var btn = document.getElementById('ls-speak-btn');
-        window.speakText(phrase.en, { btn: btn, rate: rate || 1.0 });
+        var nextPhrase = lsQueue[lsIdx + 1] || null;
+        window.speakText(phrase.en, {
+            btn: btn,
+            rate: rate || 1.0,
+            lang: 'en-US',
+            audioId: phrase.id || null,
+            auto: !!(options && options.auto),
+            preloadNext: nextPhrase ? {
+                text: nextPhrase.en,
+                lang: 'en-US',
+                rate: rate || 1.0,
+                audioId: nextPhrase.id || null,
+            } : null,
+        });
     }
 
     // ===== Show question =====
@@ -132,7 +145,7 @@
             window.SeenPhrases.add(phrase.id);
         }
 
-        setTimeout(function () { lsSpeak(1.0); }, 300);
+        setTimeout(function () { lsSpeak(1.0, { auto: true }); }, 300);
         input.focus();
     }
 

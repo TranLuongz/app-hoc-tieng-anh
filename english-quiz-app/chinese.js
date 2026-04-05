@@ -1376,11 +1376,25 @@
 
         if (runtime.question.speakText && (runtime.practice.kind === 'listening' || runtime.practice.direction === 'zh-to-vi')) {
             if (typeof window.speakText === 'function') {
+                var nextItem = runtime.practice.queue[runtime.practice.idx + 1] || null;
+                var nextText = '';
+                if (nextItem) {
+                    if (runtime.practice.kind === 'vocab') nextText = nextItem.word || '';
+                    else nextText = nextItem.zh || '';
+                }
                 setTimeout(function () {
                     window.speakText(runtime.question.speakText, {
                         lang: 'zh-CN',
                         rate: runtime.speechRate,
-                        btn: document.getElementById('chinese-speak-btn')
+                        btn: document.getElementById('chinese-speak-btn'),
+                        audioId: runtime.question.itemId || null,
+                        auto: true,
+                        preloadNext: nextText ? {
+                            text: nextText,
+                            lang: 'zh-CN',
+                            rate: runtime.speechRate,
+                            audioId: nextItem && nextItem.id ? nextItem.id : null,
+                        } : null,
                     });
                 }, 220);
             }
@@ -2397,7 +2411,8 @@
             window.speakText(runtime.question.speakText, {
                 lang: 'zh-CN',
                 rate: runtime.speechRate,
-                btn: document.getElementById('chinese-speak-btn')
+                btn: document.getElementById('chinese-speak-btn'),
+                audioId: runtime.question.itemId || null,
             });
         });
         document.getElementById('chinese-speed-normal').addEventListener('click', function () {
@@ -2415,7 +2430,11 @@
             if (!runtime.activeStory || !runtime.activeStoryNode || typeof window.speakText !== 'function') return;
             var node = runtime.activeStory.nodes[runtime.activeStoryNode];
             if (!node || !node.zh) return;
-            window.speakText(node.zh, { lang: 'zh-CN', btn: document.getElementById('chinese-story-speak-btn') });
+            window.speakText(node.zh, {
+                lang: 'zh-CN',
+                btn: document.getElementById('chinese-story-speak-btn'),
+                audioId: (runtime.activeStory.id || 'story') + '_' + runtime.activeStoryNode,
+            });
         });
         document.getElementById('chinese-story-translate-btn').addEventListener('click', function () {
             var el = document.getElementById('chinese-story-text-vi');

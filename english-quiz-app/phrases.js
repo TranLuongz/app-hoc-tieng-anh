@@ -327,7 +327,17 @@ function showPhraseExercise() {
     const speakRow = document.querySelector('.phrases-speak-row');
     if (currentDirection === 'en-to-vi') {
         speakRow.style.display = 'flex';
-        speakPhrase(phrase.en);
+        const nextPhrase = practiceQueue[pIdx + 1] || null;
+        speakPhrase(phrase.en, {
+            audioId: phrase.id,
+            auto: true,
+            preloadNext: nextPhrase ? {
+                text: nextPhrase.en,
+                lang: 'en-US',
+                rate: speechRate,
+                audioId: nextPhrase.id,
+            } : null,
+        });
     } else {
         speakRow.style.display = 'none';
     }
@@ -546,12 +556,31 @@ function nextPhrase() {
 }
 
 // ===== TTS =====
-function speakPhrase(text) {
-    if (!text && practiceQueue[pIdx]) text = practiceQueue[pIdx].en;
+function speakPhrase(text, opts) {
+    const currentPhrase = practiceQueue[pIdx] || null;
+    if (!text && currentPhrase) text = currentPhrase.en;
     if (!text) return;
+
+    const audioId = (opts && opts.audioId) || (currentPhrase && currentPhrase.id) || null;
+    const preloadNext = (opts && Object.prototype.hasOwnProperty.call(opts, 'preloadNext'))
+        ? opts.preloadNext
+        : (practiceQueue[pIdx + 1] ? {
+            text: practiceQueue[pIdx + 1].en,
+            lang: 'en-US',
+            rate: speechRate,
+            audioId: practiceQueue[pIdx + 1].id,
+        } : null);
+
     const btn = document.getElementById('phrases-speak-btn');
     if (typeof window.speakText === 'function') {
-        window.speakText(text, { rate: speechRate, btn: btn });
+        window.speakText(text, {
+            rate: speechRate,
+            btn: btn,
+            lang: 'en-US',
+            audioId: audioId,
+            auto: !!(opts && opts.auto),
+            preloadNext: preloadNext,
+        });
     }
 }
 
@@ -562,7 +591,7 @@ function setSpeechRate(rate) {
     savePhrasesProgress();
     // Re-speak if current phrase is English
     if (currentDirection === 'en-to-vi' && practiceQueue[pIdx]) {
-        speakPhrase(practiceQueue[pIdx].en);
+        speakPhrase(practiceQueue[pIdx].en, { audioId: practiceQueue[pIdx].id });
     }
 }
 
@@ -718,7 +747,7 @@ function showFavorites() {
             btn.addEventListener('click', () => {
                 const card = btn.closest('.fav-card');
                 const phrase = phrasesData.phrases.find(p => p.id === card.dataset.id);
-                if (phrase) speakPhrase(phrase.en);
+                if (phrase) speakPhrase(phrase.en, { audioId: phrase.id, preloadNext: null });
             });
         });
         list.querySelectorAll('.fav-remove-btn').forEach(btn => {
