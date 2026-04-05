@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /.vercel/
 
-Sitemap: https://app-hoc-tieng-anh-dun.vercel.app/sitemap.xml
+# Static assets should remain crawlable for rendering
+Allow: /*.css$
+Allow: /*.js$
+
+Sitemap: https://engame.io.vn/sitemap.xml

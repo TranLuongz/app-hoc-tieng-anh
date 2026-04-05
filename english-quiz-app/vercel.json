@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "app-hoc-tieng-anh-dun.vercel.app"
+        }
+      ],
+      "destination": "https://engame.io.vn/$1",
+      "permanent": true
+    }
+  ]
+}
